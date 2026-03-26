@@ -1,0 +1,38 @@
+:root {
+  --space-section-y: clamp(5rem, 7vw, 8rem);
+  --space-section-y-tight: clamp(3.2rem, 4.5vw, 5.4rem);
+  --space-page-x: clamp(1.25rem, 3vw, 3rem);
+  --radius-card: 1.5rem;
+  --radius-panel: 2rem;
+
+  --color-brand-50: #faf8f4;
+  --color-brand-100: #f5f1e8;
+  --color-brand-200: #e9deca;
+  --color-brand-300: #d5c4a1;
+  --color-brand-400: #c4a876;
+  --color-brand-500: #b39252;
+  --color-brand-600: #a5813b;
+  --color-brand-700: #8a6b2d;
+  --color-brand-800: #704d1f;
+  --color-brand-900: #4a2f0f;
+
+  --color-text-primary: #181510;
+  --color-text-secondary: #5a5446;
+  --color-text-tertiary: #7b7168;
+  --color-text-light: #f5f1e8;
+  --color-text-light-muted: #d2c5ad;
+
+  --color-surface-light: #f5f1e8;
+  --color-surface-light-alt: #f2ece1;
+  --color-surface-dark: #1a1914;
+  --color-surface-dark-alt: #14120e;
+  --color-bg-overlay-dark: rgba(16, 14, 10, 0.9);
+  --color-border: rgba(100, 82, 46, 0.24);
+  --color-border-light: rgba(139, 115, 74, 0.24);
+
+  --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-swift: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 0.45s;
+  --dur-mid: 0.75s;
+  --dur-slow: 1s;
+}
