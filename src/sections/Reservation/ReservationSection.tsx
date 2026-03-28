@@ -61,12 +61,16 @@ export default function ReservationSection() {
         body: JSON.stringify(formData),
       });
 
-      const data = await res.json();
-
-      if (data.success) {
-        setSubmitted(true);
+      if (!res.ok) {
+        const text = await res.text();
+        setError(text || `Request failed (${res.status}). Please try again.`);
       } else {
-        setError(data.message || "Something went wrong. Please try again.");
+        const data = await res.json();
+        if (data.success) {
+          setSubmitted(true);
+        } else {
+          setError(data.message || "Something went wrong. Please try again.");
+        }
       }
     } catch {
       setError("Network error. Please check your connection and try again.");

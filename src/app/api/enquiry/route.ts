@@ -7,6 +7,13 @@ import { NextResponse } from "next/server";
  * CRM endpoint: POST /api/v1/queries/webhook/website
  * Required fields (by CRM validator): name, phone, leadSource
  */
+const CRM_URL = process.env.CRM_WEBHOOK_URL as string;
+const CRM_API_KEY = process.env.CRM_WEBHOOK_API_KEY as string;
+
+if (!CRM_URL || !CRM_API_KEY) {
+  throw new Error("Missing required CRM configuration in environment variables (CRM_WEBHOOK_URL or CRM_WEBHOOK_API_KEY).");
+}
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();
@@ -33,18 +40,10 @@ export async function POST(request: Request) {
       );
     }
 
-    const CRM_URL =
-      process.env.CRM_WEBHOOK_URL ||
-      "https://crm-production-3f6d.up.railway.app/api/v1/queries/webhook/website";
-
-    const CRM_API_KEY = process.env.CRM_WEBHOOK_API_KEY || "";
-
     const headers: Record<string, string> = {
       "Content-Type": "application/json",
+      "x-api-key": CRM_API_KEY,
     };
-    if (CRM_API_KEY) {
-      headers["x-api-key"] = CRM_API_KEY;
-    }
 
     const crmResponse = await fetch(CRM_URL, {
       method: "POST",
@@ -52,7 +51,17 @@ export async function POST(request: Request) {
       body: JSON.stringify(crmPayload),
     });
 
-    const crmData = await crmResponse.json();
+    let crmData;
+    const contentType = crmResponse.headers.get("content-type");
+    if (contentType && contentType.includes("application/json")) {
+      try {
+        crmData = await crmResponse.json();
+      } catch (err) {
+        crmData = { error: true, status: crmResponse.status, bodyText: await crmResponse.text() };
+      }
+    } else {
+      crmData = { error: true, status: crmResponse.status, bodyText: await crmResponse.text() };
+    }
 
     if (!crmResponse.ok) {
       // If duplicate lead (409), still return a friendly message
