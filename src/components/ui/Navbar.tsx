@@ -7,9 +7,9 @@ import { useEffect, useState } from "react";
 const links = [
   { href: "#journey", label: "Journey" },
   { href: "#hotels", label: "Hotels" },
-  { href: "#pools", label: "Pools" },
-  { href: "#dining", label: "Dining" },
-  { href: "#spa", label: "Spa" }
+  { href: "#destinations-carousel", label: "Destinations" },
+  { href: "#activities-section", label: "Activities" },
+  { href: "#team-support", label: "Team & Support" }
 ];
 
 export default function Navbar() {
@@ -25,7 +25,7 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    const ids = ["#journey", "#hotels", "#pools", "#dining", "#spa"];
+    const ids = ["#journey", "#hotels", "#destinations-carousel", "#activities-section", "#team-support"];
     const elements = ids
       .map((id) => document.querySelector(id))
       .filter((node): node is Element => Boolean(node));
@@ -57,7 +57,7 @@ export default function Navbar() {
     >
       <div className="content-shell flex items-center justify-between px-1">
         <Link href="#" className="font-serif text-xl tracking-[0.16em] text-white md:text-2xl">
-          AYANA BALI
+          IMAGICAHOLIDAYS
         </Link>
         <nav className="hidden items-center gap-8 md:flex">
           {links.map((link) => (
@@ -73,9 +73,9 @@ export default function Navbar() {
             </Link>
           ))}
         </nav>
-        <button className="hidden rounded-full border border-white/45 px-4 py-2 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-white/10 md:block">
+        <Link href="/reserve" className="hidden rounded-full border border-white/45 px-4 py-2 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-white/10 md:block">
           Reserve
-        </button>
+        </Link>
 
         <button
           onClick={() => setOpen((prev) => !prev)}

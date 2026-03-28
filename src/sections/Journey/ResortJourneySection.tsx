@@ -7,24 +7,24 @@ import Image from "next/image";
 const journeyCards = [
   {
     id: "j1",
-    title: "Clifftop Arrival",
-    script: "A grand entrance",
-    description: "A dramatic approach framed by limestone edges, ocean wind, and layered botanical gardens.",
-    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80"
+    title: "Mountain Horizons",
+    script: "Where the sky meets the peaks",
+    description: "Snow-capped summits and rocky shores frame your first glimpse of the mighty Eastern Himalayas.",
+    image: "https://unsplash.com/photos/usVYPlEuPK4/download?force=true&w=1600"
   },
   {
     id: "j2",
-    title: "Golden Hour",
-    script: "Into the dusk",
-    description: "Pools and terraces transition from bright tropical light into cinematic sunset silhouettes.",
-    image: "https://images.unsplash.com/photo-1473116763249-2faaef81ccda?auto=format&fit=crop&w=1600&q=80"
+    title: "River & Valley Trails",
+    script: "Into the valley",
+    description: "Winding rivers, wooden boats, and emerald hills — discover hidden valleys where time slows down.",
+    image: "https://unsplash.com/photos/Xqw7XgnvU3w/download?force=true&w=1600"
   },
   {
     id: "j3",
-    title: "Night Rituals",
-    script: "Starry serene nights",
-    description: "Dining, performance, and wellness experiences unfold as a connected evening journey.",
-    image: "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?auto=format&fit=crop&w=1600&q=80"
+    title: "Living Culture",
+    script: "Ancient traditions alive",
+    description: "Vibrant festivals, masked dances, and centuries-old Buddhist rituals that define the soul of Sikkim.",
+    image: "https://unsplash.com/photos/h3SyJYsqYSo/download?force=true&w=1600"
   }
 ];
 
@@ -62,10 +62,10 @@ export default function ResortJourneySection() {
             The Journey Begins
           </motion.p>
           <h2 className="text-5xl md:text-7xl text-[#181510] font-serif leading-tight">
-            An Estate <span className="font-script text-6xl md:text-8xl text-[#a5813b] italic -ml-2">Narrative</span>
+            A Himalayan <span className="font-script text-6xl md:text-8xl text-[#a5813b] italic -ml-2">Odyssey</span>
           </h2>
           <p className="mt-8 text-sm md:text-base text-[#6a5022] leading-relaxed max-w-xl mx-auto opacity-90">
-            Every step through the grounds is crafted to awaken the senses. From the salt breeze on arrival to the glowing warmth of the evening paths.
+            Every trail through the mountains reveals a new story. From the crisp Himalayan air at dawn to the warm glow of monastery lamps at dusk — Sikkim and Darjeeling await.
           </p>
         </motion.div>
 
@@ -105,7 +105,7 @@ export default function ResortJourneySection() {
               <p className="text-sm text-[#6a5022] tracking-wide leading-relaxed max-w-sm">{journeyCards[1].description}</p>
               
               <button className="mt-8 border border-[#a5813b] text-[#8a6b2d] px-6 py-3 text-xs uppercase tracking-[0.2em] hover:bg-[#a5813b] hover:text-white transition-colors duration-500">
-                Explore Evening
+                Explore Destinations
               </button>
             </article>
           </div>

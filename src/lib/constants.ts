@@ -166,3 +166,29 @@ export const spa: ExperienceCard[] = [
     image: "https://images.unsplash.com/photo-1600334129128-685c5582fd35?auto=format&fit=crop&w=1400&q=80"
   }
 ];
+export const villas = [
+  {
+    id: "v1",
+    title: "Vela One Bedroom Ocean Front Villa",
+    description: "Poised on a cliffside with sweeping ocean views, complemented by personalized butler services to cater to your every desire.",
+    image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1600&q=80"
+  },
+  {
+    id: "v2",
+    title: "Vela Two Bedroom Family Villa",
+    description: "A spacious sanctuary designed for families, featuring a private pool and lush garden surroundings.",
+    image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1600&q=80"
+  },
+  {
+    id: "v3",
+    title: "Vela Ocean View Cliff Villa",
+    description: "Experience the ultimate in privacy and luxury with unobstructed views of the Indian Ocean.",
+    image: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1600&q=80"
+  },
+  {
+    id: "v4",
+    title: "Vela River Front Villa",
+    description: "Nestled along the gentle river, this villa offers a tranquil escape into nature's embrace.",
+    image: "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?auto=format&fit=crop&w=1600&q=80"
+  }
+];

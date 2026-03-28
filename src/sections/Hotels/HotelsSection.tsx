@@ -46,7 +46,7 @@ export default function HotelsSection() {
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-[#1e1c1a] tracking-[0.15em] font-light uppercase">
             VILLAS
           </h2>
-          {/* Very tiny subtle diamond ornament under the title exactly as in Ayana */}
+          {/* Very tiny subtle diamond ornament under the title exactly as in imagicaholidays */}
           <div className="mt-6 opacity-40">
             <svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor">
               <path d="M5 0L10 5L5 10L0 5Z" />

@@ -24,7 +24,7 @@ export default function EstateIntroSection() {
           <p className="eyebrow">The Estate</p>
           <h2 className="headline max-w-3xl">A Destination Woven Into Bali&apos;s Southern Cliffs</h2>
           <p className="max-w-2xl text-sm leading-relaxed text-[#5c5648] md:text-base">
-            Inspired by AYANA&apos;s multi-resort concept, this experience blends private villas, oceanfront hotels,
+            Inspired by imagicaholidays&apos; multi-resort concept, this experience blends private villas, oceanfront hotels,
             destination restaurants, and signature wellness programs into one integrated landscape.
           </p>
         </motion.div>
