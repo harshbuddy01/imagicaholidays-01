@@ -31,6 +31,8 @@ export default function ReservationSection() {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const [focusedField, setFocusedField] = useState<string | null>(null);
 
   const handleChange = (
@@ -47,10 +49,30 @@ export default function ReservationSection() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 4000);
+    setLoading(true);
+    setError("");
+
+    try {
+      const res = await fetch("/api/enquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        setSubmitted(true);
+      } else {
+        setError(data.message || "Something went wrong. Please try again.");
+      }
+    } catch {
+      setError("Network error. Please check your connection and try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -389,12 +411,33 @@ export default function ReservationSection() {
               </div>
             </div>
 
+            {/* Error message */}
+            <AnimatePresence>
+              {error && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className="mb-4 p-3 bg-red-50 border border-red-200 rounded-sm text-sm text-red-700"
+                >
+                  {error}
+                </motion.div>
+              )}
+            </AnimatePresence>
+
             {/* ── Submit Button ── */}
             <motion.button
               type="submit"
-              whileHover={{ scale: 1.01 }}
-              whileTap={{ scale: 0.98 }}
-              className="group relative w-full overflow-hidden bg-[#3d3831] py-4 text-[12px] font-semibold uppercase tracking-[0.25em] text-[#f4ebd9] transition-all duration-500 hover:bg-[#2a2520] rounded-sm"
+              disabled={loading || submitted}
+              whileHover={!loading && !submitted ? { scale: 1.01 } : {}}
+              whileTap={!loading && !submitted ? { scale: 0.98 } : {}}
+              className={`group relative w-full overflow-hidden py-4 text-[12px] font-semibold uppercase tracking-[0.25em] transition-all duration-500 rounded-sm ${
+                submitted
+                  ? "bg-green-700 text-white"
+                  : loading
+                  ? "bg-[#5c544b] text-[#d5cab5] cursor-wait"
+                  : "bg-[#3d3831] text-[#f4ebd9] hover:bg-[#2a2520]"
+              }`}
             >
               <span className="relative z-10 flex items-center justify-center gap-3">
                 {submitted ? (
@@ -403,6 +446,14 @@ export default function ReservationSection() {
                       <path d="M20 6L9 17l-5-5" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                     Inquiry Sent Successfully
+                  </>
+                ) : loading ? (
+                  <>
+                    <svg className="animate-spin" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                      <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" opacity="0.3" />
+                      <path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                    </svg>
+                    Submitting...
                   </>
                 ) : (
                   <>
@@ -418,7 +469,9 @@ export default function ReservationSection() {
               </span>
 
               {/* Hover shimmer effect */}
-              <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/5 to-transparent group-hover:translate-x-full transition-transform duration-1000" />
+              {!loading && !submitted && (
+                <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/5 to-transparent group-hover:translate-x-full transition-transform duration-1000" />
+              )}
             </motion.button>
 
             {/* Trust note */}
