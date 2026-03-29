@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Autoplay, EffectCreative } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -19,6 +19,25 @@ gsap.registerPlugin(ScrollTrigger);
 export default function HeroSection() {
   const heroRef = useRef<HTMLDivElement | null>(null);
   const progressRef = useRef<HTMLDivElement | null>(null);
+  
+  // -- Date & Booking State --
+  const [minDate, setMinDate] = useState("");
+  const [arrival, setArrival] = useState("");
+  const [departure, setDeparture] = useState("");
+
+  useEffect(() => {
+    // Set min date on client to avoid hydration mismatch
+    setMinDate(new Date().toISOString().split("T")[0]);
+  }, []);
+
+  const handleArrivalChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newVal = e.target.value;
+    setArrival(newVal);
+    // If arrival is later than current departure, clear departure
+    if (departure && newVal > departure) {
+      setDeparture("");
+    }
+  };
 
   useEffect(() => {
     if (!heroRef.current) return;
@@ -127,7 +146,9 @@ export default function HeroSection() {
             <input 
               type="date" 
               id="arrival"
-              min={new Date().toISOString().split("T")[0]}
+              value={arrival}
+              min={minDate}
+              onChange={handleArrivalChange}
               className="mt-1 text-sm font-serif text-[#181510] bg-transparent outline-none cursor-pointer"
             />
           </div>
@@ -137,7 +158,9 @@ export default function HeroSection() {
             <input 
               type="date" 
               id="departure"
-              min={new Date().toISOString().split("T")[0]}
+              value={departure}
+              min={arrival || minDate}
+              onChange={(e) => setDeparture(e.target.value)}
               className="mt-1 text-sm font-serif text-[#181510] bg-transparent outline-none cursor-pointer"
             />
           </div>
@@ -146,7 +169,10 @@ export default function HeroSection() {
             <p className="text-[0.55rem] uppercase tracking-[0.2em] text-[#8a6b2d] font-bold">Guests</p>
             <p className="mt-1 text-sm font-serif text-[#181510]">2 Adults, 1 Room</p>
           </div>
-          <Link href="/reserve" className="group relative overflow-hidden bg-[#181510] px-8 py-3 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-white transition-all duration-500 hover:text-[#181510] ml-4 inline-block">
+          <Link 
+            href={`/reserve?arrival=${arrival}&departure=${departure}`}
+            className="group relative overflow-hidden bg-[#181510] px-8 py-3 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-white transition-all duration-500 hover:text-[#181510] ml-4 inline-block"
+          >
             <span className="relative z-10 transition-colors duration-500">Book Now</span>
             <div className="absolute inset-0 bg-[#d8be8f] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]" />
           </Link>

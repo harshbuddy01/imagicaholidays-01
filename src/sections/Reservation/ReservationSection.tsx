@@ -4,7 +4,8 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 
 /* ── Destination options ──────────────────────────────────── */
 const destinations = [
@@ -45,6 +46,7 @@ const SketchedUnderline = () => (
 /* ── Component ────────────────────────────────────────────── */
 export default function ReservationSection() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [formData, setFormData] = useState({
     destination: "",
     duration: "",
@@ -56,6 +58,13 @@ export default function ReservationSection() {
     email: "",
     requirements: "",
   });
+
+  useEffect(() => {
+    const arrival = searchParams.get("arrival");
+    if (arrival) {
+      setFormData((prev) => ({ ...prev, travelDate: arrival }));
+    }
+  }, [searchParams]);
 
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
