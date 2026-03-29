@@ -1,3 +1,4 @@
+import React, { Suspense } from "react";
 import type { Metadata } from "next";
 import ReservationSection from "@/sections/Reservation/ReservationSection";
 
@@ -9,7 +10,9 @@ export const metadata: Metadata = {
 export default function ReservePage() {
   return (
     <main>
-      <ReservationSection />
+      <Suspense fallback={null}>
+        <ReservationSection />
+      </Suspense>
     </main>
   );
 }
