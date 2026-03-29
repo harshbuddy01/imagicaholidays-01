@@ -22,19 +22,32 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
 
-    // Map the website form fields to the CRM's expected shape
-    const crmPayload = {
+    // Build a rich destination string that includes extra booking details.
+    // The CRM Query model only has specific Prisma columns — NOT 'remarks'.
+    // We pack extra info into 'destination' (free-text String).
+    const destinationParts = [
+      body.destination,
+      body.duration ? `(${body.duration})` : null,
+      body.requirements ? `— ${body.requirements}` : null,
+    ].filter(Boolean).join(" ");
+
+    // Map the website form fields to the CRM's expected shape.
+    // ONLY include fields that exist in the Prisma Query model:
+    //   name, phone, email, destination, adults, children, leadSource
+    const crmPayload: Record<string, unknown> = {
       name: body.fullName,
       phone: body.phone?.replace(/\s+/g, ""), // strip whitespace
       email: body.email || null,
       leadSource: "website",
-      destination: body.destination || null,
-      duration: body.duration || null,
-      travelDate: body.travelDate || null,
-      adults: body.adults ?? 2,
-      children: body.children ?? 0,
-      remarks: body.requirements || null,
+      destination: destinationParts || null,
+      adults: Number(body.adults) || 2,
+      children: Number(body.children) || 0,
     };
+
+    // Only add travelDate if provided (must map to travelDateFrom)
+    if (body.travelDate) {
+      crmPayload.travelDateFrom = body.travelDate;
+    }
 
     // Basic validation before forwarding
     if (!crmPayload.name || !crmPayload.phone) {
