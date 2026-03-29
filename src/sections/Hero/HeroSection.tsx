@@ -6,6 +6,7 @@ import { Autoplay, EffectCreative } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperType } from "swiper";
 import Image from "next/image";
+import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "swiper/css";
@@ -87,7 +88,7 @@ export default function HeroSection() {
                     transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
                     className="mb-4 text-[0.65rem] md:text-[0.75rem] font-semibold uppercase tracking-[0.25em] text-[#d8be8f]"
                   >
-                    Bali, Indonesia
+                    India
                   </motion.p>
                   <motion.h1
                     initial={{ opacity: 0, y: 30 }}
@@ -121,23 +122,33 @@ export default function HeroSection() {
         className="absolute bottom-0 left-0 right-0 z-20 flex justify-center pb-6 md:pb-10"
       >
         <div className="hidden bg-white px-8 py-5 md:flex items-center gap-10 shadow-[0_30px_60px_rgba(0,0,0,0.15)]">
-          <div className="text-left">
-            <p className="text-[0.55rem] uppercase tracking-[0.2em] text-[#8a6b2d] font-bold">Arrival</p>
-            <p className="mt-1 text-sm font-serif text-[#181510]">Select Date</p>
+          <div className="text-left flex flex-col justify-center">
+            <label htmlFor="arrival" className="text-[0.55rem] uppercase tracking-[0.2em] text-[#8a6b2d] font-bold cursor-pointer">Arrival</label>
+            <input 
+              type="date" 
+              id="arrival"
+              min={new Date().toISOString().split("T")[0]}
+              className="mt-1 text-sm font-serif text-[#181510] bg-transparent outline-none cursor-pointer"
+            />
           </div>
           <div className="h-8 w-px bg-[#e9deca]" />
-          <div className="text-left">
-            <p className="text-[0.55rem] uppercase tracking-[0.2em] text-[#8a6b2d] font-bold">Departure</p>
-            <p className="mt-1 text-sm font-serif text-[#181510]">Select Date</p>
+          <div className="text-left flex flex-col justify-center">
+            <label htmlFor="departure" className="text-[0.55rem] uppercase tracking-[0.2em] text-[#8a6b2d] font-bold cursor-pointer">Departure</label>
+            <input 
+              type="date" 
+              id="departure"
+              min={new Date().toISOString().split("T")[0]}
+              className="mt-1 text-sm font-serif text-[#181510] bg-transparent outline-none cursor-pointer"
+            />
           </div>
           <div className="h-8 w-px bg-[#e9deca]" />
-          <div className="text-left">
+          <div className="text-left flex flex-col justify-center">
             <p className="text-[0.55rem] uppercase tracking-[0.2em] text-[#8a6b2d] font-bold">Guests</p>
             <p className="mt-1 text-sm font-serif text-[#181510]">2 Adults, 1 Room</p>
           </div>
-          <button className="bg-[#181510] px-8 py-3 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-white hover:bg-[#a5813b] transition-colors ml-4">
+          <Link href="/reserve" className="bg-[#181510] px-8 py-3 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-white hover:bg-[#a5813b] transition-colors ml-4 inline-block">
             Book Now
-          </button>
+          </Link>
         </div>
       </motion.div>
     </section>
