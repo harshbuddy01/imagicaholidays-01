@@ -10,11 +10,15 @@ import { NextResponse } from "next/server";
 const CRM_URL = process.env.CRM_WEBHOOK_URL as string;
 const CRM_API_KEY = process.env.CRM_WEBHOOK_API_KEY as string;
 
-if (!CRM_URL || !CRM_API_KEY) {
-  throw new Error("Missing required CRM configuration in environment variables (CRM_WEBHOOK_URL or CRM_WEBHOOK_API_KEY).");
-}
-
 export async function POST(request: Request) {
+  if (!CRM_URL || !CRM_API_KEY) {
+    console.error("[Enquiry API Error] Missing required CRM configuration in environment variables.");
+    return NextResponse.json(
+      { success: false, message: "CRM integration is not configured properly." },
+      { status: 500 }
+    );
+  }
+
   try {
     const body = await request.json();
 
