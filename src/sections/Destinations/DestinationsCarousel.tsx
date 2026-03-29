@@ -75,6 +75,20 @@ const destinations: Destination[] = [
       "https://unsplash.com/photos/EEDy8p3rlIg/download?force=true&w=800",
     overlayImageAlt: "A small building sitting on the side of a road",
   },
+  {
+    id: "munnar",
+    title: "Munnar",
+    tagline: "The Emerald Heaven of Kerala",
+    description:
+      "Munnar is a tranquil hill station famous for its expansive tea plantations, winding lanes, and magnificent waterfalls. Experience serene backwaters and pristine wildlife in God's Own Country.",
+    link: "/destinations/munnar",
+    mainImage:
+      "https://unsplash.com/photos/t-3qo5bGC0Q/download?force=true&w=1200",
+    mainImageAlt: "Brown nipa hut on green grass field during daytime in Munnar",
+    overlayImage:
+      "https://unsplash.com/photos/Tp-kViKErbw/download?force=true&w=800",
+    overlayImageAlt: "Silhouette of boat on sea during sunset in Munnar",
+  },
 ];
 
 const SLIDE_INTERVAL = 5000; // 5 seconds
