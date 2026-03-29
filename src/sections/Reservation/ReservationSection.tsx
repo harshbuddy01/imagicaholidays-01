@@ -194,7 +194,7 @@ export default function ReservationSection() {
               {/* Destination */}
               <div className="relative">
                 <label className="block text-[11px] tracking-[0.15em] uppercase text-[#7a705e] mb-2">
-                  Destination
+                  Destination <span className="text-[#ae9e85]">*</span>
                 </label>
                 <select
                   name="destination"
@@ -202,6 +202,7 @@ export default function ReservationSection() {
                   onChange={handleChange}
                   onFocus={() => setFocusedField("destination")}
                   onBlur={() => setFocusedField(null)}
+                  required
                   className={`w-full bg-transparent border-b-[1.5px] py-3 text-sm text-[#3d3831] focus:outline-none appearance-none cursor-pointer transition-colors duration-300 ${
                     focusedField === "destination" ? "border-[#ae9e85]" : "border-[#d5cab5]"
                   }`}
@@ -222,7 +223,7 @@ export default function ReservationSection() {
               <div className="grid grid-cols-2 gap-6">
                 <div>
                   <label className="block text-[11px] tracking-[0.15em] uppercase text-[#7a705e] mb-2">
-                    Duration
+                    Duration <span className="text-[#ae9e85]">*</span>
                   </label>
                   <input
                     type="text"
@@ -232,6 +233,7 @@ export default function ReservationSection() {
                     onChange={handleChange}
                     onFocus={() => setFocusedField("duration")}
                     onBlur={() => setFocusedField(null)}
+                    required
                     className={`w-full bg-transparent border-b-[1.5px] py-3 text-sm text-[#3d3831] placeholder:text-[#b5a993] focus:outline-none transition-colors duration-300 ${
                       focusedField === "duration" ? "border-[#ae9e85]" : "border-[#d5cab5]"
                     }`}
@@ -239,7 +241,7 @@ export default function ReservationSection() {
                 </div>
                 <div>
                   <label className="block text-[11px] tracking-[0.15em] uppercase text-[#7a705e] mb-2">
-                    Travel Date
+                    Travel Date <span className="text-[#ae9e85]">*</span>
                   </label>
                   <input
                     type="date"
@@ -248,6 +250,7 @@ export default function ReservationSection() {
                     onChange={handleChange}
                     onFocus={() => setFocusedField("travelDate")}
                     onBlur={() => setFocusedField(null)}
+                    required
                     className={`w-full bg-transparent border-b-[1.5px] py-3 text-sm text-[#3d3831] focus:outline-none transition-colors duration-300 ${
                       focusedField === "travelDate" ? "border-[#ae9e85]" : "border-[#d5cab5]"
                     }`}

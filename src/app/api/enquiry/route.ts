@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import nodemailer from "nodemailer";
 
 /**
  * Server-side proxy to forward website enquiries to the TravelCRM webhook.
@@ -9,6 +10,17 @@ import { NextResponse } from "next/server";
  */
 const CRM_URL = process.env.CRM_WEBHOOK_URL as string;
 const CRM_API_KEY = process.env.CRM_WEBHOOK_API_KEY as string;
+
+// Set up Nodemailer transporter using Brevo SMTP
+const transporter = nodemailer.createTransport({
+  host: process.env.BREVO_SMTP_HOST || "smtp-relay.brevo.com",
+  port: parseInt(process.env.BREVO_SMTP_PORT || "587", 10),
+  secure: false, // true for 465, false for other ports
+  auth: {
+    user: process.env.BREVO_SMTP_USER,
+    pass: process.env.BREVO_SMTP_PASS,
+  },
+});
 
 export async function POST(request: Request) {
   if (!CRM_URL || !CRM_API_KEY) {
@@ -93,6 +105,53 @@ export async function POST(request: Request) {
         { success: false, message: crmData.message || "Failed to submit enquiry" },
         { status: crmResponse.status }
       );
+    }
+
+    // --- SEND EMAIL CONFIRMATION ---
+    if (body.email) {
+      try {
+        await transporter.sendMail({
+          from: `"Imagica Holidays" <${process.env.BREVO_SMTP_USER}>`, // sender address
+          to: body.email, // list of receivers
+          subject: "Trip Inquiry Received - Imagica Holidays", // Subject line
+          html: `
+            <div style="font-family: Arial, sans-serif; color: #333; max-width: 600px; margin: 0 auto; border: 1px solid #eaeaec; border-radius: 8px; overflow: hidden;">
+              <div style="background-color: #3d3831; padding: 24px; text-align: center;">
+                <h1 style="color: #f4ebd9; margin: 0; font-size: 24px; font-weight: normal; letter-spacing: 1px;">Imagica Holidays</h1>
+              </div>
+              <div style="padding: 32px; background-color: #ffffff;">
+                <h2 style="font-size: 20px; color: #3d3831; margin-top: 0;">Hello ${body.fullName},</h2>
+                <p style="font-size: 15px; line-height: 1.5; color: #555;">
+                  Thank you for planning your trip with <strong>Imagica Holidays</strong>. We have successfully received your inquiry for <strong>${body.destination || "your desired destination"}</strong>.
+                </p>
+                <div style="background-color: #f9f9fa; border-left: 4px solid #ae9e85; padding: 16px; margin: 24px 0;">
+                  <h3 style="margin-top: 0; font-size: 14px; text-transform: uppercase; color: #7a705e; letter-spacing: 1px;">Inquiry Details</h3>
+                  <ul style="list-style: none; padding: 0; margin: 0; font-size: 14px; line-height: 1.8;">
+                    <li><strong>Destination:</strong> ${body.destination || "Not specified"}</li>
+                    <li><strong>Duration:</strong> ${body.duration || "Not specified"}</li>
+                    <li><strong>Travel Date:</strong> ${body.travelDate || "Not specified"}</li>
+                    <li><strong>Travelers:</strong> ${body.adults} Adults, ${body.children} Children</li>
+                  </ul>
+                </div>
+                <p style="font-size: 15px; line-height: 1.5; color: #555;">
+                  Our team of travel experts will review your requirements and get back to you within 24 hours with a personalized itinerary.
+                </p>
+                <p style="font-size: 15px; line-height: 1.5; color: #555; margin-bottom: 0;">
+                  Warm regards,<br/>
+                  <strong>The Imagica Holidays Team</strong>
+                </p>
+              </div>
+              <div style="background-color: #f4ebd9; padding: 16px; text-align: center; font-size: 12px; color: #7a705e;">
+                &copy; ${new Date().getFullYear()} Imagica Holidays. All rights reserved.
+              </div>
+            </div>
+          `,
+        });
+        console.log("[Email] Confirmation sent to", body.email);
+      } catch (emailError) {
+        console.error("[Email Error] Failed to send confirmation email:", emailError);
+        // We do NOT return an error here, since the lead was successful in the CRM.
+      }
     }
 
     return NextResponse.json({
