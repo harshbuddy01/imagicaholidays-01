@@ -52,7 +52,7 @@ const attractions = [
   {
     name: "Pelling Skywalk",
     tag: "Adventure",
-    image: "/images/pelling-chenrezig.jpg",
+    image: "https://unsplash.com/photos/-0GJ4CIHtEg/download?force=true&w=1800",
     short: "India’s first glass skywalk offering thrilling views of valleys and mountains located near the Chenrezig statue.",
   },
   {
@@ -94,7 +94,7 @@ const attractions = [
   {
     name: "Chenrezig Statue",
     tag: "Religious",
-    image: "/images/pelling-chenrezig.jpg",
+    image: "https://unsplash.com/photos/-0GJ4CIHtEg/download?force=true&w=1800",
     short: "A 137 feet tall statue representing Avalokiteshvara, located beside India's first glass skywalk.",
   },
   {
@@ -189,7 +189,7 @@ export default function PellingPage() {
       {/* ══════════ 1. HERO ══════════ */}
       <section className="relative h-[85vh] min-h-[600px] overflow-hidden">
         <Image
-          src="/images/pelling-chenrezig.jpg"
+          src="https://unsplash.com/photos/-0GJ4CIHtEg/download?force=true&w=1800"
           alt="Aerial view of a mountain with a statue on top in Pelling"
           fill
           className="object-cover"

@@ -41,7 +41,7 @@ const destinations: Destination[] = [
       "Nestled in West Sikkim, Pelling offers unparalleled majestic views of Mount Kanchenjunga. Explore ancient ruins, sacred lakes, and the renowned glass skywalk in this serene Himalayan retreat.",
     link: "/destinations/pelling",
     mainImage:
-      "/images/pelling-chenrezig.jpg",
+      "https://unsplash.com/photos/-0GJ4CIHtEg/download?force=true&w=1200",
     mainImageAlt: "Aerial view of a mountain with a statue on top in Pelling",
     overlayImage:
       "/images/pelling-snow.jpg",

@@ -133,15 +133,15 @@ export default function TestimonialsPage() {
           src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?q=80&w=2000&auto=format&fit=crop"
           alt="Happy travelers overlooking mountain vista"
           fill
-          className="object-cover opacity-60 mix-blend-overlay"
+          className="object-cover"
           priority
         />
+        <div className="absolute inset-0 bg-black/40" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#1a1914] via-[#1a1914]/40 to-transparent" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(26,25,20,0.4)_100%)]" />
         
         {/* Handcrafted Hero Accents */}
-        <BotanicalBranch className="absolute -left-16 bottom-0 w-80 h-96 text-[#ae9e85] opacity-20 -scale-x-100" />
-        <BotanicalBranch className="absolute -right-16 bottom-0 w-80 h-96 text-[#ae9e85] opacity-20" />
+        <BotanicalBranch className="absolute -left-16 bottom-0 w-80 h-96 text-[#d5cab5] drop-shadow-md opacity-[0.8] -scale-x-100" />
+        <BotanicalBranch className="absolute -right-16 bottom-0 w-80 h-96 text-[#d5cab5] drop-shadow-md opacity-[0.8]" />
 
         <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-6 pt-20">
           <motion.div
@@ -247,11 +247,11 @@ export default function TestimonialsPage() {
       {/* ══════════ 3. CTA SECTION ══════════ */}
       <section className="relative py-32 md:py-48 bg-[#1a1914] text-center px-6 overflow-hidden">
         {/* Vignette Background */}
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center bg-fixed opacity-[0.03]" />
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center bg-fixed opacity-10 mix-blend-screen" />
         
         {/* Floating Botanicals */}
-        <BotanicalBranch className="absolute left-[5%] top-1/2 -translate-y-1/2 w-48 h-64 text-[#ae9e85] opacity-[0.08] -scale-x-100" />
-        <BotanicalBranch className="absolute right-[5%] top-1/2 -translate-y-1/2 w-48 h-64 text-[#ae9e85] opacity-[0.08]" />
+        <BotanicalBranch className="absolute left-[5%] top-1/2 -translate-y-1/2 w-48 h-64 text-[#d5cab5] opacity-60 -scale-x-100" />
+        <BotanicalBranch className="absolute right-[5%] top-1/2 -translate-y-1/2 w-48 h-64 text-[#d5cab5] opacity-60" />
 
         <div className="relative z-10 max-w-2xl mx-auto">
           <motion.div
