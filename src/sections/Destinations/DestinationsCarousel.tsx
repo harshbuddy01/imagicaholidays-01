@@ -34,6 +34,20 @@ const destinations: Destination[] = [
     overlayImageAlt: "Colorful building in Gangtok",
   },
   {
+    id: "pelling",
+    title: "Pelling",
+    tagline: "Whispers of Kanchenjunga",
+    description:
+      "Nestled in West Sikkim, Pelling offers unparalleled majestic views of Mount Kanchenjunga. Explore ancient ruins, sacred lakes, and the renowned glass skywalk in this serene Himalayan retreat.",
+    link: "/destinations/pelling",
+    mainImage:
+      "https://unsplash.com/photos/QHuJaQQHj-M/download?force=true&w=1200",
+    mainImageAlt: "Aerial view of a mountain with a statue on top in Pelling",
+    overlayImage:
+      "https://unsplash.com/photos/ZF6zxtpr5t8/download?force=true&w=800",
+    overlayImageAlt: "Snow covered mountain under blue sky during daytime in Pelling",
+  },
+  {
     id: "lachung",
     title: "Lachung",
     tagline: "Gateway to Yumthang Valley",
