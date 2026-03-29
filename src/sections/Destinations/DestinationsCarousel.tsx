@@ -89,6 +89,20 @@ const destinations: Destination[] = [
       "https://unsplash.com/photos/Tp-kViKErbw/download?force=true&w=800",
     overlayImageAlt: "Silhouette of boat on sea during sunset in Munnar",
   },
+  {
+    id: "wayanad",
+    title: "Wayanad",
+    tagline: "Nature's Untapped Heaven",
+    description:
+      "Wayanad is a pristine hill station in northern Kerala known for its lush green mountains, mystic caves, and sprawling spice plantations. A true haven for trekkers and nature lovers.",
+    link: "/destinations/wayanad",
+    mainImage:
+      "https://unsplash.com/photos/Wag11Ja47zI/download?force=true&w=1200",
+    mainImageAlt: "A man standing on top of a wooden structure in Wayanad",
+    overlayImage:
+      "https://unsplash.com/photos/zmr9TeA7WjU/download?force=true&w=800",
+    overlayImageAlt: "A car driving down a road surrounded by lush green hills in Wayanad",
+  },
 ];
 
 const SLIDE_INTERVAL = 5000; // 5 seconds
