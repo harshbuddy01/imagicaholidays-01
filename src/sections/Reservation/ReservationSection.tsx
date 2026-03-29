@@ -19,20 +19,27 @@ const destinations = [
 ];
 
 /* ── Handcrafted UI Accents ──────────────────────────────── */
-const MountainLineArt = ({ className = "" }: { className?: string }) => (
-  <svg viewBox="0 0 400 100" className={`stroke-current fill-none ${className}`} strokeWidth="0.5">
-    <path d="M0,80 Q50,70 80,40 T150,60 T220,20 T300,70 T400,50" />
-    <path d="M20,90 Q70,85 100,60 T180,75 T260,40 T340,85 T400,70" opacity="0.5" />
-    <path d="M50,100 L120,60 L200,90 L280,40 L360,95" opacity="0.3" strokeDasharray="2 2" />
+const WaxSeal = ({ className = "" }: { className?: string }) => (
+  <svg viewBox="0 0 100 100" className={`fill-[#8b1a1a] drop-shadow-lg ${className}`}>
+    <path d="M50,5 C25,5 5,25 5,50 C5,75 25,95 50,95 C75,95 95,75 95,50 C95,25 75,5 50,5 M50,15 C70,15 85,30 85,50 C85,70 70,85 50,85 C30,85 15,70 15,50 C15,30 30,15 50,15" opacity="0.8" />
+    <path d="M45,30 L55,30 L55,70 L45,70 Z M40,40 L60,40 L60,45 L40,45 Z M40,55 L60,55 L60,60 L40,60 Z" fill="white" opacity="0.4" />
+    <circle cx="50" cy="50" r="30" fill="none" stroke="white" strokeWidth="0.5" strokeDasharray="2 2" opacity="0.3" />
   </svg>
 );
 
-const ArtisanalCorner = ({ className = "" }: { className?: string }) => (
-  <svg viewBox="0 0 30 30" className={`stroke-current fill-none ${className}`} strokeWidth="0.4">
-    <path d="M0,0 L30,0" />
-    <path d="M0,0 L0,30" />
-    <circle cx="2" cy="2" r="0.8" className="fill-current" />
+const PencilMountain = ({ className = "" }: { className?: string }) => (
+  <svg viewBox="0 0 200 100" className={`stroke-[#ae9e85] fill-none ${className}`} strokeWidth="0.5">
+    <path d="M10,90 L50,30 L80,70 L120,20 L160,80 L190,90" />
+    <path d="M40,45 Q50,35 60,45" opacity="0.6" />
+    <path d="M110,35 Q120,25 130,35" opacity="0.6" />
+    <path d="M0,95 L200,95" strokeDasharray="1 3" />
   </svg>
+);
+
+const SketchedUnderline = () => (
+   <svg viewBox="0 0 400 10" className="absolute -bottom-1 left-0 w-full h-[2px] text-[#d5cab5] opacity-50 preserve-3d" preserveAspectRatio="none">
+     <path d="M0,5 Q100,2 200,5 T400,3" fill="none" stroke="currentColor" strokeWidth="1.5" />
+   </svg>
 );
 
 /* ── Component ────────────────────────────────────────────── */
@@ -109,10 +116,12 @@ export default function ReservationSection() {
     >
       <Link 
         href="/" 
-        className="absolute top-6 right-8 lg:right-12 z-50 flex items-center gap-1.5 text-[0.6rem] tracking-[0.3em] uppercase font-bold text-[#ae9e85] hover:text-[#3d3831] transition-all group"
+        className="absolute top-8 right-8 z-50 p-2 hover:bg-white/10 rounded-full transition-all group"
+        aria-label="Back to home"
       >
-        <span className="w-0 group-hover:w-4 h-px bg-[#ae9e85] transition-all duration-300 overflow-hidden" />
-        Home
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ae9e85" strokeWidth="1.5">
+          <path d="M18 6L6 18M6 6l12 12" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
       </Link>
 
       <div className="flex flex-col lg:flex-row min-h-screen">
@@ -194,8 +203,11 @@ export default function ReservationSection() {
           }} />
 
           {/* Handcrafted Visuals */}
-          <MountainLineArt className="absolute bottom-0 left-0 w-full h-24 text-[#ae9e85] opacity-20 pointer-events-none" />
-          <div className="absolute top-1/4 -right-10 w-40 h-px bg-[#ae9e85]/20 rotate-45" />
+          <PencilMountain className="absolute -bottom-2 -left-10 w-96 h-48 opacity-15 pointer-events-none" />
+          <div className="absolute top-10 right-10 w-24 h-24 border border-[#ae9e85]/10 rounded-full flex items-center justify-center">
+             <div className="w-px h-16 bg-[#ae9e85]/20 rotate-45" />
+             <div className="w-16 h-px bg-[#ae9e85]/20 rotate-45" />
+          </div>
 
           <motion.form
             onSubmit={handleSubmit}
@@ -203,17 +215,15 @@ export default function ReservationSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="relative w-full max-w-xl z-10 bg-white/40 backdrop-blur-[2px] border border-[#d5cab5]/60 p-8 md:p-10 shadow-[0_4px_20px_rgb(0,0,0,0.02)] rounded-sm"
+            className="relative w-full max-w-lg z-10 bg-white/30 backdrop-blur-[1px] border-l border-[#d5cab5]/40 pl-10 pr-6 py-6"
           >
             {/* Form ornament corners */}
-            <ArtisanalCorner className="absolute top-0 left-0 w-4 h-4 text-[#ae9e85] opacity-40" />
-            <ArtisanalCorner className="absolute top-0 right-0 w-4 h-4 text-[#ae9e85] opacity-40 rotate-90" />
-            <ArtisanalCorner className="absolute bottom-0 right-0 w-4 h-4 text-[#ae9e85] opacity-40 rotate-180" />
-            <ArtisanalCorner className="absolute bottom-0 left-0 w-4 h-4 text-[#ae9e85] opacity-40 -rotate-90" />
+            <div className="absolute top-0 left-0 w-px h-full bg-[#d5cab5]/40" />
 
             {/* Form header */}
-            <div className="mb-6">
-              <div className="flex items-center gap-3 mb-2">
+            <div className="mb-6 relative">
+              <WaxSeal className="absolute -top-12 -left-20 w-16 h-16 pointer-events-none rotate-12" />
+              <div className="flex items-center gap-2 mb-1">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ae9e85" strokeWidth="1.5">
                   <path d="M12 2v4M12 18v4" strokeLinecap="round"/>
                   <path d="M4.93 4.93l2.83 2.83" strokeLinecap="round"/>
@@ -245,26 +255,25 @@ export default function ReservationSection() {
                   onFocus={() => setFocusedField("destination")}
                   onBlur={() => setFocusedField(null)}
                   required
-                  className={`w-full bg-transparent border-b-[1.5px] py-3 text-sm text-[#3d3831] focus:outline-none appearance-none cursor-pointer transition-colors duration-300 ${
-                    focusedField === "destination" ? "border-[#ae9e85]" : "border-[#d5cab5]"
-                  }`}
+                  className="w-full bg-transparent border-none py-2 text-sm text-[#3d3831] focus:outline-none appearance-none cursor-pointer"
                 >
                   <option value="">Select your destination</option>
                   {destinations.map((d) => (
                     <option key={d} value={d}>{d}</option>
                   ))}
                 </select>
-                <div className="absolute right-0 top-1/2 translate-y-1 pointer-events-none">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ae9e85" strokeWidth="2">
+                <SketchedUnderline />
+                <div className="absolute right-0 top-1/2 -translate-y-1 pointer-events-none">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ae9e85" strokeWidth="2">
                     <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </div>
               </div>
 
-              {/* Duration + Travel Date row */}
-              <div className="grid grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-[11px] tracking-[0.15em] uppercase text-[#7a705e] mb-2">
+              {/* Single Column Details */}
+              <div className="space-y-4">
+                <div className="relative">
+                  <label className="block text-[9px] tracking-[0.2em] uppercase text-[#7a705e] font-bold">
                     Duration <span className="text-[#ae9e85]">*</span>
                   </label>
                   <input
@@ -276,13 +285,13 @@ export default function ReservationSection() {
                     onFocus={() => setFocusedField("duration")}
                     onBlur={() => setFocusedField(null)}
                     required
-                    className={`w-full bg-transparent border-b-[1.5px] py-3 text-sm text-[#3d3831] placeholder:text-[#b5a993] focus:outline-none transition-colors duration-300 ${
-                      focusedField === "duration" ? "border-[#ae9e85]" : "border-[#d5cab5]"
-                    }`}
+                    className="w-full bg-transparent border-none py-2 text-sm text-[#3d3831] placeholder:text-[#b5a993] focus:outline-none"
                   />
+                  <SketchedUnderline />
                 </div>
-                <div>
-                  <label className="block text-[11px] tracking-[0.15em] uppercase text-[#7a705e] mb-2">
+
+                <div className="relative">
+                  <label className="block text-[9px] tracking-[0.2em] uppercase text-[#7a705e] font-bold">
                     Travel Date <span className="text-[#ae9e85]">*</span>
                   </label>
                   <input
@@ -293,72 +302,28 @@ export default function ReservationSection() {
                     onFocus={() => setFocusedField("travelDate")}
                     onBlur={() => setFocusedField(null)}
                     required
-                    className={`w-full bg-transparent border-b-[1.5px] py-3 text-sm text-[#3d3831] focus:outline-none transition-colors duration-300 ${
-                      focusedField === "travelDate" ? "border-[#ae9e85]" : "border-[#d5cab5]"
-                    }`}
+                    className="w-full bg-transparent border-none py-2 text-sm text-[#3d3831] focus:outline-none"
                   />
+                  <SketchedUnderline />
                 </div>
               </div>
 
-              {/* Adults + Children counters */}
-              <div className="grid grid-cols-2 gap-6">
-                {/* Adults */}
-                <div>
-                  <label className="block text-[11px] tracking-[0.15em] uppercase text-[#7a705e] mb-2">
-                    Adults
-                  </label>
-                  <div className="flex items-center border-b-[1.5px] border-[#d5cab5] py-2">
-                    <button
-                      type="button"
-                      onClick={() => adjustCount("adults", -1)}
-                      className="w-8 h-8 rounded-full border border-[#d5cab5] flex items-center justify-center text-[#7a705e] hover:border-[#ae9e85] hover:text-[#ae9e85] transition-colors"
-                    >
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M5 12h14" strokeLinecap="round"/>
-                      </svg>
-                    </button>
-                    <span className="flex-1 text-center text-lg font-roman font-medium text-[#3d3831]">
-                      {formData.adults}
-                    </span>
-                    <button
-                      type="button"
-                      onClick={() => adjustCount("adults", 1)}
-                      className="w-8 h-8 rounded-full border border-[#d5cab5] flex items-center justify-center text-[#7a705e] hover:border-[#ae9e85] hover:text-[#ae9e85] transition-colors"
-                    >
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M12 5v14M5 12h14" strokeLinecap="round"/>
-                      </svg>
-                    </button>
+              {/* Adults + Children (More compact) */}
+              <div className="flex gap-10">
+                <div className="flex-1">
+                  <label className="block text-[9px] tracking-[0.2em] uppercase text-[#7a705e] font-bold mb-1">Adults</label>
+                  <div className="flex items-center gap-4">
+                    <button type="button" onClick={() => adjustCount("adults", -1)} className="text-[#ae9e85] hover:text-[#3d3831]">•</button>
+                    <span className="text-base font-roman text-[#3d3831]">{formData.adults}</span>
+                    <button type="button" onClick={() => adjustCount("adults", 1)} className="text-[#ae9e85] hover:text-[#3d3831]">+</button>
                   </div>
                 </div>
-
-                {/* Children */}
-                <div>
-                  <label className="block text-[11px] tracking-[0.15em] uppercase text-[#7a705e] mb-2">
-                    Children
-                  </label>
-                  <div className="flex items-center border-b-[1.5px] border-[#d5cab5] py-2">
-                    <button
-                      type="button"
-                      onClick={() => adjustCount("children", -1)}
-                      className="w-8 h-8 rounded-full border border-[#d5cab5] flex items-center justify-center text-[#7a705e] hover:border-[#ae9e85] hover:text-[#ae9e85] transition-colors"
-                    >
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M5 12h14" strokeLinecap="round"/>
-                      </svg>
-                    </button>
-                    <span className="flex-1 text-center text-lg font-roman font-medium text-[#3d3831]">
-                      {formData.children}
-                    </span>
-                    <button
-                      type="button"
-                      onClick={() => adjustCount("children", 1)}
-                      className="w-8 h-8 rounded-full border border-[#d5cab5] flex items-center justify-center text-[#7a705e] hover:border-[#ae9e85] hover:text-[#ae9e85] transition-colors"
-                    >
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M12 5v14M5 12h14" strokeLinecap="round"/>
-                      </svg>
-                    </button>
+                <div className="flex-1">
+                  <label className="block text-[9px] tracking-[0.2em] uppercase text-[#7a705e] font-bold mb-1">Children</label>
+                  <div className="flex items-center gap-4">
+                    <button type="button" onClick={() => adjustCount("children", -1)} className="text-[#ae9e85] hover:text-[#3d3831]">•</button>
+                    <span className="text-base font-roman text-[#3d3831]">{formData.children}</span>
+                    <button type="button" onClick={() => adjustCount("children", 1)} className="text-[#ae9e85] hover:text-[#3d3831]">+</button>
                   </div>
                 </div>
               </div>
@@ -380,30 +345,28 @@ export default function ReservationSection() {
                 Contact Information
               </p>
 
-              {/* Full Name */}
-              <div>
-                <label className="block text-[11px] tracking-[0.15em] uppercase text-[#7a705e] mb-2">
-                  Full Name <span className="text-[#ae9e85]">*</span>
-                </label>
-                <input
-                  type="text"
-                  name="fullName"
-                  placeholder="Enter your full name"
-                  value={formData.fullName}
-                  onChange={handleChange}
-                  onFocus={() => setFocusedField("fullName")}
-                  onBlur={() => setFocusedField(null)}
-                  required
-                  className={`w-full bg-transparent border-b-[1.5px] py-3 text-sm text-[#3d3831] placeholder:text-[#b5a993] focus:outline-none transition-colors duration-300 ${
-                    focusedField === "fullName" ? "border-[#ae9e85]" : "border-[#d5cab5]"
-                  }`}
-                />
-              </div>
+              {/* Contact Information (Single Column) */}
+              <div className="space-y-4">
+                <div className="relative">
+                  <label className="block text-[9px] tracking-[0.2em] uppercase text-[#7a705e] font-bold">
+                    Full Name <span className="text-[#ae9e85]">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="fullName"
+                    placeholder="Enter your full name"
+                    value={formData.fullName}
+                    onChange={handleChange}
+                    onFocus={() => setFocusedField("fullName")}
+                    onBlur={() => setFocusedField(null)}
+                    required
+                    className="w-full bg-transparent border-none py-2 text-sm text-[#3d3831] placeholder:text-[#b5a993] focus:outline-none"
+                  />
+                  <SketchedUnderline />
+                </div>
 
-              {/* Phone + Email row */}
-              <div className="grid grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-[11px] tracking-[0.15em] uppercase text-[#7a705e] mb-2">
+                <div className="relative">
+                  <label className="block text-[9px] tracking-[0.2em] uppercase text-[#7a705e] font-bold">
                     Phone Number <span className="text-[#ae9e85]">*</span>
                   </label>
                   <input
@@ -415,13 +378,13 @@ export default function ReservationSection() {
                     onFocus={() => setFocusedField("phone")}
                     onBlur={() => setFocusedField(null)}
                     required
-                    className={`w-full bg-transparent border-b-[1.5px] py-3 text-sm text-[#3d3831] placeholder:text-[#b5a993] focus:outline-none transition-colors duration-300 ${
-                      focusedField === "phone" ? "border-[#ae9e85]" : "border-[#d5cab5]"
-                    }`}
+                    className="w-full bg-transparent border-none py-2 text-sm text-[#3d3831] placeholder:text-[#b5a993] focus:outline-none"
                   />
+                  <SketchedUnderline />
                 </div>
-                <div>
-                  <label className="block text-[11px] tracking-[0.15em] uppercase text-[#7a705e] mb-2">
+
+                <div className="relative">
+                  <label className="block text-[9px] tracking-[0.2em] uppercase text-[#7a705e] font-bold">
                     Email Address <span className="text-[#ae9e85]">*</span>
                   </label>
                   <input
@@ -433,30 +396,27 @@ export default function ReservationSection() {
                     onFocus={() => setFocusedField("email")}
                     onBlur={() => setFocusedField(null)}
                     required
-                    className={`w-full bg-transparent border-b-[1.5px] py-3 text-sm text-[#3d3831] placeholder:text-[#b5a993] focus:outline-none transition-colors duration-300 ${
-                      focusedField === "email" ? "border-[#ae9e85]" : "border-[#d5cab5]"
-                    }`}
+                    className="w-full bg-transparent border-none py-2 text-sm text-[#3d3831] placeholder:text-[#b5a993] focus:outline-none"
                   />
+                  <SketchedUnderline />
                 </div>
-              </div>
 
-              {/* Special Requirements */}
-              <div>
-                <label className="block text-[11px] tracking-[0.15em] uppercase text-[#7a705e] mb-2">
-                  Special Requirements
-                </label>
-                <textarea
-                  name="requirements"
-                  placeholder="e.g. Prefer 4-star hotels, vegetarian food, specific places to visit..."
-                  value={formData.requirements}
-                  onChange={handleChange}
-                  onFocus={() => setFocusedField("requirements")}
-                  onBlur={() => setFocusedField(null)}
-                  rows={3}
-                  className={`w-full bg-transparent border-b-[1.5px] py-3 text-sm text-[#3d3831] placeholder:text-[#b5a993] focus:outline-none resize-none transition-colors duration-300 ${
-                    focusedField === "requirements" ? "border-[#ae9e85]" : "border-[#d5cab5]"
-                  }`}
-                />
+                <div className="relative">
+                  <label className="block text-[9px] tracking-[0.2em] uppercase text-[#7a705e] font-bold">
+                    Special Requirements
+                  </label>
+                  <textarea
+                    name="requirements"
+                    placeholder="e.g. Prefer 4-star hotels..."
+                    value={formData.requirements}
+                    onChange={handleChange}
+                    onFocus={() => setFocusedField("requirements")}
+                    onBlur={() => setFocusedField(null)}
+                    rows={2}
+                    className="w-full bg-transparent border-none py-2 text-sm text-[#3d3831] placeholder:text-[#b5a993] focus:outline-none resize-none"
+                  />
+                  <SketchedUnderline />
+                </div>
               </div>
             </div>
 
@@ -530,8 +490,8 @@ export default function ReservationSection() {
           </motion.form>
 
           {/* Side rotated text */}
-          <div className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 rotate-90 hidden lg:block tracking-[0.3em] text-[0.65rem] font-medium text-[#d5cab5] uppercase">
-            Book Now
+          <div className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 rotate-90 hidden lg:block tracking-[0.6em] text-[0.4rem] font-bold text-[#ae9e85]/40 uppercase">
+            BOOKING SLIP
           </div>
         </div>
       </div>
