@@ -86,7 +86,7 @@ const textVariants = {
   visible: (delay: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] as const },
   }),
 };
 
@@ -95,7 +95,7 @@ const imageRevealVariants = {
   visible: {
     opacity: 1,
     clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
-    transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] as const },
   },
 };
 
@@ -105,7 +105,7 @@ const overlayImageVariants = {
     opacity: 1,
     y: 0,
     scale: 1,
-    transition: { duration: 1, delay: 0.35, ease: "easeOut" },
+    transition: { duration: 1, delay: 0.35, ease: "easeOut" as const },
   },
 };
 
