@@ -146,8 +146,9 @@ export default function HeroSection() {
             <p className="text-[0.55rem] uppercase tracking-[0.2em] text-[#8a6b2d] font-bold">Guests</p>
             <p className="mt-1 text-sm font-serif text-[#181510]">2 Adults, 1 Room</p>
           </div>
-          <Link href="/reserve" className="bg-[#181510] px-8 py-3 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-white hover:bg-[#a5813b] transition-colors ml-4 inline-block">
-            Book Now
+          <Link href="/reserve" className="group relative overflow-hidden bg-[#181510] px-8 py-3 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-white transition-all duration-500 hover:text-[#181510] ml-4 inline-block">
+            <span className="relative z-10 transition-colors duration-500">Book Now</span>
+            <div className="absolute inset-0 bg-[#d8be8f] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]" />
           </Link>
         </div>
       </motion.div>

@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 /* ── Destination options ──────────────────────────────────── */
 const destinations = [
@@ -16,8 +18,30 @@ const destinations = [
   "Tsomgo Lake",
 ];
 
+/* ── Handcrafted UI Accents ──────────────────────────────── */
+const BotanicalBranch = ({ className = "" }: { className?: string }) => (
+  <svg viewBox="0 0 100 200" className={`stroke-current fill-none ${className}`} strokeWidth="0.8">
+    <path d="M50,200 Q45,100 50,0" />
+    <path d="M50,150 Q75,120 90,80 Q75,100 50,110" />
+    <path d="M50,120 Q25,90 10,50 Q25,70 50,80" />
+    <path d="M50,70 Q70,50 80,20 Q65,40 50,50" />
+    <path d="M50,40 Q30,20 20,-10 Q35,10 50,20" />
+  </svg>
+);
+
+const VintageCorner = ({ className = "" }: { className?: string }) => (
+  <svg viewBox="0 0 40 40" className={`stroke-current fill-none ${className}`} strokeWidth="0.5">
+    <path d="M0,40 L0,0 L40,0" />
+    <path d="M4,36 L4,4 L36,4" />
+    <path d="M0,0 Q20,20 0,40" />
+    <path d="M0,0 Q20,20 40,0" />
+    <circle cx="6" cy="6" r="1.5" className="fill-current" />
+  </svg>
+);
+
 /* ── Component ────────────────────────────────────────────── */
 export default function ReservationSection() {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     destination: "",
     duration: "",
@@ -68,6 +92,9 @@ export default function ReservationSection() {
         const data = await res.json();
         if (data.success) {
           setSubmitted(true);
+          setTimeout(() => {
+            router.push("/");
+          }, 2500);
         } else {
           setError(data.message || "Something went wrong. Please try again.");
         }
@@ -84,6 +111,16 @@ export default function ReservationSection() {
       id="reservation"
       className="relative w-full min-h-screen bg-[#f4ebd9] overflow-hidden"
     >
+      <Link 
+        href="/" 
+        className="absolute top-6 right-6 lg:right-12 z-50 flex items-center gap-2 text-[10px] tracking-[0.2em] uppercase font-bold text-[#ae9e85] hover:text-[#3d3831] transition-colors"
+      >
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M19 12H5M12 19l-7-7 7-7" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+        Back to Home
+      </Link>
+
       <div className="flex flex-col lg:flex-row min-h-screen">
         {/* ═══════════ LEFT: Hero Image Side ═══════════ */}
         <div className="relative w-full lg:w-[48%] min-h-[400px] lg:min-h-screen overflow-hidden">
@@ -162,14 +199,24 @@ export default function ReservationSection() {
             backgroundSize: "32px 32px",
           }} />
 
+          {/* Handcrafted Visuals */}
+          <BotanicalBranch className="absolute left-0 bottom-10 w-64 h-80 text-[#ae9e85] opacity-20 -scale-x-100 pointer-events-none mix-blend-multiply" />
+          <BotanicalBranch className="absolute right-0 top-20 w-48 h-64 text-[#ae9e85] opacity-15 pointer-events-none mix-blend-multiply" />
+
           <motion.form
             onSubmit={handleSubmit}
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="relative w-full max-w-xl z-10"
+            className="relative w-full max-w-xl z-10 bg-white/40 backdrop-blur-sm border border-[#d5cab5]/60 p-8 md:p-12 shadow-[0_8px_30px_rgb(0,0,0,0.03)] rounded-sm"
           >
+            {/* Form ornament corners */}
+            <VintageCorner className="absolute top-2 left-2 w-6 h-6 text-[#ae9e85] opacity-50" />
+            <VintageCorner className="absolute top-2 right-2 w-6 h-6 text-[#ae9e85] opacity-50 rotate-90" />
+            <VintageCorner className="absolute bottom-2 right-2 w-6 h-6 text-[#ae9e85] opacity-50 rotate-180" />
+            <VintageCorner className="absolute bottom-2 left-2 w-6 h-6 text-[#ae9e85] opacity-50 -rotate-90" />
+
             {/* Form header */}
             <div className="mb-10">
               <div className="flex items-center gap-3 mb-3">

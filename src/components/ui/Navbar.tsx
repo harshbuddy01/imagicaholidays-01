@@ -9,7 +9,6 @@ const links = [
   { href: "/#hotels", id: "#hotels", label: "Hotels" },
   { href: "/#destinations-carousel", id: "#destinations-carousel", label: "Destinations" },
   { href: "/#activities-section", id: "#activities-section", label: "Activities" },
-  { href: "/#team-support", id: "#team-support", label: "Team & Support" },
   { href: "/testimonials", id: "/testimonials", label: "Guests" }
 ];
 
@@ -26,7 +25,7 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    const ids = ["#journey", "#hotels", "#destinations-carousel", "#activities-section", "#team-support"];
+    const ids = ["#journey", "#hotels", "#destinations-carousel", "#activities-section"];
     const elements = ids
       .map((id) => document.querySelector(id))
       .filter((node): node is Element => Boolean(node));
@@ -74,8 +73,9 @@ export default function Navbar() {
             </Link>
           ))}
         </nav>
-        <Link href="/reserve" className="hidden rounded-full border border-white/45 px-4 py-2 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-white/10 md:block">
-          Reserve
+        <Link href="/reserve" className="group relative hidden overflow-hidden rounded-full border border-white/45 px-5 py-2.5 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-white transition-all duration-500 hover:border-[#ae9e85] md:block">
+          <span className="relative z-10 transition-colors duration-500 group-hover:text-[#1a1914]">Reserve</span>
+          <div className="absolute inset-0 bg-[#ae9e85] translate-y-full transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-0" />
         </Link>
 
         <button
