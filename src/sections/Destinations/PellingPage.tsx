@@ -52,7 +52,7 @@ const attractions = [
   {
     name: "Pelling Skywalk",
     tag: "Adventure",
-    image: "https://unsplash.com/photos/QHuJaQQHj-M/download?force=true&w=800",
+    image: "/images/pelling-chenrezig.jpg",
     short: "India’s first glass skywalk offering thrilling views of valleys and mountains located near the Chenrezig statue.",
   },
   {
@@ -94,7 +94,7 @@ const attractions = [
   {
     name: "Chenrezig Statue",
     tag: "Religious",
-    image: "https://unsplash.com/photos/QHuJaQQHj-M/download?force=true&w=800",
+    image: "/images/pelling-chenrezig.jpg",
     short: "A 137 feet tall statue representing Avalokiteshvara, located beside India's first glass skywalk.",
   },
   {
@@ -153,7 +153,7 @@ const tourPackages = [
     price: "₹16,200",
     duration: "8 Days/ 7 Nights",
     tag: "Family-Friendly",
-    image: "https://unsplash.com/photos/ZF6zxtpr5t8/download?force=true&w=600",
+    image: "/images/pelling-snow.jpg",
   },
   {
     title: "Pelling & Darjeeling 5 Days 4 Nights Tour Package",
@@ -189,7 +189,7 @@ export default function PellingPage() {
       {/* ══════════ 1. HERO ══════════ */}
       <section className="relative h-[85vh] min-h-[600px] overflow-hidden">
         <Image
-          src="https://unsplash.com/photos/QHuJaQQHj-M/download?force=true&w=1800"
+          src="/images/pelling-chenrezig.jpg"
           alt="Aerial view of a mountain with a statue on top in Pelling"
           fill
           className="object-cover"
@@ -353,7 +353,7 @@ export default function PellingPage() {
                 <div className="p-5">
                   <h3 className="font-roman text-lg font-semibold text-[#3d3831] mb-2">{attr.name}</h3>
                   <p className="text-xs text-[#7a705e] leading-relaxed mb-4">{attr.short}</p>
-                  <button className="text-[10px] tracking-[0.1em] uppercase text-[#3d3831] font-semibold hover:text-[#ae9e85] transition-colors border-b border-[#3d3831] hover:border-[#ae9e85] pb-0.5">Read more</button>
+
                 </div>
               </motion.div>
             ))}
@@ -502,7 +502,7 @@ export default function PellingPage() {
       {/* ══════════ 7. CTA BANNER ══════════ */}
       <section className="relative py-24 md:py-32 overflow-hidden">
         <Image
-          src="https://unsplash.com/photos/ZF6zxtpr5t8/download?force=true&w=1600"
+          src="/images/pelling-snow.jpg"
           alt="Snow covered mountain under blue sky during daytime in Pelling"
           fill
           className="object-cover"

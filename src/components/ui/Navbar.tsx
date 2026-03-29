@@ -5,11 +5,12 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 const links = [
-  { href: "#journey", label: "Journey" },
-  { href: "#hotels", label: "Hotels" },
-  { href: "#destinations-carousel", label: "Destinations" },
-  { href: "#activities-section", label: "Activities" },
-  { href: "#team-support", label: "Team & Support" }
+  { href: "/#journey", id: "#journey", label: "Journey" },
+  { href: "/#hotels", id: "#hotels", label: "Hotels" },
+  { href: "/#destinations-carousel", id: "#destinations-carousel", label: "Destinations" },
+  { href: "/#activities-section", id: "#activities-section", label: "Activities" },
+  { href: "/#team-support", id: "#team-support", label: "Team & Support" },
+  { href: "/testimonials", id: "/testimonials", label: "Guests" }
 ];
 
 export default function Navbar() {
@@ -64,9 +65,9 @@ export default function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              aria-current={active === link.href ? "page" : undefined}
+              aria-current={active === link.id ? "page" : undefined}
               className={`text-[0.68rem] uppercase tracking-[0.2em] transition ${
-                active === link.href ? "text-[#d8be8f]" : "text-white/90 hover:text-[#d8be8f]"
+                active === link.id ? "text-[#d8be8f]" : "text-white/90 hover:text-[#d8be8f]"
               }`}
             >
               {link.label}
@@ -102,7 +103,7 @@ export default function Navbar() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className="border-b border-white/10 pb-3 text-xs uppercase tracking-[0.22em] text-white/90"
+                  className={`border-b border-white/10 pb-3 text-xs uppercase tracking-[0.22em] ${active === link.id ? "text-[#d8be8f]" : "text-white/90"}`}
                 >
                   {link.label}
                 </Link>
