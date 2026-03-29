@@ -108,14 +108,14 @@ const tourPackages = [
     price: "₹14,500",
     duration: "4 Days/ 3 Night",
     tag: "Couple Friendly",
-    image: "https://unsplash.com/photos/t-3qo5bGC0Q/download?force=true&w=600",
+    image: "https://unsplash.com/photos/Tp-kViKErbw/download?force=true&w=600",
   },
   {
     title: "Kerala Backwaters & Munnar – 6 Nights 7 Days",
     price: "₹26,200",
     duration: "7 Days/ 6 Nights",
     tag: "Family-Friendly",
-    image: "https://unsplash.com/photos/Tp-kViKErbw/download?force=true&w=600",
+    image: "https://unsplash.com/photos/t-3qo5bGC0Q/download?force=true&w=600",
   },
   {
     title: "Munnar Wildlife & Heritage 5 Days 4 Nights",
@@ -151,8 +151,8 @@ export default function MunnarPage() {
       {/* ══════════ 1. HERO ══════════ */}
       <section className="relative h-[85vh] min-h-[600px] overflow-hidden">
         <Image
-          src="https://unsplash.com/photos/t-3qo5bGC0Q/download?force=true&w=1800"
-          alt="Brown nipa hut on green grass field during daytime in Munnar"
+          src="https://unsplash.com/photos/Tp-kViKErbw/download?force=true&w=1800"
+          alt="Silhouette of boat on sea during sunset in Munnar"
           fill
           className="object-cover"
           priority
@@ -464,8 +464,8 @@ export default function MunnarPage() {
       {/* ══════════ 7. CTA BANNER ══════════ */}
       <section className="relative py-24 md:py-32 overflow-hidden">
         <Image
-          src="https://unsplash.com/photos/Tp-kViKErbw/download?force=true&w=1800"
-          alt="Silhouette of boat on sea during sunset in Munnar"
+          src="https://unsplash.com/photos/t-3qo5bGC0Q/download?force=true&w=1800"
+          alt="Brown nipa hut on green grass field during daytime in Munnar"
           fill
           className="object-cover"
         />

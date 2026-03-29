@@ -108,7 +108,7 @@ const tourPackages = [
     price: "₹12,400",
     duration: "3 Days/ 2 Night",
     tag: "Couple Friendly",
-    image: "https://unsplash.com/photos/Wag11Ja47zI/download?force=true&w=600",
+    image: "https://unsplash.com/photos/zmr9TeA7WjU/download?force=true&w=600",
   },
   {
     title: "Mystical Wayanad Adventure 4 Days 3 Nights",
@@ -122,7 +122,7 @@ const tourPackages = [
     price: "₹24,500",
     duration: "6 Days/ 5 Night",
     tag: "Family-Friendly",
-    image: "https://unsplash.com/photos/zmr9TeA7WjU/download?force=true&w=600",
+    image: "https://unsplash.com/photos/Wag11Ja47zI/download?force=true&w=600",
   },
 ];
 
@@ -151,8 +151,8 @@ export default function WayanadPage() {
       {/* ══════════ 1. HERO ══════════ */}
       <section className="relative h-[85vh] min-h-[600px] overflow-hidden">
         <Image
-          src="https://unsplash.com/photos/Wag11Ja47zI/download?force=true&w=1800"
-          alt="A man standing on top of a wooden structure in Wayanad"
+          src="https://unsplash.com/photos/zmr9TeA7WjU/download?force=true&w=1800"
+          alt="A car driving down a road surrounded by lush green hills in Wayanad"
           fill
           className="object-cover"
           priority
@@ -463,8 +463,8 @@ export default function WayanadPage() {
       {/* ══════════ 7. CTA BANNER ══════════ */}
       <section className="relative py-24 md:py-32 overflow-hidden">
         <Image
-          src="https://unsplash.com/photos/zmr9TeA7WjU/download?force=true&w=1800"
-          alt="A car driving down a road surrounded by lush green hills in Wayanad"
+          src="https://unsplash.com/photos/Wag11Ja47zI/download?force=true&w=1800"
+          alt="A man standing on top of a wooden structure in Wayanad"
           fill
           className="object-cover"
         />

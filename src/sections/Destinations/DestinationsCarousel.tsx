@@ -83,11 +83,11 @@ const destinations: Destination[] = [
       "Munnar is a tranquil hill station famous for its expansive tea plantations, winding lanes, and magnificent waterfalls. Experience serene backwaters and pristine wildlife in God's Own Country.",
     link: "/destinations/munnar",
     mainImage:
-      "https://unsplash.com/photos/t-3qo5bGC0Q/download?force=true&w=1200",
-    mainImageAlt: "Brown nipa hut on green grass field during daytime in Munnar",
+      "https://unsplash.com/photos/Tp-kViKErbw/download?force=true&w=1200",
+    mainImageAlt: "Silhouette of boat on sea during sunset in Munnar",
     overlayImage:
-      "https://unsplash.com/photos/Tp-kViKErbw/download?force=true&w=800",
-    overlayImageAlt: "Silhouette of boat on sea during sunset in Munnar",
+      "https://unsplash.com/photos/t-3qo5bGC0Q/download?force=true&w=800",
+    overlayImageAlt: "Brown nipa hut on green grass field during daytime in Munnar",
   },
   {
     id: "wayanad",
@@ -97,11 +97,11 @@ const destinations: Destination[] = [
       "Wayanad is a pristine hill station in northern Kerala known for its lush green mountains, mystic caves, and sprawling spice plantations. A true haven for trekkers and nature lovers.",
     link: "/destinations/wayanad",
     mainImage:
-      "https://unsplash.com/photos/Wag11Ja47zI/download?force=true&w=1200",
-    mainImageAlt: "A man standing on top of a wooden structure in Wayanad",
+      "https://unsplash.com/photos/zmr9TeA7WjU/download?force=true&w=1200",
+    mainImageAlt: "A car driving down a road surrounded by lush green hills in Wayanad",
     overlayImage:
-      "https://unsplash.com/photos/zmr9TeA7WjU/download?force=true&w=800",
-    overlayImageAlt: "A car driving down a road surrounded by lush green hills in Wayanad",
+      "https://unsplash.com/photos/Wag11Ja47zI/download?force=true&w=800",
+    overlayImageAlt: "A man standing on top of a wooden structure in Wayanad",
   },
 ];
 
