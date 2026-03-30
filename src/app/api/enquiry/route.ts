@@ -14,12 +14,14 @@ const CRM_API_KEY = process.env.CRM_WEBHOOK_API_KEY as string;
 // Set up Nodemailer transporter using Brevo SMTP
 const transporter = nodemailer.createTransport({
   host: process.env.BREVO_SMTP_HOST || "smtp-relay.brevo.com",
-  port: parseInt(process.env.BREVO_SMTP_PORT || "587", 10),
+  port: parseInt((process.env.BREVO_SMTP_PORT || "587").trim(), 10),
   secure: false, // true for 465, false for other ports
   auth: {
     user: process.env.BREVO_SMTP_USER,
     pass: process.env.BREVO_SMTP_PASS,
   },
+  connectionTimeout: 5000, // 5 seconds to connect
+  socketTimeout: 10000,    // 10 seconds for socket
 });
 
 export async function POST(request: Request) {

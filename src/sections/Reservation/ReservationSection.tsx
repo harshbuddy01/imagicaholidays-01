@@ -97,19 +97,23 @@ export default function ReservationSection() {
         body: JSON.stringify(formData),
       });
 
-      if (!res.ok) {
-        const text = await res.text();
-        setError(text || `Request failed (${res.status}). Please try again.`);
+      // Always try to parse as JSON first
+      let data;
+      try {
+        data = await res.json();
+      } catch {
+        // If JSON parsing fails, it's a server error
+        setError("Server error. Please try again later.");
+        return;
+      }
+
+      if (data.success) {
+        setSubmitted(true);
+        setTimeout(() => {
+          router.push("/");
+        }, 2500);
       } else {
-        const data = await res.json();
-        if (data.success) {
-          setSubmitted(true);
-          setTimeout(() => {
-            router.push("/");
-          }, 2500);
-        } else {
-          setError(data.message || "Something went wrong. Please try again.");
-        }
+        setError(data.message || "Something went wrong. Please try again.");
       }
     } catch {
       setError("Network error. Please check your connection and try again.");
