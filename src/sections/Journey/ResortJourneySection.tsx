@@ -42,7 +42,7 @@ export default function ResortJourneySection() {
   const opacityTitle = useTransform(scrollYProgress, [0.2, 0.4], [0, 1]);
 
   return (
-    <section ref={containerRef} className="relative bg-[#f8f5f0] py-32 md:py-48 pb-96">
+    <section ref={containerRef} className="relative bg-[#f8f5f0] py-32 md:py-48">
       {/* Background elegant pattern */}
       <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03] mix-blend-multiply pointer-events-none" />
 
@@ -104,7 +104,7 @@ export default function ResortJourneySection() {
               <h3 className="text-3xl font-serif text-[#181510] mb-4">{journeyCards[1].title}</h3>
               <p className="text-sm text-[#6a5022] tracking-wide leading-relaxed max-w-sm">{journeyCards[1].description}</p>
               
-              <button className="mt-8 border border-[#a5813b] text-[#8a6b2d] px-6 py-3 text-xs uppercase tracking-[0.2em] hover:bg-[#a5813b] hover:text-white transition-colors duration-500" aria-label="Explore Destinations">
+              <button className="mt-8 border border-[#a5813b] text-[#8a6b2d] px-6 py-3 text-xs uppercase tracking-[0.2em] hover:bg-[#a5813b] hover:text-white transition-colors duration-500">
                 Explore Destinations
               </button>
             </article>
