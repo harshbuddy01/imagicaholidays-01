@@ -24,10 +24,11 @@ const footerLinks = {
     { label: "Blog", href: "#" },
     { label: "Press", href: "#" },
   ],
+  // ...
   support: [
     { label: "Help Center", href: "#" },
-    { label: "Contact Us", href: "#" },
-    { label: "Cancellation Policy", href: "#" },
+    { label: "Contact Us", href: "/#reservation" },
+    { label: "Cancellation Policy", href: "/terms" },
     { label: "FAQs", href: "#" },
   ],
 };
@@ -133,7 +134,7 @@ export default function Footer() {
 
           {/* Brand Column */}
           <div className="lg:pr-8">
-            <Link href="#" className="font-roman text-2xl tracking-[0.15em] text-[#f0e7d6] font-medium">
+            <Link href="/" className="font-roman text-2xl tracking-[0.15em] text-[#f0e7d6] font-medium">
               IMAGICAHOLIDAYS
             </Link>
             <p className="mt-4 text-sm text-[#a09383] leading-relaxed max-w-xs">
@@ -163,9 +164,9 @@ export default function Footer() {
             <ul className="space-y-3">
               {footerLinks.destinations.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href} className="text-sm text-[#a09383] transition-colors duration-200 hover:text-[#f0e7d6]">
+                  <Link href={link.href} className="text-sm text-[#a09383] transition-colors duration-200 hover:text-[#f0e7d6]">
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -179,9 +180,9 @@ export default function Footer() {
             <ul className="space-y-3">
               {footerLinks.activities.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href} className="text-sm text-[#a09383] transition-colors duration-200 hover:text-[#f0e7d6]">
+                  <Link href={link.href} className="text-sm text-[#a09383] transition-colors duration-200 hover:text-[#f0e7d6]">
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -195,9 +196,9 @@ export default function Footer() {
             <ul className="space-y-3">
               {footerLinks.company.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href} className="text-sm text-[#a09383] transition-colors duration-200 hover:text-[#f0e7d6]">
+                  <Link href={link.href} className="text-sm text-[#a09383] transition-colors duration-200 hover:text-[#f0e7d6]">
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -211,9 +212,9 @@ export default function Footer() {
             <ul className="space-y-3">
               {footerLinks.support.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href} className="text-sm text-[#a09383] transition-colors duration-200 hover:text-[#f0e7d6]">
+                  <Link href={link.href} className="text-sm text-[#a09383] transition-colors duration-200 hover:text-[#f0e7d6]">
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -228,10 +229,10 @@ export default function Footer() {
             © {new Date().getFullYear()} imagicaholidays. All rights reserved.
           </p>
           <div className="flex flex-wrap gap-6 text-xs text-[#7a705e]">
-            <a href="#" className="transition-colors duration-200 hover:text-[#a09383]">Privacy Policy</a>
-            <a href="#" className="transition-colors duration-200 hover:text-[#a09383]">Terms of Service</a>
-            <a href="#" className="transition-colors duration-200 hover:text-[#a09383]">Cookie Policy</a>
-            <a href="#" className="transition-colors duration-200 hover:text-[#a09383]">Sitemap</a>
+            <Link href="/privacy" className="transition-colors duration-200 hover:text-[#a09383]">Privacy Policy</Link>
+            <Link href="/terms" className="transition-colors duration-200 hover:text-[#a09383]">Terms of Service</Link>
+            <Link href="/privacy" className="transition-colors duration-200 hover:text-[#a09383]">Cookie Policy</Link>
+            <Link href="/" className="transition-colors duration-200 hover:text-[#a09383]">Sitemap</Link>
           </div>
         </div>
       </div>
