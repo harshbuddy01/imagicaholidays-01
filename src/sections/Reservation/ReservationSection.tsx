@@ -405,6 +405,7 @@ export default function ReservationSection() {
               <motion.button
                 type="submit"
                 disabled={loading}
+                aria-label="Submit your tour reservation enquiry"
                 whileHover={!loading ? { scale: 1.02 } : {}}
                 whileTap={!loading ? { scale: 0.98 } : {}}
                 className={`relative overflow-hidden px-14 py-4 border transition-all duration-500 rounded-sm ${

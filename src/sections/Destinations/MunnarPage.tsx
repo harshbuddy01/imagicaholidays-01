@@ -328,6 +328,7 @@ export default function MunnarPage() {
               <button
                 onClick={() => setVisibleAttractions(attractions.length)}
                 className="border border-[#3d3831] px-8 py-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#3d3831] transition-all duration-300 hover:bg-[#3d3831] hover:text-[#f4ebd9] rounded-sm"
+                aria-label="View all tourist attractions in Munnar"
               >
                 View All Attractions
               </button>

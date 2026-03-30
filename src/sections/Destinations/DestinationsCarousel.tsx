@@ -257,8 +257,9 @@ export default function DestinationsCarousel() {
                 <Link
                   href={dest.link}
                   className="group relative inline-block overflow-hidden rounded-full border border-[#5c544b] px-8 py-3 text-xs tracking-[0.2em] uppercase transition-all duration-300 hover:bg-[#5c544b] hover:text-[#f4ebd9]"
+                  aria-label={`Learn more about ${dest.title} holiday packages`}
                 >
-                  <span className="relative z-10">Learn More</span>
+                  <span className="relative z-10">Explore {dest.title}</span>
                 </Link>
               </motion.div>
             </div>

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function GangtokSection() {
   return (
@@ -37,9 +38,13 @@ export default function GangtokSection() {
               Discover a sanctuary in the Himalayas designed to elevate your spirit. From breathtaking mountain vistas to colorful monasteries, experience a perfect blend of spiritual heritage and natural serenity.
             </p>
             
-            <button className="group relative overflow-hidden rounded-full border border-[#5c544b] px-8 py-3 text-xs tracking-[0.2em] uppercase transition-all duration-300 hover:bg-[#5c544b] hover:text-[#f4ebd9]">
-              <span className="relative z-10">Learn More</span>
-            </button>
+            <Link 
+              href="/destinations/gangtok"
+              className="group relative overflow-hidden rounded-full border border-[#5c544b] px-8 py-3 text-xs tracking-[0.2em] uppercase transition-all duration-300 hover:bg-[#5c544b] hover:text-[#f4ebd9] inline-block"
+              aria-label="Learn more about Gangtok holiday packages"
+            >
+              <span className="relative z-10">Explore Gangtok</span>
+            </Link>
           </motion.div>
         </div>
 
