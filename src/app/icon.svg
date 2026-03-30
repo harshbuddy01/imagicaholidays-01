@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <rect width="100" height="100" rx="20" fill="#2a2520" />
+  <rect x="5" y="5" width="90" height="90" rx="15" fill="none" stroke="#ae9e85" stroke-width="2" />
+  <text x="50" y="65" font-family="'Times New Roman', serif" font-size="45" font-weight="bold" fill="#ae9e85" text-anchor="middle">IH</text>
+</svg>
