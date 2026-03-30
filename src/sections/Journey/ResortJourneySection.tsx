@@ -42,7 +42,7 @@ export default function ResortJourneySection() {
   const opacityTitle = useTransform(scrollYProgress, [0.2, 0.4], [0, 1]);
 
   return (
-    <section ref={containerRef} className="relative bg-[#f8f5f0] py-32 md:py-48 pb-64 md:pb-80">
+    <section ref={containerRef} className="relative bg-[#f8f5f0] py-32 md:py-48 pb-48 md:pb-64">
       {/* Background elegant pattern */}
       <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03] mix-blend-multiply pointer-events-none" />
 
@@ -70,7 +70,7 @@ export default function ResortJourneySection() {
         </motion.div>
 
         {/* Asymmetrical Parallax Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 relative">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 relative">
           
           {/* Card 1 - Slides Down */}
           <motion.div style={{ y: y1 }} className="md:col-span-5 md:mt-24">
@@ -90,7 +90,7 @@ export default function ResortJourneySection() {
           </motion.div>
 
           {/* Card 2 - Centers Static */}
-          <div className="md:col-span-7 relative z-10 md:-mt-10">
+          <div className="md:col-span-7 relative z-10">
             <article className="group relative overflow-hidden bg-white p-6 shadow-[0_30px_50px_rgba(0,0,0,0.08)]">
               <div className="relative h-[55vh] w-full overflow-hidden mb-6">
                 <Image 
@@ -111,8 +111,8 @@ export default function ResortJourneySection() {
           </div>
 
           {/* Card 3 - Slides Up slightly */}
-          <motion.div style={{ y: y2 }} className="md:col-span-6 md:col-start-7 md:-mt-24 relative z-20 pb-12">
-             <article className="group relative overflow-hidden bg-white p-6 shadow-[0_20px_40px_rgba(0,0,0,0.06)]">
+          <motion.div style={{ y: y2 }} className="md:col-span-6 md:col-start-4 md:-mt-48 lg:-mt-64 relative z-20 pb-12">
+             <article className="group relative overflow-hidden bg-white p-6 shadow-[0_40px_80px_rgba(0,0,0,0.12)]">
               <div className="relative h-[40vh] w-full overflow-hidden mb-6">
                 <Image 
                   src={journeyCards[2].image} 
@@ -120,9 +120,9 @@ export default function ResortJourneySection() {
                   fill
                   className="object-cover transition-transform duration-[2s] group-hover:scale-110"
                 />
-              </div>
-              <div className="absolute top-10 right-10 bg-white/95 backdrop-blur-sm px-4 py-2 shadow-sm">
-                <p className="font-script text-2xl text-[#a5813b]">{journeyCards[2].script}</p>
+                <div className="absolute top-6 right-6 bg-white/95 backdrop-blur-sm px-4 py-2 shadow-sm z-30">
+                  <p className="font-script text-2xl text-[#a5813b] whitespace-nowrap">{journeyCards[2].script}</p>
+                </div>
               </div>
               <h3 className="text-2xl font-serif text-[#181510] mb-3">{journeyCards[2].title}</h3>
               <p className="text-xs text-[#6a5022] uppercase tracking-[0.1em] leading-relaxed max-w-xs">{journeyCards[2].description}</p>
