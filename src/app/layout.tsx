@@ -52,7 +52,8 @@ export const metadata: Metadata = {
     description: "Bespoke tours and holiday packages across India's exotic destinations.",
   },
   icons: {
-    apple: "/apple-touch-icon.png",
+    icon: "/icon.svg",
+    apple: "/icon.svg",
   },
 };
 
