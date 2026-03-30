@@ -5,31 +5,26 @@ import { motion } from "framer-motion";
 
 const footerLinks = {
   destinations: [
-    { label: "Gangtok", href: "#destinations-carousel" },
-    { label: "Lachung", href: "#destinations-carousel" },
-    { label: "Darjeeling", href: "#destinations-carousel" },
-    { label: "Pelling", href: "#destinations-carousel" },
+    { label: "Gangtok", href: "/destinations/gangtok" },
+    { label: "Lachung", href: "/destinations/lachung" },
+    { label: "Darjeeling", href: "/destinations/darjeeling" },
+    { label: "Pelling", href: "/destinations/pelling" },
   ],
   activities: [
-    { label: "Trekking", href: "#activities-section" },
-    { label: "Yak Safari", href: "#activities-section" },
-    { label: "Camping", href: "#activities-section" },
-    { label: "River Rafting", href: "#activities-section" },
-    { label: "Paragliding", href: "#activities-section" },
+    { label: "Trekking", href: "/#activities-section" },
+    { label: "Yak Safari", href: "/#activities-section" },
+    { label: "Camping", href: "/#activities-section" },
+    { label: "River Rafting", href: "/#activities-section" },
   ],
   company: [
-    { label: "About Us", href: "#" },
-    { label: "Our Team", href: "#team-support" },
-    { label: "Careers", href: "#" },
-    { label: "Blog", href: "#" },
-    { label: "Press", href: "#" },
+    { label: "Our Story", href: "/about" },
+    { label: "The Artisans", href: "/about" },
+    { label: "Guest Journals", href: "/testimonials" },
   ],
-  // ...
   support: [
-    { label: "Help Center", href: "#" },
-    { label: "Contact Us", href: "/#reservation" },
+    { label: "Ask an Artisan", href: "/#reservation" },
+    { label: "Travel FAQs", href: "/faqs" },
     { label: "Cancellation Policy", href: "/terms" },
-    { label: "FAQs", href: "#" },
   ],
 };
 
@@ -231,8 +226,6 @@ export default function Footer() {
           <div className="flex flex-wrap gap-6 text-xs text-[#7a705e]">
             <Link href="/privacy" className="transition-colors duration-200 hover:text-[#a09383]">Privacy Policy</Link>
             <Link href="/terms" className="transition-colors duration-200 hover:text-[#a09383]">Terms of Service</Link>
-            <Link href="/privacy" className="transition-colors duration-200 hover:text-[#a09383]">Cookie Policy</Link>
-            <Link href="/" className="transition-colors duration-200 hover:text-[#a09383]">Sitemap</Link>
           </div>
         </div>
       </div>
