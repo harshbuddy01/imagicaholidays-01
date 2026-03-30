@@ -196,20 +196,22 @@ export default function MunnarPage() {
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ae9e85" strokeWidth="1.5">
                   <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" strokeLinecap="round"/>
                 </svg>
-                <span className="text-[10px] tracking-[0.3em] uppercase text-[#ae9e85]">About Munnar</span>
+                <span className="text-[10px] tracking-[0.3em] uppercase text-[#ae9e85]">About Munnar Holidays</span>
               </div>
               <h2 className="font-roman text-3xl md:text-4xl font-medium text-[#3d3831] tracking-wide mb-6">
-                God's Own Country
+                Premium Kerala Tours & Munnar Tea Estate Retreats
               </h2>
-              <p className="text-[#5c544b] leading-relaxed mb-4">
-                Munnar is a tranquil hill station in Kerala, historically known as the summer resort of the erstwhile British administration in South India. It is situated at the confluence of three mountain streams—Mudrapuzha, Nallathanni, and Kundala.
-              </p>
-              <p className="text-[#5c544b] leading-relaxed mb-4">
-                Famous for its expansive tea plantations, colonial towns, winding lanes, and magnificent waterfalls, Munnar offers an unmatched natural sanctuary. The region is highly coveted for the Eravikulam National Park and the spectacular Neelakurinji flowers, which bloom once every twelve years.
-              </p>
-              <p className="text-[#5c544b] leading-relaxed">
-                Whether you seek the serenity of emerald green hills or the tranquil backwaters closer to the coast, a journey through Munnar provides the quintessential Kerala experience.
-              </p>
+              <div className="space-y-4">
+                <p className="text-[#5c544b] leading-relaxed">
+                  Experience the pinnacle of South Indian luxury with our exclusive <strong>Munnar tour packages</strong>. Often referred to as "God's Own Country," Kerala is a globally recognized destination for wellness, nature walks, and unparalleled tranquility. By choosing our handcrafted <strong>Kerala holiday packages</strong>, you will explore Munnar’s endless, emerald-green tea estates and cascading waterfalls while enjoying world-class service.
+                </p>
+                <p className="text-[#5c544b] leading-relaxed">
+                  A perfect <strong>Munnar itinerary</strong> requires seamless coordination. From serene boat rides on Kundala Lake to exciting wildlife safaris at Eravikulam National Park (home to the endangered Nilgiri Tahr), our <strong>luxury Kerala tours</strong> ensure you miss nothing. We specialize in curating the finest high-altitude <strong>Munnar resorts and spas</strong> for romantic getaways, <strong>Kerala honeymoon packages</strong>, and premium family holidays alike.
+                </p>
+                <p className="text-[#5c544b] leading-relaxed">
+                  Skip the mass-market travel traps and experience authentic, stress-free South Indian hospitality. Whether your journey extends to the tranquil backwaters or stays nestled in the misty hills, we handle all logistics. Review our seasonal guide on the <strong>best time to visit Kerala</strong>, and allow our experts to craft an unforgettable tropical escape.
+                </p>
+              </div>
             </motion.div>
 
             {/* Quick Info cards */}

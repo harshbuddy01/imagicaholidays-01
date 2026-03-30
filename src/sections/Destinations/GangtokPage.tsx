@@ -275,17 +275,22 @@ export default function GangtokPage() {
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ae9e85" strokeWidth="1.5">
                   <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" strokeLinecap="round"/>
                 </svg>
-                <span className="text-[10px] tracking-[0.3em] uppercase text-[#ae9e85]">About Gangtok</span>
+                <span className="text-[10px] tracking-[0.3em] uppercase text-[#ae9e85]">About Gangtok Holidays</span>
               </div>
               <h2 className="font-roman text-3xl md:text-4xl font-medium text-[#3d3831] tracking-wide mb-6">
-                The Vibrant Capital of Sikkim
+                Premium Gangtok Tour Packages & Luxury Sikkim Itineraries
               </h2>
-              <p className="text-[#5c544b] leading-relaxed mb-4">
-                Gangtok, the vibrant capital of East Sikkim, is a perfect blend of natural beauty, Buddhist culture, and modern lifestyle. Nestled at an altitude of around 1,650 meters (5,410 ft) above sea level, Gangtok offers breathtaking views of the mighty Kanchenjunga range, lush green hills, and colorful monasteries.
-              </p>
-              <p className="text-[#5c544b] leading-relaxed">
-                Known as the gateway to North and East Sikkim, Gangtok is one of the most popular tourist destinations in Northeast India. Clean streets, friendly locals, and peaceful surroundings make it an ideal destination for families, honeymooners, and adventure lovers.
-              </p>
+              <div className="space-y-4">
+                <p className="text-[#5c544b] leading-relaxed">
+                  Discover the breathtaking capital of Sikkim with our handcrafted <strong>Gangtok tour packages</strong>. Nestled at 5,410 feet, Gangtok is Northeast India's premier holiday destination, blending ancient Tibetan Buddhist culture with spectacular Himalayan vistas. Whether you are seeking a romantic <strong>Gangtok honeymoon package</strong>, a peaceful family retreat, or premium sightseeing tours across East Sikkim, we curate unparalleled luxury experiences.
+                </p>
+                <p className="text-[#5c544b] leading-relaxed">
+                  Every <strong>Sikkim holiday</strong> we design includes exclusive stays at the finest <strong>resorts in Gangtok</strong>, ensuring you wake up to pristine views of the majestic Mount Kanchenjunga. From strolling down the impeccably clean MG Marg to seeking blessings at the historic Rumtek Monastery, compiling the perfect <strong>Gangtok itinerary</strong> requires local expertise. 
+                </p>
+                <p className="text-[#5c544b] leading-relaxed">
+                  Unlike standard <strong>travel agencies</strong>, Imagica Holidays specializes in luxury, hassle-free travel. We handle your inner line permits, premium cab transfers, and exclusive accommodations. Discover the <strong>best time to visit Gangtok</strong> with our seasonal guides below, and let our destination experts tailor your perfect Himalayan escape.
+                </p>
+              </div>
             </motion.div>
 
             {/* Quick Info cards */}

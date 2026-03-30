@@ -196,20 +196,22 @@ export default function WayanadPage() {
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ae9e85" strokeWidth="1.5">
                   <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" strokeLinecap="round"/>
                 </svg>
-                <span className="text-[10px] tracking-[0.3em] uppercase text-[#ae9e85]">About Wayanad</span>
+                <span className="text-[10px] tracking-[0.3em] uppercase text-[#ae9e85]">About Wayanad Holidays</span>
               </div>
               <h2 className="font-roman text-3xl md:text-4xl font-medium text-[#3d3831] tracking-wide mb-6">
-                The Crown Jewel of the Nilgiris
+                Luxury Wayanad Tour Packages & Kerala Eco-Retreats
               </h2>
-              <p className="text-[#5c544b] leading-relaxed mb-4">
-                Set high on the majestic Western Ghats with altitudes ranging from 700 to 2100 meters, Wayanad is a pristine hill station in northern Kerala. It derives its name from "Vayal Nadu," meaning the land of paddy fields, and seamlessly blends profound tranquility with untamed wilderness.
-              </p>
-              <p className="text-[#5c544b] leading-relaxed mb-4">
-                Famous for its sprawling spice plantations, misty peaks, and majestic waterfalls, this rural district is arguably one of the most stunning destinations in South India. It is a haven for trekkers, history enthusiasts, and nature lovers equally, showcasing deep valleys and diverse wildlife.
-              </p>
-              <p className="text-[#5c544b] leading-relaxed">
-                Whether you're exploring the ancient Neolithic petroglyphs at Edakkal Caves or gazing out from the naturally heart-shaped lake at Chembra Peak, a journey through Wayanad is a sensory delight.
-              </p>
+              <div className="space-y-4">
+                <p className="text-[#5c544b] leading-relaxed">
+                  Immerse yourself in the untamed beauty of the Western Ghats with our expertly curated <strong>Wayanad tour packages</strong>. Situated in northern Kerala, Wayanad is famous for its vibrant spice plantations, mystic caves, and serene mountain landscape. As a must-visit destination for <strong>Kerala holidays</strong>, Wayanad seamlessly combines relaxation with adventure, making it perfect for both thrilling weekend getaways and romantic <strong>Wayanad honeymoon packages</strong>.
+                </p>
+                <p className="text-[#5c544b] leading-relaxed">
+                  Booking a <strong>Wayanad itinerary</strong> with Imagica Holidays guarantees a truly luxurious South Indian experience. From morning hikes up to the heart-shaped lake at Chembra Peak to exploring ancient petroglyphs inside the renowned Edakkal Caves, our <strong>premium Kerala tours</strong> cover every detail. We handpick the most exclusive <strong>Wayanad nature resorts</strong> and eco-lodges, ensuring comfort without compromising the region's raw natural charm.
+                </p>
+                <p className="text-[#5c544b] leading-relaxed">
+                  As highly trusted <strong>Kerala tour operators</strong>, we manage your private airport transfers, local safaris through the Wayanad Wildlife Sanctuary, and exclusive staycations. Check our guide on the <strong>best time to visit Wayanad</strong> below, and allow our team to design your ultimate luxury escape into "God's Own Country."
+                </p>
+              </div>
             </motion.div>
 
             {/* Quick Info cards */}

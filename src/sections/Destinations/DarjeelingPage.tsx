@@ -246,20 +246,22 @@ export default function DarjeelingPage() {
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ae9e85" strokeWidth="1.5">
                   <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" strokeLinecap="round"/>
                 </svg>
-                <span className="text-[10px] tracking-[0.3em] uppercase text-[#ae9e85]">About Darjeeling</span>
+                <span className="text-[10px] tracking-[0.3em] uppercase text-[#ae9e85]">About Darjeeling Holidays</span>
               </div>
               <h2 className="font-roman text-3xl md:text-4xl font-medium text-[#3d3831] tracking-wide mb-6">
-                The Queen of the Hills
+                Luxury Darjeeling Tour Packages & Tea Estate Retreats
               </h2>
-              <p className="text-[#5c544b] leading-relaxed mb-4">
-                Darjeeling, often referred to as the &ldquo;Queen of the Hills&rdquo;, is a picturesque hill station nestled in the foothills of the Himalayas, in the Indian state of West Bengal. Known for its tea plantations, majestic views of Mt. Kanchenjunga, and charming colonial architecture, Darjeeling has been a favored destination for travelers seeking natural beauty, adventure, and cultural experiences.
-              </p>
-              <p className="text-[#5c544b] leading-relaxed mb-4">
-                Famous for its Darjeeling tea, the town is home to lush green tea estates that offer visitors a glimpse into the tea-making process. The Darjeeling Himalayan Railway, also known as the Toy Train, is another iconic attraction, offering a nostalgic ride through the hills and valleys, listed as a UNESCO World Heritage Site.
-              </p>
-              <p className="text-[#5c544b] leading-relaxed">
-                In addition to its natural beauty, Darjeeling offers a rich cultural heritage. Visitors can explore Bengali, Tibetan, and Nepali influences, making the town a unique blend of cultures. The vibrant local markets and delicious Sikkimese and Tibetan cuisines are a treat for those looking to immerse themselves in the local lifestyle.
-              </p>
+              <div className="space-y-4">
+                <p className="text-[#5c544b] leading-relaxed">
+                  Experience the pinnacle of Himalayan elegance with our bespoke <strong>Darjeeling tour packages</strong>. Crowned as the &ldquo;Queen of the Hills&rdquo;, Darjeeling is West Bengal's most coveted holiday destination, offering travelers breathtaking, unobstructed views of the majestic Mount Kanchenjunga. Whether you are searching for a peaceful family getaway or a romantic <strong>Darjeeling honeymoon package</strong>, our handcrafted itineraries promise unparalleled luxury.
+                </p>
+                <p className="text-[#5c544b] leading-relaxed">
+                  As regional travel experts, Imagica Holidays ensures your <strong>Darjeeling itinerary</strong> encompasses the very best this iconic hill station has to offer. Ride the UNESCO World Heritage <strong>Toy Train (Darjeeling Himalayan Railway)</strong>, witness the incredible sunrise from <strong>Tiger Hill</strong>, and walk through sprawling, world-famous <strong>Darjeeling tea estates</strong> while staying in premium heritage properties and luxury resorts.
+                </p>
+                <p className="text-[#5c544b] leading-relaxed">
+                  Avoid the hassle of coordinating taxis and permits. Our comprehensive <strong>West Bengal tourism packages</strong> offer end-to-end service, seamlessly connecting Darjeeling with neighboring jewels like Gangtok and Pelling. Review our guide on the <strong>best time to visit Darjeeling</strong> below and let us craft a five-star Himalayan retreat customized entirely around you.
+                </p>
+              </div>
             </motion.div>
 
             <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0.2}>

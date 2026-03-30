@@ -234,20 +234,22 @@ export default function PellingPage() {
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ae9e85" strokeWidth="1.5">
                   <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" strokeLinecap="round"/>
                 </svg>
-                <span className="text-[10px] tracking-[0.3em] uppercase text-[#ae9e85]">About Pelling</span>
+                <span className="text-[10px] tracking-[0.3em] uppercase text-[#ae9e85]">About Pelling Holidays</span>
               </div>
               <h2 className="font-roman text-3xl md:text-4xl font-medium text-[#3d3831] tracking-wide mb-6">
-                Gateway to Kanchenjunga
+                Premium Pelling Tour Packages & Kanchenjunga Retreats
               </h2>
-              <p className="text-[#5c544b] leading-relaxed mb-4">
-                Pelling is a small town in the northeastern Indian state of Sikkim, at the foothills of Mount Khangchendzonga. The late-17th-century Buddhist Sanga Choling Monastery has mountain views. Pemayangtse Monastery features wall paintings, sculptures and a gold-plated statue of Guru Padsambhava. Overlooking a valley, the 17th-century Rabdentse Palace, now in ruins, still has evidence of the king’s bedroom and kitchen.
-              </p>
-              <p className="text-[#5c544b] leading-relaxed mb-4">
-                Pelling is known as the “Gateway to Kanchenjunga” because of its spectacular and close-up views of Mount Kanchenjunga, the third-highest mountain in the world. It is also known as the second-largest tourist destination in Sikkim after Gangtok.
-              </p>
-              <p className="text-[#5c544b] leading-relaxed">
-                Located in West Sikkim at an altitude of around 7,200 feet, Pelling is famous for its natural beauty, ancient monasteries, and peaceful Himalayan atmosphere.
-              </p>
+              <div className="space-y-4">
+                <p className="text-[#5c544b] leading-relaxed">
+                  Unlock the majestic beauty of West Sikkim with our exclusive <strong>Pelling tour packages</strong>. Regarded as the "Gateway to Kanchenjunga", Pelling offers the most breathtaking, up-close views of the world's third-highest peak. Our luxury <strong>Sikkim holidays</strong> ensure you experience this serene Himalayan town in absolute comfort, whether you are booking a family retreat or a romantic <strong>Pelling honeymoon package</strong>.
+                </p>
+                <p className="text-[#5c544b] leading-relaxed">
+                  An impeccable <strong>Pelling itinerary</strong> seamlessly blends awe-inspiring nature with ancient spirituality. With Imagica Holidays, you'll walk the exhilarating <strong>Pelling Glass Skywalk</strong>, explore the sacred Pemayangtse and Sanga Choling monasteries, and relax in premium <strong>Pelling mountain resorts</strong>. We curate every detail so you can immerse yourself in the natural grandeur of the Himalayas without stress.
+                </p>
+                <p className="text-[#5c544b] leading-relaxed">
+                  As the premier choice for <strong>Sikkim tourism</strong>, our local experts hand-select the finest accommodations and organize private chauffeur-driven excursions to nearby jewels like the Rabdentse Ruins and Khecheopalri Lake. View our guide on the <strong>best time to visit Pelling</strong> below, and let us design a luxury North-East Indian holiday you will remember forever.
+                </p>
+              </div>
             </motion.div>
 
             {/* Quick Info cards */}

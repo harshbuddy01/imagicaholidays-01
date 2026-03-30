@@ -221,17 +221,22 @@ export default function LachungPage() {
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ae9e85" strokeWidth="1.5">
                   <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" strokeLinecap="round"/>
                 </svg>
-                <span className="text-[10px] tracking-[0.3em] uppercase text-[#ae9e85]">About Lachung</span>
+                <span className="text-[10px] tracking-[0.3em] uppercase text-[#ae9e85]">About Lachung Holidays</span>
               </div>
               <h2 className="font-roman text-3xl md:text-4xl font-medium text-[#3d3831] tracking-wide mb-6">
-                A Peaceful Mountain Village
+                Premium North Sikkim Tours & Lachung Packages
               </h2>
-              <p className="text-[#5c544b] leading-relaxed mb-4">
-                Lachung is a mountain village close to the Tibetan border, in the northeastern Indian state of Sikkim. It&apos;s divided by the Lachung River. The village is home to the 19th-century Buddhist Lachung Monastery, surrounded by apple orchards. Nearby, the Yumthang Valley&apos;s Shingba Rhododendron Sanctuary protects many species of rhododendron.
-              </p>
-              <p className="text-[#5c544b] leading-relaxed">
-                Lachung is famous for its breathtaking Himalayan landscapes, Yumthang Valley (Valley of Flowers), snow-covered mountains, waterfalls, apple orchards, and peaceful mountain village charm. Located at an altitude of around 9,600 ft, Lachung is one of the most popular tourist destinations in North Sikkim.
-              </p>
+              <div className="space-y-4">
+                <p className="text-[#5c544b] leading-relaxed">
+                  Discover the untouched beauty of North Sikkim with our award-winning <strong>Lachung tour packages</strong>. Situated at a breathtaking altitude of 9,600 feet, Lachung serves as the gateway to the world-renowned <strong>Yumthang Valley (Valley of Flowers)</strong> and the high-altitude wonders of <strong>Zero Point (Yumesamdong)</strong>. For travelers seeking pristine snow-capped mountains and tranquil apple orchards, Lachung is the ultimate <strong>Sikkim holiday destination</strong>.
+                </p>
+                <p className="text-[#5c544b] leading-relaxed">
+                  Navigating the rugged terrain of North Sikkim requires expert planning and restricted area permits, which is why Imagica Holidays offers fully managed <strong>luxury North Sikkim itineraries</strong>. Unlike typical budget travel, our packages focus on premium comfort, featuring the most comfortable <strong>resorts in Lachung</strong>, private mountain-ready transport, and guided tours to majestic spots like the Lachung Monastery and Shingba Rhododendron Sanctuary.
+                </p>
+                <p className="text-[#5c544b] leading-relaxed">
+                  Whether you are planning a vibrant spring blossom tour or a snowy winter adventure, our local expertise guarantees a flawless experience. Explore the <strong>best time to visit Lachung</strong> below, and let us handle all logistics so you can simply revel in the raw, majestic beauty of the Himalayas.
+                </p>
+              </div>
             </motion.div>
 
             <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0.2}>
