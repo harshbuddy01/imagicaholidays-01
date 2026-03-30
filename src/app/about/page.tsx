@@ -72,7 +72,7 @@ export default function AboutPage() {
                <p className="mb-8 pl-6 border-l-2 border-[#ae9e85]/40 italic text-[#7a705e]">
                  "Our journey began years ago, mapping the rugged terrain of Sikkim and Darjeeling. Driven by an intense passion for the mystic realms."
                </p>
-               <p>
+               <p id="artisans" className="scroll-mt-32">
                  We do not employ agents; we cultivate <strong>Travel Artisans</strong>. Locals whose ancestors have walked these trails for generations. Whether predicting the perfect moment the morning sun shatters the mist over Mt. Kanchenjunga, or arranging a quiet Yak Safari in Yumthang, we handcraft moments.
                </p>
              </div>
@@ -92,7 +92,7 @@ export default function AboutPage() {
             initial={{ rotate: -5, y: 20, opacity: 0 }}
             animate={{ rotate: -6, y: -20, opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.8 }}
-            className="relative bg-white p-3 pb-12 shadow-[5px_5px_15px_rgba(0,0,0,0.15)] w-64 md:w-72 absolute -top-10 md:top-10 left-10 z-10"
+            className="bg-white p-3 pb-12 shadow-[5px_5px_15px_rgba(0,0,0,0.15)] w-64 md:w-72 absolute -top-10 md:top-10 left-10 z-10"
           >
              <TornTape className="w-24 top-[-15px] left-1/2 -translate-x-1/2 rotate-3" />
              <div className="relative w-full aspect-square bg-gray-200">
@@ -106,7 +106,7 @@ export default function AboutPage() {
             initial={{ rotate: 10, y: 20, opacity: 0 }}
             animate={{ rotate: 8, y: 20, opacity: 1 }}
             transition={{ delay: 0.5, duration: 0.8 }}
-            className="relative bg-white p-3 pb-12 shadow-[5px_5px_15px_rgba(0,0,0,0.15)] w-56 md:w-64 absolute bottom-10 right-10 z-20"
+            className="bg-white p-3 pb-12 shadow-[5px_5px_15px_rgba(0,0,0,0.15)] w-56 md:w-64 absolute bottom-10 right-10 z-20"
           >
              <TornTape className="w-20 top-[-10px] left-1/2 -translate-x-1/2 -rotate-6" />
              <div className="relative w-full aspect-square bg-gray-200">

@@ -17,14 +17,17 @@ const footerLinks = {
     { label: "River Rafting", href: "/#activities-section" },
   ],
   company: [
-    { label: "Our Story", href: "/about" },
-    { label: "The Artisans", href: "/about" },
-    { label: "Guest Journals", href: "/testimonials" },
+    { label: "About Us", href: "/about" },
+    { label: "Our Team", href: "/about#artisans" },
+    { label: "Careers", href: "/careers" },
+    { label: "Blog", href: "/blog" },
+    { label: "Press", href: "/press" }
   ],
   support: [
-    { label: "Ask an Artisan", href: "/#reservation" },
-    { label: "Travel FAQs", href: "/faqs" },
+    { label: "Help Center", href: "/help-center" },
+    { label: "Contact Us", href: "/#reservation" },
     { label: "Cancellation Policy", href: "/terms" },
+    { label: "FAQs", href: "/faqs" },
   ],
 };
 
@@ -226,6 +229,8 @@ export default function Footer() {
           <div className="flex flex-wrap gap-6 text-xs text-[#7a705e]">
             <Link href="/privacy" className="transition-colors duration-200 hover:text-[#a09383]">Privacy Policy</Link>
             <Link href="/terms" className="transition-colors duration-200 hover:text-[#a09383]">Terms of Service</Link>
+            <Link href="/cookies" className="transition-colors duration-200 hover:text-[#a09383]">Cookie Policy</Link>
+            <Link href="/sitemap" className="transition-colors duration-200 hover:text-[#a09383]">Sitemap</Link>
           </div>
         </div>
       </div>

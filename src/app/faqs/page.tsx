@@ -93,8 +93,18 @@ export default function FAQsPage() {
                 initial={{ opacity: 0, y: 50, rotate: rotate - 10 }}
                 animate={{ opacity: 1, y: yOffset, rotate: rotate }}
                 transition={{ duration: 0.8, delay: idx * 0.15, type: "spring" }}
-                className="relative cursor-pointer group w-[280px] md:w-[320px] aspect-[4/3] perspective-1000"
+                className="relative cursor-pointer group w-[280px] md:w-[320px] aspect-[4/3] perspective-1000 focus:outline-none focus:ring-2 focus:ring-[#8b1a1a] rounded-sm"
                 onClick={() => toggleFlip(idx)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleFlip(idx);
+                  }
+                }}
+                tabIndex={0}
+                role="button"
+                aria-expanded={isFlipped}
+                aria-label={`FAQ: ${faq.question}. Click to reveal answer.`}
               >
                 {/* Vintage tape at the top */}
                 <TornTape className="w-20 top-[-12px] left-1/2 -translate-x-1/2" />
