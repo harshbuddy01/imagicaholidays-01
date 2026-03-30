@@ -127,7 +127,7 @@ export default function Footer() {
       </div>
 
       {/* ── Main Footer Grid ── */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 py-14 md:py-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-16 py-14 md:py-16">
         <div className="grid gap-10 md:gap-8 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1fr]">
 
           {/* Brand Column */}
@@ -221,7 +221,7 @@ export default function Footer() {
       </div>
 
       {/* ── Bottom Bar ── */}
-      <div className="border-t border-white/8">
+      <div className="relative z-10 border-t border-white/8">
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 py-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <p className="text-xs text-[#7a705e]">
             © {new Date().getFullYear()} imagicaholidays. All rights reserved.
