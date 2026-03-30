@@ -111,7 +111,7 @@ export async function POST(request: Request) {
     if (body.email) {
       try {
         await transporter.sendMail({
-          from: `"Imagica Holidays" <${process.env.BREVO_SMTP_USER}>`, // sender address
+          from: `"Imagica Holidays" <administrative@imagicaholidays.com>`, // Must match a verified sender in Brevo
           to: body.email, // list of receivers
           subject: "Trip Inquiry Received - Imagica Holidays", // Subject line
           html: `
