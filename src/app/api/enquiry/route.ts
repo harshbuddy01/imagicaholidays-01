@@ -231,8 +231,11 @@ export async function POST(request: Request) {
 
                           <table border="0" cellpadding="0" cellspacing="0">
                             <tr>
-                              <td style="padding-bottom: 5px;">
-                                <img src="https://images.unsplash.com/photo-1544634076-a90160ddf44a?q=80&w=100&auto=format&fit=crop" width="50" height="50" style="border-radius: 50%; opacity: 0.8; object-fit: cover;" alt="Artisan Signature" />
+                              <td style="padding-bottom: 15px;">
+                                <!-- Pure HTML replacement for signature image (100% email safe) -->
+                                <div style="display: inline-block; width: 40px; height: 40px; border-radius: 50%; border: 1px solid #ae9e85; background-color: #fcfbf8; text-align: center; line-height: 40px; font-family: Georgia, 'Times New Roman', serif; color: #ae9e85; font-size: 16px; font-style: italic;">
+                                  IH
+                                </div>
                               </td>
                             </tr>
                             <tr>
