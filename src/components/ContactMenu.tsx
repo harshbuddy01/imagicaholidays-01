@@ -12,8 +12,8 @@ export default function ContactMenu() {
 
   const handleLiveChat = () => {
     // Check if Chatwoot is loaded globally
-    if (typeof window !== 'undefined' && window.$chatwoot) {
-      window.$chatwoot.toggle();
+    if (typeof window !== 'undefined' && (window as any).$chatwoot) {
+      (window as any).$chatwoot.toggle();
     } else {
       console.warn("Chatwoot is not loaded yet.");
     }
