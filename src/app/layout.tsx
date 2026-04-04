@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Manrope, Pinyon_Script, Playfair_Display } from "next/font/google";
 import type { ReactNode } from "react";
+import Script from "next/script";
 import "./globals.css";
 
 const headingFont = Cormorant_Garamond({
@@ -66,6 +67,25 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${headingFont.variable} ${bodyFont.variable} ${scriptFont.variable} ${romanFont.variable} antialiased`}>
         {children}
+
+        {/* Chatwoot Live Chat SDK */}
+        <Script id="chatwoot-js" strategy="lazyOnload">
+          {`
+            (function(d,t) {
+              var BASE_URL="https://chatwoot-production-f07b.up.railway.app";
+              var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+              g.src=BASE_URL+"/packs/js/sdk.js";
+              g.async = true;
+              s.parentNode.insertBefore(g,s);
+              g.onload=function(){
+                window.chatwootSDK.run({
+                  websiteToken: 'fFwt7tfxHwkjkbB4oqAVJPHm',
+                  baseUrl: BASE_URL
+                })
+              }
+            })(document,"script");
+          `}
+        </Script>
       </body>
     </html>
   );
