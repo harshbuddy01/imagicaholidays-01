@@ -13,6 +13,9 @@ import "swiper/css";
 import "swiper/css/effect-creative";
 import "swiper/css/pagination";
 import { heroSlides } from "@/lib/constants";
+import { useSearch } from "@/hooks/useSearch";
+import { AnimatePresence } from "framer-motion";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -24,6 +27,10 @@ export default function HeroSection() {
   const [minDate, setMinDate] = useState("");
   const [arrival, setArrival] = useState("");
   const [departure, setDeparture] = useState("");
+  const [destQuery, setDestQuery] = useState("");
+  const { results, loading } = useSearch(destQuery);
+  const [showResults, setShowResults] = useState(false);
+
 
   useEffect(() => {
     // Set min date on client to avoid hydration mismatch
@@ -140,9 +147,64 @@ export default function HeroSection() {
         transition={{ duration: 1, delay: 0.6 }}
         className="absolute bottom-0 left-0 right-0 z-20 flex justify-center pb-6 md:pb-10"
       >
-        <div className="hidden bg-white px-8 py-5 md:flex items-center gap-10 shadow-[0_30px_60px_rgba(0,0,0,0.15)]">
+        <div className="hidden bg-white px-10 py-6 md:flex items-center gap-12 shadow-[0_40px_80px_rgba(0,0,0,0.2)] rounded-sm border border-[#e9deca]/30">
+          {/* --- Destination Search --- */}
+          <div className="relative text-left flex flex-col justify-center min-w-[200px]">
+            <label htmlFor="dest-search" className="text-[0.55rem] uppercase tracking-[0.25em] text-[#8a6b2d] font-bold cursor-pointer">Where to?</label>
+            <input 
+              type="text" 
+              id="dest-search"
+              placeholder="e.g. Sikkim, Bali..."
+              value={destQuery}
+              onChange={(e) => setDestQuery(e.target.value)}
+              onFocus={() => setShowResults(true)}
+              className="mt-1.5 text-[0.85rem] font-serif text-[#181510] bg-transparent outline-none placeholder:text-gray-300 placeholder:italic placeholder:font-normal"
+            />
+            
+            <AnimatePresence>
+              {showResults && (destQuery || loading) && (
+                <motion.div 
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 5 }}
+                  className="absolute bottom-full left-0 mb-4 w-72 bg-white shadow-2xl p-2 border border-[#e9deca]/40 overflow-hidden"
+                >
+                  {loading && <div className="p-3 text-[10px] uppercase tracking-widest text-gray-400">Searching...</div>}
+                  {results.length > 0 ? (
+                    <div className="flex flex-col gap-1">
+                      {results.map((res) => (
+                        <button 
+                          key={res.id}
+                          onClick={() => {
+                            setDestQuery(res.name || res.title || "");
+                            setShowResults(false);
+                          }}
+                          className="flex items-center gap-3 p-2 hover:bg-[#f9f7f2] transition-colors text-left"
+                        >
+                          <div className="w-10 h-10 bg-gray-100 relative overflow-hidden flex-shrink-0">
+                             {res.image ? <Image src={res.image} alt="" fill className="object-cover" /> : <div className="bg-[#d8be8f]/20 w-full h-full flex items-center justify-center text-[10px] text-[#8a6b2d]">★</div>}
+                          </div>
+                          <div>
+                            <p className="text-[0.7rem] font-bold text-[#181510] uppercase tracking-wider line-clamp-1">{res.name || res.title}</p>
+                            <p className="text-[0.55rem] text-[#8a6b2d] uppercase tracking-widest">{res.type}</p>
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  ) : !loading && destQuery && (
+                    <div className="p-3 text-[10px] uppercase tracking-widest text-[#8a6b2d]">No destinations found</div>
+                  )}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          <div className="h-10 w-px bg-[#e9deca]" />
+
+          {/* --- Arrival --- */}
           <div className="text-left flex flex-col justify-center">
-            <label htmlFor="arrival" className="text-[0.55rem] uppercase tracking-[0.2em] text-[#8a6b2d] font-bold cursor-pointer">Arrival</label>
+            <label htmlFor="arrival" className="text-[0.55rem] uppercase tracking-[0.25em] text-[#8a6b2d] font-bold cursor-pointer">Arrival</label>
+
             <input 
               type="date" 
               id="arrival"
@@ -164,11 +226,12 @@ export default function HeroSection() {
               className="mt-1 text-sm font-serif text-[#181510] bg-transparent outline-none cursor-pointer"
             />
           </div>
-          <div className="h-8 w-px bg-[#e9deca]" />
-          <div className="text-left flex flex-col justify-center">
-            <p className="text-[0.55rem] uppercase tracking-[0.2em] text-[#8a6b2d] font-bold">Guests</p>
-            <p className="mt-1 text-sm font-serif text-[#181510]">2 Adults, 1 Room</p>
+          <div className="h-10 w-px bg-[#e9deca]" />
+          <div className="text-left flex flex-col justify-center min-w-[80px]">
+            <p className="text-[0.55rem] uppercase tracking-[0.25em] text-[#8a6b2d] font-bold">Guests</p>
+            <p className="mt-1.5 text-[0.85rem] font-serif text-[#181510]">2 Adults</p>
           </div>
+
           <Link 
             href={`/reserve?arrival=${arrival}&departure=${departure}`}
             className="group relative overflow-hidden bg-[#181510] px-8 py-3 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-white transition-all duration-500 hover:text-[#181510] ml-4 inline-block"
