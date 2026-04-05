@@ -11,8 +11,12 @@ export const metadata: Metadata = {
     description: "Experience the tranquility of Kerala's highest estates. Handcrafted itineraries featuring Eravikulam National Park, tea gardens, and premium stays.",
     url: "https://imagicaholidays.com/destinations/munnar",
     type: "website",
-  }
+  },
+  alternates: {
+    canonical: "https://imagicaholidays.com/destinations/munnar",
+  },
 };
+
 
 const jsonLd = {
   "@context": "https://schema.org",

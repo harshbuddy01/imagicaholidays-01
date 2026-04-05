@@ -40,14 +40,27 @@ export const metadata: Metadata = {
   creator: "Imagica Holidays",
   publisher: "Imagica Holidays",
   metadataBase: new URL("https://imagicaholidays.com"),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
+
     type: "website",
     locale: "en_IN",
     url: "https://imagicaholidays.com",
     title: "Imagica Holidays | Luxury Himalayan Tours",
     description: "Curated itineraries and premium stays natively built to immerse you in the Himalayan beauty.",
     siteName: "Imagica Holidays",
+    images: [
+      {
+        url: "/opengraph-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Imagica Holidays - Handcrafted Journeys",
+      },
+    ],
   },
+
   twitter: {
     card: "summary_large_image",
     title: "Imagica Holidays",

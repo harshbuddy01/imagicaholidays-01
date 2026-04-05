@@ -11,8 +11,12 @@ export const metadata: Metadata = {
     description: "Experience the whispers of Kanchenjunga in Pelling. Handcrafted itineraries featuring Pemayangtse Monastery, Khecheopalri Lake, and premium stays.",
     url: "https://imagicaholidays.com/destinations/pelling",
     type: "website",
-  }
+  },
+  alternates: {
+    canonical: "https://imagicaholidays.com/destinations/pelling",
+  },
 };
+
 
 const jsonLd = {
   "@context": "https://schema.org",

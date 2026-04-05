@@ -11,8 +11,12 @@ export const metadata: Metadata = {
     description: "Immerse yourself in Kerala's unspoiled nature. Handcrafted itineraries featuring Edakkal Caves, spice plantations, and premium eco-stays.",
     url: "https://imagicaholidays.com/destinations/wayanad",
     type: "website",
-  }
+  },
+  alternates: {
+    canonical: "https://imagicaholidays.com/destinations/wayanad",
+  },
 };
+
 
 const jsonLd = {
   "@context": "https://schema.org",

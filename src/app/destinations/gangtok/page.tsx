@@ -11,8 +11,12 @@ export const metadata: Metadata = {
     description: "Experience the vibrant heart of the Himalayas. Discover handcrafted Gangtok itineraries, breathtaking Kanchenjunga viewpoints, and cultural heritage.",
     url: "https://imagicaholidays.com/destinations/gangtok",
     type: "website",
-  }
+  },
+  alternates: {
+    canonical: "https://imagicaholidays.com/destinations/gangtok",
+  },
 };
+
 
 const jsonLd = {
   "@context": "https://schema.org",

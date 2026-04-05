@@ -11,8 +11,12 @@ export const metadata: Metadata = {
     description: "Discover the breathtaking Queen of the Hills. Handcrafted itineraries featuring premium tea estates, Tiger Hill sunrises, and heritage stays.",
     url: "https://imagicaholidays.com/destinations/darjeeling",
     type: "website",
-  }
+  },
+  alternates: {
+    canonical: "https://imagicaholidays.com/destinations/darjeeling",
+  },
 };
+
 
 const jsonLd = {
   "@context": "https://schema.org",

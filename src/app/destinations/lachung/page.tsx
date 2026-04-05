@@ -11,8 +11,12 @@ export const metadata: Metadata = {
     description: "Experience the magic of North Sikkim. Handcrafted itineraries featuring Yumthang Valley, Zero Point, and premium mountain stays.",
     url: "https://imagicaholidays.com/destinations/lachung",
     type: "website",
-  }
+  },
+  alternates: {
+    canonical: "https://imagicaholidays.com/destinations/lachung",
+  },
 };
+
 
 const jsonLd = {
   "@context": "https://schema.org",
