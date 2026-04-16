@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Autoplay, EffectCreative } from "swiper/modules";
+import { Autoplay, EffectFade } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperType } from "swiper";
 import Image from "next/image";
@@ -10,7 +10,7 @@ import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "swiper/css";
-import "swiper/css/effect-creative";
+import "swiper/css/effect-fade";
 import "swiper/css/pagination";
 import { heroSlides } from "@/lib/constants";
 import { useSearch } from "@/hooks/useSearch";
@@ -22,7 +22,7 @@ gsap.registerPlugin(ScrollTrigger);
 export default function HeroSection() {
   const heroRef = useRef<HTMLDivElement | null>(null);
   const progressRef = useRef<HTMLDivElement | null>(null);
-  
+
   // -- Date & Booking State --
   const [minDate, setMinDate] = useState("");
   const [arrival, setArrival] = useState("");
@@ -68,22 +68,10 @@ export default function HeroSection() {
   return (
     <section ref={heroRef} className="relative h-[100svh] overflow-hidden bg-white">
       <Swiper
-        modules={[EffectCreative, Autoplay]}
-        effect="creative"
-        creativeEffect={{
-          prev: {
-            shadow: true,
-            translate: ["-20%", 0, -1],
-            scale: 1,
-            opacity: 1
-          },
-          next: {
-            translate: ["100%", 0, 0],
-            scale: 1,
-            opacity: 1
-          }
-        }}
-        autoplay={{ delay: 3500, disableOnInteraction: false }}
+        modules={[EffectFade, Autoplay]}
+        effect="fade"
+        fadeEffect={{ crossFade: true }}
+        autoplay={{ delay: 3000, disableOnInteraction: false }}
         loop
         speed={1400}
         onSlideChange={(swiper: SwiperType) => {
@@ -145,7 +133,7 @@ export default function HeroSection() {
         ))}
       </Swiper>
 
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.6 }}
@@ -155,8 +143,8 @@ export default function HeroSection() {
           {/* --- Destination Search --- */}
           <div className="relative text-left flex flex-col justify-center min-w-[200px]">
             <label htmlFor="dest-search" className="text-[0.55rem] uppercase tracking-[0.25em] text-[#8a6b2d] font-bold cursor-pointer">Where to?</label>
-            <input 
-              type="text" 
+            <input
+              type="text"
               id="dest-search"
               placeholder="e.g. Sikkim, Bali..."
               value={destQuery}
@@ -164,10 +152,10 @@ export default function HeroSection() {
               onFocus={() => setShowResults(true)}
               className="mt-1.5 text-[0.85rem] font-serif text-[#181510] bg-transparent outline-none placeholder:text-gray-300 placeholder:italic placeholder:font-normal"
             />
-            
+
             <AnimatePresence>
               {showResults && (destQuery || loading) && (
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 5 }}
@@ -177,7 +165,7 @@ export default function HeroSection() {
                   {results.length > 0 ? (
                     <div className="flex flex-col gap-1">
                       {results.map((res) => (
-                        <button 
+                        <button
                           key={res.id}
                           onClick={() => {
                             setDestQuery(res.name || res.title || "");
@@ -186,7 +174,7 @@ export default function HeroSection() {
                           className="flex items-center gap-3 p-2 hover:bg-[#f9f7f2] transition-colors text-left"
                         >
                           <div className="w-10 h-10 bg-gray-100 relative overflow-hidden flex-shrink-0">
-                             {res.image ? <Image src={res.image} alt="" fill className="object-cover" /> : <div className="bg-[#d8be8f]/20 w-full h-full flex items-center justify-center text-[10px] text-[#8a6b2d]">★</div>}
+                            {res.image ? <Image src={res.image} alt="" fill className="object-cover" /> : <div className="bg-[#d8be8f]/20 w-full h-full flex items-center justify-center text-[10px] text-[#8a6b2d]">★</div>}
                           </div>
                           <div>
                             <p className="text-[0.7rem] font-bold text-[#181510] uppercase tracking-wider line-clamp-1">{res.name || res.title}</p>
@@ -209,8 +197,8 @@ export default function HeroSection() {
           <div className="text-left flex flex-col justify-center">
             <label htmlFor="arrival" className="text-[0.55rem] uppercase tracking-[0.25em] text-[#8a6b2d] font-bold cursor-pointer">Arrival</label>
 
-            <input 
-              type="date" 
+            <input
+              type="date"
               id="arrival"
               value={arrival}
               min={minDate}
@@ -221,8 +209,8 @@ export default function HeroSection() {
           <div className="h-8 w-px bg-[#e9deca]" />
           <div className="text-left flex flex-col justify-center">
             <label htmlFor="departure" className="text-[0.55rem] uppercase tracking-[0.2em] text-[#8a6b2d] font-bold cursor-pointer">Departure</label>
-            <input 
-              type="date" 
+            <input
+              type="date"
               id="departure"
               value={departure}
               min={arrival || minDate}
@@ -236,7 +224,7 @@ export default function HeroSection() {
             <p className="mt-1.5 text-[0.85rem] font-serif text-[#181510]">2 Adults</p>
           </div>
 
-          <Link 
+          <Link
             href={`/reserve?arrival=${arrival}&departure=${departure}`}
             className="group relative overflow-hidden bg-[#181510] px-8 py-3 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-white transition-all duration-500 hover:text-[#181510] ml-4 inline-block"
           >

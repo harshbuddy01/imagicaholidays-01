@@ -3,6 +3,7 @@ import { Cormorant_Garamond, Manrope, Pinyon_Script, Playfair_Display } from "ne
 import type { ReactNode } from "react";
 import Script from "next/script";
 import ContactMenu from "@/components/ContactMenu";
+import Preloader from "@/components/Preloader";
 import "./globals.css";
 
 const headingFont = Cormorant_Garamond({
@@ -80,6 +81,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${headingFont.variable} ${bodyFont.variable} ${scriptFont.variable} ${romanFont.variable} antialiased`}>
+        <Preloader />
         {children}
 
         {/* Floating Action Menu */}
