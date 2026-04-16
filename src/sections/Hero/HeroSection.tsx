@@ -112,9 +112,13 @@ export default function HeroSection() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-                    className="mb-4 text-[0.65rem] md:text-[0.75rem] font-semibold uppercase tracking-[0.25em] text-[#d8be8f]"
+                    className="mb-4 flex items-center justify-center gap-1.5 text-[0.65rem] md:text-[0.75rem] font-semibold uppercase tracking-[0.25em] text-[#d8be8f]"
                   >
-                    India
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                      <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                    {slide.location || "India"}
                   </motion.p>
                   <motion.h1
                     initial={{ opacity: 0, y: 30 }}

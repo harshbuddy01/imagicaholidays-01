@@ -3,6 +3,7 @@ export type HeroSlide = {
   title: string;
   subtitle: string;
   image: string;
+  location?: string;
 };
 
 export type ExperienceCard = {
@@ -17,37 +18,43 @@ export const heroSlides: HeroSlide[] = [
     id: "slide-1",
     title: "Sacred Serenity",
     subtitle: "Discover the peace within.",
-    image: "https://unsplash.com/photos/GdlEMsUsOy0/download?force=true&w=1800"
+    image: "https://unsplash.com/photos/GdlEMsUsOy0/download?force=true&w=1800",
+    location: "Varanasi"
   },
   {
     id: "slide-2",
     title: "Mountain Heights",
     subtitle: "Breathtaking views.",
-    image: "https://unsplash.com/photos/-umeutkfZew/download?force=true&w=1800"
+    image: "https://unsplash.com/photos/-umeutkfZew/download?force=true&w=1800",
+    location: "Ladakh"
   },
   {
     id: "slide-3",
     title: "Wildlife Wonders",
     subtitle: "Embrace nature.",
-    image: "https://unsplash.com/photos/A0vabw8DVx0/download?force=true&w=1800"
+    image: "https://unsplash.com/photos/A0vabw8DVx0/download?force=true&w=1800",
+    location: "Madhya Pradesh"
   },
   {
     id: "slide-4",
     title: "Concrete Coast",
     subtitle: "Modern marvels.",
-    image: "https://unsplash.com/photos/yjQQO8hIH6A/download?force=true&w=1800"
+    image: "https://unsplash.com/photos/yjQQO8hIH6A/download?force=true&w=1800",
+    location: "Maharashtra"
   },
   {
     id: "slide-5",
     title: "Green Valleys",
     subtitle: "Endless horizons.",
-    image: "https://unsplash.com/photos/ilrO9BN7QSE/download?force=true&w=1800"
+    image: "https://unsplash.com/photos/ilrO9BN7QSE/download?force=true&w=1800",
+    location: "Himachal Pradesh"
   },
   {
     id: "slide-7",
     title: "Tranquil Waters",
     subtitle: "A journey of peace.",
-    image: "https://unsplash.com/photos/29ezCWtMtnM/download?force=true&w=1800"
+    image: "https://unsplash.com/photos/29ezCWtMtnM/download?force=true&w=1800",
+    location: "Kerala"
   }
 ];
 
