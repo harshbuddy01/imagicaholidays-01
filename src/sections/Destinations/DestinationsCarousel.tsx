@@ -208,146 +208,176 @@ export default function DestinationsCarousel() {
         viewport={{ once: true, amount: 0.3 }}
         className="text-center w-full max-w-7xl mx-auto mb-20 flex flex-col items-center select-none"
       >
-        <span className="font-heading text-4xl md:text-6xl text-[#a5813b] mb-2 z-10 italic font-light tracking-[0.05em] drop-shadow-sm">
+        {/* Top Flower SVG */}
+        <div className="mb-4 text-[#a5813b] opacity-80">
+          <svg width="120" height="24" viewBox="0 0 120 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M60 0C60 0 62.5 10 72 12C62.5 14 60 24 60 24C60 24 57.5 14 48 12C57.5 10 60 0 60 0Z" fill="currentColor" />
+            <path d="M44 8C44 8 45.5 11 48 12C45.5 13 44 16 44 16C44 16 42.5 13 40 12C42.5 11 44 8 44 8Z" fill="currentColor" />
+            <path d="M76 8C76 8 77.5 11 80 12C77.5 13 76 16 76 16C76 16 74.5 13 72 12C74.5 11 76 8 76 8Z" fill="currentColor" />
+            <path d="M0 11.5H38V12.5H0V11.5Z" fill="currentColor" />
+            <path d="M82 11.5H120V12.5H82V11.5Z" fill="currentColor" />
+          </svg>
+        </div>
+
+        <span className="font-ornate text-5xl md:text-7xl text-[#8d6a2f] mb-2 z-10 tracking-[0.1em] drop-shadow-sm">
           Trending
         </span>
         <h2 className="font-roman text-5xl md:text-7xl lg:text-[6rem] font-medium tracking-[0.15em] text-[#3d3831] uppercase leading-none drop-shadow-[0_2px_4px_rgba(0,0,0,0.05)]">
           Destinations
         </h2>
+
+        {/* Bottom Flower SVG */}
+        <div className="mt-8 text-[#a5813b] opacity-80 rotate-180">
+          <svg width="120" height="24" viewBox="0 0 120 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M60 0C60 0 62.5 10 72 12C62.5 14 60 24 60 24C60 24 57.5 14 48 12C57.5 10 60 0 60 0Z" fill="currentColor" />
+            <path d="M44 8C44 8 45.5 11 48 12C45.5 13 44 16 44 16C44 16 42.5 13 40 12C42.5 11 44 8 44 8Z" fill="currentColor" />
+            <path d="M76 8C76 8 77.5 11 80 12C77.5 13 76 16 76 16C76 16 74.5 13 72 12C74.5 11 76 8 76 8Z" fill="currentColor" />
+            <path d="M0 11.5H38V12.5H0V11.5Z" fill="currentColor" />
+            <path d="M82 11.5H120V12.5H82V11.5Z" fill="currentColor" />
+          </svg>
+        </div>
       </motion.div>
 
-      {/* ─── Slide container ─── */}
-      <div className="max-w-7xl mx-auto relative" style={{ minHeight: 620 }}>
-        <AnimatePresence initial={false} custom={direction} mode="wait">
-          <motion.div
-            key={dest.id}
-            custom={direction}
-            variants={slideVariants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            transition={{ duration: 0.75, ease: [0.45, 0, 0.15, 1] }}
-            className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24 relative z-10 w-full"
-          >
-            {/* ── Left: Text ── */}
-            <div className="w-full lg:w-[45%] flex flex-col items-start z-10">
-              <motion.h2
-                variants={textVariants}
-                initial="hidden"
-                animate="visible"
-                custom={0.1}
-                className="font-roman text-5xl md:text-7xl lg:text-[5rem] font-medium leading-[1.1] mb-4 text-[#3d3831] uppercase tracking-[0.15em]"
-              >
-                {dest.title}
-              </motion.h2>
-
-              <motion.div
-                variants={textVariants}
-                initial="hidden"
-                animate="visible"
-                custom={0.25}
-                className="flex items-center gap-4 mb-8"
-              >
-                <div className="w-12 h-px bg-[#b5a993]" />
-                <p className="font-roman text-xl md:text-2xl italic text-[#927854] tracking-wide">
-                  {dest.tagline}
-                </p>
-              </motion.div>
-
-              <motion.p
-                variants={textVariants}
-                initial="hidden"
-                animate="visible"
-                custom={0.4}
-                className="text-sm md:text-base font-light leading-relaxed text-[#5c544b] mb-12 max-w-sm"
-              >
-                {dest.description}
-              </motion.p>
-
-              <motion.div
-                variants={textVariants}
-                initial="hidden"
-                animate="visible"
-                custom={0.55}
-              >
-                <Link
-                  href={dest.link}
-                  className="group relative inline-block overflow-hidden rounded-full border border-[#5c544b] px-8 py-3 text-xs tracking-[0.2em] uppercase transition-all duration-300 hover:bg-[#5c544b] hover:text-[#f4ebd9]"
-                  aria-label={`Learn more about ${dest.title} holiday packages`}
-                >
-                  <span className="relative z-10">Explore {dest.title}</span>
-                </Link>
-              </motion.div>
-            </div>
-
-            {/* ── Right: Overlapping images ── */}
-            <div className="w-full lg:w-[55%] relative min-h-[500px] md:min-h-[560px] flex items-center justify-end">
-              {/* Main large image */}
-              <motion.div
-                variants={imageRevealVariants}
-                initial="hidden"
-                animate="visible"
-                className="absolute right-0 top-0 w-[85%] h-[85%] z-0 overflow-hidden rounded-sm"
-              >
-                <Image
-                  src={dest.mainImage}
-                  alt={dest.mainImageAlt}
-                  fill
-                  className="object-cover transition-transform duration-1000 hover:scale-105"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  priority
-                />
-              </motion.div>
-
-              {/* Overlapping smaller image */}
-              <motion.div
-                variants={overlayImageVariants}
-                initial="hidden"
-                animate="visible"
-                className="absolute left-0 bottom-0 w-[50%] aspect-[4/5] z-10 overflow-hidden shadow-2xl rounded-sm border-8 border-[#f4ebd9]"
-              >
-                <Image
-                  src={dest.overlayImage}
-                  alt={dest.overlayImageAlt}
-                  fill
-                  className="object-cover transition-transform duration-1000 hover:scale-105"
-                  sizes="(max-width: 768px) 50vw, 30vw"
-                />
-              </motion.div>
-            </div>
-          </motion.div>
-        </AnimatePresence>
-      </div>
-
-      {/* ─── Indicators ─── */}
-      <div className="flex items-center justify-center gap-6 mt-20 relative z-20">
-        {destinations.map((d, i) => (
-          <button
-            key={d.id}
-            aria-label={`Go to ${d.title}`}
-            onClick={() => goTo(i)}
-            className="relative flex flex-col items-center gap-2 group"
-          >
-            {/* Destination label */}
-            <span
-              className={`text-[10px] tracking-[0.25em] uppercase transition-colors duration-300 ${i === activeIndex ? "text-[#3d3831]" : "text-[#b5a993]"
-                }`}
+      {/* ─── Slide & Navigation container ─── */}
+      <div className="max-w-[100rem] mx-auto relative flex flex-col xl:flex-row gap-8 items-stretch pt-8" style={{ minHeight: '65vh' }}>
+        <div className="w-full xl:w-[85%] relative">
+          <AnimatePresence initial={false} custom={direction} mode="wait">
+            <motion.div
+              key={dest.id}
+              custom={direction}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.75, ease: [0.45, 0, 0.15, 1] }}
+              className="flex flex-col lg:flex-row items-center gap-16 lg:gap-20 relative z-10 w-full"
             >
-              {d.title}
-            </span>
+              {/* ── Left: Text ── */}
+              <div className="w-full lg:w-[45%] flex flex-col items-start z-10">
+                <motion.h2
+                  variants={textVariants}
+                  initial="hidden"
+                  animate="visible"
+                  custom={0.1}
+                  className="font-roman text-5xl md:text-7xl lg:text-[4.5rem] font-medium leading-[1.1] mb-4 text-[#3d3831] uppercase tracking-[0.15em]"
+                >
+                  {dest.title}
+                </motion.h2>
 
-            {/* Progress track */}
-            <span className="relative block w-16 h-[2px] bg-[#d5cab5] rounded-full overflow-hidden">
-              {i === activeIndex && (
-                <motion.span
-                  className="absolute inset-y-0 left-0 bg-[#3d3831] rounded-full"
-                  style={{ width: `${progress}%` }}
-                  layoutId="progress"
-                />
-              )}
-            </span>
-          </button>
-        ))}
+                <motion.div
+                  variants={textVariants}
+                  initial="hidden"
+                  animate="visible"
+                  custom={0.25}
+                  className="flex items-center gap-4 mb-8"
+                >
+                  <div className="w-12 h-px bg-[#b5a993]" />
+                  <p className="font-roman text-xl md:text-2xl italic text-[#8d6a2f] tracking-wide">
+                    {dest.tagline}
+                  </p>
+                </motion.div>
+
+                <motion.p
+                  variants={textVariants}
+                  initial="hidden"
+                  animate="visible"
+                  custom={0.4}
+                  className="text-sm md:text-base font-medium leading-relaxed text-[#5c544b] mb-12 max-w-sm"
+                >
+                  {dest.description}
+                </motion.p>
+
+                <motion.div
+                  variants={textVariants}
+                  initial="hidden"
+                  animate="visible"
+                  custom={0.55}
+                >
+                  <Link
+                    href={dest.link}
+                    className="group relative inline-block overflow-hidden rounded-full border border-[#5c544b] px-8 py-3 text-xs tracking-[0.2em] uppercase transition-all duration-300 hover:bg-[#5c544b] hover:text-[#f4ebd9] shadow-md hover:shadow-xl"
+                    aria-label={`Learn more about ${dest.title} holiday packages`}
+                  >
+                    <span className="relative z-10">Explore {dest.title}</span>
+                  </Link>
+                </motion.div>
+              </div>
+
+              {/* ── Center/Right: Overlapping images ── */}
+              <div className="w-full lg:w-[55%] relative min-h-[500px] md:min-h-[600px] flex items-center justify-end">
+                {/* Main large image */}
+                <motion.div
+                  variants={imageRevealVariants}
+                  initial="hidden"
+                  animate="visible"
+                  className="absolute right-0 top-4 w-[90%] h-[90%] z-0 overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.15)]"
+                >
+                  <Image
+                    src={dest.mainImage}
+                    alt={dest.mainImageAlt}
+                    fill
+                    className="object-cover transition-transform duration-[1.5s] hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    priority
+                  />
+                </motion.div>
+
+                {/* Overlapping smaller image */}
+                <motion.div
+                  variants={overlayImageVariants}
+                  initial="hidden"
+                  animate="visible"
+                  className="absolute left-[-5%] bottom-0 w-[55%] aspect-[3/4] z-10 overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.3)] border-[12px] border-[#f4ebd9]"
+                >
+                  <Image
+                    src={dest.overlayImage}
+                    alt={dest.overlayImageAlt}
+                    fill
+                    className="object-cover transition-transform duration-[1.5s] hover:scale-105"
+                    sizes="(max-width: 768px) 50vw, 30vw"
+                  />
+                </motion.div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* ─── Indicators (Vertical on Right) ─── */}
+        <div className="w-full xl:w-[15%] flex xl:flex-col items-center xl:items-end justify-center gap-8 mt-16 xl:mt-0 relative z-20 pl-0 xl:pl-8 border-t xl:border-t-0 xl:border-l border-[#d5cab5]/40 pt-8 xl:pt-0">
+          {destinations.map((d, i) => (
+            <button
+              key={d.id}
+              aria-label={`Go to ${d.title}`}
+              onClick={() => goTo(i)}
+              className="relative flex xl:flex-row-reverse flex-col items-center gap-4 group w-full xl:justify-start"
+            >
+              {/* Destination label */}
+              <span
+                className={`text-[10px] tracking-[0.25em] uppercase transition-all duration-300 ${i === activeIndex
+                    ? "text-[#3d3831] font-bold scale-105"
+                    : "text-[#aa9a7e] hover:text-[#7d705a]"
+                  }`}
+              >
+                {d.title}
+              </span>
+
+              {/* Vertical Progress track (Horizontal on small screens) */}
+              <span className={`relative block bg-[#dfd6c5] rounded-full overflow-hidden ${"w-12 h-[2px] xl:w-[2px] xl:h-12"
+                }`}>
+                {i === activeIndex && (
+                  <motion.span
+                    className="absolute top-0 left-0 bg-[#8d6a2f] rounded-full"
+                    style={{
+                      width: typeof window !== 'undefined' && window.innerWidth >= 1280 ? '100%' : `${progress}%`,
+                      height: typeof window !== 'undefined' && window.innerWidth >= 1280 ? `${progress}%` : '100%',
+                    }}
+                    layoutId="progress"
+                  />
+                )}
+              </span>
+            </button>
+          ))}
+        </div>
       </div>
     </section>
   );

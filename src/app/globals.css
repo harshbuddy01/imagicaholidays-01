@@ -8,6 +8,10 @@
   .font-script {
     font-family: var(--font-script), cursive;
   }
+
+  .font-ornate {
+    font-family: var(--font-ornate), serif;
+  }
 }
 
 :root {
@@ -127,7 +131,7 @@ h4 {
   }
 
   .card-lift {
-    @apply transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 focus-within:-translate-y-2;
+    @apply transition-transform duration-700 ease-[cubic-bezier(0.22, 1, 0.36, 1)] hover:-translate-y-2 focus-within:-translate-y-2;
   }
 }
 
@@ -135,12 +139,14 @@ h4 {
   0% {
     transform: translate3d(0, 0, 0) scale(1);
   }
+
   100% {
     transform: translate3d(10px, -14px, 0) scale(1.06);
   }
 }
 
 @media (max-width: 767px) {
+
   html,
   body {
     background:
