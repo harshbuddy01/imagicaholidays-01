@@ -191,8 +191,13 @@ export default function DestinationsCarousel() {
   return (
     <section
       id="destinations-carousel"
-      className="relative w-full bg-[#f4ebd9] py-24 px-4 md:px-12 lg:px-24 overflow-hidden text-[#5c544b]"
+      className="relative w-full bg-[#f4ebd9] min-h-screen flex flex-col justify-center py-24 px-4 md:px-12 lg:px-24 overflow-hidden text-[#5c544b]"
     >
+      {/* Smooth Transition Overlay from Phase 1 */}
+      <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-bottom from-white to-transparent pointer-events-none z-0"
+        style={{ background: 'linear-gradient(to bottom, #ffffff 0%, rgba(244, 235, 217, 0) 100%)' }}
+      />
+
       {/* Decorative dots */}
       <div className="flex flex-col items-center gap-1 mb-8">
         <div className="w-1 h-1 rounded-full bg-[#ae9e85]" />
@@ -219,10 +224,10 @@ export default function DestinationsCarousel() {
           </svg>
         </div>
 
-        <span className="font-ornate text-5xl md:text-7xl text-[#8d6a2f] mb-2 z-10 tracking-[0.1em] drop-shadow-sm">
+        <span className="font-ornate text-5xl md:text-7xl mb-2 z-10 tracking-[0.1em] drop-shadow-sm bg-gradient-to-b from-[#d9c299] via-[#a5813b] to-[#8d6a2f] bg-clip-text text-transparent">
           Trending
         </span>
-        <h2 className="font-roman text-5xl md:text-7xl lg:text-[6rem] font-medium tracking-[0.15em] text-[#3d3831] uppercase leading-none drop-shadow-[0_2px_4px_rgba(0,0,0,0.05)]">
+        <h2 className="font-roman text-5xl md:text-7xl lg:text-[6rem] font-medium tracking-[0.15em] uppercase leading-none drop-shadow-[0_2px_4px_rgba(0,0,0,0.05)] bg-gradient-to-b from-[#3d3831] to-[#1a1814] bg-clip-text text-transparent">
           Destinations
         </h2>
 
@@ -249,7 +254,7 @@ export default function DestinationsCarousel() {
               initial="enter"
               animate="center"
               exit="exit"
-              transition={{ duration: 0.75, ease: [0.45, 0, 0.15, 1] }}
+              transition={{ duration: 0.8, ease: [0.45, 0, 0.15, 1] }}
               className="flex flex-col lg:flex-row items-center gap-16 lg:gap-20 relative z-10 w-full"
             >
               {/* ── Left: Text ── */}
@@ -354,8 +359,8 @@ export default function DestinationsCarousel() {
               {/* Destination label */}
               <span
                 className={`text-[10px] tracking-[0.25em] uppercase transition-all duration-300 ${i === activeIndex
-                    ? "text-[#3d3831] font-bold scale-105"
-                    : "text-[#aa9a7e] hover:text-[#7d705a]"
+                  ? "text-[#3d3831] font-bold scale-105"
+                  : "text-[#aa9a7e] hover:text-[#7d705a]"
                   }`}
               >
                 {d.title}
