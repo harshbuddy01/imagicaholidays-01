@@ -194,11 +194,27 @@ export default function DestinationsCarousel() {
       className="relative w-full bg-[#f4ebd9] py-24 px-4 md:px-12 lg:px-24 overflow-hidden text-[#5c544b]"
     >
       {/* Decorative dots */}
-      <div className="flex flex-col items-center gap-1 mb-16">
+      <div className="flex flex-col items-center gap-1 mb-8">
         <div className="w-1 h-1 rounded-full bg-[#ae9e85]" />
         <div className="w-1 h-1 rounded-full bg-[#ae9e85]" />
         <div className="w-1 h-1 rounded-full bg-[#ae9e85]" />
       </div>
+
+      {/* Trending Destinations Header */}
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: [0.45, 0, 0.15, 1] }}
+        viewport={{ once: true, amount: 0.3 }}
+        className="text-center w-full max-w-7xl mx-auto mb-20 flex flex-col items-center select-none"
+      >
+        <span className="font-heading text-4xl md:text-6xl text-[#a5813b] mb-2 z-10 italic font-light tracking-[0.05em] drop-shadow-sm">
+          Trending
+        </span>
+        <h2 className="font-roman text-5xl md:text-7xl lg:text-[6rem] font-medium tracking-[0.15em] text-[#3d3831] uppercase leading-none drop-shadow-[0_2px_4px_rgba(0,0,0,0.05)]">
+          Destinations
+        </h2>
+      </motion.div>
 
       {/* ─── Slide container ─── */}
       <div className="max-w-7xl mx-auto relative" style={{ minHeight: 620 }}>
@@ -314,9 +330,8 @@ export default function DestinationsCarousel() {
           >
             {/* Destination label */}
             <span
-              className={`text-[10px] tracking-[0.25em] uppercase transition-colors duration-300 ${
-                i === activeIndex ? "text-[#3d3831]" : "text-[#b5a993]"
-              }`}
+              className={`text-[10px] tracking-[0.25em] uppercase transition-colors duration-300 ${i === activeIndex ? "text-[#3d3831]" : "text-[#b5a993]"
+                }`}
             >
               {d.title}
             </span>

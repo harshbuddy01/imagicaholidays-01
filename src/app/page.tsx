@@ -14,10 +14,10 @@ export default function Home() {
       <Navbar />
       <HeroSection />
       <ResortJourneySection />
-      <TopHotelsSection />
-      <HotelSelectionSection />
       <DestinationsCarousel />
       <DestinationsFooter />
+      <TopHotelsSection />
+      <HotelSelectionSection />
       <ActivitiesSection />
       <Footer />
     </main>
