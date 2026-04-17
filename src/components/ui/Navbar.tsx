@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
@@ -85,13 +86,20 @@ export default function Navbar() {
     <>
       <header
         className={`fixed inset-x-0 top-0 z-[100] transition-all duration-500 ${scrolled || pathname.startsWith('/journey')
-          ? "border-b border-white/10 bg-[rgba(16,14,10,0.92)] py-3 backdrop-blur-2xl"
-          : "bg-gradient-to-b from-[rgba(9,8,6,0.62)] to-transparent py-5"
+          ? "border-b border-white/10 bg-[rgba(16,14,10,0.92)] py-2 backdrop-blur-2xl"
+          : "bg-gradient-to-b from-[rgba(9,8,6,0.62)] to-transparent py-4"
           }`}
       >
         <div className="content-shell flex items-center justify-between px-4 md:px-1">
-          <Link href="/" className="font-serif text-lg tracking-[0.14em] text-white md:text-2xl md:tracking-[0.16em] relative z-[60]">
-            IMAGICAHOLIDAYS
+          <Link href="/" className="relative z-[60] flex items-center justify-center">
+            <Image
+              src="/logo_transparent.png"
+              alt="Imagica Holidays"
+              width={160}
+              height={50}
+              className="w-32 md:w-40 object-contain drop-shadow-md"
+              priority
+            />
           </Link>
 
           {/* Desktop nav */}
