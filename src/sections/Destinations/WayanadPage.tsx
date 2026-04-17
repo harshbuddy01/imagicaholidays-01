@@ -40,37 +40,37 @@ const attractions = [
   {
     name: "Edakkal Caves",
     tag: "Heritage",
-    image: "https://images.unsplash.com/photo-1596707323145-89f5c2253381?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/36964491/pexels-photo-36964491.jpeg?auto=compress&cs=tinysrgb&w=800",
     short: "Natural caves on the Ambukuthi Hills featuring ancient petroglyphs and breathtaking views of the massive valleys below.",
   },
   {
     name: "Chembra Peak",
     tag: "Adventure",
-    image: "https://images.unsplash.com/photo-1626621331169-5f34be280ed9?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/31758870/pexels-photo-31758870.jpeg?auto=compress&cs=tinysrgb&w=800",
     short: "The highest peak in Wayanad, offering a challenging trek and boasting a naturally heart-shaped lake, Hridaya Saras.",
   },
   {
     name: "Banasura Sagar Dam",
     tag: "Nature",
-    image: "https://images.unsplash.com/photo-1593693397690-362cb96c8c6a?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/17545322/pexels-photo-17545322.jpeg?auto=compress&cs=tinysrgb&w=800",
     short: "The largest earth dam in India, featuring small islands in the reservoir and backdrops of the Banasura hills. Perfect for speed boating.",
   },
   {
     name: "Soochipara Falls",
     tag: "Nature",
-    image: "https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/29845028/pexels-photo-29845028.jpeg?auto=compress&cs=tinysrgb&w=800",
     short: "Also known as Sentinel Rock Waterfalls, it's a magnificent three-tiered waterfall surrounded by dense evergreen forests.",
   },
   {
     name: "Wayanad Wildlife Sanctuary",
     tag: "Wildlife",
-    image: "https://images.unsplash.com/photo-1516690561799-2826cf8ed692?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/29845020/pexels-photo-29845020.jpeg?auto=compress&cs=tinysrgb&w=800",
     short: "A contiguous network with Mudumalai and Bandipur sanctuaries, hosting vast herds of elephants and vibrant birdlife.",
   },
   {
     name: "Pookode Lake",
     tag: "Nature",
-    image: "https://images.unsplash.com/photo-1494472155656-f34e81b17ddc?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/29757657/pexels-photo-29757657.jpeg?auto=compress&cs=tinysrgb&w=800",
     short: "A scenic freshwater lake nestled amongst evergreen forests, renowned for its shape resembling India's map and serene boating rides.",
   },
 ];
@@ -108,21 +108,21 @@ const tourPackages = [
     price: "₹12,400",
     duration: "3 Days/ 2 Night",
     tag: "Couple Friendly",
-    image: "https://unsplash.com/photos/zmr9TeA7WjU/download?force=true&w=600",
+    image: "https://images.pexels.com/photos/30561587/pexels-photo-30561587.jpeg?auto=compress&cs=tinysrgb&w=600",
   },
   {
     title: "Mystical Wayanad Adventure 4 Days 3 Nights",
     price: "₹17,200",
     duration: "4 Days/ 3 Nights",
     tag: "Adventure",
-    image: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=600&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/18151791/pexels-photo-18151791.jpeg?auto=compress&cs=tinysrgb&w=600",
   },
   {
     title: "Kerala Backwoods Explorer 6 Days 5 Nights",
     price: "₹24,500",
     duration: "6 Days/ 5 Night",
     tag: "Family-Friendly",
-    image: "https://unsplash.com/photos/Wag11Ja47zI/download?force=true&w=600",
+    image: "https://images.pexels.com/photos/34713309/pexels-photo-34713309.jpeg?auto=compress&cs=tinysrgb&w=600",
   },
 ];
 
@@ -149,9 +149,9 @@ export default function WayanadPage() {
       <Navbar />
 
       {/* ══════════ 1. HERO ══════════ */}
-      <section className="relative h-[85vh] min-h-[600px] overflow-hidden">
+      <section className="relative h-[65vh] md:h-[85vh] min-h-[450px] md:min-h-[600px] overflow-hidden">
         <Image
-          src="https://unsplash.com/photos/zmr9TeA7WjU/download?force=true&w=1800"
+          src="https://images.pexels.com/photos/31758870/pexels-photo-31758870.jpeg?auto=compress&cs=tinysrgb&w=1800"
           alt="A car driving down a road surrounded by lush green hills in Wayanad"
           fill
           className="object-cover"
@@ -160,7 +160,7 @@ export default function WayanadPage() {
         <div className="absolute inset-0 bg-gradient-to-t from-[#1a1914]/60 via-[#1a1914]/15 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#1a1914]/50 to-transparent" />
 
-        <div className="absolute inset-0 flex flex-col justify-end px-6 md:px-16 lg:px-24 pb-16 md:pb-20">
+        <div className="absolute inset-0 flex flex-col justify-end px-5 md:px-16 lg:px-24 pb-10 md:pb-20">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
@@ -172,33 +172,33 @@ export default function WayanadPage() {
                 Kerala, India
               </span>
             </div>
-            <h1 className="font-roman text-6xl md:text-8xl lg:text-9xl font-medium text-white tracking-[0.1em] uppercase">
+            <h1 className="font-roman text-4xl md:text-8xl lg:text-9xl font-medium text-white tracking-[0.1em] uppercase">
               Wayanad
             </h1>
-            <p className="font-roman text-xl md:text-2xl italic text-[#d5cab5] mt-2 tracking-wide">
+            <p className="font-roman text-base md:text-2xl italic text-[#d5cab5] mt-2 tracking-wide">
               Nature's Untapped Heaven
             </p>
           </motion.div>
         </div>
 
         {/* Decorative corner frames */}
-        <div className="absolute top-20 left-6 w-20 h-20 border-t border-l border-white/10" />
-        <div className="absolute bottom-6 right-6 w-20 h-20 border-b border-r border-white/10" />
+        <div className="absolute top-20 left-6 w-12 h-12 md:w-20 md:h-20 border-t border-l border-white/10" />
+        <div className="absolute bottom-6 right-6 w-12 h-12 md:w-20 md:h-20 border-b border-r border-white/10" />
       </section>
 
       {/* ══════════ 2. ABOUT + QUICK INFO ══════════ */}
-      <section className="bg-[#f4ebd9] py-20 md:py-28 px-6 md:px-16 lg:px-24">
+      <section className="bg-[#f4ebd9] py-14 md:py-28 px-5 md:px-16 lg:px-24">
         <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-[1.3fr_1fr] gap-16 lg:gap-24">
+          <div className="grid lg:grid-cols-[1.3fr_1fr] gap-10 lg:gap-24">
             {/* About text */}
             <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0}>
               <div className="flex items-center gap-3 mb-4">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ae9e85" strokeWidth="1.5">
-                  <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" strokeLinecap="round"/>
+                  <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" strokeLinecap="round" />
                 </svg>
                 <span className="text-[10px] tracking-[0.3em] uppercase text-[#ae9e85]">About Wayanad Holidays</span>
               </div>
-              <h2 className="font-roman text-3xl md:text-4xl font-medium text-[#3d3831] tracking-wide mb-6">
+              <h2 className="font-roman text-3xl md:text-4xl font-medium text-[#3d3831] tracking-wide mb-4 md:mb-6">
                 Luxury Wayanad Tour Packages & Kerala Eco-Retreats
               </h2>
               <div className="space-y-4">
@@ -233,7 +233,7 @@ export default function WayanadPage() {
               >
                 Explore Tours
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </Link>
             </motion.div>
@@ -242,9 +242,9 @@ export default function WayanadPage() {
       </section>
 
       {/* ══════════ 3. WHY VISIT ══════════ */}
-      <section className="bg-[#1a1914] py-20 md:py-28 px-6 md:px-16 lg:px-24 text-[#f0e7d6]">
+      <section className="bg-[#1a1914] py-14 md:py-28 px-5 md:px-16 lg:px-24 text-[#f0e7d6]">
         <div className="max-w-6xl mx-auto">
-          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} className="text-center mb-16">
+          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} className="text-center mb-10 md:mb-16">
             <span className="text-[10px] tracking-[0.3em] uppercase text-[#ae9e85]">Discover What Makes It Special</span>
             <h2 className="font-roman text-3xl md:text-5xl font-medium text-[#f0e7d6] tracking-wide mt-3">
               Why Visit Wayanad?
@@ -255,7 +255,7 @@ export default function WayanadPage() {
             <div className="w-12 h-px bg-[#ae9e85] mx-auto mt-6" />
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-4 md:gap-8">
             {whyVisit.map((item, i) => (
               <motion.div
                 key={item.title}
@@ -264,7 +264,7 @@ export default function WayanadPage() {
                 whileInView="visible"
                 viewport={{ once: true }}
                 custom={i * 0.15}
-                className="group border border-white/8 p-8 rounded-sm hover:border-[#ae9e85]/30 transition-colors duration-500 relative overflow-hidden"
+                className="group border border-white/8 p-5 md:p-8 rounded-sm hover:border-[#ae9e85]/30 transition-colors duration-500 relative overflow-hidden"
               >
                 <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#ae9e85]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <span className="text-4xl mb-5 block">{item.icon}</span>
@@ -277,9 +277,9 @@ export default function WayanadPage() {
       </section>
 
       {/* ══════════ 4. TOP ATTRACTIONS ══════════ */}
-      <section className="bg-[#f4ebd9] py-20 md:py-28 px-6 md:px-16 lg:px-24">
+      <section className="bg-[#f4ebd9] py-14 md:py-28 px-5 md:px-16 lg:px-24">
         <div className="max-w-7xl mx-auto">
-          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} className="text-center mb-16">
+          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} className="text-center mb-10 md:mb-16">
             <span className="text-[10px] tracking-[0.3em] uppercase text-[#ae9e85]">Must-Visit Places</span>
             <h2 className="font-roman text-3xl md:text-5xl font-medium text-[#3d3831] tracking-wide mt-3">
               Top Attractions
@@ -301,7 +301,7 @@ export default function WayanadPage() {
                 custom={(i % 3) * 0.1}
                 className="group relative overflow-hidden rounded-sm bg-white/30 border border-[#d5cab5]/30 hover:shadow-lg transition-shadow duration-500"
               >
-                <div className="relative h-52 overflow-hidden">
+                <div className="relative h-40 md:h-52 overflow-hidden">
                   <Image
                     src={attr.image}
                     alt={attr.name}
@@ -337,9 +337,9 @@ export default function WayanadPage() {
       </section>
 
       {/* ══════════ 5. BEST TIME TO VISIT ══════════ */}
-      <section className="bg-[#efe5d0] py-20 md:py-28 px-6 md:px-16 lg:px-24">
+      <section className="bg-[#efe5d0] py-14 md:py-28 px-5 md:px-16 lg:px-24">
         <div className="max-w-6xl mx-auto">
-          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} className="text-center mb-16">
+          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} className="text-center mb-10 md:mb-16">
             <span className="text-[10px] tracking-[0.3em] uppercase text-[#ae9e85]">Seasonal Guide</span>
             <h2 className="font-roman text-3xl md:text-5xl font-medium text-[#3d3831] tracking-wide mt-3">
               Best Time to Visit
@@ -359,11 +359,10 @@ export default function WayanadPage() {
                 whileInView="visible"
                 viewport={{ once: true }}
                 custom={i * 0.1}
-                className={`relative p-6 rounded-sm border transition-all duration-300 hover:shadow-lg ${
-                  s.recommended
-                    ? "bg-[#3d3831] text-[#f0e7d6] border-[#ae9e85]/30"
-                    : "bg-white/40 text-[#3d3831] border-[#d5cab5]/40 hover:bg-white/60"
-                }`}
+                className={`relative p-6 rounded-sm border transition-all duration-300 hover:shadow-lg ${s.recommended
+                  ? "bg-[#3d3831] text-[#f0e7d6] border-[#ae9e85]/30"
+                  : "bg-white/40 text-[#3d3831] border-[#d5cab5]/40 hover:bg-white/60"
+                  }`}
               >
                 {s.recommended && (
                   <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#ae9e85] text-[#1a1914] text-[8px] tracking-[0.25em] uppercase font-bold px-3 py-1 rounded-sm">
@@ -390,7 +389,7 @@ export default function WayanadPage() {
           >
             <span className="text-2xl flex-shrink-0">💡</span>
             <div>
-               <p className="font-roman text-sm font-semibold text-[#3d3831] mb-1">Our Recommendation</p>
+              <p className="font-roman text-sm font-semibold text-[#3d3831] mb-1">Our Recommendation</p>
               <p className="text-xs text-[#7a705e] leading-relaxed">
                 Wayanad's rugged landscape means its beauty shifts entirely by the calendar. October through February marks the highest traffic as the weather is cool and dry. However, monsoon season (July to September) transforms Wayanad into an incredible, damp, violently green paradise — an absolute favorite for photographers and romantic getaways.
               </p>
@@ -400,9 +399,9 @@ export default function WayanadPage() {
       </section>
 
       {/* ══════════ 6. TOUR PACKAGES ══════════ */}
-      <section id="packages" className="bg-[#f4ebd9] py-20 md:py-28 px-6 md:px-16 lg:px-24">
+      <section id="packages" className="bg-[#f4ebd9] py-14 md:py-28 px-5 md:px-16 lg:px-24">
         <div className="max-w-7xl mx-auto">
-          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} className="text-center mb-16">
+          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} className="text-center mb-10 md:mb-16">
             <span className="text-[10px] tracking-[0.3em] uppercase text-[#ae9e85]">Curated Experiences</span>
             <h2 className="font-roman text-3xl md:text-5xl font-medium text-[#3d3831] tracking-wide mt-3">
               Explore Tour Packages
@@ -443,8 +442,8 @@ export default function WayanadPage() {
                   <h3 className="font-roman text-lg font-semibold text-[#3d3831] mb-3 leading-snug">{pkg.title}</h3>
                   <div className="flex items-center gap-2 text-xs tracking-[0.1em] uppercase text-[#ae9e85] mb-4">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                      <circle cx="12" cy="12" r="10"/>
-                      <path d="M12 6v6l4 2" strokeLinecap="round"/>
+                      <circle cx="12" cy="12" r="10" />
+                      <path d="M12 6v6l4 2" strokeLinecap="round" />
                     </svg>
                     {pkg.duration}
                   </div>
@@ -464,9 +463,9 @@ export default function WayanadPage() {
       </section>
 
       {/* ══════════ 7. CTA BANNER ══════════ */}
-      <section className="relative py-24 md:py-32 overflow-hidden">
+      <section className="relative py-16 md:py-32 overflow-hidden">
         <Image
-          src="https://unsplash.com/photos/Wag11Ja47zI/download?force=true&w=1800"
+          src="https://images.pexels.com/photos/29801456/pexels-photo-29801456.jpeg?auto=compress&cs=tinysrgb&w=1600"
           alt="A man standing on top of a wooden structure in Wayanad"
           fill
           className="object-cover"
@@ -486,7 +485,7 @@ export default function WayanadPage() {
             >
               View Tour Packages
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </Link>
           </motion.div>

@@ -82,7 +82,7 @@ export default function Footer() {
 
       {/* ── Newsletter / CTA Banner ── */}
       <div className="relative border-b border-white/8">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 py-16 md:py-20">
+        <div className="max-w-7xl mx-auto px-5 md:px-12 lg:px-16 py-12 md:py-20">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -94,7 +94,7 @@ export default function Footer() {
               <p className="text-[10px] uppercase tracking-[0.3em] text-[#ae9e85] mb-3">
                 Stay Inspired
               </p>
-              <h3 className="font-roman text-3xl md:text-4xl font-medium leading-tight text-[#f0e7d6]">
+              <h3 className="font-roman text-2xl md:text-4xl font-medium leading-tight text-[#f0e7d6]">
                 Begin Your Himalayan Journey
               </h3>
               <p className="mt-3 text-sm text-[#a09383] leading-relaxed max-w-md">
@@ -127,11 +127,11 @@ export default function Footer() {
       </div>
 
       {/* ── Main Footer Grid ── */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-16 py-14 md:py-16">
-        <div className="grid gap-10 md:gap-8 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1fr]">
+      <div className="relative z-10 max-w-7xl mx-auto px-5 md:px-12 lg:px-16 py-10 md:py-16">
+        <div className="grid gap-8 md:gap-8 grid-cols-2 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1fr]">
 
           {/* Brand Column */}
-          <div className="lg:pr-8">
+          <div className="lg:pr-8 col-span-2 md:col-span-2 lg:col-span-1">
             <Link href="/" className="font-roman text-2xl tracking-[0.15em] text-[#f0e7d6] font-medium">
               IMAGICAHOLIDAYS
             </Link>
@@ -222,7 +222,7 @@ export default function Footer() {
 
       {/* ── Bottom Bar ── */}
       <div className="relative z-10 border-t border-white/8">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 py-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div className="max-w-7xl mx-auto px-5 md:px-12 lg:px-16 py-5 md:py-6 flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-4">
           <p className="text-xs text-[#7a705e]">
             © {new Date().getFullYear()} imagicaholidays. All rights reserved.
           </p>
@@ -237,7 +237,7 @@ export default function Footer() {
 
       {/* ── Large Watermark Text ── */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 pointer-events-none select-none overflow-hidden w-full text-center">
-        <span className="font-roman text-[8rem] md:text-[12rem] lg:text-[16rem] font-bold uppercase tracking-[0.15em] text-white/[0.02] leading-none block translate-y-1/3">
+        <span className="font-roman text-[5rem] md:text-[12rem] lg:text-[16rem] font-bold uppercase tracking-[0.15em] text-white/[0.02] leading-none block translate-y-1/3">
           IMAGICAHOLIDAYS
         </span>
       </div>

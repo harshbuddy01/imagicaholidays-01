@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Manrope, Pinyon_Script, Playfair_Display, Rye } from "next/font/google";
+import { Cormorant_Garamond, Manrope, Pinyon_Script, Playfair_Display, Rye, Sancreek, Cinzel_Decorative } from "next/font/google";
 import type { ReactNode } from "react";
 import Script from "next/script";
 import ContactMenu from "@/components/ContactMenu";
 import Preloader from "@/components/Preloader";
+import PageTransitionPreloader from "@/components/PageTransitionPreloader";
 import "./globals.css";
 
 const headingFont = Cormorant_Garamond({
@@ -34,6 +35,18 @@ const ornateFont = Rye({
   variable: "--font-ornate",
   subsets: ["latin"],
   weight: ["400"]
+});
+
+const westEndFont = Sancreek({
+  variable: "--font-westend",
+  subsets: ["latin"],
+  weight: ["400"]
+});
+
+const glypticFont = Cinzel_Decorative({
+  variable: "--font-glyptic",
+  subsets: ["latin"],
+  weight: ["400", "700", "900"]
 });
 
 export const metadata: Metadata = {
@@ -86,8 +99,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${headingFont.variable} ${bodyFont.variable} ${scriptFont.variable} ${romanFont.variable} ${ornateFont.variable} antialiased`}>
+      <body className={`${headingFont.variable} ${bodyFont.variable} ${scriptFont.variable} ${romanFont.variable} ${ornateFont.variable} ${westEndFont.variable} ${glypticFont.variable} antialiased`}>
         <Preloader />
+        <PageTransitionPreloader />
         {children}
 
         {/* Floating Action Menu */}
@@ -117,6 +131,6 @@ export default function RootLayout({
           `}
         </Script>
       </body>
-    </html>
+    </html >
   );
 }

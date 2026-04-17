@@ -12,6 +12,76 @@
   .font-ornate {
     font-family: var(--font-ornate), serif;
   }
+
+  .font-westend {
+    font-family: var(--font-westend), serif;
+  }
+
+  .font-glyptic {
+    font-family: var(--font-glyptic), serif;
+  }
+}
+
+/* ── Gradient text for Trending / Destinations headings ── */
+.gradient-text-trending {
+  background: linear-gradient(135deg,
+      #c9a84c 0%,
+      #8d6a2f 35%,
+      #b8943d 55%,
+      #d4b668 80%,
+      #a5813b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-destination {
+  background: linear-gradient(135deg,
+      #2a2520 0%,
+      #3d3831 25%,
+      #5c544b 50%,
+      #3d3831 75%,
+      #2a2520 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Section transition bridge ── */
+.section-fade-bottom {
+  position: relative;
+}
+
+.section-fade-bottom::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background: linear-gradient(180deg,
+      transparent 0%,
+      #f4ebd9 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.section-fade-top {
+  position: relative;
+}
+
+.section-fade-top::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 160px;
+  background: linear-gradient(180deg,
+      #f8f5f0 0%,
+      transparent 100%);
+  pointer-events: none;
+  z-index: 1;
 }
 
 :root {
@@ -146,6 +216,45 @@ h4 {
   }
 }
 
+@keyframes gradient-panning {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@layer utilities {
+  .animate-gradient-panning {
+    animation: gradient-panning 3s ease infinite;
+  }
+
+  .background-size-200 {
+    background-size: 200% 200%;
+  }
+}
+
+/* ── No-scrollbar utility ── */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ── Mobile-Specific Optimizations ── */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
 @media (max-width: 767px) {
 
   html,
@@ -153,6 +262,25 @@ h4 {
     background:
       radial-gradient(circle at 0% 0%, #fff8eb 0%, rgba(255, 248, 235, 0) 42%),
       linear-gradient(180deg, #f7f3ea 0%, #efe8db 100%);
+    -webkit-text-size-adjust: 100%;
+    overflow-x: hidden;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 8vw, 3.2rem);
+    letter-spacing: 0.01em;
+  }
+
+  .headline {
+    font-size: clamp(1.6rem, 6vw, 2.4rem);
+  }
+
+  .section-pad {
+    padding-block: clamp(3rem, 8vw, 5rem);
+  }
+
+  .content-shell {
+    width: 94vw;
   }
 
   .texture-overlay {
@@ -163,5 +291,19 @@ h4 {
   .hero-orb-right {
     opacity: 0.7;
     filter: blur(28px);
+  }
+
+  .section-fade-top::before {
+    height: 80px;
+  }
+
+  .section-fade-bottom::after {
+    height: 100px;
+  }
+
+  /* Smooth scrolling for mobile */
+  html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
   }
 }

@@ -94,7 +94,7 @@ export default function HeroSection() {
                 className="hero-image object-cover hero-ken-burns"
               />
               <div className="absolute inset-0 bg-black/10" />
-              <div className="flex absolute inset-x-0 bottom-32 md:bottom-40 items-center justify-center text-center px-4">
+              <div className="flex absolute inset-x-0 bottom-24 md:bottom-40 items-center justify-center text-center px-6">
                 <div className="max-w-4xl">
                   <motion.p
                     initial={{ opacity: 0, y: 20 }}
@@ -137,8 +137,9 @@ export default function HeroSection() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.6 }}
-        className="absolute bottom-0 left-0 right-0 z-20 flex justify-center pb-6 md:pb-10"
+        className="absolute bottom-0 left-0 right-0 z-20 flex justify-center pb-4 md:pb-10"
       >
+        {/* Desktop booking bar */}
         <div className="hidden bg-white px-10 py-6 md:flex items-center gap-12 shadow-[0_40px_80px_rgba(0,0,0,0.2)] rounded-sm border border-[#e9deca]/30">
           {/* --- Destination Search --- */}
           <div className="relative text-left flex flex-col justify-center min-w-[200px]">
@@ -232,6 +233,22 @@ export default function HeroSection() {
             <div className="absolute inset-0 bg-[#d8be8f] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]" />
           </Link>
         </div>
+
+        {/* Mobile booking CTA */}
+        <Link
+          href="/reserve"
+          className="flex md:hidden items-center justify-center gap-3 mx-4 py-4 bg-white/95 backdrop-blur-sm rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.25)] border border-[#e9deca]/40"
+        >
+          <svg className="w-4 h-4 text-[#8a6b2d]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+          <span className="text-[0.7rem] font-bold uppercase tracking-[0.2em] text-[#181510]">
+            Book Your Journey
+          </span>
+          <svg className="w-3.5 h-3.5 text-[#8a6b2d]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </Link>
       </motion.div>
     </section>
   );

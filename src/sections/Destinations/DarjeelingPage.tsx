@@ -40,67 +40,67 @@ const attractions = [
   {
     name: "Tiger Hill",
     tag: "Nature",
-    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/33736744/pexels-photo-33736744.jpeg?auto=compress&cs=tinysrgb&w=800",
     short: "The most famous sunrise viewpoint in Darjeeling. Breathtaking panoramic views of Mt. Kanchenjunga and, on clear days, even Mt. Everest.",
   },
   {
     name: "Darjeeling Himalayan Railway",
     tag: "Heritage",
-    image: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/18943817/pexels-photo-18943817.jpeg?auto=compress&cs=tinysrgb&w=800",
     short: "The iconic Toy Train offers a scenic joy ride through hills, tunnels, and tea gardens. A UNESCO World Heritage railway.",
   },
   {
     name: "Japanese Peace Pagoda",
     tag: "Religious",
-    image: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/33736745/pexels-photo-33736745.jpeg?auto=compress&cs=tinysrgb&w=800",
     short: "A serene white pagoda on Jalapahar Hill promoting peace and harmony, with beautiful views of Darjeeling and surrounding mountains.",
   },
   {
     name: "Happy Valley Tea Estate",
     tag: "Nature",
-    image: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/33736752/pexels-photo-33736752.jpeg?auto=compress&cs=tinysrgb&w=800",
     short: "One of the oldest tea estates where visitors can see tea processing and enjoy fresh Darjeeling tea tasting.",
   },
   {
     name: "Ghoom Monastery",
     tag: "Religious",
-    image: "https://images.unsplash.com/photo-1564507004663-b6dfb3c824d5?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/33263644/pexels-photo-33263644.jpeg?auto=compress&cs=tinysrgb&w=800",
     short: "Also known as Yiga Choeling Monastery, it houses a 15-foot-high statue of Maitreya Buddha. One of the oldest Tibetan monasteries.",
   },
   {
     name: "Batasia Loop",
     tag: "Heritage",
-    image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/33736747/pexels-photo-33736747.jpeg?auto=compress&cs=tinysrgb&w=800",
     short: "A spiral railway created to lower the gradient of the Darjeeling Himalayan Railway. Commissioned in 1919 with stunning mountain views.",
   },
   {
     name: "Padmaja Naidu Zoological Park",
     tag: "Adventure",
-    image: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/30238128/pexels-photo-30238128.jpeg?auto=compress&cs=tinysrgb&w=800",
     short: "One of India's most famous high-altitude zoos, known for conservation of red pandas, snow leopards, and Himalayan black bears.",
   },
   {
     name: "Himalayan Mountaineering Institute",
     tag: "Adventure",
-    image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/32313654/pexels-photo-32313654.jpeg?auto=compress&cs=tinysrgb&w=800",
     short: "Established in 1954 in honor of Tenzing Norgay. Houses a mountaineering museum with equipment and stories of Himalayan expeditions.",
   },
   {
     name: "Tenzing Rock",
     tag: "Adventure",
-    image: "https://images.unsplash.com/photo-1551632811-561732d1e306?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/15138292/pexels-photo-15138292.jpeg?auto=compress&cs=tinysrgb&w=800",
     short: "A famous natural rock on Hill Cart Road used for rock-climbing training by the Himalayan Mountaineering Institute.",
   },
   {
     name: "Chitrey Tea Garden",
     tag: "Nature",
-    image: "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/33736754/pexels-photo-33736754.jpeg?auto=compress&cs=tinysrgb&w=800",
     short: "A scenic tea estate near Manebhanjan along the route to Singalila National Park and Sandakphu trekking trail.",
   },
   {
     name: "Japanese Temple",
     tag: "Religious",
-    image: "https://images.unsplash.com/photo-1567337710282-00832b415979?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/17210173/pexels-photo-17210173.jpeg?auto=compress&cs=tinysrgb&w=800",
     short: "A serene Buddhist temple built by Japanese monk Nichidatsu Fujii to promote world peace, located on Jalapahar Hill.",
   },
 ];
@@ -146,35 +146,35 @@ const tourPackages = [
     price: "₹5,200",
     duration: "3 Days / 2 Nights",
     tag: "Featured",
-    image: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=600&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/33263644/pexels-photo-33263644.jpeg?auto=compress&cs=tinysrgb&w=600",
   },
   {
     title: "Gangtok Darjeeling 5N/6D",
     price: "₹11,800",
     duration: "6 Days / 5 Nights",
     tag: "Featured",
-    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=600&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/33736744/pexels-photo-33736744.jpeg?auto=compress&cs=tinysrgb&w=600",
   },
   {
     title: "Gangtok Pelling Darjeeling 5N/6D",
     price: "₹12,500",
     duration: "6 Days / 5 Nights",
     tag: "Popular",
-    image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=600&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/33736747/pexels-photo-33736747.jpeg?auto=compress&cs=tinysrgb&w=600",
   },
   {
     title: "Gangtok Darjeeling 4N/5D",
     price: "₹10,200",
     duration: "5 Days / 4 Nights",
     tag: "",
-    image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=600&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/33736745/pexels-photo-33736745.jpeg?auto=compress&cs=tinysrgb&w=600",
   },
   {
     title: "Pelling & Darjeeling 4N/5D",
     price: "₹9,200",
     duration: "5 Days / 4 Nights",
     tag: "",
-    image: "https://images.unsplash.com/photo-1605296867304-46d5465a13f1?q=80&w=600&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/33736754/pexels-photo-33736754.jpeg?auto=compress&cs=tinysrgb&w=600",
   },
 ];
 
@@ -201,9 +201,9 @@ export default function DarjeelingPage() {
       <Navbar />
 
       {/* ══════════ 1. HERO ══════════ */}
-      <section className="relative h-[85vh] min-h-[600px] overflow-hidden">
+      <section className="relative h-[65vh] md:h-[85vh] min-h-[450px] md:min-h-[600px] overflow-hidden">
         <Image
-          src="https://unsplash.com/photos/5MUM_RHvFNY/download?force=true&w=1800"
+          src="https://images.pexels.com/photos/18943817/pexels-photo-18943817.jpeg?auto=compress&cs=tinysrgb&w=1800"
           alt="Train traveling through lush green countryside in Darjeeling"
           fill
           className="object-cover"
@@ -212,7 +212,7 @@ export default function DarjeelingPage() {
         <div className="absolute inset-0 bg-gradient-to-t from-[#1a1914]/60 via-[#1a1914]/15 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#1a1914]/40 to-transparent" />
 
-        <div className="absolute inset-0 flex flex-col justify-end px-6 md:px-16 lg:px-24 pb-16 md:pb-20">
+        <div className="absolute inset-0 flex flex-col justify-end px-5 md:px-16 lg:px-24 pb-10 md:pb-20">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
@@ -224,31 +224,31 @@ export default function DarjeelingPage() {
                 West Bengal, India
               </span>
             </div>
-            <h1 className="font-roman text-6xl md:text-8xl lg:text-9xl font-medium text-white tracking-[0.1em] uppercase">
+            <h1 className="font-roman text-4xl md:text-8xl lg:text-9xl font-medium text-white tracking-[0.1em] uppercase">
               Darjeeling
             </h1>
-            <p className="font-roman text-xl md:text-2xl italic text-[#d5cab5] mt-2 tracking-wide">
+            <p className="font-roman text-base md:text-2xl italic text-[#d5cab5] mt-2 tracking-wide">
               The Queen of the Hills
             </p>
           </motion.div>
         </div>
 
-        <div className="absolute top-20 left-6 w-20 h-20 border-t border-l border-white/10" />
-        <div className="absolute bottom-6 right-6 w-20 h-20 border-b border-r border-white/10" />
+        <div className="absolute top-20 left-6 w-12 h-12 md:w-20 md:h-20 border-t border-l border-white/10" />
+        <div className="absolute bottom-6 right-6 w-12 h-12 md:w-20 md:h-20 border-b border-r border-white/10" />
       </section>
 
       {/* ══════════ 2. ABOUT + QUICK INFO ══════════ */}
-      <section className="bg-[#f4ebd9] py-20 md:py-28 px-6 md:px-16 lg:px-24">
+      <section className="bg-[#f4ebd9] py-14 md:py-28 px-5 md:px-16 lg:px-24">
         <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-[1.3fr_1fr] gap-16 lg:gap-24">
+          <div className="grid lg:grid-cols-[1.3fr_1fr] gap-10 lg:gap-24">
             <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0}>
               <div className="flex items-center gap-3 mb-4">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ae9e85" strokeWidth="1.5">
-                  <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" strokeLinecap="round"/>
+                  <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" strokeLinecap="round" />
                 </svg>
                 <span className="text-[10px] tracking-[0.3em] uppercase text-[#ae9e85]">About Darjeeling Holidays</span>
               </div>
-              <h2 className="font-roman text-3xl md:text-4xl font-medium text-[#3d3831] tracking-wide mb-6">
+              <h2 className="font-roman text-3xl md:text-4xl font-medium text-[#3d3831] tracking-wide mb-4 md:mb-6">
                 Luxury Darjeeling Tour Packages & Tea Estate Retreats
               </h2>
               <div className="space-y-4">
@@ -282,7 +282,7 @@ export default function DarjeelingPage() {
               >
                 Explore Tours
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </Link>
             </motion.div>
@@ -291,9 +291,9 @@ export default function DarjeelingPage() {
       </section>
 
       {/* ══════════ 3. WHY VISIT ══════════ */}
-      <section className="bg-[#1a1914] py-20 md:py-28 px-6 md:px-16 lg:px-24 text-[#f0e7d6]">
+      <section className="bg-[#1a1914] py-14 md:py-28 px-5 md:px-16 lg:px-24 text-[#f0e7d6]">
         <div className="max-w-6xl mx-auto">
-          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} className="text-center mb-16">
+          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} className="text-center mb-10 md:mb-16">
             <span className="text-[10px] tracking-[0.3em] uppercase text-[#ae9e85]">Discover What Makes It Special</span>
             <h2 className="font-roman text-3xl md:text-5xl font-medium text-[#f0e7d6] tracking-wide mt-3">
               Why Visit Darjeeling?
@@ -301,7 +301,7 @@ export default function DarjeelingPage() {
             <div className="w-12 h-px bg-[#ae9e85] mx-auto mt-6" />
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-4 md:gap-8">
             {whyVisit.map((item, i) => (
               <motion.div
                 key={item.title}
@@ -310,7 +310,7 @@ export default function DarjeelingPage() {
                 whileInView="visible"
                 viewport={{ once: true }}
                 custom={i * 0.15}
-                className="group border border-white/8 p-8 rounded-sm hover:border-[#ae9e85]/30 transition-colors duration-500 relative overflow-hidden"
+                className="group border border-white/8 p-5 md:p-8 rounded-sm hover:border-[#ae9e85]/30 transition-colors duration-500 relative overflow-hidden"
               >
                 <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#ae9e85]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <span className="text-4xl mb-5 block">{item.icon}</span>
@@ -323,9 +323,9 @@ export default function DarjeelingPage() {
       </section>
 
       {/* ══════════ 4. TOP ATTRACTIONS ══════════ */}
-      <section className="bg-[#f4ebd9] py-20 md:py-28 px-6 md:px-16 lg:px-24">
+      <section className="bg-[#f4ebd9] py-14 md:py-28 px-5 md:px-16 lg:px-24">
         <div className="max-w-7xl mx-auto">
-          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} className="text-center mb-16">
+          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} className="text-center mb-10 md:mb-16">
             <span className="text-[10px] tracking-[0.3em] uppercase text-[#ae9e85]">Must-Visit Places</span>
             <h2 className="font-roman text-3xl md:text-5xl font-medium text-[#3d3831] tracking-wide mt-3">
               Top Attractions
@@ -347,7 +347,7 @@ export default function DarjeelingPage() {
                 custom={(i % 3) * 0.1}
                 className="group relative overflow-hidden rounded-sm bg-white/30 border border-[#d5cab5]/30 hover:shadow-lg transition-shadow duration-500"
               >
-                <div className="relative h-52 overflow-hidden">
+                <div className="relative h-40 md:h-52 overflow-hidden">
                   <Image
                     src={attr.image}
                     alt={attr.name}
@@ -383,9 +383,9 @@ export default function DarjeelingPage() {
       </section>
 
       {/* ══════════ 5. BEST TIME TO VISIT ══════════ */}
-      <section className="bg-[#efe5d0] py-20 md:py-28 px-6 md:px-16 lg:px-24">
+      <section className="bg-[#efe5d0] py-14 md:py-28 px-5 md:px-16 lg:px-24">
         <div className="max-w-6xl mx-auto">
-          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} className="text-center mb-16">
+          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} className="text-center mb-10 md:mb-16">
             <span className="text-[10px] tracking-[0.3em] uppercase text-[#ae9e85]">Seasonal Guide</span>
             <h2 className="font-roman text-3xl md:text-5xl font-medium text-[#3d3831] tracking-wide mt-3">
               Best Time to Visit
@@ -402,11 +402,10 @@ export default function DarjeelingPage() {
                 whileInView="visible"
                 viewport={{ once: true }}
                 custom={i * 0.1}
-                className={`relative p-6 rounded-sm border transition-all duration-300 hover:shadow-lg ${
-                  s.recommended
-                    ? "bg-[#3d3831] text-[#f0e7d6] border-[#ae9e85]/30"
-                    : "bg-white/40 text-[#3d3831] border-[#d5cab5]/40 hover:bg-white/60"
-                }`}
+                className={`relative p-6 rounded-sm border transition-all duration-300 hover:shadow-lg ${s.recommended
+                  ? "bg-[#3d3831] text-[#f0e7d6] border-[#ae9e85]/30"
+                  : "bg-white/40 text-[#3d3831] border-[#d5cab5]/40 hover:bg-white/60"
+                  }`}
               >
                 {s.recommended && (
                   <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#ae9e85] text-[#1a1914] text-[8px] tracking-[0.25em] uppercase font-bold px-3 py-1 rounded-sm">
@@ -442,9 +441,9 @@ export default function DarjeelingPage() {
       </section>
 
       {/* ══════════ 6. TOUR PACKAGES ══════════ */}
-      <section className="bg-[#f4ebd9] py-20 md:py-28 px-6 md:px-16 lg:px-24">
+      <section className="bg-[#f4ebd9] py-14 md:py-28 px-5 md:px-16 lg:px-24">
         <div className="max-w-7xl mx-auto">
-          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} className="text-center mb-16">
+          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} className="text-center mb-10 md:mb-16">
             <span className="text-[10px] tracking-[0.3em] uppercase text-[#ae9e85]">Curated Experiences</span>
             <h2 className="font-roman text-3xl md:text-5xl font-medium text-[#3d3831] tracking-wide mt-3">
               Explore Tour Packages
@@ -485,8 +484,8 @@ export default function DarjeelingPage() {
                   <h3 className="font-roman text-base font-semibold text-[#3d3831] mb-2 leading-snug">{pkg.title}</h3>
                   <div className="flex items-center gap-2 text-[10px] tracking-[0.1em] uppercase text-[#ae9e85]">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                      <circle cx="12" cy="12" r="10"/>
-                      <path d="M12 6v6l4 2" strokeLinecap="round"/>
+                      <circle cx="12" cy="12" r="10" />
+                      <path d="M12 6v6l4 2" strokeLinecap="round" />
                     </svg>
                     {pkg.duration}
                   </div>
@@ -504,9 +503,9 @@ export default function DarjeelingPage() {
       </section>
 
       {/* ══════════ 7. CTA BANNER ══════════ */}
-      <section className="relative py-24 md:py-32 overflow-hidden">
+      <section className="relative py-16 md:py-32 overflow-hidden">
         <Image
-          src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1600&auto=format&fit=crop"
+          src="https://images.pexels.com/photos/33263644/pexels-photo-33263644.jpeg?auto=compress&cs=tinysrgb&w=1600"
           alt="Darjeeling Toy Train"
           fill
           className="object-cover"
@@ -526,7 +525,7 @@ export default function DarjeelingPage() {
             >
               View Tour Packages
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </Link>
           </motion.div>

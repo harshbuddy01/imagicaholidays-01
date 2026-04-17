@@ -40,37 +40,37 @@ const attractions = [
   {
     name: "Yumthang Valley",
     tag: "Nature",
-    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/33248529/pexels-photo-33248529.jpeg?auto=compress&cs=tinysrgb&w=800",
     short: "The Valley of Flowers of Sikkim — surrounded by snow-capped peaks, alpine meadows, hot springs, and the Teesta River. Blooms with colorful rhododendrons in spring.",
   },
   {
     name: "Mount Katao",
     tag: "Adventure",
-    image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/33547415/pexels-photo-33547415.jpeg?auto=compress&cs=tinysrgb&w=800",
     short: "A high-altitude snow destination known for breathtaking mountain views and winter snow activities. Less crowded, ideal for adventure lovers.",
   },
   {
     name: "Yumesamdong (Zero Point)",
     tag: "Nature",
-    image: "https://images.unsplash.com/photo-1605296867304-46d5465a13f1?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/30156563/pexels-photo-30156563.jpeg?auto=compress&cs=tinysrgb&w=800",
     short: "Where the civilian road ends near the Indo-China border. Surrounded by snow-clad mountains and alpine terrain — raw Himalayan beauty.",
   },
   {
     name: "Shingba Rhododendron Sanctuary",
     tag: "Nature",
-    image: "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/35431355/pexels-photo-35431355.jpeg?auto=compress&cs=tinysrgb&w=800",
     short: "Home to over 40 species of rhododendrons. In spring, the valley turns into a vibrant carpet of red, pink, white, and purple flowers.",
   },
   {
     name: "Sanglaphu Lake",
     tag: "Nature",
-    image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/34032592/pexels-photo-34032592.jpeg?auto=compress&cs=tinysrgb&w=800",
     short: "A pristine high-altitude lake at 16,670 ft, newly opened in 2024. Known for its frozen beauty and sacred, untouched nature.",
   },
   {
     name: "Lachung Monastery",
     tag: "Religious",
-    image: "https://images.unsplash.com/photo-1564507004663-b6dfb3c824d5?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/15138292/pexels-photo-15138292.jpeg?auto=compress&cs=tinysrgb&w=800",
     short: "Built in 1880, this Nyingma sect monastery features colorful murals, prayer flags, and a large statue of Guru Padmasambhava surrounded by pine forests.",
   },
 ];
@@ -116,49 +116,49 @@ const tourPackages = [
     price: "₹5,500",
     duration: "4 Days / 3 Nights",
     tag: "Group Tour",
-    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=600&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/33547415/pexels-photo-33547415.jpeg?auto=compress&cs=tinysrgb&w=600",
   },
   {
     title: "Gangtok Lachen Lachung 6N/7D",
     price: "₹18,800",
     duration: "7 Days / 6 Nights",
     tag: "Featured",
-    image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=600&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/34032592/pexels-photo-34032592.jpeg?auto=compress&cs=tinysrgb&w=600",
   },
   {
     title: "Gangtok & Lachung Yumthang Valley",
     price: "₹9,000",
     duration: "5 Days / 4 Nights",
     tag: "Featured",
-    image: "https://images.unsplash.com/photo-1605296867304-46d5465a13f1?q=80&w=600&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/35431355/pexels-photo-35431355.jpeg?auto=compress&cs=tinysrgb&w=600",
   },
   {
     title: "Gangtok Lachen Lachung with Gurudongmar",
     price: "₹11,400",
     duration: "6 Days / 5 Nights",
     tag: "Featured",
-    image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=600&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/33248529/pexels-photo-33248529.jpeg?auto=compress&cs=tinysrgb&w=600",
   },
   {
     title: "Lachung 2N/3D Tour Package",
     price: "₹14,000",
     duration: "3 Days / 2 Nights",
     tag: "Featured",
-    image: "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?q=80&w=600&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/30156563/pexels-photo-30156563.jpeg?auto=compress&cs=tinysrgb&w=600",
   },
   {
     title: "Lachen Lachung 3N North Sikkim",
     price: "₹7,700",
     duration: "4 Days / 3 Nights",
     tag: "",
-    image: "https://images.unsplash.com/photo-1551632811-561732d1e306?q=80&w=600&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/33547415/pexels-photo-33547415.jpeg?auto=compress&cs=tinysrgb&w=600",
   },
   {
     title: "Lachung Budget Group Tour",
     price: "₹4,500",
     duration: "3 Days / 2 Nights",
     tag: "Budget",
-    image: "https://images.unsplash.com/photo-1504851149312-7a075b496cc7?q=80&w=600&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/34032592/pexels-photo-34032592.jpeg?auto=compress&cs=tinysrgb&w=600",
   },
 ];
 
@@ -183,9 +183,9 @@ export default function LachungPage() {
       <Navbar />
 
       {/* ══════════ 1. HERO ══════════ */}
-      <section className="relative h-[85vh] min-h-[600px] overflow-hidden">
+      <section className="relative h-[65vh] md:h-[85vh] min-h-[450px] md:min-h-[600px] overflow-hidden">
         <Image
-          src="https://unsplash.com/photos/QHuJaQQHj-M/download?force=true&w=1800"
+          src="https://images.pexels.com/photos/33248529/pexels-photo-33248529.jpeg?auto=compress&cs=tinysrgb&w=1800"
           alt="Aerial view of mountain with statue in Lachung"
           fill
           className="object-cover"
@@ -194,36 +194,36 @@ export default function LachungPage() {
         <div className="absolute inset-0 bg-gradient-to-t from-[#1a1914]/60 via-[#1a1914]/15 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#1a1914]/40 to-transparent" />
 
-        <div className="absolute inset-0 flex flex-col justify-end px-6 md:px-16 lg:px-24 pb-16 md:pb-20">
+        <div className="absolute inset-0 flex flex-col justify-end px-5 md:px-16 lg:px-24 pb-10 md:pb-20">
           <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}>
             <div className="flex items-center gap-3 mb-4">
               <div className="w-10 h-px bg-[#ae9e85]" />
               <span className="text-[10px] tracking-[0.35em] uppercase text-[#d5cab5]">North Sikkim, India</span>
             </div>
-            <h1 className="font-roman text-6xl md:text-8xl lg:text-9xl font-medium text-white tracking-[0.1em] uppercase">
+            <h1 className="font-roman text-4xl md:text-8xl lg:text-9xl font-medium text-white tracking-[0.1em] uppercase">
               Lachung
             </h1>
-            <p className="font-roman text-xl md:text-2xl italic text-[#d5cab5] mt-2 tracking-wide">
+            <p className="font-roman text-base md:text-2xl italic text-[#d5cab5] mt-2 tracking-wide">
               Gateway to the Valley of Flowers
             </p>
           </motion.div>
         </div>
-        <div className="absolute top-20 left-6 w-20 h-20 border-t border-l border-white/10" />
-        <div className="absolute bottom-6 right-6 w-20 h-20 border-b border-r border-white/10" />
+        <div className="absolute top-20 left-6 w-12 h-12 md:w-20 md:h-20 border-t border-l border-white/10" />
+        <div className="absolute bottom-6 right-6 w-12 h-12 md:w-20 md:h-20 border-b border-r border-white/10" />
       </section>
 
       {/* ══════════ 2. ABOUT + QUICK INFO ══════════ */}
-      <section className="bg-[#f4ebd9] py-20 md:py-28 px-6 md:px-16 lg:px-24">
+      <section className="bg-[#f4ebd9] py-14 md:py-28 px-5 md:px-16 lg:px-24">
         <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-[1.3fr_1fr] gap-16 lg:gap-24">
+          <div className="grid lg:grid-cols-[1.3fr_1fr] gap-10 lg:gap-24">
             <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0}>
               <div className="flex items-center gap-3 mb-4">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ae9e85" strokeWidth="1.5">
-                  <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" strokeLinecap="round"/>
+                  <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" strokeLinecap="round" />
                 </svg>
                 <span className="text-[10px] tracking-[0.3em] uppercase text-[#ae9e85]">About Lachung Holidays</span>
               </div>
-              <h2 className="font-roman text-3xl md:text-4xl font-medium text-[#3d3831] tracking-wide mb-6">
+              <h2 className="font-roman text-3xl md:text-4xl font-medium text-[#3d3831] tracking-wide mb-4 md:mb-6">
                 Premium North Sikkim Tours & Lachung Packages
               </h2>
               <div className="space-y-4">
@@ -250,7 +250,7 @@ export default function LachungPage() {
               </div>
               <Link href="/reserve" className="mt-6 flex items-center justify-center gap-2 bg-[#3d3831] text-[#f4ebd9] py-3.5 text-[11px] font-semibold uppercase tracking-[0.2em] transition-all duration-300 hover:bg-[#2a2520] rounded-sm">
                 Explore Tours
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" /></svg>
               </Link>
             </motion.div>
           </div>
@@ -258,17 +258,17 @@ export default function LachungPage() {
       </section>
 
       {/* ══════════ 3. WHY VISIT ══════════ */}
-      <section className="bg-[#1a1914] py-20 md:py-28 px-6 md:px-16 lg:px-24 text-[#f0e7d6]">
+      <section className="bg-[#1a1914] py-14 md:py-28 px-5 md:px-16 lg:px-24 text-[#f0e7d6]">
         <div className="max-w-6xl mx-auto">
-          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} className="text-center mb-16">
+          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} className="text-center mb-10 md:mb-16">
             <span className="text-[10px] tracking-[0.3em] uppercase text-[#ae9e85]">Discover What Makes It Special</span>
             <h2 className="font-roman text-3xl md:text-5xl font-medium text-[#f0e7d6] tracking-wide mt-3">Why Visit Lachung?</h2>
             <div className="w-12 h-px bg-[#ae9e85] mx-auto mt-6" />
           </motion.div>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-4 md:gap-8">
             {whyVisit.map((item, i) => (
               <motion.div key={item.title} variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={i * 0.15}
-                className="group border border-white/8 p-8 rounded-sm hover:border-[#ae9e85]/30 transition-colors duration-500 relative overflow-hidden">
+                className="group border border-white/8 p-5 md:p-8 rounded-sm hover:border-[#ae9e85]/30 transition-colors duration-500 relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#ae9e85]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <span className="text-4xl mb-5 block">{item.icon}</span>
                 <h3 className="font-roman text-xl font-semibold text-[#f0e7d6] mb-3 tracking-wide">{item.title}</h3>
@@ -280,9 +280,9 @@ export default function LachungPage() {
       </section>
 
       {/* ══════════ 4. TOP ATTRACTIONS ══════════ */}
-      <section className="bg-[#f4ebd9] py-20 md:py-28 px-6 md:px-16 lg:px-24">
+      <section className="bg-[#f4ebd9] py-14 md:py-28 px-5 md:px-16 lg:px-24">
         <div className="max-w-7xl mx-auto">
-          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} className="text-center mb-16">
+          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} className="text-center mb-10 md:mb-16">
             <span className="text-[10px] tracking-[0.3em] uppercase text-[#ae9e85]">Must-Visit Places</span>
             <h2 className="font-roman text-3xl md:text-5xl font-medium text-[#3d3831] tracking-wide mt-3">Top Attractions</h2>
             <p className="text-sm text-[#7a705e] mt-4 max-w-lg mx-auto">From breathtaking natural wonders to cultural landmarks, there&apos;s something for every traveler.</p>
@@ -292,7 +292,7 @@ export default function LachungPage() {
             {attractions.slice(0, visibleAttractions).map((attr, i) => (
               <motion.div key={attr.name} variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={(i % 3) * 0.1}
                 className="group relative overflow-hidden rounded-sm bg-white/30 border border-[#d5cab5]/30 hover:shadow-lg transition-shadow duration-500">
-                <div className="relative h-52 overflow-hidden">
+                <div className="relative h-40 md:h-52 overflow-hidden">
                   <Image src={attr.image} alt={attr.name} fill className="object-cover transition-transform duration-700 group-hover:scale-110" sizes="(max-width: 768px) 100vw, 33vw" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1a1914]/50 to-transparent" />
                   <span className="absolute top-3 left-3 bg-[#ae9e85]/90 text-[#1a1914] text-[9px] tracking-[0.2em] uppercase font-semibold px-3 py-1 rounded-sm">{attr.tag}</span>
@@ -315,9 +315,9 @@ export default function LachungPage() {
       </section>
 
       {/* ══════════ 5. BEST TIME TO VISIT ══════════ */}
-      <section className="bg-[#efe5d0] py-20 md:py-28 px-6 md:px-16 lg:px-24">
+      <section className="bg-[#efe5d0] py-14 md:py-28 px-5 md:px-16 lg:px-24">
         <div className="max-w-6xl mx-auto">
-          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} className="text-center mb-16">
+          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} className="text-center mb-10 md:mb-16">
             <span className="text-[10px] tracking-[0.3em] uppercase text-[#ae9e85]">Seasonal Guide</span>
             <h2 className="font-roman text-3xl md:text-5xl font-medium text-[#3d3831] tracking-wide mt-3">Best Time to Visit</h2>
             <div className="w-12 h-px bg-[#ae9e85] mx-auto mt-6" />
@@ -348,9 +348,9 @@ export default function LachungPage() {
       </section>
 
       {/* ══════════ 6. TOUR PACKAGES ══════════ */}
-      <section className="bg-[#f4ebd9] py-20 md:py-28 px-6 md:px-16 lg:px-24">
+      <section className="bg-[#f4ebd9] py-14 md:py-28 px-5 md:px-16 lg:px-24">
         <div className="max-w-7xl mx-auto">
-          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} className="text-center mb-16">
+          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} className="text-center mb-10 md:mb-16">
             <span className="text-[10px] tracking-[0.3em] uppercase text-[#ae9e85]">Curated Experiences</span>
             <h2 className="font-roman text-3xl md:text-5xl font-medium text-[#3d3831] tracking-wide mt-3">Explore Tour Packages</h2>
             <div className="w-12 h-px bg-[#ae9e85] mx-auto mt-6" />
@@ -368,7 +368,7 @@ export default function LachungPage() {
                 <div className="p-5">
                   <h3 className="font-roman text-base font-semibold text-[#3d3831] mb-2 leading-snug">{pkg.title}</h3>
                   <div className="flex items-center gap-2 text-[10px] tracking-[0.1em] uppercase text-[#ae9e85]">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2" strokeLinecap="round"/></svg>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="12" r="10" /><path d="M12 6v6l4 2" strokeLinecap="round" /></svg>
                     {pkg.duration}
                   </div>
                   <Link href="/reserve" className="mt-4 flex items-center justify-center gap-2 w-full border border-[#3d3831] py-2.5 text-[10px] font-semibold uppercase tracking-[0.15em] text-[#3d3831] hover:bg-[#3d3831] hover:text-[#f4ebd9] transition-all duration-300 rounded-sm">
@@ -382,8 +382,8 @@ export default function LachungPage() {
       </section>
 
       {/* ══════════ 7. CTA BANNER ══════════ */}
-      <section className="relative py-24 md:py-32 overflow-hidden">
-        <Image src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=1600&auto=format&fit=crop" alt="Yumthang Valley panorama" fill className="object-cover" />
+      <section className="relative py-16 md:py-32 overflow-hidden">
+        <Image src="https://images.pexels.com/photos/33547415/pexels-photo-33547415.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Yumthang Valley panorama" fill className="object-cover" />
         <div className="absolute inset-0 bg-[#1a1914]/70" />
         <div className="relative max-w-3xl mx-auto text-center px-6">
           <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0}>
@@ -391,7 +391,7 @@ export default function LachungPage() {
             <p className="text-sm text-white/60 mb-8 max-w-lg mx-auto">Browse our curated tour packages and start planning your unforgettable journey today!</p>
             <Link href="/reserve" className="inline-flex items-center gap-3 bg-[#ae9e85] text-[#1a1914] px-8 py-4 text-[11px] font-bold uppercase tracking-[0.2em] transition-all duration-300 hover:bg-[#c7b697] rounded-sm">
               View Tour Packages
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" /></svg>
             </Link>
           </motion.div>
         </div>

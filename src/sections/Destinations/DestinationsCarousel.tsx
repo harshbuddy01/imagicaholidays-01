@@ -26,12 +26,10 @@ const destinations: Destination[] = [
     description:
       "Discover a sanctuary in the Himalayas designed to elevate your spirit. From breathtaking mountain vistas to colorful monasteries, experience a perfect blend of spiritual heritage and natural serenity.",
     link: "/destinations/gangtok",
-    mainImage:
-      "https://images.unsplash.com/photo-1615966192539-f1731963b19a?q=80&w=1200&auto=format&fit=crop",
-    mainImageAlt: "Houses on mountain under blue sky",
-    overlayImage:
-      "https://images.unsplash.com/photo-1641233122088-9562e3ef0105?q=80&w=800&auto=format&fit=crop",
-    overlayImageAlt: "Colorful building in Gangtok",
+    mainImage: "https://images.pexels.com/photos/33547415/pexels-photo-33547415.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    mainImageAlt: "Scenic view of lake in Sikkim mountain valley",
+    overlayImage: "https://images.pexels.com/photos/35431355/pexels-photo-35431355.jpeg?auto=compress&cs=tinysrgb&w=800",
+    overlayImageAlt: "Colorful buddhist monastery in Gangtok",
   },
   {
     id: "pelling",
@@ -40,12 +38,10 @@ const destinations: Destination[] = [
     description:
       "Nestled in West Sikkim, Pelling offers unparalleled majestic views of Mount Kanchenjunga. Explore ancient ruins, sacred lakes, and the renowned glass skywalk in this serene Himalayan retreat.",
     link: "/destinations/pelling",
-    mainImage:
-      "https://unsplash.com/photos/-0GJ4CIHtEg/download?force=true&w=1200",
-    mainImageAlt: "Aerial view of a mountain with a statue on top in Pelling",
-    overlayImage:
-      "/images/pelling-snow.jpg",
-    overlayImageAlt: "Snow covered mountain under blue sky during daytime in Pelling",
+    mainImage: "https://images.pexels.com/photos/34032592/pexels-photo-34032592.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    mainImageAlt: "Reflection of urban architecture in water puddle",
+    overlayImage: "https://images.pexels.com/photos/30156563/pexels-photo-30156563.jpeg?auto=compress&cs=tinysrgb&w=800",
+    overlayImageAlt: "Dragon shaped rooftop ornament overlooking pristine scenery",
   },
   {
     id: "lachung",
@@ -54,12 +50,10 @@ const destinations: Destination[] = [
     description:
       "Nestled at 8,610 ft in North Sikkim, Lachung enchants with snow-draped peaks, pristine rivers, and the legendary Valley of Flowers. A timeless Himalayan escape where every dawn paints the sky anew.",
     link: "/destinations/lachung",
-    mainImage:
-      "https://unsplash.com/photos/lVOZaQv7yj0/download?force=true&w=1200",
-    mainImageAlt: "Flags on the side of a road in Lachung",
-    overlayImage:
-      "https://unsplash.com/photos/2LxJQfP40-o/download?force=true&w=800",
-    overlayImageAlt: "Road sign towards Lachung amid mountains",
+    mainImage: "https://images.pexels.com/photos/33248529/pexels-photo-33248529.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    mainImageAlt: "Colorful houses on Darjeeling/Sikkim hillside",
+    overlayImage: "https://images.pexels.com/photos/33736744/pexels-photo-33736744.jpeg?auto=compress&cs=tinysrgb&w=800",
+    overlayImageAlt: "Misty mountains in the Himalayas",
   },
   {
     id: "darjeeling",
@@ -68,12 +62,10 @@ const destinations: Destination[] = [
     description:
       "Perched amid rolling tea gardens and mist-kissed peaks, Darjeeling offers the charm of a colonial hill station with panoramic views of Kanchenjunga. Ride the iconic toy train, sip world-famous brews, and lose yourself in timeless Himalayan grandeur.",
     link: "/destinations/darjeeling",
-    mainImage:
-      "https://unsplash.com/photos/FuuEdB1XN4M/download?force=true&w=1200",
-    mainImageAlt: "Mountain covered with snow under cloudy sky",
-    overlayImage:
-      "https://unsplash.com/photos/EEDy8p3rlIg/download?force=true&w=800",
-    overlayImageAlt: "A small building sitting on the side of a road",
+    mainImage: "https://images.pexels.com/photos/33736751/pexels-photo-33736751.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    mainImageAlt: "Darjeeling ropeway over tea gardens",
+    overlayImage: "https://images.pexels.com/photos/18943817/pexels-photo-18943817.jpeg?auto=compress&cs=tinysrgb&w=800",
+    overlayImageAlt: "Vintage locomotive passing through tea estates",
   },
   {
     id: "munnar",
@@ -82,12 +74,10 @@ const destinations: Destination[] = [
     description:
       "Munnar is a tranquil hill station famous for its expansive tea plantations, winding lanes, and magnificent waterfalls. Experience serene backwaters and pristine wildlife in God's Own Country.",
     link: "/destinations/munnar",
-    mainImage:
-      "https://unsplash.com/photos/Tp-kViKErbw/download?force=true&w=1200",
-    mainImageAlt: "Silhouette of boat on sea during sunset in Munnar",
-    overlayImage:
-      "https://unsplash.com/photos/t-3qo5bGC0Q/download?force=true&w=800",
-    overlayImageAlt: "Brown nipa hut on green grass field during daytime in Munnar",
+    mainImage: "https://images.pexels.com/photos/31758870/pexels-photo-31758870.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    mainImageAlt: "Lush green tea plantations in Munnar",
+    overlayImage: "https://images.pexels.com/photos/29801456/pexels-photo-29801456.jpeg?auto=compress&cs=tinysrgb&w=800",
+    overlayImageAlt: "Houseboats on the backwaters in Alleppey",
   },
   {
     id: "wayanad",
@@ -96,12 +86,46 @@ const destinations: Destination[] = [
     description:
       "Wayanad is a pristine hill station in northern Kerala known for its lush green mountains, mystic caves, and sprawling spice plantations. A true haven for trekkers and nature lovers.",
     link: "/destinations/wayanad",
-    mainImage:
-      "https://unsplash.com/photos/zmr9TeA7WjU/download?force=true&w=1200",
-    mainImageAlt: "A car driving down a road surrounded by lush green hills in Wayanad",
-    overlayImage:
-      "https://unsplash.com/photos/Wag11Ja47zI/download?force=true&w=800",
-    overlayImageAlt: "A man standing on top of a wooden structure in Wayanad",
+    mainImage: "https://images.pexels.com/photos/17545322/pexels-photo-17545322.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    mainImageAlt: "Lush green landscape in Kerala",
+    overlayImage: "https://images.pexels.com/photos/29757657/pexels-photo-29757657.jpeg?auto=compress&cs=tinysrgb&w=800",
+    overlayImageAlt: "Aerial view of buildings and sea coast in Kerala",
+  },
+  {
+    id: "jaipur",
+    title: "Jaipur",
+    tagline: "The Pink City of Royalty",
+    description:
+      "A breathtaking canvas of majestic forts, opulent palaces, and vibrant heritage. Jaipur immerses visitors into the regal history of Royal Rajasthan through iconic architecture like Hawa Mahal.",
+    link: "/destinations/jaipur",
+    mainImage: "https://images.pexels.com/photos/31739860/pexels-photo-31739860.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    mainImageAlt: "Albert Hall Museum in Jaipur at sunrise",
+    overlayImage: "https://images.pexels.com/photos/19195937/pexels-photo-19195937.jpeg?auto=compress&cs=tinysrgb&w=800",
+    overlayImageAlt: "Hawa Mahal Jaipur",
+  },
+  {
+    id: "udaipur",
+    title: "Udaipur",
+    tagline: "The City of Lakes",
+    description:
+      "Experience the magical 'Venice of the East' with its stunning interconnected lakes and majestic Mewar architecture. Witness golden sunsets over Lake Pichola and stay in floating palaces that redefine desert luxury.",
+    link: "/destinations/udaipur",
+    mainImage: "https://images.pexels.com/photos/29801402/pexels-photo-29801402.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    mainImageAlt: "Scenic view of Lake Pichola and City Palace in Udaipur",
+    overlayImage: "https://images.pexels.com/photos/29824639/pexels-photo-29824639.jpeg?auto=compress&cs=tinysrgb&w=800",
+    overlayImageAlt: "Majestic view of Udaipur City Palace at sunset",
+  },
+  {
+    id: "goa",
+    title: "Goa",
+    tagline: "The Pearl of the Orient",
+    description:
+      "From the sun-drenched beaches of the North to the tranquil, palm-fringed retreats of the South, Goa is a paradise for every traveler. Explore Portuguese heritage, vibrant night markets, and world-class luxury on the Arabian Sea.",
+    link: "/destinations/goa",
+    mainImage: "https://images.pexels.com/photos/2432269/pexels-photo-2432269.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    mainImageAlt: "Aerial view of picturesque Goa beach and resort",
+    overlayImage: "https://images.pexels.com/photos/32262471/pexels-photo-32262471.jpeg?auto=compress&cs=tinysrgb&w=800",
+    overlayImageAlt: "Traditional Goan house in tropical forest",
   },
 ];
 
@@ -191,7 +215,7 @@ export default function DestinationsCarousel() {
   return (
     <section
       id="destinations-carousel"
-      className="relative w-full bg-[#f4ebd9] py-24 px-4 md:px-12 lg:px-24 overflow-hidden text-[#5c544b]"
+      className="relative w-full bg-[#f4ebd9] pt-24 md:pt-40 pb-16 md:pb-24 px-4 md:px-12 lg:px-24 overflow-hidden text-[#5c544b] section-fade-top scroll-mt-[90px]"
     >
       {/* Decorative dots */}
       <div className="flex flex-col items-center gap-1 mb-8">
@@ -206,7 +230,7 @@ export default function DestinationsCarousel() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: [0.45, 0, 0.15, 1] }}
         viewport={{ once: true, amount: 0.3 }}
-        className="text-center w-full max-w-7xl mx-auto mb-20 flex flex-col items-center select-none"
+        className="text-center w-full max-w-7xl mx-auto mb-10 md:mb-20 flex flex-col items-center select-none"
       >
         {/* Top Flower SVG */}
         <div className="mb-4 text-[#a5813b] opacity-80">
@@ -219,10 +243,7 @@ export default function DestinationsCarousel() {
           </svg>
         </div>
 
-        <span className="font-ornate text-5xl md:text-7xl text-[#8d6a2f] mb-2 z-10 tracking-[0.1em] drop-shadow-sm">
-          Trending
-        </span>
-        <h2 className="font-roman text-5xl md:text-7xl lg:text-[6rem] font-medium tracking-[0.15em] text-[#3d3831] uppercase leading-none drop-shadow-[0_2px_4px_rgba(0,0,0,0.05)]">
+        <h2 className="font-glyptic font-bold text-3xl md:text-7xl lg:text-[6rem] tracking-[0.08em] md:tracking-[0.1em] uppercase leading-none drop-shadow-[0_2px_4px_rgba(0,0,0,0.05)] gradient-text-destination">
           Destinations
         </h2>
 
@@ -239,7 +260,7 @@ export default function DestinationsCarousel() {
       </motion.div>
 
       {/* ─── Slide & Navigation container ─── */}
-      <div className="max-w-[100rem] mx-auto relative flex flex-col xl:flex-row gap-8 items-stretch pt-8" style={{ minHeight: '65vh' }}>
+      <div className="max-w-[100rem] mx-auto w-full relative flex flex-col xl:flex-row gap-8 items-stretch pt-2">
         <div className="w-full xl:w-[85%] relative">
           <AnimatePresence initial={false} custom={direction} mode="wait">
             <motion.div
@@ -250,119 +271,122 @@ export default function DestinationsCarousel() {
               animate="center"
               exit="exit"
               transition={{ duration: 0.75, ease: [0.45, 0, 0.15, 1] }}
-              className="flex flex-col lg:flex-row items-center gap-16 lg:gap-20 relative z-10 w-full"
+              className="relative w-full h-[60vh] md:h-[65vh] xl:h-[75vh] flex items-center justify-center p-2 md:p-8"
             >
-              {/* ── Left: Text ── */}
-              <div className="w-full lg:w-[45%] flex flex-col items-start z-10">
-                <motion.h2
-                  variants={textVariants}
-                  initial="hidden"
-                  animate="visible"
-                  custom={0.1}
-                  className="font-roman text-5xl md:text-7xl lg:text-[4.5rem] font-medium leading-[1.1] mb-4 text-[#3d3831] uppercase tracking-[0.15em]"
-                >
-                  {dest.title}
-                </motion.h2>
+              <div className="relative w-full h-full max-w-[1400px] mx-auto border border-[#5c544b]/20 md:border-[#5c544b]/30 rounded-[1.5rem] md:rounded-[2rem] overflow-hidden flex flex-col items-center justify-center">
 
-                <motion.div
-                  variants={textVariants}
-                  initial="hidden"
-                  animate="visible"
-                  custom={0.25}
-                  className="flex items-center gap-4 mb-8"
-                >
-                  <div className="w-12 h-px bg-[#b5a993]" />
-                  <p className="font-roman text-xl md:text-2xl italic text-[#8d6a2f] tracking-wide">
-                    {dest.tagline}
-                  </p>
-                </motion.div>
+                {/* Upper-Right Dark/Image Block (bounded inside the frame!) */}
+                <div className="absolute top-0 right-0 w-[50%] md:w-[40%] h-[45%] md:h-[65%] bg-[#211d18] rounded-bl-[2rem] md:rounded-bl-[4rem] z-0 overflow-hidden pointer-events-none">
+                  {dest.overlayImage && (
+                    <Image
+                      src={dest.overlayImage}
+                      alt={dest.overlayImageAlt}
+                      fill
+                      className="object-cover opacity-30 mix-blend-luminosity grayscale"
+                    />
+                  )}
+                  {/* Subtle fade so the right text remains readable over the image */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#211d18] to-transparent opacity-80" />
+                </div>
 
-                <motion.p
-                  variants={textVariants}
-                  initial="hidden"
-                  animate="visible"
-                  custom={0.4}
-                  className="text-sm md:text-base font-medium leading-relaxed text-[#5c544b] mb-12 max-w-sm"
-                >
-                  {dest.description}
-                </motion.p>
+                {/* Main Content Grid */}
+                <div className="w-full h-full relative z-10 flex flex-col md:flex-row items-center justify-between">
 
-                <motion.div
-                  variants={textVariants}
-                  initial="hidden"
-                  animate="visible"
-                  custom={0.55}
-                >
-                  <Link
-                    href={dest.link}
-                    className="group relative inline-block overflow-hidden rounded-full border border-[#5c544b] px-8 py-3 text-xs tracking-[0.2em] uppercase transition-all duration-300 hover:bg-[#5c544b] hover:text-[#f4ebd9] shadow-md hover:shadow-xl"
-                    aria-label={`Learn more about ${dest.title} holiday packages`}
+                  {/* ── Left Column: Editorial Body Text ── */}
+                  <div className="w-full md:w-[30%] h-auto md:h-full flex flex-col justify-end pb-4 md:pb-24 pl-4 md:pl-12 pt-0 md:pt-0 z-30 pointer-events-auto order-2 md:order-1">
+                    <motion.p
+                      variants={textVariants}
+                      initial="hidden"
+                      animate="visible"
+                      custom={0.2}
+                      className="text-[11px] md:text-sm leading-relaxed text-[#5c544b] max-w-[260px] font-medium hidden md:block"
+                    >
+                      {dest.description}
+                    </motion.p>
+                  </div>
+
+                  {/* ── Center Column: Pill Shaped Image ── */}
+                  <div className="w-full md:w-[40%] h-[70%] md:h-full flex items-center justify-center relative z-10 px-8 md:px-4 order-1 md:order-2">
+                    <motion.div
+                      variants={imageRevealVariants}
+                      initial="hidden"
+                      animate="visible"
+                      className="relative w-full max-w-[200px] md:max-w-[320px] aspect-[3/5] md:aspect-[4/7] max-h-[90%] rounded-[12rem] md:rounded-[20rem] overflow-hidden border-[3px] md:border-[4px] border-[#f4ebd9] shadow-2xl"
+                    >
+                      <Image
+                        src={dest.mainImage}
+                        alt={dest.title}
+                        fill
+                        className="object-cover transition-transform duration-[2s] hover:scale-105"
+                        sizes="(max-width: 768px) 80vw, 30vw"
+                        priority
+                      />
+                    </motion.div>
+                  </div>
+
+                  {/* ── Right Column: Subtitle and CTA inside Dark Block ── */}
+                  <div className="w-full md:w-[30%] h-auto md:h-full flex flex-col justify-start pr-4 md:pr-12 pt-2 md:pt-16 z-30 pointer-events-auto order-3">
+                    <motion.div
+                      variants={textVariants}
+                      initial="hidden"
+                      animate="visible"
+                      custom={0.3}
+                    >
+                      <p className="text-[11px] md:text-sm leading-relaxed text-[#f4ebd9] md:text-[#f4ebd9] max-w-[260px] ml-auto text-right font-medium drop-shadow-sm hidden md:block">
+                        {dest.tagline}
+                      </p>
+                      <div className="flex justify-center md:justify-end mt-3 md:mt-8">
+                        <Link
+                          href={dest.link}
+                          className="inline-block border-b border-[#a5813b] text-[#a5813b] pb-1 text-[10px] uppercase tracking-[0.25em] font-bold transition-colors hover:text-[#f4ebd9] hover:border-[#f4ebd9]"
+                        >
+                          Explore More
+                        </Link>
+                      </div>
+                    </motion.div>
+                  </div>
+
+                </div> {/* End Main Content Grid */}
+
+                {/* ── Giant Centered Title overlaying everything (like "Florist") ── */}
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
+                  <motion.h2
+                    variants={textVariants}
+                    initial="hidden"
+                    animate="visible"
+                    custom={0.1}
+                    className="font-roman text-[3.5rem] md:text-[8rem] lg:text-[11rem] font-normal leading-none tracking-[0.05em] text-[#d8be8f] uppercase drop-shadow-md"
                   >
-                    <span className="relative z-10">Explore {dest.title}</span>
-                  </Link>
-                </motion.div>
-              </div>
+                    {dest.title}
+                  </motion.h2>
+                </div>
 
-              {/* ── Center/Right: Overlapping images ── */}
-              <div className="w-full lg:w-[55%] relative min-h-[500px] md:min-h-[600px] flex items-center justify-end">
-                {/* Main large image */}
-                <motion.div
-                  variants={imageRevealVariants}
-                  initial="hidden"
-                  animate="visible"
-                  className="absolute right-0 top-4 w-[90%] h-[90%] z-0 overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.15)]"
-                >
-                  <Image
-                    src={dest.mainImage}
-                    alt={dest.mainImageAlt}
-                    fill
-                    className="object-cover transition-transform duration-[1.5s] hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    priority
-                  />
-                </motion.div>
-
-                {/* Overlapping smaller image */}
-                <motion.div
-                  variants={overlayImageVariants}
-                  initial="hidden"
-                  animate="visible"
-                  className="absolute left-[-5%] bottom-0 w-[55%] aspect-[3/4] z-10 overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.3)] border-[12px] border-[#f4ebd9]"
-                >
-                  <Image
-                    src={dest.overlayImage}
-                    alt={dest.overlayImageAlt}
-                    fill
-                    className="object-cover transition-transform duration-[1.5s] hover:scale-105"
-                    sizes="(max-width: 768px) 50vw, 30vw"
-                  />
-                </motion.div>
-              </div>
+              </div> {/* End Thin Border Frame container */}
             </motion.div>
           </AnimatePresence>
         </div>
 
-        {/* ─── Indicators (Vertical on Right) ─── */}
-        <div className="w-full xl:w-[15%] flex xl:flex-col items-center xl:items-end justify-center gap-8 mt-16 xl:mt-0 relative z-20 pl-0 xl:pl-8 border-t xl:border-t-0 xl:border-l border-[#d5cab5]/40 pt-8 xl:pt-0">
+        {/* ─── Indicators ─── */}
+        <div className="w-full xl:w-[15%] flex xl:flex-col items-center xl:items-end justify-start xl:justify-center gap-3 xl:gap-3 mt-4 xl:mt-0 relative z-20 pl-0 xl:pl-8 border-t xl:border-t-0 xl:border-l border-[#d5cab5]/40 pt-4 xl:pt-0 overflow-x-auto pb-2 xl:pb-0 no-scrollbar">
           {destinations.map((d, i) => (
             <button
               key={d.id}
               aria-label={`Go to ${d.title}`}
               onClick={() => goTo(i)}
-              className="relative flex xl:flex-row-reverse flex-col items-center gap-4 group w-full xl:justify-start"
+              className="relative flex xl:flex-row-reverse flex-col items-center gap-2 xl:gap-3 group flex-shrink-0 xl:w-full xl:justify-start"
             >
               {/* Destination label */}
               <span
-                className={`text-[10px] tracking-[0.25em] uppercase transition-all duration-300 ${i === activeIndex
-                    ? "text-[#3d3831] font-bold scale-105"
-                    : "text-[#aa9a7e] hover:text-[#7d705a]"
+                className={`text-[8px] tracking-[0.2em] uppercase transition-all duration-300 whitespace-nowrap ${i === activeIndex
+                  ? "text-[#3d3831] font-bold"
+                  : "text-[#aa9a7e] opacity-60 hover:opacity-100"
                   }`}
               >
                 {d.title}
               </span>
 
-              {/* Vertical Progress track (Horizontal on small screens) */}
-              <span className={`relative block bg-[#dfd6c5] rounded-full overflow-hidden ${"w-12 h-[2px] xl:w-[2px] xl:h-12"
+              {/* Progress track */}
+              <span className={`relative block bg-[#dfd6c5] rounded-full overflow-hidden ${"w-6 h-[1.5px] xl:w-[1.5px] xl:h-6"
                 }`}>
                 {i === activeIndex && (
                   <motion.span

@@ -40,67 +40,67 @@ const attractions = [
   {
     name: "Khecheopalri Lake",
     tag: "Religious",
-    image: "https://images.unsplash.com/photo-1596707323067-27b9ef80a316?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/33547415/pexels-photo-33547415.jpeg?auto=compress&cs=tinysrgb&w=800",
     short: "One of the most sacred lakes in Sikkim, revered by both Buddhists and Hindus. Known as the “Wish-Fulfilling Lake.”",
   },
   {
     name: "Pemayangtse Monastery",
     tag: "Nature",
-    image: "https://images.unsplash.com/photo-1596707323145-89f5c2253381?q=80&w=800&auto=format&fit=crop",
-    short: "One of the oldest monasteries belonging to the Nyingma sect. Offers panoramic views and houses a famous seven-tiered wooden structure.",
+    image: "https://images.pexels.com/photos/35431355/pexels-photo-35431355.jpeg?auto=compress&cs=tinysrgb&w=800",
+    short: "One of the oldest monasteries belonging to Nyingma sect. Offers panoramic views and houses a famous seven-tiered wooden structure.",
   },
   {
     name: "Pelling Skywalk",
     tag: "Adventure",
-    image: "https://unsplash.com/photos/-0GJ4CIHtEg/download?force=true&w=1800",
+    image: "https://images.pexels.com/photos/34032592/pexels-photo-34032592.jpeg?auto=compress&cs=tinysrgb&w=800",
     short: "India’s first glass skywalk offering thrilling views of valleys and mountains located near the Chenrezig statue.",
   },
   {
     name: "Singshore Bridge",
     tag: "Adventure",
-    image: "https://images.unsplash.com/photo-1563604018247-4f810aa0eb4b?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/33248529/pexels-photo-33248529.jpeg?auto=compress&cs=tinysrgb&w=800",
     short: "The highest suspension bridge in Sikkim, offering spectacular views of deep valleys and lush hills.",
   },
   {
     name: "Rabdentse Ruins",
     tag: "Heritage",
-    image: "https://images.unsplash.com/photo-1626621331169-5f34be280ed9?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/30156563/pexels-photo-30156563.jpeg?auto=compress&cs=tinysrgb&w=800",
     short: "Historical ruins of the former capital of the Kingdom of Sikkim featuring panoramic views and peaceful walking trails.",
   },
   {
     name: "Kanchenjunga Waterfalls",
     tag: "Nature",
-    image: "https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/29845020/pexels-photo-29845020.jpeg?auto=compress&cs=tinysrgb&w=800",
     short: "A beautiful and powerful waterfall cascading from a great height, surrounded by lush green forests.",
   },
   {
     name: "Darap Village",
     tag: "Heritage",
-    image: "https://images.unsplash.com/photo-1516690561799-2826cf8ed692?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/19082530/pexels-photo-19082530.jpeg?auto=compress&cs=tinysrgb&w=800",
     short: "A peaceful traditional village known for its warm hospitality, Limboo culture, terraced fields, and eco-tourism.",
   },
   {
     name: "Rimbi Waterfalls",
     tag: "Nature",
-    image: "https://images.unsplash.com/photo-1494472155656-f34e81b17ddc?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/29845028/pexels-photo-29845028.jpeg?auto=compress&cs=tinysrgb&w=800",
     short: "Formed by the crystal-clear waters of the Rimbi River, cascading down rocky cliffs amidst dense greenery.",
   },
   {
     name: "Orange Garden",
     tag: "Nature",
-    image: "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/30778897/pexels-photo-30778897.jpeg?auto=compress&cs=tinysrgb&w=800",
     short: "A scenic orchard offering lush orange trees, fresh fruits, and vibrant landscapes during the winter season.",
   },
   {
     name: "Chenrezig Statue",
     tag: "Religious",
-    image: "https://unsplash.com/photos/-0GJ4CIHtEg/download?force=true&w=1800",
+    image: "https://images.pexels.com/photos/32313654/pexels-photo-32313654.jpeg?auto=compress&cs=tinysrgb&w=800",
     short: "A 137 feet tall statue representing Avalokiteshvara, located beside India's first glass skywalk.",
   },
   {
     name: "Sidekeong Tulku Bird Park",
     tag: "Nature",
-    image: "https://images.unsplash.com/photo-1564507004663-b6dfb3c824d5?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/15138292/pexels-photo-15138292.jpeg?auto=compress&cs=tinysrgb&w=800",
     short: "A peaceful nature park showcasing various Himalayan bird species in a natural forest environment.",
   },
 ];
@@ -146,21 +146,21 @@ const tourPackages = [
     price: "₹12,500",
     duration: "6 Days/ 5 Night",
     tag: "Family-Friendly",
-    image: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=600&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/33547415/pexels-photo-33547415.jpeg?auto=compress&cs=tinysrgb&w=600",
   },
   {
     title: "Gangtok Pelling Darjeeling Tour Package – 7 Nights 8 Days",
     price: "₹16,200",
     duration: "8 Days/ 7 Nights",
     tag: "Family-Friendly",
-    image: "/images/pelling-snow.jpg",
+    image: "https://images.pexels.com/photos/34032592/pexels-photo-34032592.jpeg?auto=compress&cs=tinysrgb&w=600",
   },
   {
     title: "Pelling & Darjeeling 5 Days 4 Nights Tour Package",
     price: "₹9,200",
     duration: "5 Days/ 4 Night",
     tag: "Family-Friendly",
-    image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=600&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/33248529/pexels-photo-33248529.jpeg?auto=compress&cs=tinysrgb&w=600",
   },
 ];
 
@@ -187,9 +187,9 @@ export default function PellingPage() {
       <Navbar />
 
       {/* ══════════ 1. HERO ══════════ */}
-      <section className="relative h-[85vh] min-h-[600px] overflow-hidden">
+      <section className="relative h-[65vh] md:h-[85vh] min-h-[450px] md:min-h-[600px] overflow-hidden">
         <Image
-          src="https://unsplash.com/photos/-0GJ4CIHtEg/download?force=true&w=1800"
+          src="https://images.pexels.com/photos/33547415/pexels-photo-33547415.jpeg?auto=compress&cs=tinysrgb&w=1800"
           alt="Aerial view of a mountain with a statue on top in Pelling"
           fill
           className="object-cover"
@@ -198,7 +198,7 @@ export default function PellingPage() {
         <div className="absolute inset-0 bg-gradient-to-t from-[#1a1914]/60 via-[#1a1914]/15 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#1a1914]/40 to-transparent" />
 
-        <div className="absolute inset-0 flex flex-col justify-end px-6 md:px-16 lg:px-24 pb-16 md:pb-20">
+        <div className="absolute inset-0 flex flex-col justify-end px-5 md:px-16 lg:px-24 pb-10 md:pb-20">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
@@ -210,33 +210,33 @@ export default function PellingPage() {
                 West Sikkim, India
               </span>
             </div>
-            <h1 className="font-roman text-6xl md:text-8xl lg:text-9xl font-medium text-white tracking-[0.1em] uppercase">
+            <h1 className="font-roman text-4xl md:text-8xl lg:text-9xl font-medium text-white tracking-[0.1em] uppercase">
               Pelling
             </h1>
-            <p className="font-roman text-xl md:text-2xl italic text-[#d5cab5] mt-2 tracking-wide">
+            <p className="font-roman text-base md:text-2xl italic text-[#d5cab5] mt-2 tracking-wide">
               Gateway to Kanchenjunga
             </p>
           </motion.div>
         </div>
 
         {/* Decorative corner frames */}
-        <div className="absolute top-20 left-6 w-20 h-20 border-t border-l border-white/10" />
-        <div className="absolute bottom-6 right-6 w-20 h-20 border-b border-r border-white/10" />
+        <div className="absolute top-20 left-6 w-12 h-12 md:w-20 md:h-20 border-t border-l border-white/10" />
+        <div className="absolute bottom-6 right-6 w-12 h-12 md:w-20 md:h-20 border-b border-r border-white/10" />
       </section>
 
       {/* ══════════ 2. ABOUT + QUICK INFO ══════════ */}
-      <section className="bg-[#f4ebd9] py-20 md:py-28 px-6 md:px-16 lg:px-24">
+      <section className="bg-[#f4ebd9] py-14 md:py-28 px-5 md:px-16 lg:px-24">
         <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-[1.3fr_1fr] gap-16 lg:gap-24">
+          <div className="grid lg:grid-cols-[1.3fr_1fr] gap-10 lg:gap-24">
             {/* About text */}
             <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0}>
               <div className="flex items-center gap-3 mb-4">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ae9e85" strokeWidth="1.5">
-                  <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" strokeLinecap="round"/>
+                  <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" strokeLinecap="round" />
                 </svg>
                 <span className="text-[10px] tracking-[0.3em] uppercase text-[#ae9e85]">About Pelling Holidays</span>
               </div>
-              <h2 className="font-roman text-3xl md:text-4xl font-medium text-[#3d3831] tracking-wide mb-6">
+              <h2 className="font-roman text-3xl md:text-4xl font-medium text-[#3d3831] tracking-wide mb-4 md:mb-6">
                 Premium Pelling Tour Packages & Kanchenjunga Retreats
               </h2>
               <div className="space-y-4">
@@ -271,7 +271,7 @@ export default function PellingPage() {
               >
                 Explore Tours
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </Link>
             </motion.div>
@@ -280,9 +280,9 @@ export default function PellingPage() {
       </section>
 
       {/* ══════════ 3. WHY VISIT ══════════ */}
-      <section className="bg-[#1a1914] py-20 md:py-28 px-6 md:px-16 lg:px-24 text-[#f0e7d6]">
+      <section className="bg-[#1a1914] py-14 md:py-28 px-5 md:px-16 lg:px-24 text-[#f0e7d6]">
         <div className="max-w-6xl mx-auto">
-          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} className="text-center mb-16">
+          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} className="text-center mb-10 md:mb-16">
             <span className="text-[10px] tracking-[0.3em] uppercase text-[#ae9e85]">Discover What Makes It Special</span>
             <h2 className="font-roman text-3xl md:text-5xl font-medium text-[#f0e7d6] tracking-wide mt-3">
               Why Visit Pelling?
@@ -293,7 +293,7 @@ export default function PellingPage() {
             <div className="w-12 h-px bg-[#ae9e85] mx-auto mt-6" />
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-4 md:gap-8">
             {whyVisit.map((item, i) => (
               <motion.div
                 key={item.title}
@@ -302,7 +302,7 @@ export default function PellingPage() {
                 whileInView="visible"
                 viewport={{ once: true }}
                 custom={i * 0.15}
-                className="group border border-white/8 p-8 rounded-sm hover:border-[#ae9e85]/30 transition-colors duration-500 relative overflow-hidden"
+                className="group border border-white/8 p-5 md:p-8 rounded-sm hover:border-[#ae9e85]/30 transition-colors duration-500 relative overflow-hidden"
               >
                 <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#ae9e85]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <span className="text-4xl mb-5 block">{item.icon}</span>
@@ -315,9 +315,9 @@ export default function PellingPage() {
       </section>
 
       {/* ══════════ 4. TOP ATTRACTIONS ══════════ */}
-      <section className="bg-[#f4ebd9] py-20 md:py-28 px-6 md:px-16 lg:px-24">
+      <section className="bg-[#f4ebd9] py-14 md:py-28 px-5 md:px-16 lg:px-24">
         <div className="max-w-7xl mx-auto">
-          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} className="text-center mb-16">
+          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} className="text-center mb-10 md:mb-16">
             <span className="text-[10px] tracking-[0.3em] uppercase text-[#ae9e85]">Must-Visit Places</span>
             <h2 className="font-roman text-3xl md:text-5xl font-medium text-[#3d3831] tracking-wide mt-3">
               Top Attractions
@@ -339,7 +339,7 @@ export default function PellingPage() {
                 custom={(i % 3) * 0.1}
                 className="group relative overflow-hidden rounded-sm bg-white/30 border border-[#d5cab5]/30 hover:shadow-lg transition-shadow duration-500"
               >
-                <div className="relative h-52 overflow-hidden">
+                <div className="relative h-40 md:h-52 overflow-hidden">
                   <Image
                     src={attr.image}
                     alt={attr.name}
@@ -376,9 +376,9 @@ export default function PellingPage() {
       </section>
 
       {/* ══════════ 5. BEST TIME TO VISIT ══════════ */}
-      <section className="bg-[#efe5d0] py-20 md:py-28 px-6 md:px-16 lg:px-24">
+      <section className="bg-[#efe5d0] py-14 md:py-28 px-5 md:px-16 lg:px-24">
         <div className="max-w-6xl mx-auto">
-          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} className="text-center mb-16">
+          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} className="text-center mb-10 md:mb-16">
             <span className="text-[10px] tracking-[0.3em] uppercase text-[#ae9e85]">Seasonal Guide</span>
             <h2 className="font-roman text-3xl md:text-5xl font-medium text-[#3d3831] tracking-wide mt-3">
               Best Time to Visit
@@ -398,11 +398,10 @@ export default function PellingPage() {
                 whileInView="visible"
                 viewport={{ once: true }}
                 custom={i * 0.1}
-                className={`relative p-6 rounded-sm border transition-all duration-300 hover:shadow-lg ${
-                  s.recommended
-                    ? "bg-[#3d3831] text-[#f0e7d6] border-[#ae9e85]/30"
-                    : "bg-white/40 text-[#3d3831] border-[#d5cab5]/40 hover:bg-white/60"
-                }`}
+                className={`relative p-6 rounded-sm border transition-all duration-300 hover:shadow-lg ${s.recommended
+                  ? "bg-[#3d3831] text-[#f0e7d6] border-[#ae9e85]/30"
+                  : "bg-white/40 text-[#3d3831] border-[#d5cab5]/40 hover:bg-white/60"
+                  }`}
               >
                 {s.recommended && (
                   <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#ae9e85] text-[#1a1914] text-[8px] tracking-[0.25em] uppercase font-bold px-3 py-1 rounded-sm">
@@ -439,9 +438,9 @@ export default function PellingPage() {
       </section>
 
       {/* ══════════ 6. TOUR PACKAGES ══════════ */}
-      <section id="packages" className="bg-[#f4ebd9] py-20 md:py-28 px-6 md:px-16 lg:px-24">
+      <section id="packages" className="bg-[#f4ebd9] py-14 md:py-28 px-5 md:px-16 lg:px-24">
         <div className="max-w-7xl mx-auto">
-          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} className="text-center mb-16">
+          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} className="text-center mb-10 md:mb-16">
             <span className="text-[10px] tracking-[0.3em] uppercase text-[#ae9e85]">Curated Experiences</span>
             <h2 className="font-roman text-3xl md:text-5xl font-medium text-[#3d3831] tracking-wide mt-3">
               Explore Tour Packages
@@ -482,8 +481,8 @@ export default function PellingPage() {
                   <h3 className="font-roman text-lg font-semibold text-[#3d3831] mb-3 leading-snug">{pkg.title}</h3>
                   <div className="flex items-center gap-2 text-xs tracking-[0.1em] uppercase text-[#ae9e85] mb-4">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                      <circle cx="12" cy="12" r="10"/>
-                      <path d="M12 6v6l4 2" strokeLinecap="round"/>
+                      <circle cx="12" cy="12" r="10" />
+                      <path d="M12 6v6l4 2" strokeLinecap="round" />
                     </svg>
                     {pkg.duration}
                   </div>
@@ -503,9 +502,9 @@ export default function PellingPage() {
       </section>
 
       {/* ══════════ 7. CTA BANNER ══════════ */}
-      <section className="relative py-24 md:py-32 overflow-hidden">
+      <section className="relative py-16 md:py-32 overflow-hidden">
         <Image
-          src="/images/pelling-snow.jpg"
+          src="https://images.pexels.com/photos/30156563/pexels-photo-30156563.jpeg?auto=compress&cs=tinysrgb&w=1600"
           alt="Snow covered mountain under blue sky during daytime in Pelling"
           fill
           className="object-cover"
@@ -525,7 +524,7 @@ export default function PellingPage() {
             >
               View Tour Packages
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </Link>
           </motion.div>

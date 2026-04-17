@@ -13,7 +13,7 @@ export default function DestinationsFooter() {
         {/* Sunburst Icon */}
         <div className="flex-shrink-0 text-[#ae9e85]">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" strokeLinecap="round"/>
+            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" strokeLinecap="round" />
           </svg>
         </div>
 
@@ -39,10 +39,10 @@ export default function DestinationsFooter() {
         </h3>
 
         <div className="flex flex-col items-center select-none py-4">
-          <span className="font-script text-5xl md:text-7xl lg:text-8xl text-[#927854] -mb-8 z-10 drop-shadow-[0_2px_2px_rgba(255,255,255,0.8)] italic">
+          <span className="font-script text-5xl md:text-7xl lg:text-8xl -mb-8 z-10 drop-shadow-[0_2px_2px_rgba(255,255,255,0.8)] italic gradient-text-trending">
             Activities
           </span>
-          <h2 className="font-roman text-5xl md:text-8xl lg:text-[7.5rem] font-medium tracking-[0.15em] text-[#3d3831] uppercase leading-none drop-shadow-[0_4px_4px_rgba(0,0,0,0.1)]">
+          <h2 className="font-roman text-5xl md:text-8xl lg:text-[7.5rem] font-medium tracking-[0.15em] uppercase leading-none drop-shadow-[0_4px_4px_rgba(0,0,0,0.1)] gradient-text-destination">
             and Foods
           </h2>
         </div>

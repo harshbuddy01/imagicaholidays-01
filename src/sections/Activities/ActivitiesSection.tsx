@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
@@ -96,26 +96,152 @@ const activities: Activity[] = [
 /* ── Component ────────────────────────────────────────────── */
 export default function ActivitiesSection() {
   const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  // Auto-advance on mobile
+  useEffect(() => {
+    if (!isMobile) return;
+    const timer = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % activities.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [isMobile, activeIndex]);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    const diff = touchStartX.current - touchEndX.current;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) {
+        setActiveIndex((prev) => (prev + 1) % activities.length);
+      } else {
+        setActiveIndex((prev) => (prev - 1 + activities.length) % activities.length);
+      }
+    }
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.targetTouches[0].clientX;
+  };
 
   return (
     <section
       id="activities-section"
-      className="relative w-full bg-[#f4ebd9] py-20 md:py-28 px-4 md:px-12 lg:px-24 overflow-hidden text-[#5c544b]"
+      className="relative w-full bg-[#f4ebd9] py-14 md:py-28 px-4 md:px-12 lg:px-24 overflow-hidden text-[#5c544b]"
     >
       {/* Decorative vertical dots */}
-      <div className="flex flex-col items-center gap-1 mb-16">
+      <div className="flex flex-col items-center gap-1 mb-8 md:mb-16">
         <div className="w-1 h-1 rounded-full bg-[#ae9e85]" />
         <div className="w-1 h-1 rounded-full bg-[#ae9e85]" />
         <div className="w-1 h-1 rounded-full bg-[#ae9e85]" />
       </div>
 
-      {/* ── Hover-expand panels ── */}
+      {/* ── Mobile: Card-based swiper ── */}
+      <div className="md:hidden">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="relative w-full"
+        >
+          {/* Main card */}
+          <div
+            className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden shadow-xl"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeIndex}
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -50 }}
+                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                className="absolute inset-0"
+              >
+                <Image
+                  src={activities[activeIndex].image}
+                  alt={activities[activeIndex].alt}
+                  fill
+                  className="object-cover"
+                  sizes="100vw"
+                />
+                {/* Gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1a1914]/80 via-[#1a1914]/20 to-transparent" />
+                {/* Content */}
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-6 h-px bg-[#d5cab5]" />
+                    <span className="text-[10px] tracking-[0.3em] uppercase text-[#d5cab5]">
+                      {activities[activeIndex].subtitle}
+                    </span>
+                  </div>
+                  <h3 className="font-roman text-3xl font-semibold text-[#f4ebd9] tracking-wide">
+                    {activities[activeIndex].title}
+                  </h3>
+                  <div className="w-10 h-[1.5px] bg-[#ae9e85] mt-3 rounded-full" />
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Mobile dot indicators */}
+          <div className="flex items-center justify-center gap-2 mt-6">
+            {activities.map((_, i) => (
+              <button
+                key={i}
+                aria-label={`View ${activities[i].title}`}
+                onClick={() => setActiveIndex(i)}
+                className={cn(
+                  "transition-all duration-300 rounded-full",
+                  i === activeIndex
+                    ? "w-6 h-1.5 bg-[#8d6a2f]"
+                    : "w-1.5 h-1.5 bg-[#d5cab5]"
+                )}
+              />
+            ))}
+          </div>
+
+          {/* Mobile: Activity name strip */}
+          <div className="flex gap-3 mt-5 overflow-x-auto no-scrollbar pb-2">
+            {activities.map((activity, i) => (
+              <button
+                key={activity.title}
+                onClick={() => setActiveIndex(i)}
+                className={cn(
+                  "flex-shrink-0 px-3 py-1.5 rounded-full text-[9px] uppercase tracking-[0.15em] font-medium transition-all border",
+                  i === activeIndex
+                    ? "bg-[#3d3831] text-[#f4ebd9] border-[#3d3831]"
+                    : "bg-transparent text-[#aa9a7e] border-[#d5cab5]/50"
+                )}
+              >
+                {activity.title}
+              </button>
+            ))}
+          </div>
+        </motion.div>
+      </div>
+
+      {/* ── Desktop: Hover-expand panels ── */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className="relative w-full max-w-7xl mx-auto"
+        className="relative w-full max-w-7xl mx-auto hidden md:block"
       >
         <div className="flex w-full items-center justify-center gap-1 md:gap-1.5">
           {activities.map((activity, index) => {
@@ -208,7 +334,7 @@ export default function ActivitiesSection() {
           })}
         </div>
 
-        {/* ── Bottom indicators ── */}
+        {/* ── Bottom indicators (desktop) ── */}
         <div className="flex items-center justify-center gap-4 mt-10">
           {activities.map((activity, i) => (
             <button
@@ -240,7 +366,7 @@ export default function ActivitiesSection() {
       </motion.div>
 
       {/* Tiny diamond decoration at bottom */}
-      <div className="flex justify-center mt-14">
+      <div className="flex justify-center mt-8 md:mt-14">
         <svg width="8" height="8" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" fill="#b5a993" />
         </svg>
