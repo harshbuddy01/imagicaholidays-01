@@ -39,6 +39,26 @@ export default function JourneyDetailsPage() {
         setExpandedDay(expandedDay === day ? null : day);
     };
 
+    // Dynamic date helper: Day 1 = today, Day 2 = tomorrow, etc.
+    const getDynamicDate = (dayIndex: number) => {
+        const today = new Date();
+        const date = new Date(today);
+        date.setDate(today.getDate() + dayIndex);
+        const day = date.getDate();
+        const month = date.toLocaleString('en-US', { month: 'short' }).toUpperCase();
+        return `${day} ${month}`;
+    };
+
+    const getDynamicFullDate = (dayIndex: number) => {
+        const today = new Date();
+        const date = new Date(today);
+        date.setDate(today.getDate() + dayIndex);
+        const day = date.getDate();
+        const month = date.toLocaleString('en-US', { month: 'short' });
+        const year = date.getFullYear();
+        return `${day} ${month} ${year}`;
+    };
+
     return (
         <div className="bg-[#f8f5f0] min-h-screen pt-24 font-body">
             <Navbar />
@@ -168,7 +188,7 @@ export default function JourneyDetailsPage() {
                                                                     <line x1="8" y1="2" x2="8" y2="6" />
                                                                     <line x1="3" y1="10" x2="21" y2="10" />
                                                                 </svg>
-                                                                <span className="text-[10px] font-bold uppercase tracking-widest text-[#5c544b]">{dayData.date}</span>
+                                                                <span className="text-[10px] font-bold uppercase tracking-widest text-[#5c544b]">{getDynamicDate(idx)}</span>
                                                             </div>
                                                             <div className="w-px h-3 bg-[#d5cab5]" />
                                                             <div className="flex items-center gap-1.5 grayscale opacity-70">
@@ -213,68 +233,79 @@ export default function JourneyDetailsPage() {
                         </div>
                     </div>
 
-                    {/* Inclusions Section (Screenshot 7) */}
-                    <div id="inclusions" className="mt-16 border border-[#a5813b]/30 p-8 md:p-12 relative bg-[#fdfdfc] mb-12">
-                        {/* Decorative Top Accent */}
-                        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#f8f5f0] px-4">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#a5813b" strokeWidth="1">
-                                <path d="M12 2L15 9l7 1-5 5.5L15.5 22 12 18l-3.5 4L10 15.5 5 10l7-1 3-7z" strokeLinejoin="round" />
-                            </svg>
-                        </div>
+                    {/* All Journeys Include Section (Handcrafted Redesign) */}
+                    <div id="inclusions" className="mt-20 mb-20 relative px-4 sm:px-0">
+                        <div className="bg-[#fcfaf7] border-[0.5px] border-[#a5813b]/30 p-10 md:p-16 relative overflow-hidden rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.03)]">
+                            {/* Handcrafted Double Border Aesthetic */}
+                            <div className="absolute inset-4 border border-[#a5813b]/10 rounded-[1.5rem] pointer-events-none" />
 
-                        <h2 className="font-roman text-3xl text-[#1a1914] mb-8">All Journeys Include</h2>
+                            {/* Floral Corner Ornaments (SVG) */}
+                            <div className="absolute top-0 left-0 w-32 h-32 opacity-[0.08] text-[#a5813b] translate-x-[-10%] translate-y-[-10%]">
+                                <svg viewBox="0 0 100 100" fill="currentColor">
+                                    <path d="M10,10 Q30,0 50,10 Q70,20 90,10 Q100,30 90,50 Q80,70 90,90 Q70,100 50,90 Q30,80 10,90 Q0,70 10,50 Q20,30 10,10" />
+                                    <path d="M50,10 Q50,50 90,50 M50,90 Q50,50 10,50" stroke="currentColor" strokeWidth="0.5" fill="none" />
+                                </svg>
+                            </div>
 
-                        <div className="grid md:grid-cols-2 gap-x-12 gap-y-6">
-                            <ul className="space-y-4">
-                                <li className="flex items-start gap-4">
-                                    <div className="w-1 h-1 rounded-full bg-[#1a1914] mt-2 flex-shrink-0" />
-                                    <span className="text-[#5c544b] text-[15px]">Nine culinary experiences</span>
-                                </li>
-                                <li className="flex items-start gap-4">
-                                    <div className="w-1 h-1 rounded-full bg-[#1a1914] mt-2 flex-shrink-0" />
-                                    <span className="text-[#5c544b] text-[15px]">Unlimited fine beverages</span>
-                                </li>
-                                <li className="flex items-start gap-4">
-                                    <div className="w-1 h-1 rounded-full bg-[#1a1914] mt-2 flex-shrink-0" />
-                                    <span className="text-[#5c544b] text-[15px]">Thermal spa access</span>
-                                </li>
-                                <li className="flex items-start gap-4">
-                                    <div className="w-1 h-1 rounded-full bg-[#1a1914] mt-2 flex-shrink-0" />
-                                    <span className="text-[#5c544b] text-[15px]">Complimentary high-speed Wi-Fi</span>
-                                </li>
-                            </ul>
+                            <div className="relative z-10 text-center mb-16">
+                                <div className="flex justify-center items-center gap-4 mb-4">
+                                    <span className="w-12 h-px bg-[#a5813b]/30" />
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#a5813b" strokeWidth="1" className="opacity-60">
+                                        <path d="M12 2L15 9l7 1-5 5.5L15.5 22 12 18l-3.5 4L10 15.5 5 10l7-1 3-7z" />
+                                    </svg>
+                                    <span className="w-12 h-px bg-[#a5813b]/30" />
+                                </div>
+                                <h2 className="font-roman text-4xl text-[#1a1914] mb-4">All Journeys Include</h2>
+                                <p className="text-[#a5813b] text-xs font-bold uppercase tracking-[0.3em] opacity-80">The Imagica Standard of Excellence</p>
+                            </div>
 
-                            <ul className="space-y-4">
-                                <li className="flex items-start gap-4">
-                                    <div className="w-1 h-1 rounded-full bg-[#1a1914] mt-2 flex-shrink-0" />
-                                    <span className="text-[#5c544b] text-[15px]">Wellbeing and fitness programmes</span>
-                                </li>
-                                <li className="flex items-start gap-4">
-                                    <div className="w-1 h-1 rounded-full bg-[#1a1914] mt-2 flex-shrink-0" />
-                                    <span className="text-[#5c544b] text-[15px]">All on-board gratuities</span>
-                                </li>
-                                <li className="flex items-start gap-4">
-                                    <div className="w-1 h-1 rounded-full bg-[#1a1914] mt-2 flex-shrink-0" />
-                                    <span className="text-[#5c544b] text-[15px]">Dedicated concierge service</span>
-                                </li>
-                            </ul>
-                        </div>
+                            <div className="relative z-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-12">
+                                {[
+                                    { title: "Private Concierge", desc: "24/7 dedicated support throughout your journey.", icon: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" },
+                                    { title: "Heritage Stays", desc: "Boutique accommodations in hand-selected luxury properties.", icon: "M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" },
+                                    { title: "Private Transfers", desc: "Seamless travel in premium, private vehicles.", icon: "M18.36 6.64a9 9 0 1 1-12.73 0" },
+                                    { title: "Authentic Immersions", desc: "Private culinary experiences and local cultural encounters.", icon: "M12 2L2 7l10 5 10-5-10-5z" },
+                                    { title: "All-Inclusive Access", desc: "Worry-free entry to all planned monuments and activities.", icon: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" },
+                                    { title: "Gateway Assistance", desc: "Warm welcome and assistance at all arrival/departure points.", icon: "M15 10l-4 4l6 6m-4-4l-4 4l-6-6" }
+                                ].map((item, id) => (
+                                    <div key={id} className="group/item">
+                                        <div className="flex items-center gap-4 mb-3">
+                                            <div className="w-10 h-10 rounded-full bg-[#a5813b]/5 border border-[#a5813b]/20 flex items-center justify-center text-[#a5813b] group-hover/item:bg-[#a5813b] group-hover/item:text-white transition-all duration-500">
+                                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
+                                                    <path d={item.icon} strokeLinecap="round" strokeLinejoin="round" />
+                                                </svg>
+                                            </div>
+                                            <h4 className="font-roman text-xl text-[#1a1914]">{item.title}</h4>
+                                        </div>
+                                        <p className="text-[14px] text-[#5c544b] leading-relaxed pl-14">
+                                            {item.desc}
+                                        </p>
+                                    </div>
+                                ))}
+                            </div>
 
-                        <div className="mt-12 text-center text-xs text-[#a09383]">
-                            Plus <span className="text-[#a5813b] underline cursor-pointer hover:text-[#1a1914] transition-colors">additional benefits</span> for guests of Ocean Grand Terrace Suites.
+                            {/* Center Small Flower Accent */}
+                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.02] pointer-events-none">
+                                <svg width="400" height="400" viewBox="0 0 100 100" fill="#a5813b">
+                                    <circle cx="50" cy="50" r="10" />
+                                    <path d="M50,10 Q60,30 50,50 Q40,30 50,10" />
+                                    <path d="M50,90 Q60,70 50,50 Q40,70 50,90" />
+                                    <path d="M10,50 Q30,40 50,50 Q30,60 10,50" />
+                                    <path d="M90,50 Q70,40 50,50 Q70,60 90,50" />
+                                </svg>
+                            </div>
                         </div>
                     </div>
 
                 </div>
 
-                {/* Right Column (Sticky Details Panel - Screenshot 5) */}
                 {/* Right Column (Handcrafted Sticky Details Panel) */}
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="w-full lg:w-[42%] xl:w-[38%] lg:sticky lg:top-[140px] bg-[#fcfaf7] rounded-[2.5rem] border-2 border-[#e5ded5] shadow-[0_30px_60px_rgba(0,0,0,0.06)] overflow-hidden flex flex-col group/sidebar transition-all duration-700 hover:shadow-[0_40px_80px_rgba(0,0,0,0.1)] mb-12"
+                    className="w-full lg:w-[42%] xl:w-[38%] lg:sticky lg:top-[140px] bg-[#fcfaf7] rounded-[2.5rem] border-2 border-[#e5ded5] shadow-[0_30px_60px_rgba(0,0,0,0.06)] flex flex-col group/sidebar transition-all duration-700 hover:shadow-[0_40px_80px_rgba(0,0,0,0.1)] mb-12"
                 >
 
                     <div className="p-8 lg:p-12 flex-grow">
@@ -315,12 +346,12 @@ export default function JourneyDetailsPage() {
                                     <div>
                                         <p className="text-[8px] tracking-[0.2em] text-[#a5813b] font-black uppercase mb-2">Departure</p>
                                         <h4 className="font-roman text-lg text-[#1a1914] leading-tight mb-0.5">{journey.departurePort}</h4>
-                                        <p className="text-[11px] text-[#5c544b] font-medium serif-italic tracking-wide">{journey.departureDate}</p>
+                                        <p className="text-[11px] text-[#5c544b] font-medium serif-italic tracking-wide">{getDynamicFullDate(0)}</p>
                                     </div>
                                     <div className="text-right">
                                         <p className="text-[8px] tracking-[0.2em] text-[#a5813b] font-black uppercase mb-2 text-right">To</p>
                                         <h4 className="font-roman text-lg text-[#1a1914] leading-tight mb-0.5">{journey.returnPort}</h4>
-                                        <p className="text-[11px] text-[#5c544b] font-medium serif-italic tracking-wide">{journey.returnDate}</p>
+                                        <p className="text-[11px] text-[#5c544b] font-medium serif-italic tracking-wide">{getDynamicFullDate(journey.itinerary.length - 1)}</p>
                                     </div>
                                     <div className="col-span-2 pt-6 border-t border-dashed border-[#d5cab5] flex justify-between items-end">
                                         <div>
@@ -382,8 +413,8 @@ export default function JourneyDetailsPage() {
                         </div>
                     </div>
 
-                    {/* Action Footer (Dark Theme with Pro Accents) */}
-                    <div className="bg-[#1a1914] text-white p-10 pt-12 relative overflow-hidden">
+                    {/* Action Footer (Sticky Bottom within Sidebar) */}
+                    <div className="bg-[#1a1914] text-white p-10 pt-12 relative overflow-hidden sticky bottom-0 z-20 rounded-b-[2.5rem] border-t border-white/5 shadow-[0_-20px_40px_rgba(0,0,0,0.1)]">
                         {/* Decorative Background Accent */}
                         <div className="absolute bottom-0 right-0 opacity-[0.03] translate-x-1/4 translate-y-1/4">
                             <span className="font-roman text-[10rem] font-bold tracking-tighter uppercase leading-none">IMAGICA</span>
