@@ -91,18 +91,20 @@ export default function Navbar() {
           }`}
       >
         <div className="content-shell flex items-center justify-between px-4 md:px-1">
-          <Link href="/" className="relative z-[60] flex items-center justify-center">
-            <Image
-              src="/logo_transparent.png"
-              alt="Imagica Holidays"
-              width={160}
-              height={50}
-              className="w-32 md:w-40 object-contain drop-shadow-md"
-              priority
-            />
+          <Link href="/" className="relative z-[60] flex flex-col items-center justify-center gap-1 group">
+            <div className="relative w-16 md:w-20 aspect-[1.5]">
+              <Image
+                src="/logo_icon.png"
+                alt="Imagica Holidays Logo"
+                fill
+                className="object-contain drop-shadow-[0_2px_4px_rgba(0,0,0,0.1)] group-hover:scale-105 transition-transform duration-500"
+                priority
+              />
+            </div>
+            <span className="font-serif text-[10px] tracking-[0.25em] text-white md:text-[13px] md:tracking-[0.3em] font-medium mt-[-4px]">
+              IMAGICAHOLIDAYS
+            </span>
           </Link>
-
-          {/* Desktop nav */}
           <nav className="hidden items-center gap-8 md:flex">
             {links.map((link) => (
               <div key={link.href} className="relative group">
@@ -171,127 +173,129 @@ export default function Navbar() {
           </button>
         </div>
 
-      </header>
+      </header >
       {/* ─── Full-screen mobile menu ─── */}
       <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 z-[9999] bg-[#0e0d0a] md:hidden flex flex-col"
-          >
-            {/* Top bar in overlay */}
-            <div className="flex items-center justify-between px-4 py-5">
-              <Link href="/" onClick={() => setOpen(false)} className="font-serif text-lg tracking-[0.14em] text-white">
-                IMAGICAHOLIDAYS
-              </Link>
-              <button
-                onClick={() => setOpen(false)}
-                aria-label="Close menu"
-                className="flex flex-col items-center justify-center w-10 h-10"
-              >
-                <motion.span animate={{ rotate: 45, y: 0 }} className="block w-5 h-[1.5px] bg-white rounded-full" />
-                <motion.span animate={{ opacity: 0 }} className="block w-5 h-[1.5px] bg-white rounded-full my-[3px]" />
-                <motion.span animate={{ rotate: -45, y: 0 }} className="block w-5 h-[1.5px] bg-white rounded-full" />
-              </button>
-            </div>
-
-            {/* Nav links */}
-            <nav className="flex-1 flex flex-col justify-center px-8 gap-1 -mt-16">
-              {links.map((link, i) => (
-                <motion.div
-                  key={link.href}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.06, duration: 0.4 }}
-                >
-                  {link.dropdown ? (
-                    <>
-                      <button
-                        onClick={() => setDestOpen((prev) => !prev)}
-                        className="w-full flex items-center justify-between py-4 border-b border-white/8"
-                      >
-                        <span className="text-2xl font-serif tracking-[0.1em] text-white/90">
-                          {link.label}
-                        </span>
-                        <motion.svg
-                          animate={{ rotate: destOpen ? 180 : 0 }}
-                          transition={{ duration: 0.3 }}
-                          width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5"
-                        >
-                          <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
-                        </motion.svg>
-                      </button>
-
-                      <AnimatePresence>
-                        {destOpen && (
-                          <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: "auto", opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.3 }}
-                            className="overflow-hidden"
-                          >
-                            <div className="grid grid-cols-2 gap-x-6 gap-y-3 py-4 pl-4">
-                              {link.dropdown.map((item) => (
-                                <Link
-                                  key={item.href}
-                                  href={item.href}
-                                  onClick={() => setOpen(false)}
-                                  className="text-sm text-[#ae9e85] hover:text-white transition-colors"
-                                >
-                                  {item.label}
-                                </Link>
-                              ))}
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </>
-                  ) : (
-                    <Link
-                      href={link.href}
-                      onClick={() => setOpen(false)}
-                      className="block py-4 border-b border-white/8 text-2xl font-serif tracking-[0.1em] text-white/90"
-                    >
-                      {link.label}
-                    </Link>
-                  )}
-                </motion.div>
-              ))}
-
-              {/* Reserve button in mobile menu */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.4 }}
-                className="mt-8"
-              >
-                <Link
-                  href="/reserve"
-                  onClick={() => setOpen(false)}
-                  className="flex items-center justify-center gap-3 w-full py-4 bg-gradient-to-r from-[#8a6b2d] via-[#a5813b] to-[#8a6b2d] rounded-full text-[0.7rem] font-bold uppercase tracking-[0.25em] text-white shadow-[0_0_20px_rgba(216,190,143,0.3)]"
-                >
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                  Reserve Now
+        {
+          open && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              className="fixed inset-0 z-[9999] bg-[#0e0d0a] md:hidden flex flex-col"
+            >
+              {/* Top bar in overlay */}
+              <div className="flex items-center justify-between px-4 py-5">
+                <Link href="/" onClick={() => setOpen(false)} className="font-serif text-lg tracking-[0.14em] text-white">
+                  IMAGICAHOLIDAYS
                 </Link>
-              </motion.div>
-            </nav>
+                <button
+                  onClick={() => setOpen(false)}
+                  aria-label="Close menu"
+                  className="flex flex-col items-center justify-center w-10 h-10"
+                >
+                  <motion.span animate={{ rotate: 45, y: 0 }} className="block w-5 h-[1.5px] bg-white rounded-full" />
+                  <motion.span animate={{ opacity: 0 }} className="block w-5 h-[1.5px] bg-white rounded-full my-[3px]" />
+                  <motion.span animate={{ rotate: -45, y: 0 }} className="block w-5 h-[1.5px] bg-white rounded-full" />
+                </button>
+              </div>
 
-            {/* Bottom decorative */}
-            <div className="px-8 pb-8">
-              <div className="w-full h-px bg-gradient-to-r from-transparent via-[#ae9e85]/30 to-transparent mb-4" />
-              <p className="text-[10px] text-[#7a705e] tracking-[0.2em] uppercase text-center">
-                Curating Extraordinary Journeys
-              </p>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+              {/* Nav links */}
+              <nav className="flex-1 flex flex-col justify-center px-8 gap-1 -mt-16">
+                {links.map((link, i) => (
+                  <motion.div
+                    key={link.href}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.06, duration: 0.4 }}
+                  >
+                    {link.dropdown ? (
+                      <>
+                        <button
+                          onClick={() => setDestOpen((prev) => !prev)}
+                          className="w-full flex items-center justify-between py-4 border-b border-white/8"
+                        >
+                          <span className="text-2xl font-serif tracking-[0.1em] text-white/90">
+                            {link.label}
+                          </span>
+                          <motion.svg
+                            animate={{ rotate: destOpen ? 180 : 0 }}
+                            transition={{ duration: 0.3 }}
+                            width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5"
+                          >
+                            <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
+                          </motion.svg>
+                        </button>
+
+                        <AnimatePresence>
+                          {destOpen && (
+                            <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: "auto", opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              transition={{ duration: 0.3 }}
+                              className="overflow-hidden"
+                            >
+                              <div className="grid grid-cols-2 gap-x-6 gap-y-3 py-4 pl-4">
+                                {link.dropdown.map((item) => (
+                                  <Link
+                                    key={item.href}
+                                    href={item.href}
+                                    onClick={() => setOpen(false)}
+                                    className="text-sm text-[#ae9e85] hover:text-white transition-colors"
+                                  >
+                                    {item.label}
+                                  </Link>
+                                ))}
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </>
+                    ) : (
+                      <Link
+                        href={link.href}
+                        onClick={() => setOpen(false)}
+                        className="block py-4 border-b border-white/8 text-2xl font-serif tracking-[0.1em] text-white/90"
+                      >
+                        {link.label}
+                      </Link>
+                    )}
+                  </motion.div>
+                ))}
+
+                {/* Reserve button in mobile menu */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4, duration: 0.4 }}
+                  className="mt-8"
+                >
+                  <Link
+                    href="/reserve"
+                    onClick={() => setOpen(false)}
+                    className="flex items-center justify-center gap-3 w-full py-4 bg-gradient-to-r from-[#8a6b2d] via-[#a5813b] to-[#8a6b2d] rounded-full text-[0.7rem] font-bold uppercase tracking-[0.25em] text-white shadow-[0_0_20px_rgba(216,190,143,0.3)]"
+                  >
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    Reserve Now
+                  </Link>
+                </motion.div>
+              </nav>
+
+              {/* Bottom decorative */}
+              <div className="px-8 pb-8">
+                <div className="w-full h-px bg-gradient-to-r from-transparent via-[#ae9e85]/30 to-transparent mb-4" />
+                <p className="text-[10px] text-[#7a705e] tracking-[0.2em] uppercase text-center">
+                  Curating Extraordinary Journeys
+                </p>
+              </div>
+            </motion.div>
+          )
+        }
+      </AnimatePresence >
     </>
   );
 }
