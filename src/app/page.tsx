@@ -16,9 +16,9 @@ export default function Home() {
       <ResortJourneySection />
       <DestinationsCarousel />
       <DestinationsFooter />
+      <ActivitiesSection />
       <TopHotelsSection />
       <HotelSelectionSection />
-      <ActivitiesSection />
       <Footer />
     </main>
   );
