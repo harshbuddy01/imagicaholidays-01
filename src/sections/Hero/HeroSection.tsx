@@ -54,7 +54,6 @@ export default function HeroSection() {
 
     // Check if videos can play
     const checkReady = () => {
-      // If the first video is ready, we can hide the blurred overlay
       setVideosReady(true);
     };
 
@@ -62,13 +61,11 @@ export default function HeroSection() {
 
     // Dynamic switching or looping
     const onV1End = () => {
-      // Check if hero-2.mp4 actually exists/has duration
       if (v2.readyState >= 1 && v2.duration > 0) {
         setActiveVideo(1);
         v2.currentTime = 0;
         v2.play().catch(() => {});
       } else {
-        // Just loop v1
         v1.currentTime = 0;
         v1.play().catch(() => {});
       }
@@ -83,15 +80,27 @@ export default function HeroSection() {
     v1.addEventListener("ended", onV1End);
     v2.addEventListener("ended", onV2End);
 
-    // Initial play attempt
-    v1.play().catch(() => {});
+    // Initial play attempt (may be blocked on mobile)
+    const tryPlay = () => {
+      v1.play().catch(() => {
+        // Mobile autoplay blocked — listen for first user interaction
+        const resumePlay = () => {
+          v1.play().catch(() => {});
+          document.removeEventListener("touchstart", resumePlay);
+          document.removeEventListener("click", resumePlay);
+        };
+        document.addEventListener("touchstart", resumePlay, { once: true });
+        document.addEventListener("click", resumePlay, { once: true });
+      });
+    };
+    tryPlay();
 
     return () => {
       v1.removeEventListener("canplaythrough", checkReady);
       v1.removeEventListener("ended", onV1End);
       v2.removeEventListener("ended", onV2End);
     };
-  }, []);
+  }, [useFallback]);
 
   /* ── GSAP parallax on scroll ── */
   useEffect(() => {
@@ -150,8 +159,12 @@ export default function HeroSection() {
                 ref={video1Ref}
                 src={heroVideos[0].src}
                 onError={() => setUseFallback(true)}
+                autoPlay
+                loop
                 muted
                 playsInline
+                // @ts-ignore — webkit attribute for older iOS
+                webkit-playsinline="true"
                 preload="auto"
                 crossOrigin="anonymous"
                 className="absolute inset-0 w-full h-full object-cover"
@@ -163,8 +176,12 @@ export default function HeroSection() {
                 ref={video2Ref}
                 src={heroVideos[1].src}
                 onError={() => setUseFallback(true)}
+                autoPlay
+                loop
                 muted
                 playsInline
+                // @ts-ignore — webkit attribute for older iOS
+                webkit-playsinline="true"
                 preload="auto"
                 crossOrigin="anonymous"
                 className="absolute inset-0 w-full h-full object-cover"
