@@ -142,48 +142,48 @@ export default function HeroSection() {
 
       {/* ═══ VIDEO BACKGROUND ═══ */}
       <div className="hero-video-wrapper absolute inset-0 w-full h-full">
-        {/* Video Container 1 */}
-        <div className={`absolute inset-0 w-full h-full transition-opacity duration-[2500ms] ease-in-out ${activeVideo === 0 ? "opacity-100 z-[2]" : "opacity-0 z-[1]"}`}>
-          <video
-            ref={video1Ref}
-            src={heroVideos[0].src}
-            onFocus={() => {}} // Placeholder or other events if needed
-            muted
-            playsInline
-            preload="auto"
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-        </div>
-        {/* Video Container 2 */}
-        <div className={`absolute inset-0 w-full h-full transition-opacity duration-[2500ms] ease-in-out ${activeVideo === 1 ? "opacity-100 z-[2]" : "opacity-0 z-[1]"}`}>
-          <video
-            ref={video2Ref}
-            src={heroVideos[1].src}
-            muted
-            playsInline
-            preload="auto"
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-        </div>
+        {useFallback ? (
+          <AnimatePresence mode="wait">
+            <motion.img
+              key={fallbackSlide}
+              src={heroSlides[fallbackSlide].image}
+              alt={heroSlides[fallbackSlide].title}
+              initial={{ opacity: 0, scale: 1.05 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1.5 }}
+              className="absolute inset-0 w-full h-full object-cover z-[1]"
+            />
+          </AnimatePresence>
+        ) : (
+          <>
+            {/* Video Container 1 */}
+            <div className={`absolute inset-0 w-full h-full transition-opacity duration-[2500ms] ease-in-out ${activeVideo === 0 ? "opacity-100 z-[2]" : "opacity-0 z-[1]"}`}>
+              <video
+                ref={video1Ref}
+                src={heroVideos[0].src}
+                onFocus={() => {}} // Placeholder or other events if needed
+                muted
+                playsInline
+                preload="auto"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+            </div>
+            {/* Video Container 2 */}
+            <div className={`absolute inset-0 w-full h-full transition-opacity duration-[2500ms] ease-in-out ${activeVideo === 1 ? "opacity-100 z-[2]" : "opacity-0 z-[1]"}`}>
+              <video
+                ref={video2Ref}
+                src={heroVideos[1].src}
+                muted
+                playsInline
+                preload="auto"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+            </div>
+          </>
+        )}
         {/* Dark overlay for text readability */}
         <div className="absolute inset-0 bg-black/30 z-[3]" />
-
-        {/* --- INSTRUCTION OVERLAY (Only shows if files are missing) --- */}
-        {!videosReady && (
-          <div className="absolute inset-0 z-[4] flex items-center justify-center p-10 bg-black/60 backdrop-blur-sm pointer-events-none">
-            <div className="max-w-md text-center border border-[#d8be8f]/30 p-8 rounded-sm bg-black/40">
-              <p className="text-[#d8be8f] text-[0.65rem] uppercase tracking-widest mb-4">Awaiting Media</p>
-              <p className="text-white/60 text-[0.8rem] font-serif leading-relaxed">
-                To play your Pexels video, please save it as <span className="text-[#d8be8f]">/public/videos/hero-1.mp4</span> and refresh.
-              </p>
-              <div className="mt-6 flex justify-center gap-4 opacity-40">
-                <div className="animate-pulse w-1.5 h-1.5 bg-[#d8be8f] rounded-full" />
-                <div className="animate-pulse w-1.5 h-1.5 bg-[#d8be8f] rounded-full delay-75" />
-                <div className="animate-pulse w-1.5 h-1.5 bg-[#d8be8f] rounded-full delay-150" />
-              </div>
-            </div>
-          </div>
-        )}
       </div>
 
       {/* ═══ HERO TEXT OVERLAY (CIRCULAR MINIMALISM) ═══ */}
