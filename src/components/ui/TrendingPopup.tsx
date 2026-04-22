@@ -55,6 +55,16 @@ export default function TrendingPopup() {
     return () => clearTimeout(timer);
   }, []);
 
+  // Auto-rotate the trending section every 5 seconds
+  useEffect(() => {
+    if (!isVisible) return;
+    const interval = setInterval(() => {
+      setDirection(1);
+      setCurrentIndex((prev) => (prev + 1) % TRENDING_COLLECTION.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [isVisible]);
+
   const handleDismiss = () => {
     setIsVisible(false);
     sessionStorage.setItem("trending_dismissed", "true");

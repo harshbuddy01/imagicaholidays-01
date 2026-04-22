@@ -352,7 +352,7 @@ export default function HeroSection() {
           </div>
 
           <Link
-            href={`/reserve?arrival=${arrival}&departure=${departure}`}
+            href="/journey"
             className="group relative overflow-hidden bg-[#181510] px-8 py-3 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-white transition-all duration-500 hover:text-[#181510] ml-4 inline-block"
           >
             <span className="relative z-10 transition-colors duration-500">Book Now</span>
@@ -362,7 +362,7 @@ export default function HeroSection() {
 
         {/* Mobile booking CTA */}
         <Link
-          href="/reserve"
+          href="/journey"
           className="flex md:hidden items-center justify-center gap-3 mx-4 py-4 bg-white/95 backdrop-blur-sm rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.25)] border border-[#e9deca]/40"
         >
           <svg className="w-4 h-4 text-[#8a6b2d]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
