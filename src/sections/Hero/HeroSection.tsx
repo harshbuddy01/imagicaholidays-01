@@ -16,8 +16,8 @@ gsap.registerPlugin(ScrollTrigger);
    deployed environments (local files exceed GitHub's 100 MB limit).
    ──────────────────────────────────────────────────────────── */
 const heroVideos = [
-  { id: "video-1", src: "https://bucket-production-901c.up.railway.app/imagica-assets/hero-1.mp4", title: "Majestic Icelandic Mountain", location: "Iceland" },
-  { id: "video-2", src: "https://bucket-production-901c.up.railway.app/imagica-assets/hero-1.mp4", title: "Majestic Icelandic Mountain", location: "Iceland" },
+  { id: "video-1", src: "https://bucket-production-901c.up.railway.app/imagica-assets/hero-1-web.mp4", title: "Majestic Icelandic Mountain", location: "Iceland" },
+  { id: "video-2", src: "https://bucket-production-901c.up.railway.app/imagica-assets/hero-1-web.mp4", title: "Majestic Icelandic Mountain", location: "Iceland" },
 ];
 
 export default function HeroSection() {
