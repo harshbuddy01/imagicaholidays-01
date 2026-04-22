@@ -27,6 +27,8 @@ export default function HeroSection() {
 
   const [activeVideo, setActiveVideo] = useState(0);
   const [videosReady, setVideosReady] = useState(false);
+  const [useFallback, setUseFallback] = useState(false);
+  const [fallbackSlide, setFallbackSlide] = useState(0);
 
   // Date & Booking State
   const [minDate, setMinDate] = useState("");
@@ -120,9 +122,7 @@ export default function HeroSection() {
     return () => ctx.revert();
   }, []);
 
-  /* ── Fallback: use image slides only if CDN videos fail to load ── */
-  const [useFallback, setUseFallback] = useState(false);
-  const [fallbackSlide, setFallbackSlide] = useState(0);
+
 
   // Fallback image rotation (only if videos fail)
   useEffect(() => {
