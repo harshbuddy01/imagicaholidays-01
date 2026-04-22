@@ -12,13 +12,12 @@ import { useSearch } from "@/hooks/useSearch";
 gsap.registerPlugin(ScrollTrigger);
 
 /* ── Video configuration ────────────────────────────────────
-   Place your Pexels videos in /public/videos/ as:
-     hero-1.mp4  (Majestic Icelandic Mountain)
-     hero-2.mp4  (Hot Air Balloons over Cappadocia)
+   CDN-hosted videos for reliable playback on both local and
+   deployed environments (local files exceed GitHub's 100 MB limit).
    ──────────────────────────────────────────────────────────── */
 const heroVideos = [
-  { id: "video-1", src: "/videos/hero-1.mp4", title: "Arctic Majesty", location: "Iceland" },
-  { id: "video-2", src: "/videos/hero-2.mp4", title: "Morning Flight", location: "Cappadocia" },
+  { id: "video-1", src: "https://bucket-production-901c.up.railway.app/imagica-assets/hero-1.mp4", title: "Majestic Icelandic Mountain", location: "Iceland" },
+  { id: "video-2", src: "https://bucket-production-901c.up.railway.app/imagica-assets/hero-1.mp4", title: "Majestic Icelandic Mountain", location: "Iceland" },
 ];
 
 export default function HeroSection() {
@@ -112,23 +111,11 @@ export default function HeroSection() {
     return () => ctx.revert();
   }, []);
 
-  /* ── Fallback: use image slides if videos not available ── */
+  /* ── Fallback: use image slides only if CDN videos fail to load ── */
   const [useFallback, setUseFallback] = useState(false);
-  // Use Swiper fallback state
   const [fallbackSlide, setFallbackSlide] = useState(0);
 
-  useEffect(() => {
-    // Check if video files exist by trying to fetch them
-    fetch("/videos/hero-1.mp4", { method: "HEAD" })
-      .then((res) => {
-        if (!res.ok || res.headers.get("content-type")?.includes("text/html")) {
-          setUseFallback(true);
-        }
-      })
-      .catch(() => setUseFallback(true));
-  }, []);
-
-  // Fallback image rotation
+  // Fallback image rotation (only if videos fail)
   useEffect(() => {
     if (!useFallback) return;
     const timer = setInterval(() => {
@@ -162,10 +149,11 @@ export default function HeroSection() {
               <video
                 ref={video1Ref}
                 src={heroVideos[0].src}
-                onFocus={() => {}} // Placeholder or other events if needed
+                onError={() => setUseFallback(true)}
                 muted
                 playsInline
                 preload="auto"
+                crossOrigin="anonymous"
                 className="absolute inset-0 w-full h-full object-cover"
               />
             </div>
@@ -174,9 +162,11 @@ export default function HeroSection() {
               <video
                 ref={video2Ref}
                 src={heroVideos[1].src}
+                onError={() => setUseFallback(true)}
                 muted
                 playsInline
                 preload="auto"
+                crossOrigin="anonymous"
                 className="absolute inset-0 w-full h-full object-cover"
               />
             </div>
