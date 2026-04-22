@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const footerLinks = {
   destinations: [
@@ -25,7 +26,7 @@ const footerLinks = {
   ],
   support: [
     { label: "Help Center", href: "/help-center" },
-    { label: "Contact Us", href: "/#reservation" },
+    { label: "Contact Us", href: "/reserve" },
     { label: "Cancellation Policy", href: "/terms" },
     { label: "FAQs", href: "/faqs" },
   ],
@@ -132,9 +133,14 @@ export default function Footer() {
 
           {/* Brand Column */}
           <div className="lg:pr-8 col-span-2 md:col-span-2 lg:col-span-1">
-            <Link href="/" className="font-roman text-2xl tracking-[0.15em] text-[#f0e7d6] font-medium">
-              IMAGICAHOLIDAYS
-            </Link>
+            <div className="flex flex-col mb-4">
+              <div className="relative w-16 h-10 mb-2">
+                <Image src="/logo_icon.png" alt="Logo" fill className="object-contain" />
+              </div>
+              <Link href="/" className="font-roman text-2xl tracking-[0.15em] text-[#f0e7d6] font-bold">
+                IMAGICA HOLIDAYS
+              </Link>
+            </div>
             <p className="mt-4 text-sm text-[#a09383] leading-relaxed max-w-xs">
               Curating extraordinary Himalayan experiences across Sikkim, Darjeeling, and beyond. Your gateway to the roof of the world.
             </p>
@@ -224,7 +230,7 @@ export default function Footer() {
       <div className="relative z-10 border-t border-white/8">
         <div className="max-w-7xl mx-auto px-5 md:px-12 lg:px-16 py-5 md:py-6 flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-4">
           <p className="text-xs text-[#7a705e]">
-            © {new Date().getFullYear()} imagicaholidays. All rights reserved.
+            © {new Date().getFullYear()} IMAGICA HOLIDAYS. All rights reserved.
           </p>
           <div className="flex flex-wrap gap-6 text-xs text-[#7a705e]">
             <Link href="/privacy" className="transition-colors duration-200 hover:text-[#a09383]">Privacy Policy</Link>
@@ -237,8 +243,8 @@ export default function Footer() {
 
       {/* ── Large Watermark Text ── */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 pointer-events-none select-none overflow-hidden w-full text-center">
-        <span className="font-roman text-[5rem] md:text-[12rem] lg:text-[16rem] font-bold uppercase tracking-[0.15em] text-white/[0.02] leading-none block translate-y-1/3">
-          IMAGICAHOLIDAYS
+        <span className="font-roman text-[5rem] md:text-[12rem] lg:text-[16rem] font-bold uppercase tracking-[0.25em] text-white/[0.02] leading-none block translate-y-1/3">
+          IMAGICA HOLIDAYS
         </span>
       </div>
     </footer>

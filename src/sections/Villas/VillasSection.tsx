@@ -103,16 +103,16 @@ export default function VillasSection() {
           className="flex flex-col items-center mx-auto text-center"
         >
           <span className="text-[0.65rem] tracking-[0.4em] uppercase opacity-60 mb-4 block">
-            imagicaholidays
+            IMAGICA HOLIDAYS
           </span>
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-serif text-[#1e1c1a] tracking-[0.2em] font-light uppercase">
             VELA
           </h2>
           <p className="mt-6 text-[#1e1c1a] opacity-60 text-sm md:text-base tracking-[0.1em] font-light italic">
-            Your Exclusive Tranquil Haven at imagicaholidays
+            Your Exclusive Tranquil Haven at IMAGICA HOLIDAYS
           </p>
           <div className="mt-8 opacity-40">
-            {/* imagicaholidays style ornament */}
+            {/* IMAGICA HOLIDAYS style ornament */}
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="0.5">
               <circle cx="12" cy="12" r="1.5" />
               <path d="M12 2V6M12 18V22M2 12H6M18 12H22M4.93 4.93L7.76 7.76M16.24 16.24L19.07 19.07M4.93 19.07L7.76 16.24M16.24 7.76L19.07 4.93" />
@@ -135,7 +135,7 @@ export default function VillasSection() {
         {/* Left Edge Text (Vertical) */}
         <div className="w-[5vw] md:w-[8vw] h-full hidden lg:flex items-center justify-center flex-shrink-0 z-10">
           <span className="text-[#1e1c1a] text-[0.65rem] tracking-[0.5em] uppercase opacity-40 whitespace-nowrap" style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>
-            IMAGICAHOLIDAYS
+            IMAGICA HOLIDAYS
           </span>
         </div>
 

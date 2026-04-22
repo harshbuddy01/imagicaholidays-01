@@ -61,7 +61,7 @@ export default function HelpCenterPage() {
                 <span className="text-[#ae9e85] group-hover:translate-x-2 transition-transform">⟶</span>
             </Link>
             
-            <Link href="/#reservation" className="w-full border-b border-[#e8dcc4] pb-4 flex justify-between items-center group transition">
+            <Link href="/reserve" className="w-full border-b border-[#e8dcc4] pb-4 flex justify-between items-center group transition">
                 <span className="text-lg group-hover:text-[#8b1a1a]">Direct Assistance</span>
                 <span className="text-[#ae9e85] group-hover:translate-x-2 transition-transform">⟶</span>
             </Link>

@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 export default function HotelSelectionSection() {
   return (
-    <section className="relative w-full flex flex-col items-center bg-[#f4ebd9] py-20 px-4 md:px-8 text-[#5c544b] overflow-hidden">
+    <section className="relative w-full flex flex-col items-center bg-[#f8f5f0] py-20 px-4 md:px-8 text-[#5c544b] overflow-hidden">
 
       {/* Decorative vertical dots at the top */}
       <div className="flex flex-col items-center gap-1 mb-8">
@@ -13,7 +13,7 @@ export default function HotelSelectionSection() {
 
       {/* Main Text Intro */}
       <div className="text-center font-serif text-lg md:text-xl font-light leading-relaxed max-w-2xl">
-        <p>imagicaholidays is home to four distinctive hotels,</p>
+        <p>IMAGICA HOLIDAYS is home to four distinctive hotels,</p>
         <p>each offering its own unique charm</p>
         <p>and heavenly vistas.</p>
         <p className="mt-8">Which will you pick?</p>
@@ -28,7 +28,7 @@ export default function HotelSelectionSection() {
 
       {/* Eyebrow: imagicaholidays Hotels */}
       <p className="text-xs md:text-sm font-medium tracking-[0.2em] uppercase text-[#7a705e] mb-6">
-        imagicaholidays Hotels
+        IMAGICA HOLIDAYS Hotels
       </p>
 
       {/* Hotel Selection Menu */}
@@ -64,8 +64,8 @@ export default function HotelSelectionSection() {
         {/* Vertical dotted guides at the ends of the line (visible on large screens) */}
         <div className="absolute left-0 -top-8 w-px h-8 border-l-[1.5px] border-dotted border-[#b5a993] hidden md:block"></div>
         <div className="absolute right-0 -top-8 w-px h-8 border-r-[1.5px] border-dotted border-[#b5a993] hidden md:block"></div>
-        <div className="absolute left-0 top-1/2 -translate-x-1/2 w-2 h-2 rounded-full border border-[#b5a993] hidden md:block bg-[#f4ebd9]"></div>
-        <div className="absolute right-0 top-1/2 translate-x-1/2 w-2 h-2 rounded-full border border-[#b5a993] hidden md:block bg-[#f4ebd9]"></div>
+        <div className="absolute left-0 top-1/2 -translate-x-1/2 w-2 h-2 rounded-full border border-[#b5a993] hidden md:block bg-[#f8f5f0]"></div>
+        <div className="absolute right-0 top-1/2 translate-x-1/2 w-2 h-2 rounded-full border border-[#b5a993] hidden md:block bg-[#f8f5f0]"></div>
       </div>
 
       {/* Bottom Focus Area */}

@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
@@ -135,16 +135,26 @@ export default function ActivitiesSection() {
     touchEndX.current = e.targetTouches[0].clientX;
   };
 
+  const { scrollY } = useScroll();
+  const ornamentY = useTransform(scrollY, [0, 5000], [0, 400]);
+
   return (
     <section
       id="activities-section"
-      className="relative w-full bg-[#f4ebd9] py-14 md:py-28 px-4 md:px-12 lg:px-24 overflow-hidden text-[#5c544b]"
+      className="relative w-full bg-[#f8f5f0] py-14 md:py-32 px-4 md:px-12 lg:px-24 overflow-hidden text-[#5c544b]"
     >
+      {/* Handcrafted Background Ornaments */}
+      <motion.div style={{ y: ornamentY }} className="absolute -left-20 top-20 opacity-[0.08] pointer-events-none">
+        <svg width="300" height="300" viewBox="0 0 100 100" fill="none">
+          <path d="M50 0C50 0 55 15 75 25C55 35 50 100 50 100C50 100 45 35 25 25C45 15 50 0 50 0Z" fill="#a5813b" />
+        </svg>
+      </motion.div>
+
       {/* Decorative vertical dots */}
-      <div className="flex flex-col items-center gap-1 mb-8 md:mb-16">
-        <div className="w-1 h-1 rounded-full bg-[#ae9e85]" />
-        <div className="w-1 h-1 rounded-full bg-[#ae9e85]" />
-        <div className="w-1 h-1 rounded-full bg-[#ae9e85]" />
+      <div className="flex flex-col items-center gap-1 mb-12 md:mb-20">
+        <div className="w-1.5 h-1.5 rounded-full bg-[#ae9e85]" />
+        <div className="w-1.5 h-1.5 rounded-full bg-[#ae9e85]" />
+        <div className="w-1.5 h-1.5 rounded-full bg-[#ae9e85]" />
       </div>
 
       {/* ── Mobile: Card-based swiper ── */}
@@ -153,12 +163,12 @@ export default function ActivitiesSection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8 }}
           className="relative w-full"
         >
           {/* Main card */}
           <div
-            className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden shadow-xl"
+            className="relative w-full aspect-[3/4] rounded-sm overflow-hidden shadow-2xl border border-[#a5813b]/20"
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
@@ -166,10 +176,10 @@ export default function ActivitiesSection() {
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeIndex}
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -50 }}
-                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 1.05 }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                 className="absolute inset-0"
               >
                 <Image
@@ -180,26 +190,26 @@ export default function ActivitiesSection() {
                   sizes="100vw"
                 />
                 {/* Gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1a1914]/80 via-[#1a1914]/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1a1914]/90 via-[#1a1914]/30 to-transparent" />
                 {/* Content */}
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-6 h-px bg-[#d5cab5]" />
-                    <span className="text-[10px] tracking-[0.3em] uppercase text-[#d5cab5]">
+                <div className="absolute bottom-0 left-0 right-0 p-8">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-8 h-px bg-[#d5cab5]" />
+                    <span className="text-[10px] tracking-[0.4em] uppercase text-[#d5cab5] font-bold">
                       {activities[activeIndex].subtitle}
                     </span>
                   </div>
-                  <h3 className="font-roman text-3xl font-semibold text-[#f4ebd9] tracking-wide">
+                  <h3 className="font-roman text-4xl text-white tracking-widest leading-none">
                     {activities[activeIndex].title}
                   </h3>
-                  <div className="w-10 h-[1.5px] bg-[#ae9e85] mt-3 rounded-full" />
+                  <div className="w-12 h-px bg-[#ae9e85] mt-6" />
                 </div>
               </motion.div>
             </AnimatePresence>
           </div>
-
+          {/* ... mobile indicators logic remains ... */}
           {/* Mobile dot indicators */}
-          <div className="flex items-center justify-center gap-2 mt-6">
+          <div className="flex items-center justify-center gap-2 mt-8">
             {activities.map((_, i) => (
               <button
                 key={i}
@@ -208,28 +218,10 @@ export default function ActivitiesSection() {
                 className={cn(
                   "transition-all duration-300 rounded-full",
                   i === activeIndex
-                    ? "w-6 h-1.5 bg-[#8d6a2f]"
-                    : "w-1.5 h-1.5 bg-[#d5cab5]"
+                    ? "w-8 h-1 bg-[#8d6a2f]"
+                    : "w-1 h-1 bg-[#d5cab5]"
                 )}
               />
-            ))}
-          </div>
-
-          {/* Mobile: Activity name strip */}
-          <div className="flex gap-3 mt-5 overflow-x-auto no-scrollbar pb-2">
-            {activities.map((activity, i) => (
-              <button
-                key={activity.title}
-                onClick={() => setActiveIndex(i)}
-                className={cn(
-                  "flex-shrink-0 px-3 py-1.5 rounded-full text-[9px] uppercase tracking-[0.15em] font-medium transition-all border",
-                  i === activeIndex
-                    ? "bg-[#3d3831] text-[#f4ebd9] border-[#3d3831]"
-                    : "bg-transparent text-[#aa9a7e] border-[#d5cab5]/50"
-                )}
-              >
-                {activity.title}
-              </button>
             ))}
           </div>
         </motion.div>
@@ -237,88 +229,74 @@ export default function ActivitiesSection() {
 
       {/* ── Desktop: Hover-expand panels ── */}
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         className="relative w-full max-w-7xl mx-auto hidden md:block"
       >
-        <div className="flex w-full items-center justify-center gap-1 md:gap-1.5">
+        <div className="flex w-full items-center justify-center gap-2">
           {activities.map((activity, index) => {
             const isActive = activeIndex === index;
 
             return (
               <motion.div
                 key={activity.title}
-                className="relative cursor-pointer overflow-hidden rounded-sm"
-                style={{ boxShadow: isActive ? "0 8px 40px rgba(93,84,75,0.18)" : "0 2px 12px rgba(93,84,75,0.08)" }}
+                className="relative cursor-pointer overflow-hidden rounded-sm border border-[#a5813b]/10 bg-white"
+                style={{ 
+                  boxShadow: isActive ? "0 30px 60px rgba(0,0,0,0.2)" : "0 8px 16px rgba(0,0,0,0.05)" 
+                }}
                 initial={false}
                 animate={{
-                  width: isActive ? "38rem" : "3.5rem",
-                  height: "30rem",
+                  width: isActive ? "45rem" : "4.5rem",
+                  height: "35rem",
                 }}
-                transition={{ duration: 0.4, ease: [0.25, 0.8, 0.25, 1] }}
+                transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1] }}
                 onClick={() => setActiveIndex(index)}
                 onHoverStart={() => setActiveIndex(index)}
               >
-                {/* Image */}
+                {/* Image - B&W on inactive, Color on active */}
                 <Image
                   src={activity.image}
                   alt={activity.alt}
                   fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className={cn(
+                    "object-cover transition-all duration-[2s] ease-out",
+                    isActive ? "grayscale-0 scale-105" : "grayscale contrast-[1.1] brightness-[0.9]"
+                  )}
+                  sizes="(max-width: 768px) 100vw, 40vw"
                 />
 
-                {/* Gradient overlay on active — warm toned */}
+                {/* Content overlay */}
                 <AnimatePresence>
-                  {isActive && (
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="absolute inset-0 bg-gradient-to-t from-[#3d3831]/70 via-[#3d3831]/15 to-transparent"
-                    />
-                  )}
-                </AnimatePresence>
-
-                {/* Active content overlay */}
-                <AnimatePresence>
-                  {isActive && (
+                  {isActive ? (
                     <motion.div
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 10 }}
-                      transition={{ duration: 0.35, delay: 0.1 }}
-                      className="absolute inset-0 flex flex-col items-start justify-end p-6 md:p-8"
+                      transition={{ duration: 0.6, delay: 0.2 }}
+                      className="absolute inset-0 flex flex-col items-start justify-end p-10 bg-gradient-to-t from-black/80 via-black/20 to-transparent"
                     >
-                      <div className="flex items-center gap-3 mb-2">
-                        <div className="w-6 h-px bg-[#d5cab5]" />
-                        <span className="text-[10px] tracking-[0.3em] uppercase text-[#d5cab5]">
+                      <div className="flex items-center gap-4 mb-4">
+                        <div className="w-10 h-px bg-[#d8be8f]" />
+                        <span className="text-[10px] tracking-[0.4em] uppercase text-[#d8be8f] font-bold">
                           {activity.subtitle}
                         </span>
                       </div>
-                      <h3 className="font-roman text-2xl md:text-3xl font-semibold text-[#f4ebd9] tracking-wide">
+                      <h3 className="font-glyptic text-4xl lg:text-5xl font-bold text-white tracking-[0.05em] uppercase mb-4">
                         {activity.title}
                       </h3>
-                      <div className="w-10 h-[1.5px] bg-[#ae9e85] mt-3 rounded-full" />
+                      <div className="w-16 h-px bg-[#a5813b]/60" />
                     </motion.div>
-                  )}
-                </AnimatePresence>
-
-                {/* Collapsed: vertical text with warm overlay */}
-                <AnimatePresence>
-                  {!isActive && (
+                  ) : (
                     <motion.div
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="absolute inset-0 bg-[#3d3831]/40 flex items-center justify-center"
+                      className="absolute inset-0 flex items-center justify-center bg-black/20"
                     >
                       <span
-                        className="font-roman text-[11px] font-medium tracking-[0.3em] uppercase text-[#f4ebd9]/90"
+                        className="font-roman text-[10px] font-bold tracking-[0.4em] uppercase text-white/90"
                         style={{
                           writingMode: "vertical-rl",
                           textOrientation: "mixed",
@@ -333,48 +311,11 @@ export default function ActivitiesSection() {
             );
           })}
         </div>
-
-        {/* ── Bottom indicators (desktop) ── */}
-        <div className="flex items-center justify-center gap-4 mt-10">
-          {activities.map((activity, i) => (
-            <button
-              key={activity.title}
-              aria-label={`View ${activity.title}`}
-              onClick={() => setActiveIndex(i)}
-              className="relative flex flex-col items-center gap-2 group"
-            >
-              <span
-                className={cn(
-                  "text-[10px] tracking-[0.2em] uppercase transition-colors duration-300",
-                  i === activeIndex ? "text-[#3d3831]" : "text-[#b5a993]"
-                )}
-              >
-                {activity.title}
-              </span>
-              <span className="relative block w-10 h-[2px] bg-[#d5cab5] rounded-full overflow-hidden">
-                {i === activeIndex && (
-                  <motion.span
-                    layoutId="activity-indicator"
-                    className="absolute inset-0 bg-[#3d3831] rounded-full"
-                    transition={{ duration: 0.3 }}
-                  />
-                )}
-              </span>
-            </button>
-          ))}
-        </div>
       </motion.div>
 
-      {/* Tiny diamond decoration at bottom */}
-      <div className="flex justify-center mt-8 md:mt-14">
-        <svg width="8" height="8" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" fill="#b5a993" />
-        </svg>
-      </div>
-
       {/* Side Rotated Text */}
-      <div className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 -rotate-90 hidden lg:block tracking-[0.3em] text-[0.65rem] font-medium text-[#a0947f] uppercase">
-        Experiences
+      <div className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 -rotate-90 hidden lg:block tracking-[0.5em] text-[0.6rem] font-bold text-[#a5813b] uppercase">
+        Memorable Experiences
       </div>
     </section>
   );

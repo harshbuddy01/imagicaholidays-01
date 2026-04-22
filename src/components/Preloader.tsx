@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { heroSlides, hotelTabs, pools, dining, spa, villas } from "@/lib/constants";
+import NextImage from "next/image";
 
 export default function Preloader() {
     const [loading, setLoading] = useState(true);
@@ -103,19 +104,23 @@ export default function Preloader() {
                         ))}
                     </div>
 
+
                     {/* Centered Brand Content */}
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.5 }}
-                        className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none text-[#d8be8f]"
+                        className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none"
                     >
-                        <h1 className="font-heading text-3xl md:text-5xl lg:text-6xl tracking-[0.3em] font-light uppercase">
-                            imagicaholidays
+                        <div className="relative w-24 h-16 mb-6">
+                            <NextImage src="/logo_icon.png" alt="Logo" fill className="object-contain" />
+                        </div>
+                        <h1 className="font-roman text-2xl md:text-3xl tracking-[0.4em] font-bold uppercase text-white">
+                            IMAGICA HOLIDAYS
                         </h1>
-                        <p className="mt-4 text-xs tracking-widest font-sans font-semibold">
-                            {progress}%
+                        <p className="mt-8 text-[10px] tracking-[0.3em] font-sans font-bold text-[#ae9e85] uppercase">
+                            Curation Progress {progress}%
                         </p>
                     </motion.div>
                 </div>

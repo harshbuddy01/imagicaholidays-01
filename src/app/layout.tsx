@@ -5,6 +5,7 @@ import Script from "next/script";
 import ContactMenu from "@/components/ContactMenu";
 import Preloader from "@/components/Preloader";
 import PageTransitionPreloader from "@/components/PageTransitionPreloader";
+import TrendingPopup from "@/components/ui/TrendingPopup";
 import "./globals.css";
 
 const headingFont = Cormorant_Garamond({
@@ -56,7 +57,7 @@ export const metadata: Metadata = {
   },
   description: "Experience the ultimate luxury travel across the Himalayas. Book bespoke tours and holiday packages to Gangtok, Darjeeling, Sikkim, and more.",
   keywords: ["Luxury Tours", "Sikkim Holidays", "Gangtok Packages", "Darjeeling Tours", "Himalayan Retreats"],
-  authors: [{ name: "Imagica Holidays", url: "https://imagicaholidays.com" }],
+  authors: [{ name: "IMAGICA HOLIDAYS", url: "https://imagicaholidays.com" }],
   creator: "Imagica Holidays",
   publisher: "Imagica Holidays",
   metadataBase: new URL("https://imagicaholidays.com"),
@@ -102,6 +103,7 @@ export default function RootLayout({
       <body className={`${headingFont.variable} ${bodyFont.variable} ${scriptFont.variable} ${romanFont.variable} ${ornateFont.variable} ${westEndFont.variable} ${glypticFont.variable} antialiased`}>
         <Preloader />
         <PageTransitionPreloader />
+        <TrendingPopup />
         {children}
 
         {/* Floating Action Menu */}

@@ -101,10 +101,12 @@ export default function Navbar() {
                 priority
               />
             </div>
-            <span className="font-serif text-[10px] tracking-[0.25em] text-white md:text-[13px] md:tracking-[0.3em] font-medium mt-[-4px]">
-              IMAGICAHOLIDAYS
+            <span className="font-serif text-[10px] tracking-[0.25em] text-white md:text-[13px] md:tracking-[0.4em] font-bold mt-[-4px]">
+              IMAGICA HOLIDAYS
             </span>
           </Link>
+
+
           <nav className="hidden items-center gap-8 md:flex">
             {links.map((link) => (
               <div key={link.href} className="relative group">
@@ -187,9 +189,15 @@ export default function Navbar() {
             >
               {/* Top bar in overlay */}
               <div className="flex items-center justify-between px-4 py-5">
-                <Link href="/" onClick={() => setOpen(false)} className="font-serif text-lg tracking-[0.14em] text-white">
-                  IMAGICAHOLIDAYS
+                <Link href="/" onClick={() => setOpen(false)} className="flex flex-col items-center">
+                  <div className="relative w-12 h-8 mb-2">
+                    <Image src="/logo_icon.png" alt="Logo" fill className="object-contain" />
+                  </div>
+                  <span className="font-serif text-lg tracking-[0.14em] text-white uppercase font-bold">
+                    IMAGICA HOLIDAYS
+                  </span>
                 </Link>
+
                 <button
                   onClick={() => setOpen(false)}
                   aria-label="Close menu"

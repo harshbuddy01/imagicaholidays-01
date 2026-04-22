@@ -215,13 +215,19 @@ export default function DestinationsCarousel() {
   return (
     <section
       id="destinations-carousel"
-      className="relative w-full bg-[#f4ebd9] pt-24 md:pt-40 pb-16 md:pb-24 px-4 md:px-12 lg:px-24 overflow-hidden text-[#5c544b] section-fade-top scroll-mt-[90px]"
+      className="relative w-full bg-[#f4ebd9] pt-16 md:pt-28 pb-16 md:pb-24 px-4 md:px-12 lg:px-24 overflow-hidden text-[#5c544b] scroll-mt-[90px]"
+      style={{ zIndex: 20 }}
     >
-      {/* Decorative dots */}
-      <div className="flex flex-col items-center gap-1 mb-8">
-        <div className="w-1 h-1 rounded-full bg-[#ae9e85]" />
-        <div className="w-1 h-1 rounded-full bg-[#ae9e85]" />
-        <div className="w-1 h-1 rounded-full bg-[#ae9e85]" />
+      {/* Decorative ornate connector */}
+      <div className="relative z-[2] flex flex-col items-center gap-2 mb-10 md:mb-14 opacity-60">
+        <div className="w-px h-10 bg-gradient-to-b from-[#a5813b]/30 to-[#a5813b]" />
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-px bg-[#a5813b]/20" />
+          <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 0L9.8 6.2L16 8L9.8 9.8L8 16L6.2 9.8L0 8L6.2 6.2L8 0Z" fill="#a5813b" />
+          </svg>
+          <div className="w-8 h-px bg-[#a5813b]/20" />
+        </div>
       </div>
 
       {/* Trending Destinations Header */}

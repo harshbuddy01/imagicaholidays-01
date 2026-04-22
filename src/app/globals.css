@@ -20,6 +20,10 @@
   .font-glyptic {
     font-family: var(--font-glyptic), serif;
   }
+
+  .perspective-1000 {
+    perspective: 1000px;
+  }
 }
 
 /* ── Gradient text for Trending / Destinations headings ── */

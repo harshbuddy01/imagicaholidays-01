@@ -1,24 +1,24 @@
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
 import HeroSection from "@/sections/Hero/HeroSection";
-import ResortJourneySection from "@/sections/Journey/ResortJourneySection";
-import DestinationsCarousel from "@/sections/Destinations/DestinationsCarousel";
+import DestinationsGrid from "@/sections/Destinations/DestinationsGrid";
 import DestinationsFooter from "@/sections/Destinations/DestinationsFooter";
 import TopHotelsSection from "@/sections/Hotels/TopHotelsSection";
-import HotelSelectionSection from "@/sections/Hotels/HotelSelectionSection";
 import ActivitiesSection from "@/sections/Activities/ActivitiesSection";
+import AttractiveSpotsSection from "@/sections/AttractiveSpots/AttractiveSpotsSection";
+import FooterCrescendo from "@/sections/Crescendo/FooterCrescendo";
 
 export default function Home() {
   return (
     <main>
       <Navbar />
       <HeroSection />
-      <ResortJourneySection />
-      <DestinationsCarousel />
+      <AttractiveSpotsSection />
+      <DestinationsGrid />
       <DestinationsFooter />
       <ActivitiesSection />
       <TopHotelsSection />
-      <HotelSelectionSection />
+      <FooterCrescendo />
       <Footer />
     </main>
   );

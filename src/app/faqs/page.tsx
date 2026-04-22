@@ -161,7 +161,7 @@ export default function FAQsPage() {
              <p className="text-[12px] uppercase tracking-widest text-[#a09383] mb-4">
                 Still have questions?
              </p>
-             <Link href="/#reservation" className="inline-block border border-[#ae9e85] px-8 py-3 text-[10px] font-bold tracking-[0.3em] uppercase text-[#ae9e85] hover:bg-[#ae9e85] hover:text-[#1a1914] transition-colors">
+             <Link href="/reserve" className="inline-block border border-[#ae9e85] px-8 py-3 text-[10px] font-bold tracking-[0.3em] uppercase text-[#ae9e85] hover:bg-[#ae9e85] hover:text-[#1a1914] transition-colors">
                Contact An Artisan
              </Link>
         </div>

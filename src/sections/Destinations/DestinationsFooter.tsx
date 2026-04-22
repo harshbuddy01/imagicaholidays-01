@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function DestinationsFooter() {
   return (
-    <section className="relative w-full flex flex-col items-center bg-[#f4ebd9] pt-4 pb-24 px-4 md:px-8 text-[#5c544b] overflow-hidden">
+    <section className="relative w-full flex flex-col items-center bg-[#f8f5f0] pt-4 pb-24 px-4 md:px-8 text-[#5c544b] overflow-hidden">
 
       {/* Detailed Horizontal Line with Sunburst Center */}
       <div className="relative w-full max-w-4xl flex items-center justify-center mb-16">
@@ -22,8 +22,8 @@ export default function DestinationsFooter() {
         {/* Dotted guides at ends */}
         <div className="absolute left-0 -top-8 w-px h-8 border-l-[1.5px] border-dotted border-[#b5a993] hidden md:block" />
         <div className="absolute right-0 -top-8 w-px h-8 border-r-[1.5px] border-dotted border-[#b5a993] hidden md:block" />
-        <div className="absolute left-0 top-1/2 -translate-x-1/2 w-2 h-2 rounded-full border border-[#b5a993] hidden md:block bg-[#f4ebd9]" />
-        <div className="absolute right-0 top-1/2 translate-x-1/2 w-2 h-2 rounded-full border border-[#b5a993] hidden md:block bg-[#f4ebd9]" />
+        <div className="absolute left-0 top-1/2 -translate-x-1/2 w-2 h-2 rounded-full border border-[#b5a993] hidden md:block bg-[#f8f5f0]" />
+        <div className="absolute right-0 top-1/2 translate-x-1/2 w-2 h-2 rounded-full border border-[#b5a993] hidden md:block bg-[#f8f5f0]" />
       </div>
 
       {/* Heading */}

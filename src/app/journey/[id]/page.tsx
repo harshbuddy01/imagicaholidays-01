@@ -69,7 +69,6 @@ export default function JourneyDetailsPage() {
                     <Link href="#overview" className="border-b-2 border-[#1a1914] text-[#1a1914] py-6">Overview</Link>
                     <Link href="#itinerary" className="border-b-2 border-transparent text-[#a09383] hover:text-[#1a1914] py-6 transition-colors">Itinerary</Link>
                     <Link href="#inclusions" className="border-b-2 border-transparent text-[#a09383] hover:text-[#1a1914] py-6 transition-colors">Inclusions</Link>
-                    <Link href="#vehicle" className="border-b-2 border-transparent text-[#a09383] hover:text-[#1a1914] py-6 transition-colors">Vehicle</Link>
                 </div>
             </div>
 
@@ -421,7 +420,7 @@ export default function JourneyDetailsPage() {
                         </div>
 
                         <div className="relative z-10 flex flex-col sm:flex-row gap-5 mb-8">
-                            <Link href="#quote" className="flex-1 bg-white/5 border border-white/20 hover:bg-white/10 hover:border-white/40 flex justify-center items-center gap-3 py-4 text-[10px] font-black tracking-[0.2em] uppercase transition-all rounded-full group/btn">
+                            <Link href="/reserve" className="flex-1 bg-white/5 border border-white/20 hover:bg-white/10 hover:border-white/40 flex justify-center items-center gap-3 py-4 text-[10px] font-black tracking-[0.2em] uppercase transition-all rounded-full group/btn">
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="group-hover/btn:translate-y-[-2px] transition-transform">
                                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
