@@ -1,15 +1,27 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
-import { journeys } from "@/lib/constants";
+import { journeys as fallbackJourneys } from "@/lib/constants";
+
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://api.imagicaholidays.com/api/v1';
 
 export default function FindYourJourneyPage() {
     const [viewMode, setViewMode] = useState<"PHOTO" | "MAP">("PHOTO");
+    const [journeys, setJourneys] = useState(fallbackJourneys);
+
+    // Fetch from CRM API, fallback to constants
+    useEffect(() => {
+        fetch(`${API_BASE}/public/journeys`)
+            .then(r => r.json())
+            .then(d => { if (d.success && d.data?.length) setJourneys(d.data); })
+            .catch(() => {}); // silently fallback
+    }, []);
+
 
     return (
         <div className="bg-[#f8f5f0] min-h-screen pt-24">

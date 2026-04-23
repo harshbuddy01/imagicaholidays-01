@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://api.imagicaholidays.com/api/v1';
+
 /**
  * WEEKLY UPDATE CONFIG - MULTI-ITEM ARRAY
  * Add or remove trending spots here.
@@ -43,6 +45,15 @@ export default function TrendingPopup() {
   const [isVisible, setIsVisible] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
+  const [collection, setCollection] = useState(TRENDING_COLLECTION);
+
+  // Fetch from CRM API, fallback to hardcoded
+  useEffect(() => {
+    fetch(`${API_BASE}/public/trending`)
+      .then(r => r.json())
+      .then(d => { if (d.success && d.data?.length) setCollection(d.data); })
+      .catch(() => {}); // keep hardcoded fallback
+  }, []);
 
   useEffect(() => {
     const dismissed = sessionStorage.getItem("trending_dismissed");
@@ -60,10 +71,10 @@ export default function TrendingPopup() {
     if (!isVisible) return;
     const interval = setInterval(() => {
       setDirection(1);
-      setCurrentIndex((prev) => (prev + 1) % TRENDING_COLLECTION.length);
+      setCurrentIndex((prev) => (prev + 1) % collection.length);
     }, 5000);
     return () => clearInterval(interval);
-  }, [isVisible]);
+  }, [isVisible, collection.length]);
 
   const handleDismiss = () => {
     setIsVisible(false);
@@ -72,15 +83,15 @@ export default function TrendingPopup() {
 
   const nextCard = () => {
     setDirection(1);
-    setCurrentIndex((prev) => (prev + 1) % TRENDING_COLLECTION.length);
+    setCurrentIndex((prev) => (prev + 1) % collection.length);
   };
 
   const prevCard = () => {
     setDirection(-1);
-    setCurrentIndex((prev) => (prev - 1 + TRENDING_COLLECTION.length) % TRENDING_COLLECTION.length);
+    setCurrentIndex((prev) => (prev - 1 + collection.length) % collection.length);
   };
 
-  const currentData = TRENDING_COLLECTION[currentIndex];
+  const currentData = collection[currentIndex];
 
   const variants = {
     enter: (direction: number) => ({
@@ -124,7 +135,7 @@ export default function TrendingPopup() {
             <div className="flex justify-between items-center mb-4 px-2">
                <div className="flex flex-col">
                   <span className="text-[10px] uppercase tracking-[0.4em] text-[#a5813b] font-bold">Trending Focus</span>
-                  <span className="text-[10px] text-[#5c544b] opacity-60">Memoir {currentIndex + 1} / {TRENDING_COLLECTION.length}</span>
+                  <span className="text-[10px] text-[#5c544b] opacity-60">Memoir {currentIndex + 1} / {collection.length}</span>
                </div>
                
                <div className="flex items-center gap-3">

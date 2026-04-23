@@ -7,22 +7,32 @@ import { useParams, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
-import { journeys } from "@/lib/constants";
+import { journeys as fallbackJourneys } from "@/lib/constants";
+
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://api.imagicaholidays.com/api/v1';
 
 export default function JourneyDetailsPage() {
     const { id } = useParams() as { id: string };
     const router = useRouter();
-    const [journey, setJourney] = useState<typeof journeys[0] | null>(null);
+    const [journey, setJourney] = useState<typeof fallbackJourneys[0] | null>(null);
     const [currentSlide, setCurrentSlide] = useState(0);
     const [expandedDay, setExpandedDay] = useState<string | null>(null);
 
     useEffect(() => {
-        const found = journeys.find(j => j.id === id);
-        if (found) {
-            setJourney(found);
-        } else {
-            router.push("/journey");
-        }
+        // Try API first, then fallback
+        fetch(`${API_BASE}/public/journeys`)
+            .then(r => r.json())
+            .then(d => {
+                const pool = (d.success && d.data?.length) ? d.data : fallbackJourneys;
+                const found = pool.find((j: any) => j.id === id);
+                if (found) setJourney(found);
+                else router.push("/journey");
+            })
+            .catch(() => {
+                const found = fallbackJourneys.find(j => j.id === id);
+                if (found) setJourney(found);
+                else router.push("/journey");
+            });
     }, [id, router]);
 
     if (!journey) return null; // Let the preloader handle the visual wait
