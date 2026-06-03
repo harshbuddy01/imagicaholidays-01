@@ -166,7 +166,6 @@ export default function HeroSection() {
                 // @ts-ignore — webkit attribute for older iOS
                 webkit-playsinline="true"
                 preload="auto"
-                crossOrigin="anonymous"
                 className="absolute inset-0 w-full h-full object-cover"
               />
             </div>
@@ -183,7 +182,6 @@ export default function HeroSection() {
                 // @ts-ignore — webkit attribute for older iOS
                 webkit-playsinline="true"
                 preload="auto"
-                crossOrigin="anonymous"
                 className="absolute inset-0 w-full h-full object-cover"
               />
             </div>
