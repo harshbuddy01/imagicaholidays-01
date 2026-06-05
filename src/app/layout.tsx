@@ -108,6 +108,40 @@ export default function RootLayout({
 
         {/* Floating Action Menu */}
         <ContactMenu />
+
+        {/* TravelAgency Structured Data (JSON-LD) for GEO/AI Indexing */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "TravelAgency",
+              "name": "Imagica Holidays",
+              "url": "https://imagicaholidays.com",
+              "logo": "https://imagicaholidays.com/icon.svg",
+              "image": "https://images.unsplash.com/photo-1518640467707-6811f4a4ab75?q=80&w=1600&auto=format&fit=crop",
+              "description": "Bespoke tour packages, custom travel plans, and boutique luxury hotel bookings across Sikkim, Gangtok, Lachung, Darjeeling, Kerala, Ooty, and Shimla.",
+              "address": {
+                "@type": "PostalAddress",
+                "addressCountry": "IN"
+              },
+              "areaServed": [
+                { "@type": "AdministrativeArea", "name": "Sikkim" },
+                { "@type": "AdministrativeArea", "name": "Gangtok" },
+                { "@type": "AdministrativeArea", "name": "Lachung" },
+                { "@type": "AdministrativeArea", "name": "Darjeeling" },
+                { "@type": "AdministrativeArea", "name": "Kerala" },
+                { "@type": "AdministrativeArea", "name": "Ooty" },
+                { "@type": "AdministrativeArea", "name": "Shimla" }
+              ],
+              "priceRange": "$$$",
+              "sameAs": [
+                "https://www.facebook.com/imagicaholidays",
+                "https://www.instagram.com/imagicaholidays"
+              ]
+            })
+          }}
+        />
         {/* Google Analytics (GA4) */}
         {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
           <>

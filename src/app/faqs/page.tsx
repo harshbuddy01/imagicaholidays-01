@@ -16,11 +16,23 @@ const faqs = [
     answer: "Yes, special permits (Inner Line or Protected Area) are required for remote sections like Nathu La Pass and North Sikkim. We handle all necessary paperwork for you."
   },
   {
+    question: "How do I book a Gangtok, Lachung, and North Sikkim tour?",
+    answer: "Our travel planners arrange complete North Sikkim experiences. We secure the required border zone permits for Lachung, Lachen, and Yumthang Valley, and provide comfortable luxury vehicles."
+  },
+  {
+    question: "Do you offer tour packages to Kerala, Ooty, and Shimla?",
+    answer: "Yes, we arrange bespoke luxury tours across India. This includes backwater houseboats in Kerala, tea garden cottages in Ooty, and colonial heritage excursions in Shimla, customizable to your preferences."
+  },
+  {
     question: "What is the best time of year to journey to the Himalayas?",
     answer: "The pristine window is from March to May (Rhododendron bloom) and late September to mid-December (crystalline azure skies)."
   },
   {
-    question: "How do you handle altitude sickness during the trip?",
+    question: "What experiences do you curate in Kerala and Ooty?",
+    answer: "In Kerala, we organize private houseboat cruises in Alleppey and luxury tea garden stays in Munnar. In Ooty, we schedule Nilgiri Mountain Railway toy train rides, botanical garden excursions, and private lake boating."
+  },
+  {
+    question: "How do you handle altitude sickness during high-altitude trips?",
     answer: "We craft 'slow travel' itineraries to acclimatize. Our drivers and guides are trained to handle high-altitude symptoms quietly and professionally."
   },
   {
@@ -40,8 +52,26 @@ export default function FAQsPage() {
     setFlippedIndex(flippedIndex === index ? null : index);
   };
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  };
+
   return (
     <main className="relative min-h-screen py-24 px-4 md:px-8 bg-[#211f1c] overflow-hidden">
+      {/* FAQ Structured Data for Google AI & Search indexing */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       {/* ── Dark Wall Background ── */}
       <Image
         src="https://images.unsplash.com/photo-1518640467707-6811f4a4ab75?q=80&w=1600&auto=format&fit=crop"
