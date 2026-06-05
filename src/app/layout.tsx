@@ -4,7 +4,6 @@ import type { ReactNode } from "react";
 import Script from "next/script";
 import ContactMenu from "@/components/ContactMenu";
 import Preloader from "@/components/Preloader";
-import PageTransitionPreloader from "@/components/PageTransitionPreloader";
 import TrendingPopup from "@/components/ui/TrendingPopup";
 import "./globals.css";
 
@@ -113,7 +112,6 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${headingFont.variable} ${bodyFont.variable} ${scriptFont.variable} ${romanFont.variable} ${ornateFont.variable} ${westEndFont.variable} ${glypticFont.variable} antialiased`}>
         <Preloader />
-        <PageTransitionPreloader />
         <TrendingPopup />
         {children}
 

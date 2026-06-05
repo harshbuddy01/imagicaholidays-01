@@ -6,10 +6,20 @@ import { heroSlides, hotelTabs, pools, dining, spa, villas } from "@/lib/constan
 import NextImage from "next/image";
 
 export default function Preloader() {
-    const [loading, setLoading] = useState(true);
+    const [mounted, setMounted] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [progress, setProgress] = useState(0);
 
     useEffect(() => {
+        setMounted(true);
+        const hasLoaded = sessionStorage.getItem("imagica_preloader_seen");
+        if (hasLoaded) {
+            return;
+        }
+
+        setLoading(true);
+        sessionStorage.setItem("imagica_preloader_seen", "true");
+
         // Collect all unique images to preload
         const images: string[] = [];
 
@@ -59,6 +69,8 @@ export default function Preloader() {
             document.body.style.overflow = "";
         };
     }, []);
+
+    if (!mounted) return null;
 
     const numStairs = 5;
     const stairArray = Array.from({ length: numStairs });
