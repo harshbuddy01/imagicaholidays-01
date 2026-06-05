@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -10,6 +11,11 @@ const footerLinks = {
     { label: "Lachung", href: "/destinations/lachung" },
     { label: "Darjeeling", href: "/destinations/darjeeling" },
     { label: "Pelling", href: "/destinations/pelling" },
+    { label: "Munnar", href: "/destinations/munnar" },
+    { label: "Wayanad", href: "/destinations/wayanad" },
+    { label: "Goa", href: "/destinations/goa" },
+    { label: "Jaipur", href: "/destinations/jaipur" },
+    { label: "Udaipur", href: "/destinations/udaipur" },
   ],
   activities: [
     { label: "Trekking", href: "/#activities-section" },
@@ -75,7 +81,32 @@ const socialLinks = [
   },
 ];
 
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://api.imagicaholidays.com/api/v1';
+
 export default function Footer() {
+  const [packages, setPackages] = useState<{ label: string; href: string }[]>([]);
+
+  useEffect(() => {
+    fetch(`${API_BASE}/public/journeys`)
+      .then((r) => r.json())
+      .then((d) => {
+        if (d.success && Array.isArray(d.data)) {
+          const list = d.data.slice(0, 5).map((j: any) => ({
+            label: j.title,
+            href: `/journey/${j.id}`,
+          }));
+          setPackages(list);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  const displayedPackages = packages.length > 0 ? packages : [
+    { label: "Sikkim Explorer Tour", href: "/journey/sikkim-journey-0" },
+    { label: "Darjeeling Heritage Tour", href: "/journey/darjeeling-journey-1" },
+    { label: "Munnar Tea Gardens", href: "/journey/munnar-journey-2" },
+  ];
+
   return (
     <footer className="relative bg-[#1a1914] text-[#f0e7d6] overflow-hidden">
       {/* Top decorative border */}
@@ -176,15 +207,15 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Activities */}
+          {/* Popular Packages */}
           <div>
             <p className="text-[10px] uppercase tracking-[0.25em] text-[#ae9e85] font-medium mb-5">
-              Activities
+              Popular Packages
             </p>
             <ul className="space-y-3">
-              {footerLinks.activities.map((link) => (
+              {displayedPackages.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="text-sm text-[#a09383] transition-colors duration-200 hover:text-[#f0e7d6]">
+                  <Link href={link.href} className="text-sm text-[#a09383] transition-colors duration-200 hover:text-[#f0e7d6] line-clamp-1">
                     {link.label}
                   </Link>
                 </li>
