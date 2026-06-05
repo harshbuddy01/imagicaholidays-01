@@ -53,10 +53,23 @@ const glypticFont = Cinzel_Decorative({
 export const metadata: Metadata = {
   title: {
     template: "%s | Imagica Holidays",
-    default: "Imagica Holidays | Luxury Himalayan Tours & Retreats", // a default is required when creating a template
+    default: "Imagica Holidays | Luxury India Tour Packages & Custom Holidays",
   },
-  description: "Experience the ultimate luxury travel across the Himalayas. Book bespoke tours and holiday packages to Gangtok, Darjeeling, Sikkim, and more.",
-  keywords: ["Luxury Tours", "Sikkim Holidays", "Gangtok Packages", "Darjeeling Tours", "Himalayan Retreats"],
+  description: "Experience the ultimate luxury travel across India. Book bespoke tour packages, customized holiday itineraries, and premium resort retreats for Gangtok, Sikkim, Darjeeling, Kashmir, Manali, Kerala, Ooty, Jaipur, Udaipur, and Kanyakumari.",
+  keywords: [
+    "Luxury Tour Packages India",
+    "Customized Holiday Packages",
+    "Sikkim Gangtok Tour Packages",
+    "Darjeeling Luxury Holidays",
+    "Kashmir Holiday Packages",
+    "Manali Tour Packages",
+    "Kerala Backwater Houseboats",
+    "Ooty Luxury Resorts",
+    "Jaipur Udaipur Rajasthan Tours",
+    "Kanyakumari Sightseeing Tours",
+    "Bespoke India Tour Operator",
+    "Imagica Holidays"
+  ],
   authors: [{ name: "IMAGICA HOLIDAYS", url: "https://imagicaholidays.com" }],
   creator: "Imagica Holidays",
   publisher: "Imagica Holidays",
@@ -65,12 +78,11 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-
     type: "website",
     locale: "en_IN",
     url: "https://imagicaholidays.com",
-    title: "Imagica Holidays | Luxury Himalayan Tours",
-    description: "Curated itineraries and premium stays natively built to immerse you in the Himalayan beauty.",
+    title: "Imagica Holidays | Handcrafted Luxury Journeys across India",
+    description: "Curated luxury itineraries, private transfers, and handpicked premium hotel stays natively built to immerse you in exotic Indian destinations.",
     siteName: "Imagica Holidays",
     images: [
       {
@@ -81,10 +93,9 @@ export const metadata: Metadata = {
       },
     ],
   },
-
   twitter: {
     card: "summary_large_image",
-    title: "Imagica Holidays",
+    title: "Imagica Holidays | Luxury India Tour Packages",
     description: "Bespoke tours and holiday packages across India's exotic destinations.",
   },
   icons: {
