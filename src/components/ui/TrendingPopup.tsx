@@ -51,7 +51,7 @@ export default function TrendingPopup() {
   useEffect(() => {
     fetch(`${API_BASE}/public/trending`)
       .then(r => r.json())
-      .then(d => { if (d.success && d.data?.length) setCollection(d.data); })
+      .then(d => { if (d.success && Array.isArray(d.data)) setCollection(d.data); })
       .catch(() => {}); // keep hardcoded fallback
   }, []);
 
@@ -68,7 +68,7 @@ export default function TrendingPopup() {
 
   // Auto-rotate the trending section every 5 seconds
   useEffect(() => {
-    if (!isVisible) return;
+    if (!isVisible || collection.length === 0) return;
     const interval = setInterval(() => {
       setDirection(1);
       setCurrentIndex((prev) => (prev + 1) % collection.length);
@@ -82,11 +82,13 @@ export default function TrendingPopup() {
   };
 
   const nextCard = () => {
+    if (collection.length === 0) return;
     setDirection(1);
     setCurrentIndex((prev) => (prev + 1) % collection.length);
   };
 
   const prevCard = () => {
+    if (collection.length === 0) return;
     setDirection(-1);
     setCurrentIndex((prev) => (prev - 1 + collection.length) % collection.length);
   };
@@ -115,6 +117,8 @@ export default function TrendingPopup() {
       rotate: direction < 0 ? 5 : -5
     })
   };
+
+  if (!collection || collection.length === 0) return null;
 
   return (
     <AnimatePresence>
