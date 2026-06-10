@@ -123,7 +123,7 @@ export default function Navbar() {
         <div className="content-shell flex items-center justify-between px-4 md:px-1">
           {/* Logo Brand: Centered icon stacked on top of text, no subtext */}
           <Link href="/" className="relative z-[60] flex flex-col items-center justify-center gap-0.5 group">
-            <div className="relative w-15 h-9 md:w-18 md:h-11">
+            <div className="relative w-14 h-9 md:w-16 md:h-11">
               <Image
                 src="/logo_icon.png"
                 alt="Imagica Holidays Logo"

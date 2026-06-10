@@ -27,6 +27,13 @@ export default function HeroSection() {
   const [useFallback, setUseFallback] = useState(false);
   const [fallbackSlide, setFallbackSlide] = useState(0);
 
+  // Date Booking search states
+  const [selectedDest, setSelectedDest] = useState("");
+  const [selectedDate, setSelectedDate] = useState(() => {
+    return new Date().toISOString().split('T')[0];
+  });
+  const todayStr = new Date().toISOString().split('T')[0];
+
   useEffect(() => {
     fetchWebsiteConfig().then((data) => {
       if (data && data.config?.hero) {
@@ -191,13 +198,13 @@ export default function HeroSection() {
 
           {/* Luxury Large Heading */}
           <motion.h1
-            initial={{ opacity: 0, y: 25 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="text-4xl md:text-7xl lg:text-[5rem] text-white font-garamond leading-[1.15] tracking-wide font-light mb-4 md:mb-6"
+            transition={{ delay: 0.3, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+            className="text-4xl md:text-7xl lg:text-[5.5rem] text-white font-garamond leading-[1.1] tracking-wide font-light mb-4 md:mb-6"
           >
-            Explore Extraordinary<br/>
-            <span className="font-script text-[#d8be8f] text-5xl md:text-8xl lg:text-[6.5rem] italic tracking-normal block mt-2">
+            Explore <span className="italic text-[#d8be8f]">Extraordinary</span><br/>
+            <span className="font-script gradient-text-trending text-5xl md:text-8xl lg:text-[6.8rem] tracking-normal block mt-2 drop-shadow-[0_4px_15px_rgba(216,190,143,0.35)]">
               Destinations
             </span>
           </motion.h1>
@@ -206,7 +213,7 @@ export default function HeroSection() {
           {/* Narrative Subtitle */}
           <motion.p
             initial={{ opacity: 0 }}
-            animate={{ opacity: 0.7 }}
+            animate={{ opacity: 0.75 }}
             transition={{ delay: 0.6, duration: 0.8 }}
             className="text-white/75 text-xs md:text-[0.92rem] tracking-[0.08em] leading-relaxed max-w-lg mb-6 md:mb-8 font-manrope font-light"
           >
@@ -214,37 +221,65 @@ export default function HeroSection() {
           </motion.p>
 
 
-          {/* Call-to-action buttons */}
+          {/* Date & Destination Search Widget */}
           <motion.div
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.8 }}
-            className="flex flex-wrap gap-4 pointer-events-auto"
+            transition={{ delay: 0.7, duration: 0.8 }}
+            className="w-full max-w-2xl bg-[#110e0b]/60 backdrop-blur-md border border-white/12 p-4 md:p-3 rounded-2xl md:rounded-full flex flex-col md:flex-row items-stretch md:items-center gap-4 md:gap-2 pointer-events-auto shadow-2xl mt-4 md:mt-6"
           >
-            {/* Explore Destinations Pill */}
-            <Link 
-              href="/#destinations-carousel" 
-              className="group relative overflow-hidden rounded-full px-5 py-3 md:px-6 md:py-3.5 bg-gradient-to-r from-[#8a6b2d] via-[#a5813b] to-[#8a6b2d] flex items-center justify-center gap-2 shadow-lg shadow-black/20 hover:shadow-[0_0_20px_rgba(216,190,143,0.3)] transition-all duration-300 active:scale-95"
-            >
-              <span className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-white">Explore Destinations</span>
-              <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center text-white group-hover:bg-white/30 transition-colors">
-                <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
-              </div>
-            </Link>
+            {/* Field 1: Destination Selector */}
+            <div className="flex-1 flex flex-col px-4 border-b border-white/5 md:border-b-0 md:border-r border-white/10 pb-3 md:pb-0">
+              <label className="text-[0.55rem] font-bold tracking-[0.25em] uppercase text-[#d8be8f] mb-1 font-manrope">
+                Where To?
+              </label>
+              <select
+                value={selectedDest}
+                onChange={(e) => setSelectedDest(e.target.value)}
+                className="bg-transparent text-white text-xs md:text-sm font-manrope focus:outline-none appearance-none cursor-pointer pr-6 w-full font-medium"
+                style={{
+                  backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23d8be8f'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2.5' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E")`,
+                  backgroundPosition: 'right center',
+                  backgroundSize: '12px',
+                  backgroundRepeat: 'no-repeat'
+                }}
+              >
+                <option value="" className="bg-[#0f0d0a] text-white/55">Select Dream Escape</option>
+                <option value="Gangtok" className="bg-[#0f0d0a] text-white">Gangtok</option>
+                <option value="Darjeeling" className="bg-[#0f0d0a] text-white">Darjeeling</option>
+                <option value="Munnar" className="bg-[#0f0d0a] text-white">Munnar</option>
+                <option value="Wayanad" className="bg-[#0f0d0a] text-white">Wayanad</option>
+                <option value="Jaipur" className="bg-[#0f0d0a] text-white">Jaipur</option>
+                <option value="Udaipur" className="bg-[#0f0d0a] text-white">Udaipur</option>
+                <option value="Goa" className="bg-[#0f0d0a] text-white">Goa</option>
+                <option value="Pelling" className="bg-[#0f0d0a] text-white">Pelling</option>
+                <option value="Lachung" className="bg-[#0f0d0a] text-white">Lachung</option>
+              </select>
+            </div>
 
-            {/* Plan My Journey Outlined Pill */}
-            <Link 
-              href="/reserve" 
-              className="group relative overflow-hidden rounded-full px-5 py-3 md:px-6 md:py-3.5 border border-white/20 hover:border-white/40 flex items-center justify-center gap-2 transition-all duration-300 hover:bg-white/5 active:scale-95"
+            {/* Field 2: Date Picker */}
+            <div className="flex-1 flex flex-col px-4 pb-3 md:pb-0">
+              <label className="text-[0.55rem] font-bold tracking-[0.25em] uppercase text-[#d8be8f] mb-1 font-manrope">
+                Travel Date
+              </label>
+              <input
+                type="date"
+                value={selectedDate}
+                min={todayStr}
+                onChange={(e) => setSelectedDate(e.target.value)}
+                className="bg-transparent text-white text-xs md:text-sm font-manrope focus:outline-none cursor-pointer pr-1 w-full [color-scheme:dark] font-medium"
+              />
+            </div>
+
+            {/* Book Now Button */}
+            <Link
+              href={`/reserve?destination=${encodeURIComponent(selectedDest)}&arrival=${selectedDate}`}
+              className="px-6 py-3.5 bg-gradient-to-r from-[#8a6b2d] via-[#a5813b] to-[#8a6b2d] hover:shadow-[0_0_20px_rgba(216,190,143,0.45)] text-white text-[0.65rem] font-bold uppercase tracking-[0.2em] rounded-xl md:rounded-full text-center flex items-center justify-center gap-2 transition-all duration-300 active:scale-95 flex-shrink-0"
             >
-              <span className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-white">Plan My Journey</span>
-              <div className="w-5 h-5 rounded-full bg-white/10 flex items-center justify-center text-white group-hover:bg-white/25 transition-colors">
-                <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
-              </div>
+              <span>Book Now</span>
+              <svg className="w-3.5 h-3.5 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
             </Link>
           </motion.div>
         </div>

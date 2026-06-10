@@ -10,13 +10,14 @@ import { useEffect } from "react";
 /* ── Destination options ──────────────────────────────────── */
 const destinations = [
   "Gangtok",
-  "Lachung",
   "Darjeeling",
+  "Munnar",
+  "Wayanad",
+  "Jaipur",
+  "Udaipur",
+  "Goa",
   "Pelling",
-  "Namchi",
-  "Ravangla",
-  "Yuksom",
-  "Tsomgo Lake",
+  "Lachung"
 ];
 
 /* ── Handcrafted UI Accents ──────────────────────────────── */
@@ -61,8 +62,13 @@ export default function ReservationSection() {
 
   useEffect(() => {
     const arrival = searchParams.get("arrival");
-    if (arrival) {
-      setFormData((prev) => ({ ...prev, travelDate: arrival }));
+    const dest = searchParams.get("destination");
+    if (arrival || dest) {
+      setFormData((prev) => ({
+        ...prev,
+        ...(arrival && { travelDate: arrival }),
+        ...(dest && { destination: dest }),
+      }));
     }
   }, [searchParams]);
 
