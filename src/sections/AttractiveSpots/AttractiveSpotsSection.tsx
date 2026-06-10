@@ -52,11 +52,11 @@ export default function AttractiveSpotsSection() {
     const next = useCallback(() => setCurrent((p) => (p + 1) % spots.length), [spots.length]);
     const prev = useCallback(() => setCurrent((p) => (p - 1 + spots.length) % spots.length), [spots.length]);
 
-    // 3-second auto-change interval, resetting on manual selection
+    // 5-second auto-change interval, resetting on manual selection
     useEffect(() => {
         const timer = setInterval(() => {
             next();
-        }, 3000);
+        }, 5000);
         return () => clearInterval(timer);
     }, [next]);
 
@@ -149,7 +149,7 @@ export default function AttractiveSpotsSection() {
                                 return (
                                     <>
                                         {mainPart}{" "}
-                                        <span className="font-script text-5xl md:text-7xl lg:text-8xl text-[#d8be8f] italic block md:inline md:ml-2">
+                                        <span className="font-serif italic text-[#d8be8f] block md:inline md:ml-3">
                                             {lastWord}
                                         </span>
                                     </>
