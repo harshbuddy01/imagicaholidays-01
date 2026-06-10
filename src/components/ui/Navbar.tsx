@@ -10,7 +10,6 @@ interface DropdownItem {
   label: string;
   href: string;
   image?: string;
-  desc?: string;
 }
 
 interface NavLink {
@@ -118,11 +117,11 @@ export default function Navbar() {
       <header
         className={`fixed inset-x-0 top-0 z-[100] transition-all duration-500 ${scrolled || pathname.startsWith('/journey')
           ? "border-b border-white/10 bg-[rgba(16,14,10,0.95)] py-2 backdrop-blur-2xl"
-          : "bg-gradient-to-b from-[rgba(9,8,6,0.7)] to-transparent py-3"
+          : "bg-gradient-to-b from-[rgba(9,8,6,0.7)] to-transparent py-4"
           }`}
       >
         <div className="content-shell flex items-center justify-between px-4 md:px-1">
-          {/* Logo Brand matching Mockup: Icon stacked on top of text */}
+          {/* Logo Brand: Centered icon stacked on top of text, no subtext */}
           <Link href="/" className="relative z-[60] flex flex-col items-center justify-center gap-1 group">
             <div className="relative w-14 h-9 md:w-16 md:h-11">
               <Image
@@ -133,14 +132,9 @@ export default function Navbar() {
                 priority
               />
             </div>
-            <div className="flex flex-col items-center leading-none mt-0.5">
-              <span className="font-serif text-[9px] tracking-[0.25em] text-white md:text-[11px] md:tracking-[0.35em] font-bold">
-                IMAGICA HOLIDAYS
-              </span>
-              <span className="text-[5px] tracking-[0.16em] text-[#d8be8f]/80 uppercase font-semibold mt-1">
-                HANDCRAFTED LUXURY JOURNEYS
-              </span>
-            </div>
+            <span className="font-serif text-[10px] tracking-[0.25em] text-white md:text-[12px] md:tracking-[0.35em] font-bold leading-none mt-1 group-hover:text-[#d8be8f] transition-colors duration-300">
+              IMAGICA HOLIDAYS
+            </span>
           </Link>
 
           {/* Desktop Center Navigation Links */}
@@ -154,9 +148,9 @@ export default function Navbar() {
                   <Link
                     href={link.href}
                     aria-current={isActive ? "page" : undefined}
-                    className={`flex flex-col items-center justify-center transition duration-300 px-4 py-1.5 rounded-full border border-transparent text-[0.66rem] uppercase tracking-[0.18em] ${
+                    className={`flex flex-col items-center justify-center transition duration-300 px-5 py-2 rounded-full border text-[0.66rem] uppercase tracking-[0.18em] ${
                       isHighlightStyle 
-                        ? "text-[#d8be8f] font-semibold bg-white/[0.04] border-white/5 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] hover:bg-white/[0.08]" 
+                        ? "text-[#d8be8f] font-semibold bg-[#1a1612]/70 border-[#d8be8f]/20 shadow-[0_4px_15px_rgba(216,190,143,0.1)] hover:border-[#d8be8f]/50 hover:bg-[#1a1612]" 
                         : isActive ? "text-[#d8be8f]" : "text-white/80 hover:text-[#d8be8f]"
                     }`}
                   >
@@ -167,22 +161,28 @@ export default function Navbar() {
                   {/* Destinations Grid Card Dropdown */}
                   {link.label === "Destinations" && link.dropdown && (
                     <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                      <div className="bg-[#100e0a]/95 border border-white/10 rounded-2xl p-4 min-w-[360px] shadow-2xl backdrop-blur-xl bg-opacity-95">
-                        <div className="grid grid-cols-3 gap-2">
+                      <div className="bg-[#0e0b09]/95 border border-[#d8be8f]/20 rounded-2xl p-5 min-w-[420px] shadow-[0_25px_60px_rgba(0,0,0,0.85)] backdrop-blur-2xl">
+                        {/* Elegant top accent bar */}
+                        <div className="absolute top-0 inset-x-10 h-[1.5px] bg-gradient-to-r from-transparent via-[#d8be8f]/50 to-transparent" />
+                        
+                        <div className="grid grid-cols-3 gap-3">
                           {link.dropdown.map((item) => (
                             <Link
                               key={item.label}
                               href={item.href}
-                              className="relative h-16 rounded-xl overflow-hidden group/item border border-white/10"
+                              className="relative h-20 rounded-xl overflow-hidden group/item border border-white/5 flex flex-col justify-end p-2 transition-all duration-300 hover:border-[#d8be8f]/40"
                             >
                               <img 
                                 src={item.image} 
                                 alt={item.label} 
-                                className="absolute inset-0 w-full h-full object-cover group-hover/item:scale-105 transition-transform duration-500" 
+                                className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover/item:scale-108" 
                               />
-                              <div className="absolute inset-0 bg-black/55 group-hover/item:bg-black/35 transition-colors" />
-                              <div className="absolute inset-0 flex items-center justify-center">
-                                <span className="text-[0.58rem] font-bold uppercase tracking-[0.15em] text-white group-hover/item:text-[#d8be8f] transition-colors">
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/10 transition-opacity duration-500 group-hover/item:opacity-85" />
+                              <div className="relative z-10 w-full text-center">
+                                <span className="text-[0.55rem] font-bold uppercase tracking-[0.2em] text-[#d8be8f] block opacity-0 group-hover/item:opacity-100 transition-opacity duration-300">
+                                  Explore
+                                </span>
+                                <span className="text-[0.62rem] font-bold uppercase tracking-[0.18em] text-white block mt-0.5">
                                   {item.label}
                                 </span>
                               </div>
@@ -253,9 +253,6 @@ export default function Navbar() {
                 <div className="flex flex-col items-start leading-none gap-0.5">
                   <span className="font-serif text-[11px] tracking-[0.25em] text-white font-bold">
                     IMAGICA HOLIDAYS
-                  </span>
-                  <span className="text-[6px] tracking-[0.18em] text-[#d8be8f]/80 uppercase font-semibold">
-                    HANDCRAFTED LUXURY JOURNEYS
                   </span>
                 </div>
               </Link>
