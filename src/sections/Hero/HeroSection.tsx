@@ -238,10 +238,11 @@ export default function HeroSection() {
                   <div className="relative w-16 h-10 mb-2 mx-auto">
                     <Image src="/logo_icon.png" alt="Logo" fill className="object-contain" />
                   </div>
-                  <h1 className="font-glyptic text-2xl md:text-4xl text-white tracking-[0.4em] uppercase leading-relaxed text-center">
+                  <h1 className="font-serif font-light text-3xl md:text-5xl lg:text-6xl text-white tracking-[0.35em] uppercase leading-relaxed text-center">
                     {useFallback ? (slides[fallbackSlide]?.title || "IMAGICA") : "IMAGICA"}<br/>
                     {useFallback ? "" : "HOLIDAYS"}
                   </h1>
+
                 </div>
                 
                 <div className="w-16 h-px bg-[#d8be8f]/60 mb-6" />
