@@ -1,9 +1,10 @@
 "use client";
 
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { fetchWebsiteConfig } from "@/lib/api";
 
 /* ── Regional Data ────────────────────────────────────────── */
 interface Destination {
@@ -100,8 +101,7 @@ const chapters = [
   },
 ];
 
-/* ── Components ───────────────────────────────────────────── */
-
+/* ── Helper Components ───────────────────────────────────── */
 const FloralFrame = () => (
   <svg className="absolute -inset-8 pointer-events-none opacity-20 group-hover:opacity-40 transition-opacity duration-700" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M10 10C30 5 70 5 90 10M10 90C30 95 70 95 90 90" stroke="#a5813b" strokeWidth="0.5" strokeDasharray="2 2" />
@@ -127,10 +127,57 @@ const ArtisanOrnament = ({ className, speed = 1 }: { className?: string; speed?:
 };
 
 export default function DestinationsGrid() {
+  const [config, setConfig] = useState<any[] | null>(null);
   const [activeChapter, setActiveChapter] = useState(chapters[0].id);
   const containerRef = useRef(null);
 
-  const currentDestinations = chapters.find((c) => c.id === activeChapter)?.destinations || [];
+  useEffect(() => {
+    fetchWebsiteConfig().then((data) => {
+      if (data && Array.isArray(data.config?.destinations)) {
+        setConfig(data.config.destinations);
+      }
+    });
+  }, []);
+
+  // Map dynamic destinations to static chapters, and append new ones in a new chapter if any
+  const dynamicChapters = [...chapters].map(chapter => {
+    const updatedDests = chapter.destinations.map(dest => {
+      const match = config?.find((d: any) => d.id === dest.id);
+      if (match) {
+        return {
+          id: dest.id,
+          title: match.title || dest.title,
+          location: match.tagline || dest.location,
+          description: match.description || dest.description,
+          image: match.mainImage || match.image || dest.image,
+          link: match.link || dest.link
+        };
+      }
+      return dest;
+    });
+    return { ...chapter, destinations: updatedDests };
+  });
+
+  const unmatched = config?.filter((d: any) => 
+    !chapters.some(c => c.destinations.some(dest => dest.id === d.id))
+  ) || [];
+
+  if (unmatched.length > 0) {
+    dynamicChapters.push({
+      id: "featured-escapes",
+      label: "Featured Escapes",
+      destinations: unmatched.map((match: any) => ({
+        id: match.id,
+        title: match.title || "Custom Destination",
+        location: match.tagline || "Exclusive Escape",
+        description: match.description || "",
+        image: match.mainImage || match.image || "https://images.unsplash.com/photo-1542223189-67a03fa0f0bd?auto=format&fit=crop&w=1400&q=80",
+        link: match.link || `/destinations/${match.id}`
+      }))
+    });
+  }
+
+  const currentDestinations = dynamicChapters.find((c) => c.id === activeChapter)?.destinations || [];
 
   return (
     <section ref={containerRef} className="relative w-full bg-[#f8f5f0] py-24 md:py-32 overflow-hidden">
@@ -150,7 +197,7 @@ export default function DestinationsGrid() {
 
         {/* Regional Filter Tabs */}
         <div className="flex flex-wrap justify-center gap-4 md:gap-10 mb-20 md:mb-28">
-          {chapters.map((chapter) => (
+          {dynamicChapters.map((chapter) => (
             <button
               key={chapter.id}
               onClick={() => setActiveChapter(chapter.id)}

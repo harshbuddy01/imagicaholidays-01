@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
+import { fetchDestinationCms, DestinationCmsData } from "@/lib/api";
 
 /* ═══════════════════════════════════════════════════════════
    DATA
@@ -222,6 +223,20 @@ const fadeUp = {
    ═══════════════════════════════════════════════════════════ */
 export default function GangtokPage() {
   const [visibleAttractions, setVisibleAttractions] = useState(6);
+  const [cmsData, setCmsData] = useState<DestinationCmsData | null>(null);
+
+  useEffect(() => {
+    fetchDestinationCms("gangtok").then((data) => {
+      if (data) {
+        setCmsData(data);
+      }
+    });
+  }, []);
+
+  const currentHeroImage = cmsData?.pageContent?.heroImage || cmsData?.heroImage || "https://images.pexels.com/photos/33547415/pexels-photo-33547415.jpeg?auto=compress&cs=tinysrgb&w=1800";
+  const currentAttractions = cmsData?.pageContent?.attractions && cmsData.pageContent.attractions.length > 0 
+    ? cmsData.pageContent.attractions 
+    : attractions;
 
   return (
     <>
@@ -230,7 +245,7 @@ export default function GangtokPage() {
       {/* ══════════ 1. HERO ══════════ */}
       <section className="relative h-[65vh] md:h-[85vh] min-h-[450px] md:min-h-[600px] overflow-hidden">
         <Image
-          src="https://images.pexels.com/photos/33547415/pexels-photo-33547415.jpeg?auto=compress&cs=tinysrgb&w=1800"
+          src={currentHeroImage}
           alt="White and red building on green mountain in Gangtok"
           fill
           className="object-cover"
@@ -281,15 +296,24 @@ export default function GangtokPage() {
                 Premium Gangtok Tour Packages & Luxury Sikkim Itineraries
               </h2>
               <div className="space-y-4">
-                <p className="text-[#5c544b] leading-relaxed">
-                  Discover the breathtaking capital of Sikkim with our handcrafted <strong>Gangtok tour packages</strong>. Nestled at 5,410 feet, Gangtok is Northeast India's premier holiday destination, blending ancient Tibetan Buddhist culture with spectacular Himalayan vistas. Whether you are seeking a romantic <strong>Gangtok honeymoon package</strong>, a peaceful family retreat, or premium sightseeing tours across East Sikkim, we curate unparalleled luxury experiences.
-                </p>
-                <p className="text-[#5c544b] leading-relaxed">
-                  Every <strong>Sikkim holiday</strong> we design includes exclusive stays at the finest <strong>resorts in Gangtok</strong>, ensuring you wake up to pristine views of the majestic Mount Kanchenjunga. From strolling down the impeccably clean MG Marg to seeking blessings at the historic Rumtek Monastery, compiling the perfect <strong>Gangtok itinerary</strong> requires local expertise.
-                </p>
-                <p className="text-[#5c544b] leading-relaxed">
-                  Unlike standard <strong>travel agencies</strong>, Imagica Holidays specializes in luxury, hassle-free travel. We handle your inner line permits, premium cab transfers, and exclusive accommodations. Discover the <strong>best time to visit Gangtok</strong> with our seasonal guides below, and let our destination experts tailor your perfect Himalayan escape.
-                </p>
+                {cmsData?.aboutHtml ? (
+                  <div 
+                    className="text-[#5c544b] leading-relaxed space-y-4"
+                    dangerouslySetInnerHTML={{ __html: cmsData.aboutHtml }}
+                  />
+                ) : (
+                  <>
+                    <p className="text-[#5c544b] leading-relaxed">
+                      Discover the breathtaking capital of Sikkim with our handcrafted <strong>Gangtok tour packages</strong>. Nestled at 5,410 feet, Gangtok is Northeast India's premier holiday destination, blending ancient Tibetan Buddhist culture with spectacular Himalayan vistas. Whether you are seeking a romantic <strong>Gangtok honeymoon package</strong>, a peaceful family retreat, or premium sightseeing tours across East Sikkim, we curate unparalleled luxury experiences.
+                    </p>
+                    <p className="text-[#5c544b] leading-relaxed">
+                      Every <strong>Sikkim holiday</strong> we design includes exclusive stays at the finest <strong>resorts in Gangtok</strong>, ensuring you wake up to pristine views of the majestic Mount Kanchenjunga. From strolling down the impeccably clean MG Marg to seeking blessings at the historic Rumtek Monastery, compiling the perfect <strong>Gangtok itinerary</strong> requires local expertise.
+                    </p>
+                    <p className="text-[#5c544b] leading-relaxed">
+                      Unlike standard <strong>travel agencies</strong>, Imagica Holidays specializes in luxury, hassle-free travel. We handle your inner line permits, premium cab transfers, and exclusive accommodations. Discover the <strong>best time to visit Gangtok</strong> with our seasonal guides below, and let our destination experts tailor your perfect Himalayan escape.
+                    </p>
+                  </>
+                )}
               </div>
             </motion.div>
 
@@ -367,7 +391,7 @@ export default function GangtokPage() {
           </motion.div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {attractions.slice(0, visibleAttractions).map((attr, i) => (
+            {currentAttractions.slice(0, visibleAttractions).map((attr, i) => (
               <motion.div
                 key={attr.name}
                 variants={fadeUp}
@@ -398,10 +422,10 @@ export default function GangtokPage() {
             ))}
           </div>
 
-          {visibleAttractions < attractions.length && (
+          {visibleAttractions < currentAttractions.length && (
             <div className="text-center mt-10">
               <button
-                onClick={() => setVisibleAttractions(attractions.length)}
+                onClick={() => setVisibleAttractions(currentAttractions.length)}
                 className="border border-[#3d3831] px-8 py-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#3d3831] transition-all duration-300 hover:bg-[#3d3831] hover:text-[#f4ebd9] rounded-sm"
                 aria-label="View all tourist attractions in Gangtok"
               >

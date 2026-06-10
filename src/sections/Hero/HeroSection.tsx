@@ -20,15 +20,38 @@ const heroVideos = [
   { id: "video-2", src: "https://media.imagicaholidays.com/imagica-assets/hero-1-hq-compressed.mp4", title: "Majestic Icelandic Mountain", location: "Iceland" },
 ];
 
+import { fetchWebsiteConfig } from "@/lib/api";
+
 export default function HeroSection() {
   const heroRef = useRef<HTMLDivElement | null>(null);
   const video1Ref = useRef<HTMLVideoElement | null>(null);
   const video2Ref = useRef<HTMLVideoElement | null>(null);
 
+  const [config, setConfig] = useState<any>(null);
   const [activeVideo, setActiveVideo] = useState(0);
   const [videosReady, setVideosReady] = useState(false);
   const [useFallback, setUseFallback] = useState(false);
   const [fallbackSlide, setFallbackSlide] = useState(0);
+
+  useEffect(() => {
+    fetchWebsiteConfig().then((data) => {
+      if (data && data.config?.hero) {
+        setConfig(data.config.hero);
+        if (data.config.hero.useVideo !== undefined) {
+          setUseFallback(!data.config.hero.useVideo);
+        }
+      }
+    });
+  }, []);
+
+  const slides = config?.fallbackSlides && config.fallbackSlides.length > 0 
+    ? config.fallbackSlides 
+    : heroSlides;
+
+  useEffect(() => {
+    if (video1Ref.current) video1Ref.current.load();
+    if (video2Ref.current) video2Ref.current.load();
+  }, [config?.videoUrl1, config?.videoUrl2]);
 
   // Date & Booking State
   const [minDate, setMinDate] = useState("");
@@ -128,10 +151,10 @@ export default function HeroSection() {
   useEffect(() => {
     if (!useFallback) return;
     const timer = setInterval(() => {
-      setFallbackSlide((p) => (p + 1) % heroSlides.length);
+      setFallbackSlide((p) => (p + 1) % slides.length);
     }, 3000);
     return () => clearInterval(timer);
-  }, [useFallback]);
+  }, [useFallback, slides.length]);
 
   return (
     <section ref={heroRef} className="relative h-[100svh] overflow-hidden bg-black">
@@ -142,8 +165,8 @@ export default function HeroSection() {
           <AnimatePresence mode="wait">
             <motion.img
               key={fallbackSlide}
-              src={heroSlides[fallbackSlide].image}
-              alt={heroSlides[fallbackSlide].title}
+              src={slides[fallbackSlide]?.image || ""}
+              alt={slides[fallbackSlide]?.title || ""}
               initial={{ opacity: 0, scale: 1.05 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0 }}
@@ -157,7 +180,7 @@ export default function HeroSection() {
             <div className={`absolute inset-0 w-full h-full transition-opacity duration-[2500ms] ease-in-out ${activeVideo === 0 ? "opacity-100 z-[2]" : "opacity-0 z-[1]"}`}>
               <video
                 ref={video1Ref}
-                src={heroVideos[0].src}
+                src={config?.videoUrl1 || heroVideos[0].src}
                 onError={() => setUseFallback(true)}
                 autoPlay
                 loop
@@ -173,7 +196,7 @@ export default function HeroSection() {
             <div className={`absolute inset-0 w-full h-full transition-opacity duration-[2500ms] ease-in-out ${activeVideo === 1 ? "opacity-100 z-[2]" : "opacity-0 z-[1]"}`}>
               <video
                 ref={video2Ref}
-                src={heroVideos[1].src}
+                src={config?.videoUrl2 || heroVideos[1].src}
                 onError={() => setUseFallback(true)}
                 autoPlay
                 loop
@@ -204,7 +227,7 @@ export default function HeroSection() {
           <div className="relative z-10 flex flex-col items-center max-w-[85%] pointer-events-auto">
             <AnimatePresence mode="wait">
               <motion.div
-                key={activeVideo}
+                key={useFallback ? fallbackSlide : activeVideo}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
@@ -216,18 +239,19 @@ export default function HeroSection() {
                     <Image src="/logo_icon.png" alt="Logo" fill className="object-contain" />
                   </div>
                   <h1 className="font-glyptic text-2xl md:text-4xl text-white tracking-[0.4em] uppercase leading-relaxed text-center">
-                    IMAGICA<br/>HOLIDAYS
+                    {useFallback ? (slides[fallbackSlide]?.title || "IMAGICA") : "IMAGICA"}<br/>
+                    {useFallback ? "" : "HOLIDAYS"}
                   </h1>
                 </div>
                 
                 <div className="w-16 h-px bg-[#d8be8f]/60 mb-6" />
 
                 <p className="font-serif text-[0.85rem] md:text-[1rem] text-[#d8be8f] uppercase tracking-[0.4em] font-bold leading-relaxed max-w-sm mb-4">
-                  Handcrafted Luxury Journeys
+                  {useFallback ? (slides[fallbackSlide]?.subtitle || "Handcrafted Luxury Journeys") : "Handcrafted Luxury Journeys"}
                 </p>
 
                 <p className="font-roman text-[0.7rem] md:text-[0.8rem] text-white/70 italic tracking-[0.15em] leading-relaxed max-w-xs">
-                  &quot;Crafting life&apos;s most profound memories where local roots meet global luxury.&quot;
+                  {useFallback && slides[fallbackSlide]?.location ? slides[fallbackSlide].location : `"Crafting life's most profound memories where local roots meet global luxury."`}
                 </p>
 
                 {/* View More Trigger */}

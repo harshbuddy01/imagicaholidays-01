@@ -9,9 +9,21 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-import { villas } from "@/lib/constants";
+import { villas as staticVillas } from "@/lib/constants";
+import { fetchWebsiteConfig } from "@/lib/api";
 
 export default function VillasSection() {
+  const [config, setConfig] = useState<any[] | null>(null);
+  
+  useEffect(() => {
+    fetchWebsiteConfig().then((data) => {
+      if (data && Array.isArray(data.config?.villas)) {
+        setConfig(data.config.villas);
+      }
+    });
+  }, []);
+
+  const villas = config && config.length > 0 ? config : staticVillas;
   const containerRef = useRef<HTMLElement>(null);
   const sliderRef = useRef<any>(null);
   const isInView = useInView(containerRef, { once: true, margin: "-100px" });

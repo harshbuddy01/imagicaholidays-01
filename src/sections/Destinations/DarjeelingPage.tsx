@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
+import { fetchDestinationCms, DestinationCmsData } from "@/lib/api";
 
 /* ═══════════════════════════════════════════════════════════
    DATA
@@ -195,6 +196,20 @@ const fadeUp = {
    ═══════════════════════════════════════════════════════════ */
 export default function DarjeelingPage() {
   const [visibleAttractions, setVisibleAttractions] = useState(6);
+  const [cmsData, setCmsData] = useState<DestinationCmsData | null>(null);
+
+  useEffect(() => {
+    fetchDestinationCms("darjeeling").then((data) => {
+      if (data) {
+        setCmsData(data);
+      }
+    });
+  }, []);
+
+  const currentHeroImage = cmsData?.pageContent?.heroImage || cmsData?.heroImage || "https://images.pexels.com/photos/18943817/pexels-photo-18943817.jpeg?auto=compress&cs=tinysrgb&w=1800";
+  const currentAttractions = cmsData?.pageContent?.attractions && cmsData.pageContent.attractions.length > 0 
+    ? cmsData.pageContent.attractions 
+    : attractions;
 
   return (
     <>
@@ -203,7 +218,7 @@ export default function DarjeelingPage() {
       {/* ══════════ 1. HERO ══════════ */}
       <section className="relative h-[65vh] md:h-[85vh] min-h-[450px] md:min-h-[600px] overflow-hidden">
         <Image
-          src="https://images.pexels.com/photos/18943817/pexels-photo-18943817.jpeg?auto=compress&cs=tinysrgb&w=1800"
+          src={currentHeroImage}
           alt="Train traveling through lush green countryside in Darjeeling"
           fill
           className="object-cover"
@@ -252,15 +267,24 @@ export default function DarjeelingPage() {
                 Luxury Darjeeling Tour Packages & Tea Estate Retreats
               </h2>
               <div className="space-y-4">
-                <p className="text-[#5c544b] leading-relaxed">
-                  Experience the pinnacle of Himalayan elegance with our bespoke <strong>Darjeeling tour packages</strong>. Crowned as the &ldquo;Queen of the Hills&rdquo;, Darjeeling is West Bengal's most coveted holiday destination, offering travelers breathtaking, unobstructed views of the majestic Mount Kanchenjunga. Whether you are searching for a peaceful family getaway or a romantic <strong>Darjeeling honeymoon package</strong>, our handcrafted itineraries promise unparalleled luxury.
-                </p>
-                <p className="text-[#5c544b] leading-relaxed">
-                  As regional travel experts, Imagica Holidays ensures your <strong>Darjeeling itinerary</strong> encompasses the very best this iconic hill station has to offer. Ride the UNESCO World Heritage <strong>Toy Train (Darjeeling Himalayan Railway)</strong>, witness the incredible sunrise from <strong>Tiger Hill</strong>, and walk through sprawling, world-famous <strong>Darjeeling tea estates</strong> while staying in premium heritage properties and luxury resorts.
-                </p>
-                <p className="text-[#5c544b] leading-relaxed">
-                  Avoid the hassle of coordinating taxis and permits. Our comprehensive <strong>West Bengal tourism packages</strong> offer end-to-end service, seamlessly connecting Darjeeling with neighboring jewels like Gangtok and Pelling. Review our guide on the <strong>best time to visit Darjeeling</strong> below and let us craft a five-star Himalayan retreat customized entirely around you.
-                </p>
+                {cmsData?.aboutHtml ? (
+                  <div 
+                    className="text-[#5c544b] leading-relaxed space-y-4"
+                    dangerouslySetInnerHTML={{ __html: cmsData.aboutHtml }}
+                  />
+                ) : (
+                  <>
+                    <p className="text-[#5c544b] leading-relaxed">
+                      Experience the pinnacle of Himalayan elegance with our bespoke <strong>Darjeeling tour packages</strong>. Crowned as the &ldquo;Queen of the Hills&rdquo;, Darjeeling is West Bengal's most coveted holiday destination, offering travelers breathtaking, unobstructed views of the majestic Mount Kanchenjunga. Whether you are searching for a peaceful family getaway or a romantic <strong>Darjeeling honeymoon package</strong>, our handcrafted itineraries promise unparalleled luxury.
+                    </p>
+                    <p className="text-[#5c544b] leading-relaxed">
+                      As regional travel experts, Imagica Holidays ensures your <strong>Darjeeling itinerary</strong> encompasses the very best this iconic hill station has to offer. Ride the UNESCO World Heritage <strong>Toy Train (Darjeeling Himalayan Railway)</strong>, witness the incredible sunrise from <strong>Tiger Hill</strong>, and walk through sprawling, world-famous <strong>Darjeeling tea estates</strong> while staying in premium heritage properties and luxury resorts.
+                    </p>
+                    <p className="text-[#5c544b] leading-relaxed">
+                      Avoid the hassle of coordinating taxis and permits. Our comprehensive <strong>West Bengal tourism packages</strong> offer end-to-end service, seamlessly connecting Darjeeling with neighboring jewels like Gangtok and Pelling. Review our guide on the <strong>best time to visit Darjeeling</strong> below and let us craft a five-star Himalayan retreat customized entirely around you.
+                    </p>
+                  </>
+                )}
               </div>
             </motion.div>
 
@@ -337,7 +361,7 @@ export default function DarjeelingPage() {
           </motion.div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {attractions.slice(0, visibleAttractions).map((attr, i) => (
+            {currentAttractions.slice(0, visibleAttractions).map((attr, i) => (
               <motion.div
                 key={attr.name}
                 variants={fadeUp}
@@ -368,10 +392,10 @@ export default function DarjeelingPage() {
             ))}
           </div>
 
-          {visibleAttractions < attractions.length && (
+          {visibleAttractions < currentAttractions.length && (
             <div className="text-center mt-10">
               <button
-                onClick={() => setVisibleAttractions(attractions.length)}
+                onClick={() => setVisibleAttractions(currentAttractions.length)}
                 className="border border-[#3d3831] px-8 py-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#3d3831] transition-all duration-300 hover:bg-[#3d3831] hover:text-[#f4ebd9] rounded-sm"
                 aria-label="View all tourist attractions in Darjeeling"
               >

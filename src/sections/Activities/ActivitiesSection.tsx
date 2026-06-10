@@ -4,6 +4,7 @@ import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion"
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { fetchWebsiteConfig } from "@/lib/api";
 
 /* ── Activity data ────────────────────────────────────────── */
 interface Activity {
@@ -13,7 +14,7 @@ interface Activity {
   alt: string;
 }
 
-const activities: Activity[] = [
+const staticActivities: Activity[] = [
   {
     title: "Trekking",
     subtitle: "Himalayan Trails",
@@ -95,10 +96,21 @@ const activities: Activity[] = [
 
 /* ── Component ────────────────────────────────────────────── */
 export default function ActivitiesSection() {
+  const [config, setConfig] = useState<any[] | null>(null);
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [isMobile, setIsMobile] = useState(false);
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
+
+  useEffect(() => {
+    fetchWebsiteConfig().then((data) => {
+      if (data && Array.isArray(data.config?.activities)) {
+        setConfig(data.config.activities);
+      }
+    });
+  }, []);
+
+  const activities = config && config.length > 0 ? config : staticActivities;
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
@@ -114,7 +126,7 @@ export default function ActivitiesSection() {
       setActiveIndex((prev) => (prev + 1) % activities.length);
     }, 4000);
     return () => clearInterval(timer);
-  }, [isMobile, activeIndex]);
+  }, [isMobile, activeIndex, activities.length]);
 
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.targetTouches[0].clientX;

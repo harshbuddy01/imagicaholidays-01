@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
+import { fetchDestinationCms, DestinationCmsData } from "@/lib/api";
 
 /* ═══════════════════════════════════════════════════════════
    DATA
@@ -181,6 +182,20 @@ const fadeUp = {
    ═══════════════════════════════════════════════════════════ */
 export default function PellingPage() {
   const [visibleAttractions, setVisibleAttractions] = useState(6);
+  const [cmsData, setCmsData] = useState<DestinationCmsData | null>(null);
+
+  useEffect(() => {
+    fetchDestinationCms("pelling").then((data) => {
+      if (data) {
+        setCmsData(data);
+      }
+    });
+  }, []);
+
+  const currentHeroImage = cmsData?.pageContent?.heroImage || cmsData?.heroImage || "https://images.pexels.com/photos/33547415/pexels-photo-33547415.jpeg?auto=compress&cs=tinysrgb&w=1800";
+  const currentAttractions = cmsData?.pageContent?.attractions && cmsData.pageContent.attractions.length > 0 
+    ? cmsData.pageContent.attractions 
+    : attractions;
 
   return (
     <>
@@ -189,7 +204,7 @@ export default function PellingPage() {
       {/* ══════════ 1. HERO ══════════ */}
       <section className="relative h-[65vh] md:h-[85vh] min-h-[450px] md:min-h-[600px] overflow-hidden">
         <Image
-          src="https://images.pexels.com/photos/33547415/pexels-photo-33547415.jpeg?auto=compress&cs=tinysrgb&w=1800"
+          src={currentHeroImage}
           alt="Aerial view of a mountain with a statue on top in Pelling"
           fill
           className="object-cover"
@@ -240,15 +255,24 @@ export default function PellingPage() {
                 Premium Pelling Tour Packages & Kanchenjunga Retreats
               </h2>
               <div className="space-y-4">
-                <p className="text-[#5c544b] leading-relaxed">
-                  Unlock the majestic beauty of West Sikkim with our exclusive <strong>Pelling tour packages</strong>. Regarded as the "Gateway to Kanchenjunga", Pelling offers the most breathtaking, up-close views of the world's third-highest peak. Our luxury <strong>Sikkim holidays</strong> ensure you experience this serene Himalayan town in absolute comfort, whether you are booking a family retreat or a romantic <strong>Pelling honeymoon package</strong>.
-                </p>
-                <p className="text-[#5c544b] leading-relaxed">
-                  An impeccable <strong>Pelling itinerary</strong> seamlessly blends awe-inspiring nature with ancient spirituality. With Imagica Holidays, you'll walk the exhilarating <strong>Pelling Glass Skywalk</strong>, explore the sacred Pemayangtse and Sanga Choling monasteries, and relax in premium <strong>Pelling mountain resorts</strong>. We curate every detail so you can immerse yourself in the natural grandeur of the Himalayas without stress.
-                </p>
-                <p className="text-[#5c544b] leading-relaxed">
-                  As the premier choice for <strong>Sikkim tourism</strong>, our local experts hand-select the finest accommodations and organize private chauffeur-driven excursions to nearby jewels like the Rabdentse Ruins and Khecheopalri Lake. View our guide on the <strong>best time to visit Pelling</strong> below, and let us design a luxury North-East Indian holiday you will remember forever.
-                </p>
+                {cmsData?.aboutHtml ? (
+                  <div 
+                    className="text-[#5c544b] leading-relaxed space-y-4"
+                    dangerouslySetInnerHTML={{ __html: cmsData.aboutHtml }}
+                  />
+                ) : (
+                  <>
+                    <p className="text-[#5c544b] leading-relaxed">
+                      Unlock the majestic beauty of West Sikkim with our exclusive <strong>Pelling tour packages</strong>. Regarded as the "Gateway to Kanchenjunga", Pelling offers the most breathtaking, up-close views of the world's third-highest peak. Our luxury <strong>Sikkim holidays</strong> ensure you experience this serene Himalayan town in absolute comfort, whether you are booking a family retreat or a romantic <strong>Pelling honeymoon package</strong>.
+                    </p>
+                    <p className="text-[#5c544b] leading-relaxed">
+                      An impeccable <strong>Pelling itinerary</strong> seamlessly blends awe-inspiring nature with ancient spirituality. With Imagica Holidays, you'll walk the exhilarating <strong>Pelling Glass Skywalk</strong>, explore the sacred Pemayangtse and Sanga Choling monasteries, and relax in premium <strong>Pelling mountain resorts</strong>. We curate every detail so you can immerse yourself in the natural grandeur of the Himalayas without stress.
+                    </p>
+                    <p className="text-[#5c544b] leading-relaxed">
+                      As the premier choice for <strong>Sikkim tourism</strong>, our local experts hand-select the finest accommodations and organize private chauffeur-driven excursions to nearby jewels like the Rabdentse Ruins and Khecheopalri Lake. View our guide on the <strong>best time to visit Pelling</strong> below, and let us design a luxury North-East Indian holiday you will remember forever.
+                    </p>
+                  </>
+                )}
               </div>
             </motion.div>
 
@@ -329,7 +353,7 @@ export default function PellingPage() {
           </motion.div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {attractions.slice(0, visibleAttractions).map((attr, i) => (
+            {currentAttractions.slice(0, visibleAttractions).map((attr, i) => (
               <motion.div
                 key={attr.name}
                 variants={fadeUp}
@@ -361,10 +385,10 @@ export default function PellingPage() {
             ))}
           </div>
 
-          {visibleAttractions < attractions.length && (
+          {visibleAttractions < currentAttractions.length && (
             <div className="text-center mt-10">
               <button
-                onClick={() => setVisibleAttractions(attractions.length)}
+                onClick={() => setVisibleAttractions(currentAttractions.length)}
                 className="border border-[#3d3831] px-8 py-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#3d3831] transition-all duration-300 hover:bg-[#3d3831] hover:text-[#f4ebd9] rounded-sm"
                 aria-label="View all tourist attractions in Pelling"
               >

@@ -21,7 +21,9 @@ interface Spot {
     image: string;
 }
 
-const spots: Spot[] = [
+import { fetchWebsiteConfig } from "@/lib/api";
+
+const staticSpots: Spot[] = [
     { id: "tiger-hill", name: "Tiger Hill", location: "Darjeeling", image: "https://images.pexels.com/photos/33736751/pexels-photo-33736751.jpeg?auto=compress&cs=tinysrgb&w=800" },
     { id: "hawa-mahal", name: "Hawa Mahal", location: "Jaipur", image: "https://images.pexels.com/photos/19195937/pexels-photo-19195937.jpeg?auto=compress&cs=tinysrgb&w=800" },
     { id: "rumtek", name: "Rumtek Monastery", location: "Gangtok", image: "https://images.pexels.com/photos/35431355/pexels-photo-35431355.jpeg?auto=compress&cs=tinysrgb&w=800" },
@@ -35,7 +37,18 @@ const spots: Spot[] = [
 export default function AttractiveSpotsSection() {
     const [current, setCurrent] = useState(0);
     const [isMobile, setIsMobile] = useState(false);
+    const [config, setConfig] = useState<any>(null);
     const sectionRef = useRef<HTMLElement>(null);
+
+    useEffect(() => {
+        fetchWebsiteConfig().then((data) => {
+          if (data && data.config?.odyssey) {
+            setConfig(data.config.odyssey);
+          }
+        });
+    }, []);
+
+    const spots = config?.spots && config.spots.length > 0 ? config.spots : staticSpots;
 
     useEffect(() => {
         const check = () => setIsMobile(window.innerWidth < 768);
@@ -44,8 +57,8 @@ export default function AttractiveSpotsSection() {
         return () => window.removeEventListener("resize", check);
     }, []);
 
-    const next = useCallback(() => setCurrent((p) => (p + 1) % spots.length), []);
-    const prev = useCallback(() => setCurrent((p) => (p - 1 + spots.length) % spots.length), []);
+    const next = useCallback(() => setCurrent((p) => (p + 1) % spots.length), [spots.length]);
+    const prev = useCallback(() => setCurrent((p) => (p - 1 + spots.length) % spots.length), [spots.length]);
 
     /* ── Scroll Transition Animation ── */
     // This scales and fades the entire section as you scroll past it, creating a deep 3D transition into the next section
@@ -84,10 +97,24 @@ export default function AttractiveSpotsSection() {
                         viewport={{ once: true, margin: "-100px" }}
                     >
                         <p className="text-[0.6rem] uppercase tracking-[0.4em] text-[#d8be8f] font-bold mb-4">
-                            Exquisite Locations
+                            {config?.subtitle || "Exquisite Locations"}
                         </p>
                         <h2 className="text-4xl md:text-6xl lg:text-7xl text-white font-serif leading-tight">
-                            A Himalayan <span className="font-script text-5xl md:text-7xl lg:text-8xl text-[#d8be8f] italic ml-2">Odyssey</span>
+                            {(() => {
+                                const fullTitle = config?.title || "A Himalayan Odyssey";
+                                const lastSpaceIdx = fullTitle.lastIndexOf(" ");
+                                if (lastSpaceIdx === -1) return fullTitle;
+                                const mainPart = fullTitle.substring(0, lastSpaceIdx);
+                                const lastWord = fullTitle.substring(lastSpaceIdx + 1);
+                                return (
+                                    <>
+                                        {mainPart}{" "}
+                                        <span className="font-script text-5xl md:text-7xl lg:text-8xl text-[#d8be8f] italic ml-2">
+                                            {lastWord}
+                                        </span>
+                                    </>
+                                );
+                            })()}
                         </h2>
                         <div className="mt-8 mx-auto w-16 h-px bg-gradient-to-r from-transparent via-[#a5813b] to-transparent" />
                     </motion.div>
@@ -96,7 +123,7 @@ export default function AttractiveSpotsSection() {
                 {/* ── 3D CAROUSEL ── */}
                 <div className="relative h-[480px] md:h-[580px] w-full max-w-[1400px] mx-auto flex items-center justify-center px-4" style={{ perspective: "1000px" }}>
                     <AnimatePresence mode="popLayout">
-                        {spots.map((spot, index) => {
+                        {spots.map((spot: Spot, index: number) => {
                             const offset = (index - current + spots.length) % spots.length;
                             let position = offset;
                             if (position > spots.length / 2) position -= spots.length;
@@ -163,7 +190,7 @@ export default function AttractiveSpotsSection() {
                     </button>
                     
                     <div className="flex gap-2">
-                        {spots.map((_, i) => (
+                        {spots.map((_: Spot, i: number) => (
                             <button key={i} onClick={() => setCurrent(i)} className={`h-1.5 rounded-full transition-all duration-500 ${i === current ? "w-8 bg-[#d8be8f]" : "w-1.5 bg-white/30"}`} />
                         ))}
                     </div>
