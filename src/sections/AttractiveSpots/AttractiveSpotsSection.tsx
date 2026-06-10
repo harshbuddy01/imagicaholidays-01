@@ -134,7 +134,7 @@ export default function AttractiveSpotsSection() {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
                         viewport={{ once: true, margin: "-100px" }}
-                        className="text-left"
+                        className="text-center"
                     >
                         <p className="text-[0.6rem] uppercase tracking-[0.4em] text-[#d8be8f] font-bold mb-3">
                             {config?.subtitle || "Exquisite Locations"}
@@ -156,9 +156,10 @@ export default function AttractiveSpotsSection() {
                                 );
                             })()}
                         </h2>
-                        <div className="mt-6 w-20 h-[1.5px] bg-[#a5813b]/60" />
+                        <div className="mt-6 mx-auto w-20 h-[1.5px] bg-[#a5813b]/60" />
                     </motion.div>
                 </div>
+
 
                 {/* ── Interactive Split-Screen Showcase ── */}
                 <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
