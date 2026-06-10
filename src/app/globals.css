@@ -21,6 +21,18 @@
     font-family: var(--font-glyptic), serif;
   }
 
+  .font-garamond {
+    font-family: var(--font-heading), serif;
+  }
+
+  .font-playfair {
+    font-family: var(--font-roman), serif;
+  }
+
+  .font-manrope {
+    font-family: var(--font-body), sans-serif;
+  }
+
   .perspective-1000 {
     perspective: 1000px;
   }

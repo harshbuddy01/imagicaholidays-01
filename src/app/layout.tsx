@@ -5,6 +5,7 @@ import Script from "next/script";
 import ContactMenu from "@/components/ContactMenu";
 import Preloader from "@/components/Preloader";
 import TrendingPopup from "@/components/ui/TrendingPopup";
+import ScrollProgress from "@/components/ui/ScrollProgress";
 import "./globals.css";
 
 const headingFont = Cormorant_Garamond({
@@ -111,6 +112,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${headingFont.variable} ${bodyFont.variable} ${scriptFont.variable} ${romanFont.variable} ${ornateFont.variable} ${westEndFont.variable} ${glypticFont.variable} antialiased`}>
+        <ScrollProgress />
         <Preloader />
         <TrendingPopup />
         {children}

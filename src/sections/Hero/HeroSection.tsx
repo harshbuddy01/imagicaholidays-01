@@ -184,7 +184,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.8 }}
-            className="text-[0.6rem] md:text-[0.68rem] uppercase tracking-[0.3em] text-[#d8be8f] font-bold mb-3 md:mb-4"
+            className="text-[0.62rem] md:text-[0.72rem] uppercase tracking-[0.4em] text-[#d8be8f] font-semibold mb-3 md:mb-4 font-manrope"
           >
             Journeys Crafted With Passion
           </motion.p>
@@ -194,7 +194,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="text-4xl md:text-7xl lg:text-[5rem] text-white font-serif leading-[1.15] tracking-wide font-light mb-4 md:mb-6"
+            className="text-4xl md:text-7xl lg:text-[5rem] text-white font-garamond leading-[1.15] tracking-wide font-light mb-4 md:mb-6"
           >
             Explore Extraordinary<br/>
             <span className="font-script text-[#d8be8f] text-5xl md:text-8xl lg:text-[6.5rem] italic tracking-normal block mt-2">
@@ -208,7 +208,7 @@ export default function HeroSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.7 }}
             transition={{ delay: 0.6, duration: 0.8 }}
-            className="text-white/60 text-xs md:text-[0.85rem] tracking-widest leading-relaxed max-w-lg mb-6 md:mb-8 font-sans font-light"
+            className="text-white/75 text-xs md:text-[0.92rem] tracking-[0.08em] leading-relaxed max-w-lg mb-6 md:mb-8 font-manrope font-light"
           >
             Handcrafted luxury journeys across Ladakh, Kashmir, Sikkim, Meghalaya, Bhutan and beyond.
           </motion.p>
