@@ -52,6 +52,15 @@ export default function AttractiveSpotsSection() {
     const next = useCallback(() => setCurrent((p) => (p + 1) % spots.length), [spots.length]);
     const prev = useCallback(() => setCurrent((p) => (p - 1 + spots.length) % spots.length), [spots.length]);
 
+    // 3-second auto-change interval, resetting on manual selection
+    useEffect(() => {
+        const timer = setInterval(() => {
+            next();
+        }, 3000);
+        return () => clearInterval(timer);
+    }, [next]);
+
+
     // Automatically scroll the sidebar active item into view
     useEffect(() => {
         if (activeThumbnailRef.current && listContainerRef.current) {
