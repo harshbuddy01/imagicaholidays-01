@@ -31,15 +31,7 @@ const links: NavLink[] = [
         <path d="M2 20L12 4L22 20H2Z" strokeLinecap="round" strokeLinejoin="round" />
         <path d="M8 20L12 12L16 20" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
-    ),
-    dropdown: [
-      { label: "Luxury Escapes", desc: "Indulge in comfort", href: "/journey", image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=120" },
-      { label: "Adventure Trips", desc: "For the explorers", href: "/journey", image: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=120" },
-      { label: "Road Trips", desc: "Scenic drives & beyond", href: "/journey", image: "https://images.unsplash.com/photo-1506012787146-f92b2d7d6d96?w=120" },
-      { label: "Family Holidays", desc: "Memories together", href: "/journey", image: "https://images.unsplash.com/photo-1511895426328-dc8714191300?w=120" },
-      { label: "Honeymoon", desc: "Romance redefined", href: "/journey", image: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=120" },
-      { label: "Custom Journey", desc: "Tailored just for you", href: "/journey", image: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=120" },
-    ]
+    )
   },
   { 
     href: "/#destinations-carousel", 
@@ -52,17 +44,17 @@ const links: NavLink[] = [
       </svg>
     ),
     dropdown: [
-      { label: "Ladakh", href: "/destinations/darjeeling", image: "https://images.unsplash.com/photo-1542223189-67a03fa0f0bd?w=150" },
-      { label: "Kashmir", href: "/destinations/gangtok", image: "https://images.unsplash.com/photo-1566837403146-36528327c57f?w=150" },
-      { label: "Sikkim", href: "/destinations/gangtok", image: "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?w=150" },
-      { label: "Meghalaya", href: "/destinations/lachung", image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=150" },
-      { label: "Bhutan", href: "/destinations/pelling", image: "https://images.unsplash.com/photo-1543336775-49935ed6e76d?w=150" },
-      { label: "Vietnam", href: "/destinations/udaipur", image: "https://images.unsplash.com/photo-1528127269322-539801943592?w=150" },
-      { label: "Bali", href: "/destinations/wayanad", image: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=150" },
-      { label: "Thailand", href: "/destinations/goa", image: "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=150" },
+      { label: "Gangtok", href: "/destinations/gangtok", image: "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?w=150" },
+      { label: "Darjeeling", href: "/destinations/darjeeling", image: "https://images.unsplash.com/photo-1542223189-67a03fa0f0bd?w=150" },
+      { label: "Munnar", href: "/destinations/munnar", image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=150" },
+      { label: "Wayanad", href: "/destinations/wayanad", image: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=150" },
+      { label: "Jaipur", href: "/destinations/jaipur", image: "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?w=150" },
+      { label: "Udaipur", href: "/destinations/udaipur", image: "https://images.unsplash.com/photo-1566837403146-36528327c57f?w=150" },
+      { label: "Goa", href: "/destinations/goa", image: "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=150" },
+      { label: "Pelling", href: "/destinations/pelling", image: "https://images.unsplash.com/photo-1543336775-49935ed6e76d?w=150" },
+      { label: "Lachung", href: "/destinations/lachung", image: "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?w=150" }
     ]
   },
-  { href: "/#hotels", id: "#hotels", label: "Hotels" },
   { href: "/testimonials", id: "/testimonials", label: "Experiences" },
   { href: "/blog", id: "/blog", label: "Stories" },
   { href: "/about", id: "/about", label: "About Us" }
@@ -71,10 +63,9 @@ const links: NavLink[] = [
 export default function Navbar() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
-  const [active, setActive] = useState(pathname.startsWith('/journey') ? '/journey' : '#hotels');
+  const [active, setActive] = useState(pathname.startsWith('/journey') ? '/journey' : '#destinations-carousel');
   const [open, setOpen] = useState(false);
   const [destOpen, setDestOpen] = useState(false);
-  const [journeyOpen, setJourneyOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 32);
@@ -84,7 +75,7 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    const ids = ["#journey", "#hotels", "#destinations-carousel", "#activities-section"];
+    const ids = ["#journey", "#destinations-carousel", "#activities-section"];
     const elements = ids
       .map((id) => document.querySelector(id))
       .filter((node): node is Element => Boolean(node));
@@ -127,13 +118,13 @@ export default function Navbar() {
       <header
         className={`fixed inset-x-0 top-0 z-[100] transition-all duration-500 ${scrolled || pathname.startsWith('/journey')
           ? "border-b border-white/10 bg-[rgba(16,14,10,0.95)] py-2 backdrop-blur-2xl"
-          : "bg-gradient-to-b from-[rgba(9,8,6,0.7)] to-transparent py-4"
+          : "bg-gradient-to-b from-[rgba(9,8,6,0.7)] to-transparent py-3"
           }`}
       >
         <div className="content-shell flex items-center justify-between px-4 md:px-1">
-          {/* Logo Brand matching Mockup */}
-          <Link href="/" className="relative z-[60] flex items-center gap-3 group">
-            <div className="relative w-10 h-8 md:w-12 md:h-10">
+          {/* Logo Brand matching Mockup: Icon stacked on top of text */}
+          <Link href="/" className="relative z-[60] flex flex-col items-center justify-center gap-1 group">
+            <div className="relative w-14 h-9 md:w-16 md:h-11">
               <Image
                 src="/logo_icon.png"
                 alt="Imagica Holidays Logo"
@@ -142,11 +133,11 @@ export default function Navbar() {
                 priority
               />
             </div>
-            <div className="flex flex-col items-start leading-none gap-0.5">
-              <span className="font-serif text-[11px] tracking-[0.25em] text-white md:text-[14px] md:tracking-[0.35em] font-bold">
+            <div className="flex flex-col items-center leading-none mt-0.5">
+              <span className="font-serif text-[9px] tracking-[0.25em] text-white md:text-[11px] md:tracking-[0.35em] font-bold">
                 IMAGICA HOLIDAYS
               </span>
-              <span className="text-[6px] tracking-[0.18em] text-[#d8be8f]/80 uppercase font-semibold">
+              <span className="text-[5px] tracking-[0.16em] text-[#d8be8f]/80 uppercase font-semibold mt-1">
                 HANDCRAFTED LUXURY JOURNEYS
               </span>
             </div>
@@ -173,55 +164,25 @@ export default function Navbar() {
                     <span>{link.label}</span>
                   </Link>
 
-                  {/* CUSTOM DROPDOWNS MATCHING MOCKUP */}
-                  {/* Journey Category List Dropdown */}
-                  {link.label === "Journey" && link.dropdown && (
-                    <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                      <div className="bg-[#100e0a]/95 border border-white/10 rounded-2xl p-4 min-w-[280px] shadow-2xl backdrop-blur-xl bg-opacity-95">
-                        <div className="flex flex-col gap-2">
-                          {link.dropdown.map((item) => (
-                            <Link
-                              key={item.label}
-                              href={item.href}
-                              className="flex items-center gap-3 p-2 rounded-xl hover:bg-white/5 transition-all group/item"
-                            >
-                              <div className="relative w-10 h-10 rounded-lg overflow-hidden flex-shrink-0 border border-white/10">
-                                <img src={item.image} alt="" className="w-full h-full object-cover group-hover/item:scale-105 transition-transform duration-300" />
-                              </div>
-                              <div className="flex flex-col min-w-0">
-                                <span className="text-[0.65rem] font-bold uppercase tracking-[0.12em] text-white/90 group-hover/item:text-[#d8be8f]">
-                                  {item.label}
-                                </span>
-                                <span className="text-[0.55rem] text-white/50 tracking-wide mt-0.5">
-                                  {item.desc}
-                                </span>
-                              </div>
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
                   {/* Destinations Grid Card Dropdown */}
                   {link.label === "Destinations" && link.dropdown && (
                     <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                      <div className="bg-[#100e0a]/95 border border-white/10 rounded-2xl p-4 min-w-[340px] shadow-2xl backdrop-blur-xl bg-opacity-95">
-                        <div className="grid grid-cols-2 gap-3">
+                      <div className="bg-[#100e0a]/95 border border-white/10 rounded-2xl p-4 min-w-[360px] shadow-2xl backdrop-blur-xl bg-opacity-95">
+                        <div className="grid grid-cols-3 gap-2">
                           {link.dropdown.map((item) => (
                             <Link
                               key={item.label}
                               href={item.href}
-                              className="relative h-20 rounded-xl overflow-hidden group/item border border-white/10"
+                              className="relative h-16 rounded-xl overflow-hidden group/item border border-white/10"
                             >
                               <img 
                                 src={item.image} 
                                 alt={item.label} 
                                 className="absolute inset-0 w-full h-full object-cover group-hover/item:scale-105 transition-transform duration-500" 
                               />
-                              <div className="absolute inset-0 bg-black/45 group-hover/item:bg-black/25 transition-colors" />
+                              <div className="absolute inset-0 bg-black/55 group-hover/item:bg-black/35 transition-colors" />
                               <div className="absolute inset-0 flex items-center justify-center">
-                                <span className="text-[0.62rem] font-bold uppercase tracking-[0.2em] text-white group-hover/item:text-[#d8be8f] transition-colors">
+                                <span className="text-[0.58rem] font-bold uppercase tracking-[0.15em] text-white group-hover/item:text-[#d8be8f] transition-colors">
                                   {item.label}
                                 </span>
                               </div>
@@ -236,7 +197,7 @@ export default function Navbar() {
             })}
           </nav>
 
-          {/* Desktop Plan My Journey button matching Mockup */}
+          {/* Desktop Plan My Journey button */}
           <div className="hidden md:flex items-center gap-4">
             <Link href="/reserve" className="group relative overflow-hidden rounded-full px-6 py-3 shadow-[0_0_15px_rgba(216,190,143,0.3)] hover:shadow-[0_0_25px_rgba(216,190,143,0.6)] transition-shadow duration-500 flex items-center justify-center gap-2.5 bg-gradient-to-r from-[#8a6b2d] via-[#a5813b] to-[#8a6b2d]">
               <span className="relative z-10 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-white">
@@ -252,7 +213,7 @@ export default function Navbar() {
 
           {/* Mobile hamburger */}
           <button
-            onClick={() => { setOpen((prev) => !prev); setDestOpen(false); setJourneyOpen(false); }}
+            onClick={() => { setOpen((prev) => !prev); setDestOpen(false); }}
             aria-label="Toggle menu"
             aria-expanded={open}
             className="relative z-[60] flex flex-col items-center justify-center w-10 h-10 md:hidden"
@@ -322,17 +283,14 @@ export default function Navbar() {
                   {link.dropdown ? (
                     <>
                       <button
-                        onClick={() => {
-                          if (link.label === "Journey") setJourneyOpen((p) => !p);
-                          if (link.label === "Destinations") setDestOpen((p) => !p);
-                        }}
+                        onClick={() => setDestOpen((p) => !p)}
                         className="w-full flex items-center justify-between py-4 border-b border-white/8 text-left"
                       >
                         <span className="text-xl font-serif tracking-[0.1em] text-white/90">
                           {link.label}
                         </span>
                         <motion.svg
-                          animate={{ rotate: (link.label === "Journey" ? journeyOpen : destOpen) ? 180 : 0 }}
+                          animate={{ rotate: destOpen ? 180 : 0 }}
                           transition={{ duration: 0.3 }}
                           width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5"
                         >
@@ -341,7 +299,7 @@ export default function Navbar() {
                       </button>
 
                       <AnimatePresence>
-                        {((link.label === "Journey" && journeyOpen) || (link.label === "Destinations" && destOpen)) && (
+                        {destOpen && (
                           <motion.div
                             initial={{ height: 0, opacity: 0 }}
                             animate={{ height: "auto", opacity: 1 }}

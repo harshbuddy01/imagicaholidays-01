@@ -194,12 +194,12 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="text-4xl md:text-7xl lg:text-[5.5rem] text-white font-serif leading-[1.05] tracking-wide font-light mb-4 md:mb-6"
+            className="text-4xl md:text-7xl lg:text-[5.2rem] text-white font-serif leading-[1.1] tracking-wide font-light mb-4 md:mb-6"
           >
-            Explore<br/>
-            Extraordinary<br/>
+            Explore Extraordinary<br/>
             <span className="font-serif italic text-[#d8be8f]">Destinations</span>
           </motion.h1>
+
 
           {/* Narrative Subtitle */}
           <motion.p
