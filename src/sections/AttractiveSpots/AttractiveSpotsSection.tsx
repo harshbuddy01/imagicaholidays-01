@@ -60,36 +60,42 @@ export default function AttractiveSpotsSection() {
     const next = useCallback(() => setCurrent((p) => (p + 1) % spots.length), [spots.length]);
     const prev = useCallback(() => setCurrent((p) => (p - 1 + spots.length) % spots.length), [spots.length]);
 
-    /* ── Scroll Transition Animation ── */
-    // This scales and fades the entire section as you scroll past it, creating a deep 3D transition into the next section
     const { scrollYProgress } = useScroll({
         target: sectionRef,
         offset: ["end end", "end start"],
     });
     
-    // Scale down and fade out the container as we scroll away
-    const scale = useTransform(scrollYProgress, [0, 1], [1, 0.85]);
+    const scale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
     const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-    const y = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
+
+    const cardW = isMobile ? 265 : 340;
+    const cardH = isMobile ? 380 : 480;
+    const gap = isMobile ? 16 : 24;
 
     return (
         <section 
             id="attractive-spots"
             ref={sectionRef} 
-            className="relative w-full bg-[#151310] overflow-hidden" 
+            className="relative w-full bg-[#151310] overflow-hidden py-20 md:py-32" 
             style={{ zIndex: 10 }}
         >
-            <motion.div style={{ scale, opacity, y }} className="w-full relative pt-20 md:pt-32 pb-24 md:pb-32 transform-gpu">
-                
-                {/* ── Background Elements ── */}
-                <div className="absolute inset-0 pointer-events-none">
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#a5813b]/[0.05] rounded-full blur-[150px]" />
-                    {/* Subtle grid pattern for texture */}
-                    <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03]" />
-                </div>
+            {/* Dynamic Ambient Blurred Background */}
+            <div className="absolute inset-0 pointer-events-none transition-all duration-1000 ease-out overflow-hidden select-none z-0">
+                <div className="absolute inset-0 bg-[#151310] z-10" />
+                {spots[current]?.image && (
+                    <img
+                        src={spots[current].image}
+                        alt=""
+                        className="absolute inset-0 w-full h-full object-cover opacity-[0.06] blur-[80px] scale-110 transition-all duration-[1.5s] ease-out z-0"
+                    />
+                )}
+                {/* Subtle organic texture grid overlay */}
+                <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.02] z-20" />
+            </div>
 
+            <motion.div style={{ scale, opacity }} className="w-full relative z-10 transform-gpu">
                 {/* ── Header ── */}
-                <div className="text-center max-w-4xl mx-auto px-6 mb-16 relative z-10">
+                <div className="text-center max-w-4xl mx-auto px-6 mb-16">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -120,84 +126,110 @@ export default function AttractiveSpotsSection() {
                     </motion.div>
                 </div>
 
-                {/* ── 3D CAROUSEL ── */}
-                <div className="relative h-[480px] md:h-[580px] w-full max-w-[1400px] mx-auto flex items-center justify-center px-4" style={{ perspective: "1000px" }}>
-                    <AnimatePresence mode="popLayout">
+                {/* ── Center-Aligned Sliding Track ── */}
+                <div className="relative w-full overflow-hidden py-4 select-none">
+                    <motion.div 
+                        className="flex gap-4 md:gap-6 transform-gpu"
+                        animate={{ x: `calc(50% - ${cardW / 2}px - ${current * (cardW + gap)}px)` }}
+                        transition={{ type: "spring", stiffness: 180, damping: 25 }}
+                    >
                         {spots.map((spot: Spot, index: number) => {
-                            const offset = (index - current + spots.length) % spots.length;
-                            let position = offset;
-                            if (position > spots.length / 2) position -= spots.length;
+                            const isActive = current === index;
                             
-                            const absPos = Math.abs(position);
-                            if (absPos > 2) return null;
-
-                            // Original elegant sizes
-                            const cardW = isMobile ? 260 : 340;
-                            const cardH = isMobile ? 380 : 480;
-
                             return (
                                 <motion.div
                                     key={spot.id}
-                                    layout
-                                    initial={{ opacity: 0, scale: 0.8 }}
-                                    animate={{
-                                        opacity: 1 - absPos * 0.3,
-                                        scale: 1 - absPos * 0.15,
-                                        x: position * (isMobile ? 160 : 250),
-                                        zIndex: 10 - absPos,
-                                        rotateY: position * -15,
-                                    }}
-                                    exit={{ opacity: 0, scale: 0.8 }}
-                                    transition={{ duration: 0.6, ease: "easeOut" }}
-                                    className="absolute cursor-pointer"
                                     style={{ width: cardW, height: cardH }}
+                                    className="relative flex-shrink-0 cursor-pointer rounded-[1.8rem] overflow-hidden"
+                                    animate={{ 
+                                        scale: isActive ? 1.02 : 0.92,
+                                        opacity: isActive ? 1 : 0.45
+                                    }}
+                                    transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1] }}
                                     onClick={() => setCurrent(index)}
                                 >
-                                    {/* Card with border and text below */}
-                                    <div className="w-full h-full bg-[#f8f5f0] rounded-[2rem] p-3 md:p-4 shadow-[0_30px_60px_rgba(0,0,0,0.5)] flex flex-col group overflow-hidden border border-[#d8be8f]/30">
-                                        
-                                        {/* Image Container (Bordered) */}
-                                        <div className="relative w-full h-[65%] rounded-2xl overflow-hidden">
-                                            <Image
-                                                src={spot.image}
-                                                alt={spot.name}
-                                                fill
-                                                className="object-cover transition-transform duration-[2s] group-hover:scale-110"
-                                            />
-                                        </div>
+                                    {/* Glassmorphic border / Gold accent highlight */}
+                                    <div className={`absolute inset-0 rounded-[1.8rem] border-[1.5px] transition-all duration-700 pointer-events-none z-30 ${
+                                        isActive ? 'border-[#d8be8f] shadow-[0_25px_50px_-12px_rgba(216,190,143,0.2)]' : 'border-white/5'
+                                    }`} />
 
-                                        {/* Text Section (Below Image) */}
-                                        <div className="flex-1 flex flex-col justify-center items-center text-center p-4">
-                                            <h3 className="font-serif text-2xl md:text-3xl text-[#181510] font-medium leading-tight">
+                                    {/* Image with zoom on active/hover */}
+                                    <div className="relative w-full h-full overflow-hidden bg-slate-900">
+                                        <img
+                                            src={spot.image || 'https://images.unsplash.com/photo-1542223189-67a03fa0f0bd?auto=format&fit=crop&w=1200&q=80'}
+                                            alt={spot.name}
+                                            className={`absolute inset-0 w-full h-full object-cover transition-transform duration-[2.5s] ease-out ${
+                                                isActive ? 'scale-[1.06]' : 'scale-100 hover:scale-[1.03]'
+                                            }`}
+                                        />
+                                        {/* Luxury vignette overlay */}
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/35 to-transparent z-10" />
+                                        
+                                        {/* Card content text */}
+                                        <div className="absolute inset-x-0 bottom-0 p-6 md:p-8 z-20 flex flex-col items-center text-center">
+                                            <span className="text-[9px] uppercase tracking-[0.3em] text-[#d8be8f] font-bold mb-2">
+                                                {spot.location}
+                                            </span>
+                                            <h3 className="font-serif text-2xl md:text-3xl text-white font-light tracking-wide leading-tight mb-1">
                                                 {spot.name}
                                             </h3>
-                                            <div className="w-8 h-px bg-[#a5813b]/40 my-3" />
-                                            <p className="text-[#8a6b2d] text-xs uppercase tracking-[0.2em] font-semibold">
-                                                {spot.location}
-                                            </p>
+                                            <div className={`h-[1px] bg-[#d8be8f]/30 transition-all duration-700 ${
+                                                isActive ? 'w-10 my-3' : 'w-0 my-0'
+                                            }`} />
+                                            {isActive && (
+                                                <p className="text-[10px] tracking-[0.2em] uppercase text-white/50 animate-fade-in duration-500">
+                                                    Explore Memoir
+                                                </p>
+                                            )}
                                         </div>
                                     </div>
                                 </motion.div>
                             );
                         })}
-                    </AnimatePresence>
+                    </motion.div>
                 </div>
 
-                {/* ── Navigation Controls ── */}
-                <div className="flex items-center justify-center gap-6 mt-10 relative z-50">
-                    <button onClick={prev} className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all">
-                        <ArrowLeft className="w-5 h-5" />
-                    </button>
+                {/* ── Navigation, Progress Bar & Controls ── */}
+                <div className="flex flex-col items-center gap-8 mt-12 relative z-50">
                     
-                    <div className="flex gap-2">
-                        {spots.map((_: Spot, i: number) => (
-                            <button key={i} onClick={() => setCurrent(i)} className={`h-1.5 rounded-full transition-all duration-500 ${i === current ? "w-8 bg-[#d8be8f]" : "w-1.5 bg-white/30"}`} />
-                        ))}
+                    {/* Sleek Golden Progress Track */}
+                    <div className="flex items-center gap-4">
+                        <span className="text-[10px] text-white/40 font-mono">01</span>
+                        <div className="w-40 h-[1.5px] bg-white/10 rounded-full relative overflow-hidden">
+                            <motion.div 
+                                className="absolute left-0 top-0 h-full bg-[#d8be8f] rounded-full"
+                                initial={false}
+                                animate={{ width: `${((current + 1) / spots.length) * 100}%` }}
+                                transition={{ duration: 0.4, ease: "easeOut" }}
+                            />
+                        </div>
+                        <span className="text-[10px] text-[#d8be8f] font-mono">
+                            {String(spots.length).padStart(2, '0')}
+                        </span>
                     </div>
 
-                    <button onClick={next} className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all">
-                        <ArrowRight className="w-5 h-5" />
-                    </button>
+                    {/* Minimal Circular Chevron Buttons */}
+                    <div className="flex items-center gap-6">
+                        <button 
+                            onClick={prev} 
+                            aria-label="Previous spot"
+                            className="w-12 h-12 rounded-full border border-white/10 backdrop-blur-md bg-white/5 flex items-center justify-center text-white hover:bg-[#d8be8f] hover:text-black hover:border-[#d8be8f] transition-all duration-300 transform active:scale-90"
+                        >
+                            <ArrowLeft className="w-4 h-4" />
+                        </button>
+                        
+                        <div className="text-xs tracking-[0.2em] uppercase text-white/60 font-semibold font-mono">
+                            {current + 1} <span className="opacity-30">/</span> {spots.length}
+                        </div>
+
+                        <button 
+                            onClick={next} 
+                            aria-label="Next spot"
+                            className="w-12 h-12 rounded-full border border-white/10 backdrop-blur-md bg-white/5 flex items-center justify-center text-white hover:bg-[#d8be8f] hover:text-black hover:border-[#d8be8f] transition-all duration-300 transform active:scale-90"
+                        >
+                            <ArrowRight className="w-4 h-4" />
+                        </button>
+                    </div>
                 </div>
             </motion.div>
         </section>
