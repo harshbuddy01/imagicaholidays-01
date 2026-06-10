@@ -285,77 +285,59 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* ═══ GLASSMORPHIC FEATURES BAR (BOTTOM OVERLAY) ═══ */}
-      <div className="absolute bottom-14 md:bottom-20 inset-x-4 md:inset-x-6 z-20 pointer-events-none max-w-7xl mx-auto">
+      {/* ═══ MINIMALIST VALUES FOOTER (REPLACES OLD CLUTTERED BAR) ═══ */}
+      <div className="absolute bottom-16 md:bottom-20 inset-x-6 z-20 pointer-events-none max-w-7xl mx-auto border-t border-white/10 pt-5">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.9, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          className="glass-panel-luxury w-full rounded-2xl p-4 md:p-6 flex flex-wrap md:flex-nowrap items-center justify-between gap-4 md:gap-6 pointer-events-auto"
+          transition={{ delay: 0.9, duration: 0.8 }}
+          className="flex flex-wrap md:flex-nowrap items-center justify-between gap-6 pointer-events-auto"
         >
-          {/* Feature 1 */}
-          <div className="flex items-center gap-3.5 flex-1 min-w-[150px] border-r border-white/5 last:border-0 pr-2">
-            <div className="w-8 h-8 rounded-lg bg-[#d8be8f]/10 flex items-center justify-center text-[#d8be8f] flex-shrink-0">
-              <svg className="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-              </svg>
+          {/* Values Row */}
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-3 md:gap-x-8 lg:gap-x-12">
+            {/* Value 1 */}
+            <div className="flex items-center gap-2.5">
+              <span className="w-1.5 h-1.5 rotate-45 bg-[#d8be8f] block shadow-[0_0_6px_rgba(216,190,143,0.8)]" />
+              <span className="text-[0.62rem] md:text-[0.68rem] font-semibold tracking-[0.25em] uppercase text-white/90 font-manrope">
+                Expertly Crafted
+              </span>
             </div>
-            <div className="flex flex-col">
-              <span className="text-[0.62rem] font-bold uppercase tracking-[0.15em] text-white">Expertly Crafted</span>
-              <span className="text-[0.55rem] text-white/50 tracking-wide mt-0.5 whitespace-nowrap">Curated by travel experts</span>
+
+            {/* Value 2 */}
+            <div className="flex items-center gap-2.5">
+              <span className="w-1.5 h-1.5 rotate-45 bg-[#d8be8f] block shadow-[0_0_6px_rgba(216,190,143,0.8)]" />
+              <span className="text-[0.62rem] md:text-[0.68rem] font-semibold tracking-[0.25em] uppercase text-white/90 font-manrope">
+                Luxury Stays
+              </span>
+            </div>
+
+            {/* Value 3 */}
+            <div className="flex items-center gap-2.5">
+              <span className="w-1.5 h-1.5 rotate-45 bg-[#d8be8f] block shadow-[0_0_6px_rgba(216,190,143,0.8)]" />
+              <span className="text-[0.62rem] md:text-[0.68rem] font-semibold tracking-[0.25em] uppercase text-white/90 font-manrope">
+                24/7 Support
+              </span>
+            </div>
+
+            {/* Value 4 */}
+            <div className="flex items-center gap-2.5">
+              <span className="w-1.5 h-1.5 rotate-45 bg-[#d8be8f] block shadow-[0_0_6px_rgba(216,190,143,0.8)]" />
+              <span className="text-[0.62rem] md:text-[0.68rem] font-semibold tracking-[0.25em] uppercase text-white/90 font-manrope">
+                Safe & Secure
+              </span>
             </div>
           </div>
 
-          {/* Feature 2 */}
-          <div className="flex items-center gap-3.5 flex-1 min-w-[150px] border-r border-white/5 last:border-0 pr-2">
-            <div className="w-8 h-8 rounded-lg bg-[#d8be8f]/10 flex items-center justify-center text-[#d8be8f] flex-shrink-0">
-              <svg className="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.907c.961 0 1.36 1.252.583 1.828l-3.978 2.89a1 1 0 00-.364 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.978-2.89a1 1 0 00-1.176 0l-3.978 2.89c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.364-1.118l-3.978-2.89c-.777-.576-.378-1.828.583-1.828h4.907a1 1 0 00.95-.69l1.519-4.674z" />
-              </svg>
-            </div>
-            <div className="flex flex-col">
-              <span className="text-[0.62rem] font-bold uppercase tracking-[0.15em] text-white">Luxury Stays</span>
-              <span className="text-[0.55rem] text-white/50 tracking-wide mt-0.5 whitespace-nowrap">Premium stays & services</span>
-            </div>
-          </div>
-
-          {/* Feature 3 */}
-          <div className="flex items-center gap-3.5 flex-1 min-w-[150px] border-r border-white/5 last:border-0 pr-2">
-            <div className="w-8 h-8 rounded-lg bg-[#d8be8f]/10 flex items-center justify-center text-[#d8be8f] flex-shrink-0">
-              <svg className="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
-              </svg>
-            </div>
-            <div className="flex flex-col">
-              <span className="text-[0.62rem] font-bold uppercase tracking-[0.15em] text-white">24/7 Support</span>
-              <span className="text-[0.55rem] text-white/50 tracking-wide mt-0.5 whitespace-nowrap">Always alongside you</span>
-            </div>
-          </div>
-
-          {/* Feature 4 */}
-          <div className="flex items-center gap-3.5 flex-1 min-w-[150px] border-r border-white/5 last:border-0 pr-2">
-            <div className="w-8 h-8 rounded-lg bg-[#d8be8f]/10 flex items-center justify-center text-[#d8be8f] flex-shrink-0">
-              <svg className="w-4.5 h-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-              </svg>
-            </div>
-            <div className="flex flex-col">
-              <span className="text-[0.62rem] font-bold uppercase tracking-[0.15em] text-white">Safe & Secure</span>
-              <span className="text-[0.55rem] text-white/50 tracking-wide mt-0.5 whitespace-nowrap">Your safety is our priority</span>
-            </div>
-          </div>
-
-          {/* Watch Video Column */}
-          <div className="flex items-center gap-3 cursor-pointer select-none min-w-[150px] border-0 pl-2">
-            <div className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center text-white transition-colors">
-              <svg className="w-3.5 h-3.5 ml-0.5 fill-current text-white" viewBox="0 0 24 24">
+          {/* Watch Preview Button */}
+          <div className="flex items-center gap-3.5 cursor-pointer select-none group/video flex-shrink-0">
+            <div className="w-9 h-9 rounded-full bg-white/5 group-hover:bg-[#d8be8f] border border-white/12 group-hover:border-[#d8be8f] flex items-center justify-center text-white group-hover:text-[#0f0d0a] transition-all duration-300 shadow-lg">
+              <svg className="w-3.5 h-3.5 ml-0.5 fill-current transition-colors duration-300" viewBox="0 0 24 24">
                 <path d="M8 5v14l11-7z" />
               </svg>
             </div>
-            <div className="flex flex-col">
-              <span className="text-[0.62rem] font-bold uppercase tracking-[0.15em] text-white">Watch Video</span>
-              <span className="text-[0.55rem] text-white/50 tracking-wide mt-0.5 whitespace-nowrap">See the magic unfold</span>
-            </div>
+            <span className="text-[0.65rem] md:text-[0.68rem] font-bold tracking-[0.22em] uppercase text-white/90 group-hover:text-[#d8be8f] transition-colors duration-300 font-manrope">
+              Watch Preview
+            </span>
           </div>
         </motion.div>
       </div>
