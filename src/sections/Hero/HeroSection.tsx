@@ -385,18 +385,19 @@ export default function HeroSection() {
         {/* Mobile booking CTA */}
         <Link
           href="/journey"
-          className="flex md:hidden items-center justify-center gap-3 mx-4 py-4 bg-white/95 backdrop-blur-sm rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.25)] border border-[#e9deca]/40"
+          className="flex md:hidden items-center justify-center gap-3 mx-4 py-4 bg-gradient-to-r from-[#8a6b2d] via-[#a5813b] to-[#8a6b2d] rounded-xl shadow-[0_8px_25px_rgba(165,129,59,0.35)] border border-[#d8be8f]/20 active:scale-[0.98] transition-all duration-300"
         >
-          <svg className="w-4 h-4 text-[#8a6b2d]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <svg className="w-4 h-4 text-white animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
           </svg>
-          <span className="text-[0.7rem] font-bold uppercase tracking-[0.2em] text-[#181510]">
+          <span className="text-[0.7rem] font-bold uppercase tracking-[0.25em] text-white">
             Book Your Journey
           </span>
-          <svg className="w-3.5 h-3.5 text-[#8a6b2d]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <svg className="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
           </svg>
         </Link>
+
       </motion.div>
     </section>
   );
