@@ -243,6 +243,18 @@ export default function DestinationsGrid() {
               {currentDestinations.map((dest, idx) => (
                 <div
                   key={dest.id}
+                  onMouseEnter={() => {
+                    let highResUrl = dest.image;
+                    if (highResUrl) {
+                      if (highResUrl.includes("w=1200")) {
+                        highResUrl = highResUrl.replace("w=1200", "w=1800");
+                      } else if (highResUrl.includes("w=800")) {
+                        highResUrl = highResUrl.replace("w=800", "w=1800");
+                      }
+                      const img = new window.Image();
+                      img.src = highResUrl;
+                    }
+                  }}
                   className={`flex flex-col md:flex-row items-center gap-12 md:gap-24 ${idx % 2 === 1 ? "md:flex-row-reverse" : ""}`}
                 >
                   {/* Card Section */}

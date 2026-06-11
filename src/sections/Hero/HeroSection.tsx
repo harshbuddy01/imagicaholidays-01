@@ -11,8 +11,8 @@ import { fetchWebsiteConfig } from "@/lib/api";
 gsap.registerPlugin(ScrollTrigger);
 
 const heroVideos = [
-  { id: "video-1", src: "https://media.imagicaholidays.com/imagica-assets/hero-1-hq-compressed.mp4?v=2" },
-  { id: "video-2", src: "https://media.imagicaholidays.com/imagica-assets/hero-1-hq-compressed.mp4?v=2" },
+  { id: "video-1", src: "/videos/hls/hero-1/playlist.m3u8" },
+  { id: "video-2", src: "/videos/hls/hero-1/playlist.m3u8" },
 ];
 
 const getBustedUrl = (url: string) => {
@@ -21,6 +21,43 @@ const getBustedUrl = (url: string) => {
     return url.includes("?") ? `${url}&v=2` : `${url}?v=2`;
   }
   return url;
+};
+
+const initHlsVideo = (video: HTMLVideoElement, url: string, fallbackUrl: string) => {
+  if (!video) return;
+
+  // If URL is not HLS, set src directly
+  if (!url.endsWith(".m3u8") && !url.includes(".m3u8")) {
+    video.src = url;
+    return;
+  }
+
+  // Native HLS support (Safari)
+  if (video.canPlayType("application/vnd.apple.mpegurl")) {
+    video.src = url;
+  } else {
+    // Dynamic import hls.js for other browsers (Chrome, Firefox, etc.)
+    import("hls.js").then((HlsModule) => {
+      const Hls = HlsModule.default;
+      if (Hls.isSupported()) {
+        if ((video as any)._hls) {
+          (video as any)._hls.destroy();
+        }
+        const hls = new Hls({
+          maxMaxBufferLength: 10,
+          enableWorker: true,
+          lowLatencyMode: true,
+        });
+        hls.loadSource(url);
+        hls.attachMedia(video);
+        (video as any)._hls = hls;
+      } else {
+        video.src = fallbackUrl;
+      }
+    }).catch(() => {
+      video.src = fallbackUrl;
+    });
+  }
 };
 
 export default function HeroSection() {
@@ -49,9 +86,28 @@ export default function HeroSection() {
   const slides = config?.fallbackSlides?.length > 0 ? config.fallbackSlides : heroSlides;
 
   useEffect(() => {
-    if (video1Ref.current) video1Ref.current.load();
-    if (video2Ref.current) video2Ref.current.load();
+    const v1 = video1Ref.current;
+    const v2 = video2Ref.current;
+    const fallbackMp4 = "/videos/hero-1-compressed.mp4";
+
+    if (v1) {
+      initHlsVideo(v1, getBustedUrl(config?.videoUrl1 || heroVideos[0].src), fallbackMp4);
+    }
+    if (v2) {
+      initHlsVideo(v2, getBustedUrl(config?.videoUrl2 || heroVideos[1].src), fallbackMp4);
+    }
   }, [config?.videoUrl1, config?.videoUrl2]);
+
+  useEffect(() => {
+    return () => {
+      if (video1Ref.current && (video1Ref.current as any)._hls) {
+        (video1Ref.current as any)._hls.destroy();
+      }
+      if (video2Ref.current && (video2Ref.current as any)._hls) {
+        (video2Ref.current as any)._hls.destroy();
+      }
+    };
+  }, []);
 
   useEffect(() => {
     const v1 = video1Ref.current;
@@ -105,12 +161,12 @@ export default function HeroSection() {
         ) : (
           <>
             <div className={`absolute inset-0 w-full h-full transition-opacity duration-[2000ms] ${activeVideo === 0 ? "opacity-100 z-[2]" : "opacity-0 z-[1]"}`}>
-              <video ref={video1Ref} src={getBustedUrl(config?.videoUrl1 || heroVideos[0].src)}
+              <video ref={video1Ref}
                 onError={() => setUseFallback(true)} autoPlay loop muted playsInline preload="auto"
                 className="absolute inset-0 w-full h-full object-cover" />
             </div>
             <div className={`absolute inset-0 w-full h-full transition-opacity duration-[2000ms] ${activeVideo === 1 ? "opacity-100 z-[2]" : "opacity-0 z-[1]"}`}>
-              <video ref={video2Ref} src={getBustedUrl(config?.videoUrl2 || heroVideos[1].src)}
+              <video ref={video2Ref}
                 onError={() => setUseFallback(true)} autoPlay loop muted playsInline preload="none"
                 className="absolute inset-0 w-full h-full object-cover" />
             </div>

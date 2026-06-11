@@ -5,13 +5,13 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ['framer-motion', 'lucide-react', 'gsap'],
   },
   images: {
-    unoptimized: true,
     remotePatterns: [
       { protocol: "https", hostname: "images.unsplash.com" },
       { protocol: "https", hostname: "unsplash.com" },
       { protocol: "https", hostname: "plus.unsplash.com" },
       { protocol: "https", hostname: "res.cloudinary.com" },
-      { protocol: "https", hostname: "media.imagicaholidays.com" }
+      { protocol: "https", hostname: "media.imagicaholidays.com" },
+      { protocol: "https", hostname: "images.pexels.com" }
     ]
   }
 };

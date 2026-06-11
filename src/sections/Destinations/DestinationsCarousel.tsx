@@ -344,6 +344,18 @@ export default function DestinationsCarousel() {
                       <div className="flex justify-center md:justify-end mt-3 md:mt-8">
                         <Link
                           href={dest.link}
+                          onMouseEnter={() => {
+                            let highResUrl = dest.mainImage;
+                            if (highResUrl) {
+                              if (highResUrl.includes("w=1200")) {
+                                highResUrl = highResUrl.replace("w=1200", "w=1800");
+                              } else if (highResUrl.includes("w=800")) {
+                                highResUrl = highResUrl.replace("w=800", "w=1800");
+                              }
+                              const img = new window.Image();
+                              img.src = highResUrl;
+                            }
+                          }}
                           className="inline-block border-b border-[#a5813b] text-[#a5813b] pb-1 text-[10px] uppercase tracking-[0.25em] font-bold transition-colors hover:text-[#f4ebd9] hover:border-[#f4ebd9]"
                         >
                           Explore More
@@ -379,6 +391,18 @@ export default function DestinationsCarousel() {
               key={d.id}
               aria-label={`Go to ${d.title}`}
               onClick={() => goTo(i)}
+              onMouseEnter={() => {
+                let highResUrl = d.mainImage;
+                if (highResUrl) {
+                  if (highResUrl.includes("w=1200")) {
+                    highResUrl = highResUrl.replace("w=1200", "w=1800");
+                  } else if (highResUrl.includes("w=800")) {
+                    highResUrl = highResUrl.replace("w=800", "w=1800");
+                  }
+                  const img = new window.Image();
+                  img.src = highResUrl;
+                }
+              }}
               className="relative flex xl:flex-row-reverse flex-col items-center gap-2 xl:gap-3 group flex-shrink-0 xl:w-full xl:justify-start"
             >
               {/* Destination label */}
