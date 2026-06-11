@@ -352,7 +352,7 @@ export default function DarjeelingPage() {
           <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} className="text-center mb-10 md:mb-16">
             <span className="text-[10px] tracking-[0.3em] uppercase text-[#ae9e85]">Must-Visit Places</span>
             <h2 className="font-roman text-3xl md:text-5xl font-medium text-[#3d3831] tracking-wide mt-3">
-              Top Attractions
+              Top Attractions in Darjeeling
             </h2>
             <p className="text-sm text-[#7a705e] mt-4 max-w-lg mx-auto">
               From breathtaking natural wonders to cultural landmarks, there&apos;s something for every traveler.
@@ -412,7 +412,7 @@ export default function DarjeelingPage() {
           <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} className="text-center mb-10 md:mb-16">
             <span className="text-[10px] tracking-[0.3em] uppercase text-[#ae9e85]">Seasonal Guide</span>
             <h2 className="font-roman text-3xl md:text-5xl font-medium text-[#3d3831] tracking-wide mt-3">
-              Best Time to Visit
+              Best Time to Visit Darjeeling
             </h2>
             <div className="w-12 h-px bg-[#ae9e85] mx-auto mt-6" />
           </motion.div>
@@ -470,7 +470,7 @@ export default function DarjeelingPage() {
           <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} className="text-center mb-10 md:mb-16">
             <span className="text-[10px] tracking-[0.3em] uppercase text-[#ae9e85]">Curated Experiences</span>
             <h2 className="font-roman text-3xl md:text-5xl font-medium text-[#3d3831] tracking-wide mt-3">
-              Explore Tour Packages
+              Explore Darjeeling Tour Packages
             </h2>
             <div className="w-12 h-px bg-[#ae9e85] mx-auto mt-6" />
           </motion.div>

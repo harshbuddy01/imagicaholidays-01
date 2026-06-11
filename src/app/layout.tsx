@@ -66,9 +66,9 @@ const runtimeFont = DM_Serif_Display({
 export const metadata: Metadata = {
   title: {
     template: "%s | Imagica Holidays",
-    default: "Imagica Holidays | Luxury India Tour Packages & Custom Holidays",
+    default: "Imagica Holidays | Luxury India Tour Packages",
   },
-  description: "Experience the ultimate luxury travel across India. Book bespoke tour packages, customized holiday itineraries, and premium resort retreats for Gangtok, Sikkim, Darjeeling, Kashmir, Manali, Kerala, Ooty, Jaipur, Udaipur, and Kanyakumari.",
+  description: "Handcrafted luxury India tours & custom holiday packages. Book premium retreat itineraries for Sikkim, Darjeeling, Kashmir, Kerala, & Rajasthan.",
   keywords: [
     "Luxury Tour Packages India",
     "Customized Holiday Packages",
@@ -94,8 +94,8 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_IN",
     url: "https://imagicaholidays.com",
-    title: "Imagica Holidays | Handcrafted Luxury Journeys across India",
-    description: "Curated luxury itineraries, private transfers, and handpicked premium hotel stays natively built to immerse you in exotic Indian destinations.",
+    title: "Imagica Holidays | Luxury India Tour Packages",
+    description: "Handcrafted luxury India tours & custom holiday packages. Book premium retreat itineraries for Sikkim, Darjeeling, Kashmir, Kerala, & Rajasthan.",
     siteName: "Imagica Holidays",
     images: [
       {
@@ -109,7 +109,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Imagica Holidays | Luxury India Tour Packages",
-    description: "Bespoke tours and holiday packages across India's exotic destinations.",
+    description: "Handcrafted luxury India tours & custom holiday packages.",
   },
   icons: {
     icon: "/icon.svg",

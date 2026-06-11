@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import Image from "next/image";
 
 interface VillaItem {
   id: string;
@@ -87,12 +88,13 @@ export default function VillaSlider({ villas, sectionTitle, sectionSubtitle }: V
             >
               {/* Image */}
               <div className="relative w-full aspect-[4/3] overflow-hidden bg-[#e8e6df]">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <Image
                   src={item.image}
                   alt={item.title || "Exclusive Stay"}
+                  width={600}
+                  height={450}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  loading={index < 4 ? "eager" : "lazy"}
+                  priority={index < 4}
                 />
                 {/* Gold overlay on hover */}
                 <div className="absolute inset-0 bg-[#a5813b]/0 group-hover:bg-[#a5813b]/10 transition-all duration-500" />

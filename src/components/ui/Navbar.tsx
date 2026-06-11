@@ -222,9 +222,11 @@ export default function Navbar() {
                         {/* Right Side: Featured Spot (1/3 width) */}
                         <div className="w-[220px] flex flex-col justify-between p-1">
                           <div className="relative h-28 rounded-lg overflow-hidden border border-white/10 mb-3 group/featured">
-                            <img 
+                            <Image 
                               src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=300" 
                               alt="Featured Destination" 
+                              width={220}
+                              height={112}
                               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover/featured:scale-105" 
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/95 to-transparent" />

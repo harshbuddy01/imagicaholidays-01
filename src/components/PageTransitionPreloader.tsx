@@ -168,9 +168,9 @@ export default function PageTransitionPreloader() {
                         transition={{ duration: 0.3 }}
                         className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none text-[#d8be8f]"
                     >
-                        <h1 className="font-heading text-2xl md:text-4xl lg:text-5xl tracking-[0.3em] font-light uppercase">
+                        <div className="font-heading text-2xl md:text-4xl lg:text-5xl tracking-[0.3em] font-light uppercase">
                             IMAGICA HOLIDAYS
-                        </h1>
+                        </div>
                         <p className="mt-4 text-xs tracking-widest font-sans font-semibold">
                             {progress}%
                         </p>

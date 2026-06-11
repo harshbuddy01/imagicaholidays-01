@@ -5,6 +5,9 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
+import Image from "next/image";
+
+const MotionImage = motion(Image);
 
 interface JourneyDetailsClientProps {
   journey: {
@@ -104,15 +107,18 @@ export default function JourneyDetailsClient({ journey }: JourneyDetailsClientPr
                     {/* Image Carousel */}
                     <div className="relative w-full aspect-[4/3] md:aspect-video rounded-sm overflow-hidden bg-gray-200">
                         <AnimatePresence mode="wait">
-                            <motion.img
+                            <MotionImage
                                 key={currentSlide}
                                 src={journey.images[currentSlide]}
                                 alt={`${journey.title} Slide ${currentSlide + 1}`}
+                                width={800}
+                                height={450}
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 exit={{ opacity: 0 }}
                                 transition={{ duration: 0.5 }}
                                 className="absolute inset-0 w-full h-full object-cover"
+                                priority={currentSlide === 0}
                             />
                         </AnimatePresence>
 
@@ -175,7 +181,13 @@ export default function JourneyDetailsClient({ journey }: JourneyDetailsClientPr
                                             {/* Left Thumb */}
                                             <div className="relative group/day w-[130px] flex-shrink-0">
                                                 <div className="aspect-[4/5] rounded-lg overflow-hidden relative shadow-md">
-                                                    <img src={dayData.image} alt={dayData.title} className="w-full h-full object-cover grayscale-[0.3] group-hover/day:grayscale-0 transition-all duration-700 group-hover/day:scale-110" />
+                                                    <Image
+                                                        src={dayData.image || "https://images.unsplash.com/photo-1542223189-67a03fa0f0bd?auto=format&fit=crop&w=800&q=80"}
+                                                        alt={dayData.title || "Day Thumbnail"}
+                                                        width={130}
+                                                        height={162}
+                                                        className="w-full h-full object-cover grayscale-[0.3] group-hover/day:grayscale-0 transition-all duration-700 group-hover/day:scale-110"
+                                                    />
                                                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                                                 </div>
                                                 {/* Day Number Stamp */}

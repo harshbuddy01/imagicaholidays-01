@@ -119,9 +119,9 @@ export default function Preloader() {
                         <div className="relative w-24 h-16 mb-6">
                             <NextImage src="/logo_new.png" alt="Logo" fill className="object-contain" />
                         </div>
-                        <h1 className="font-roman text-2xl md:text-3xl tracking-[0.4em] font-bold uppercase text-white">
+                        <div className="font-roman text-2xl md:text-3xl tracking-[0.4em] font-bold uppercase text-white">
                             IMAGICA HOLIDAYS
-                        </h1>
+                        </div>
                         <p className="mt-8 text-[10px] tracking-[0.3em] font-sans font-bold text-[#ae9e85] uppercase">
                             Curation Progress {progress}%
                         </p>

@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import Image from "next/image";
 
 const PLACES = [
   { id: "gangtok", name: "GANGTOK", top: "35%", left: "35%", height: 220 },
@@ -81,9 +82,11 @@ export default function SikkimMapSection() {
             }}
           >
             {/* Real Topographical Mountain Imagery from Unsplash applied directly to the surface */}
-            <img 
+            <Image 
               src="https://images.unsplash.com/photo-ilrO9BN7QSE?auto=format&fit=crop&w=1200&q=80" 
               alt="Mountain Terrain Map"
+              width={1200}
+              height={1200}
               className="w-full h-full object-cover scale-[1.3]"
             />
             {/* Dimensional shadow to embed the mountain feeling */}

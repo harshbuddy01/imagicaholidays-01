@@ -224,7 +224,7 @@ export default function GoaPage() {
 
             <section className="bg-[#efe5d0] py-14 md:py-28 px-5 md:px-16 lg:px-24">
                 <div className="max-w-6xl mx-auto text-center mb-16">
-                    <h2 className="font-roman text-3xl md:text-5xl font-medium text-[#3d3831] tracking-wide">Best Time to Visit</h2>
+                    <h2 className="font-roman text-3xl md:text-5xl font-medium text-[#3d3831] tracking-wide">Best Time to Visit Goa</h2>
                     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-10">
                         {seasons.map((s, i) => (
                             <motion.div key={s.name} variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={i * 0.1}
@@ -240,7 +240,7 @@ export default function GoaPage() {
 
             <section className="bg-[#f4ebd9] py-14 md:py-28 px-5 md:px-16 lg:px-24">
                 <div className="max-w-7xl mx-auto text-center mb-16">
-                    <h2 className="font-roman text-3xl md:text-5xl font-medium text-[#3d3831] tracking-wide">Explore Tour Packages</h2>
+                    <h2 className="font-roman text-3xl md:text-5xl font-medium text-[#3d3831] tracking-wide">Explore Goa Tour Packages</h2>
                     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
                         {tourPackages.map((pkg, i) => (
                             <motion.div key={pkg.title} variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={(i % 3) * 0.1}

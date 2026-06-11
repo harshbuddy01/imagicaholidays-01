@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import Image from "next/image";
 
 /* ── SVG Chevrons (Fallback) ───────────────────────────── */
 const ArrowLeft = ({ className }: { className?: string }) => (
@@ -117,9 +118,11 @@ export default function AttractiveSpotsSection() {
             <div className="absolute inset-0 pointer-events-none transition-all duration-1000 ease-out overflow-hidden select-none z-0">
                 <div className="absolute inset-0 bg-[#151310] z-10 opacity-[0.93]" />
                 {spots[current]?.image && (
-                    <img
+                    <Image
                         src={spots[current].image}
                         alt=""
+                        width={80}
+                        height={60}
                         className="absolute inset-0 w-full h-full object-cover blur-[100px] scale-125 transition-all duration-[1.5s] ease-out z-0"
                     />
                 )}
@@ -180,9 +183,11 @@ export default function AttractiveSpotsSection() {
                                     transition={{ duration: 0.9, ease: [0.25, 1, 0.5, 1] }}
                                     className="absolute inset-0 w-full h-full"
                                 >
-                                    <img
+                                    <Image
                                         src={spots[current]?.image || 'https://images.unsplash.com/photo-1542223189-67a03fa0f0bd?auto=format&fit=crop&w=1200&q=80'}
-                                        alt={spots[current]?.name}
+                                        alt={spots[current]?.name || "Destination Spot"}
+                                        width={1000}
+                                        height={625}
                                         className="w-full h-full object-cover"
                                     />
                                 </motion.div>
@@ -284,9 +289,11 @@ export default function AttractiveSpotsSection() {
                                         <div className={`relative w-16 h-16 rounded-xl overflow-hidden flex-shrink-0 border transition-all duration-500 ${
                                             isActive ? 'border-[#d8be8f]/40' : 'border-white/10'
                                         }`}>
-                                            <img
+                                            <Image
                                                 src={spot.image}
                                                 alt={spot.name}
+                                                width={64}
+                                                height={64}
                                                 className={`w-full h-full object-cover transition-transform duration-700 ${
                                                     isActive ? 'scale-105' : 'scale-100 group-hover:scale-108'
                                                 }`}
