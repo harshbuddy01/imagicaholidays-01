@@ -38,12 +38,15 @@ export default function DestinationsFooter() {
           Your Exclusive Tranquil Haven
         </p>
 
-        <div className="relative inline-block select-none">
-          <h2 className="text-4xl md:text-6xl lg:text-7xl text-[#1a1714] font-serif leading-tight">
-            Activities &{" "}
-            <span className="font-serif italic text-[#a5813b] block md:inline md:ml-2">
-              Foods
-            </span>
+        <div className="flex items-center justify-center gap-x-2 md:gap-x-4 select-none mt-1">
+          <h2 className="font-glyptic font-bold text-3xl md:text-6xl lg:text-7xl tracking-wide uppercase text-[#1a1714]">
+            Activities
+          </h2>
+          <span className="font-script text-4xl md:text-7xl lg:text-8xl text-[#a5813b] leading-none select-none lowercase translate-y-1">
+            &
+          </span>
+          <h2 className="font-glyptic font-bold text-3xl md:text-6xl lg:text-7xl tracking-wide uppercase text-[#a5813b]">
+            Foods
           </h2>
         </div>
 

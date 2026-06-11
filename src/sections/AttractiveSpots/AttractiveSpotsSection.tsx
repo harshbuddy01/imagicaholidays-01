@@ -142,7 +142,7 @@ export default function AttractiveSpotsSection() {
                         <p className="text-[0.6rem] uppercase tracking-[0.4em] text-[#d8be8f] font-bold mb-3">
                             {config?.subtitle || "Exquisite Locations"}
                         </p>
-                        <h2 className="text-4xl md:text-6xl lg:text-7xl text-white font-serif leading-tight">
+                        <h2 className="text-4xl md:text-6xl lg:text-7xl text-white font-glyptic font-bold uppercase tracking-wider leading-tight">
                             {(() => {
                                 const fullTitle = config?.title || "A Himalayan Odyssey";
                                 const lastSpaceIdx = fullTitle.lastIndexOf(" ");
@@ -152,7 +152,7 @@ export default function AttractiveSpotsSection() {
                                 return (
                                     <>
                                         {mainPart}{" "}
-                                        <span className="font-serif italic text-[#d8be8f] block md:inline md:ml-3">
+                                        <span className="font-glyptic font-bold uppercase tracking-wider text-[#d8be8f] block md:inline md:ml-3">
                                             {lastWord}
                                         </span>
                                     </>
