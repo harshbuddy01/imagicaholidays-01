@@ -34,24 +34,18 @@ export default function DestinationsFooter() {
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         className="text-center"
       >
-        <h3 className="font-serif text-xs md:text-sm tracking-[0.25em] uppercase text-[#a5813b] font-medium mb-2">
+        <p className="text-[0.6rem] uppercase tracking-[0.5em] text-[#a5813b] font-bold mb-4">
           Your Exclusive Tranquil Haven
-        </h3>
+        </p>
 
-        <div className="flex items-center justify-center gap-x-2 md:gap-x-4 select-none mt-1">
-          <span className="font-glyptic font-normal text-3xl md:text-5xl lg:text-6xl tracking-wider uppercase text-[#1a1714]">
-            Activities
-          </span>
-          <span className="font-script text-4xl md:text-6xl lg:text-7xl text-[#a5813b] leading-none translate-y-1 select-none">
-            &
-          </span>
-          <span className="font-glyptic font-normal text-3xl md:text-5xl lg:text-6xl tracking-wider uppercase text-[#1a1714]">
-            Foods
-          </span>
+        <div className="relative inline-block select-none">
+          <h2 className="font-glyptic font-bold text-4xl md:text-7xl lg:text-8xl tracking-[0.05em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-[#1a1714] via-[#5c544b] to-[#1a1714] relative z-10 pb-2">
+            Activities & Foods
+          </h2>
         </div>
 
         {/* Tiny diamond decoration */}
-        <div className="flex justify-center mt-3">
+        <div className="flex justify-center mt-4">
           <svg width="8" height="8" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" fill="#b5a993" />
           </svg>
