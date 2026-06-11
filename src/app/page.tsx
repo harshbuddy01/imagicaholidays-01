@@ -5,6 +5,7 @@ import DestinationsGrid from "@/sections/Destinations/DestinationsGrid";
 import DestinationsFooter from "@/sections/Destinations/DestinationsFooter";
 import TopHotelsSection from "@/sections/Hotels/TopHotelsSection";
 import ActivitiesSection from "@/sections/Activities/ActivitiesSection";
+import VillasSection from "@/sections/Villas/VillasSection";
 import AttractiveSpotsSection from "@/sections/AttractiveSpots/AttractiveSpotsSection";
 import FooterCrescendo from "@/sections/Crescendo/FooterCrescendo";
 
@@ -17,6 +18,7 @@ export default function Home() {
       <DestinationsGrid />
       <DestinationsFooter />
       <ActivitiesSection />
+      <VillasSection />
       <TopHotelsSection />
       <FooterCrescendo />
       <Footer />

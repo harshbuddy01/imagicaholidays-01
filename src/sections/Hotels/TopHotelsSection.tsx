@@ -111,10 +111,10 @@ export default function TopHotelsSection() {
 
           <div className="flex flex-col md:flex-row items-center justify-center gap-x-6 gap-y-2">
             <h2 className="font-glyptic font-bold text-5xl md:text-8xl tracking-tight uppercase text-[#1a1714]">
-              Exclusive
+              Heritage
             </h2>
             <h2 className="font-roman font-medium text-5xl md:text-8xl tracking-widest uppercase text-[#a5813b]">
-              Stays
+              Escapes
             </h2>
           </div>
 
