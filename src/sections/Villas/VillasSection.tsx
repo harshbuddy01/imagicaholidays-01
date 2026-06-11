@@ -145,7 +145,7 @@ export default function VillasSection() {
             speed={1400}
             slidesPerView="auto"
             spaceBetween={40}
-            className="w-full"
+            className="w-full h-full"
             navigation={{
               nextEl: '.swiper-button-next-custom',
               prevEl: '.swiper-button-prev-custom',
