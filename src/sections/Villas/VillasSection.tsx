@@ -145,7 +145,7 @@ export default function VillasSection() {
             speed={1400}
             slidesPerView="auto"
             spaceBetween={40}
-            className="w-full h-full"
+            className="w-full"
             navigation={{
               nextEl: '.swiper-button-next-custom',
               prevEl: '.swiper-button-prev-custom',
@@ -161,7 +161,7 @@ export default function VillasSection() {
             }}
           >
             {villas.map((item: any, index: number) => (
-              <SwiperSlide key={item.id || index} className="w-[85vw] md:w-[70vw] lg:w-[60vw] h-full">
+              <SwiperSlide key={`${item.id || 'villa'}-${index}`} className="w-[85vw] md:w-[70vw] lg:w-[60vw] h-full">
                 <div className="flex flex-col">
                   <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#e8e6df] shadow-md rounded-sm">
                     <div 
