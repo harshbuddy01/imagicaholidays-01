@@ -150,14 +150,14 @@ export default function HeroSection() {
             transition={{ delay: 0.3, duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
             className="leading-[1.05] mb-5 md:mb-6"
           >
-            {/* Line 1: Explore Extraordinary — white serif */}
-            <span className="block text-[2.4rem] sm:text-5xl md:text-6xl lg:text-7xl text-white font-garamond font-light tracking-wide">
+            {/* Line 1: Explore Extraordinary — Cormorant Garamond, white + gold italic */}
+            <span className="block font-garamond font-light text-[2.6rem] sm:text-[3.4rem] md:text-[4.2rem] lg:text-[5rem] text-white tracking-[0.02em]">
               Explore{" "}
-              <span className="italic text-[#d8be8f]">Extraordinary</span>
+              <em className="not-italic italic font-medium text-[#e8d5a3]">Extraordinary</em>
             </span>
 
-            {/* Line 2: Destinations — gold script, slightly larger */}
-            <span className="block font-script text-[3.2rem] sm:text-6xl md:text-7xl lg:text-[5.5rem] text-[#c9a84c] tracking-normal mt-1 drop-shadow-[0_3px_18px_rgba(201,168,76,0.45)]">
+            {/* Line 2: Destinations — Pinyon Script with shimmer gold gradient */}
+            <span className="block font-script gradient-text-trending text-[3.6rem] sm:text-[4.8rem] md:text-[5.5rem] lg:text-[6.5rem] leading-[1.1] mt-[-0.1em] drop-shadow-[0_4px_22px_rgba(201,168,76,0.5)]">
               Destinations
             </span>
           </motion.h1>
