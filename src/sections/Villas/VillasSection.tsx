@@ -1,8 +1,7 @@
 "use client";
 
 import { useMemo, useRef, useState, useEffect } from "react";
-import Image from "next/image";
-import { motion, useInView, useSpring, useMotionValue } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { Autoplay, Pagination, Parallax, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -168,12 +167,12 @@ export default function VillasSection() {
                       className="absolute top-0 left-[-15%] w-[130%] h-full"
                       data-swiper-parallax="-15%"
                     >
-                      <Image
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
                         src={item.image}
                         alt={item.title || "Exclusive Stay"}
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 75vw, 60vw"
-                        className="object-cover"
+                        className="w-full h-full object-cover"
+                        loading="lazy"
                       />
                     </div>
                   </div>
