@@ -188,7 +188,7 @@ export default function VillasSection() {
               bulletClass: 'custom-villa-bullet',
             }}
           >
-            {villas.map((item, index) => (
+            {villas.map((item: any, index: number) => (
               <SwiperSlide key={item.id} className="w-[85vw] md:w-[70vw] lg:w-[60vw] h-full">
                 <div className="flex flex-col">
                   <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#e8e6df]">
