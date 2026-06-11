@@ -120,34 +120,32 @@ export default function HeroSection() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/50 z-[3]" />
       </div>
 
-      {/* ── HERO HEADING — centred, clean ── */}
-      <div className="absolute inset-0 z-10 flex flex-col items-center justify-center px-6 text-center pointer-events-none">
+      {/* ── HERO HEADING — left-aligned, large ── */}
+      <div className="absolute inset-0 z-10 flex flex-col items-start justify-center px-6 md:px-14 max-w-7xl mx-auto pointer-events-none pb-32">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
         >
-          {/* "Explore" — Runtime style (DM Serif Display) */}
-          <h1 className="font-runtime font-normal text-white leading-none tracking-[-0.01em]">
-            <span className="block text-[3.2rem] sm:text-[4.5rem] md:text-[6rem] lg:text-[7.5rem] xl:text-[9rem]">
+          <h1 className="font-runtime font-normal text-white leading-[0.92] tracking-[-0.02em] text-left">
+            {/* Explore — large */}
+            <span className="block text-[4.5rem] sm:text-[6rem] md:text-[8rem] lg:text-[10rem] xl:text-[11rem]">
               Explore
             </span>
-            {/* "Destinations" — same font, slightly larger, subtle warm white */}
-            <span className="block text-[3.6rem] sm:text-[5.2rem] md:text-[7rem] lg:text-[8.5rem] xl:text-[10.5rem] text-white/95 mt-[-0.08em]">
+            {/* Destinations — even bigger */}
+            <span className="block text-[3.8rem] sm:text-[5.2rem] md:text-[6.8rem] lg:text-[8.5rem] xl:text-[9.5rem] text-white/95 mt-1">
               Destinations
             </span>
           </h1>
         </motion.div>
 
-        {/* Minimal scroll indicator */}
+        {/* Minimal line indicator */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.5 }}
-          transition={{ delay: 1.4, duration: 1 }}
-          className="absolute bottom-10 flex flex-col items-center gap-2"
-        >
-          <div className="w-[1px] h-12 bg-gradient-to-b from-white/0 to-white/60" />
-        </motion.div>
+          initial={{ opacity: 0, scaleX: 0 }}
+          animate={{ opacity: 0.4, scaleX: 1 }}
+          transition={{ delay: 1.2, duration: 0.8 }}
+          className="origin-left mt-8 w-20 h-[1.5px] bg-white"
+        />
       </div>
 
       {/* ── BOOKING WIDGET — bottom ── */}
