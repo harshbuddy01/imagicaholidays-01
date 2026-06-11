@@ -165,11 +165,18 @@ export default function ActivitiesSection() {
         </svg>
       </motion.div>
 
-      {/* Decorative vertical dots */}
-      <div className="relative z-10 flex flex-col items-center gap-1 mb-12 md:mb-20">
-        <div className="w-1.5 h-1.5 rounded-full bg-[#ae9e85]" />
-        <div className="w-1.5 h-1.5 rounded-full bg-[#ae9e85]" />
-        <div className="w-1.5 h-1.5 rounded-full bg-[#ae9e85]" />
+      {/* Header */}
+      <div className="text-center mb-16 relative z-10">
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+          <p className="text-[0.6rem] uppercase tracking-[0.5em] text-[#a5813b] font-bold mb-4">Curated Experiences</p>
+          <div className="relative inline-block">
+             <h2 className="font-old-english font-normal text-5xl md:text-7xl lg:text-8xl tracking-[0.02em] text-transparent bg-clip-text bg-gradient-to-r from-[#1a1714] via-[#5c544b] to-[#1a1714] relative z-10 pb-2">Activity & Food</h2>
+             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center pointer-events-none opacity-[0.06] z-0 whitespace-nowrap font-script text-4xl md:text-8xl">
+               Trekking • Paragliding • local cuisine
+             </div>
+          </div>
+          <p className="text-sm font-serif italic text-[#5c544b] mt-4 opacity-70 max-w-xl mx-auto">Immerse yourself in thrilling adventures and authentic local flavors</p>
+        </motion.div>
       </div>
 
       {/* ── Mobile: Card-based swiper ── */}
@@ -214,7 +221,7 @@ export default function ActivitiesSection() {
                       {activities[activeIndex].subtitle}
                     </span>
                   </div>
-                  <h3 className="font-roman text-4xl text-white tracking-widest leading-none">
+                  <h3 className="font-old-english text-4xl text-white tracking-wide leading-none">
                     {activities[activeIndex].title}
                   </h3>
                   <div className="w-12 h-px bg-[#ae9e85] mt-6" />
@@ -298,7 +305,7 @@ export default function ActivitiesSection() {
                           {activity.subtitle}
                         </span>
                       </div>
-                      <h3 className="font-glyptic text-4xl lg:text-5xl font-bold text-white tracking-[0.05em] uppercase mb-4">
+                      <h3 className="font-old-english text-4xl lg:text-5xl font-normal text-white tracking-[0.02em] mb-4">
                         {activity.title}
                       </h3>
                       <div className="w-16 h-px bg-[#a5813b]/60" />
@@ -311,7 +318,7 @@ export default function ActivitiesSection() {
                       className="absolute inset-0 flex items-center justify-center bg-black/20"
                     >
                       <span
-                        className="font-roman text-[10px] font-bold tracking-[0.4em] uppercase text-white/90"
+                        className="font-old-english text-[13px] font-normal tracking-[0.2em] text-white/90"
                         style={{
                           writingMode: "vertical-rl",
                           textOrientation: "mixed",

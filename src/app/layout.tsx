@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Manrope, Pinyon_Script, Playfair_Display, Rye, Sancreek, Cinzel_Decorative } from "next/font/google";
+import { Cormorant_Garamond, Manrope, Pinyon_Script, Playfair_Display, Rye, Sancreek, Cinzel_Decorative, UnifrakturMaguntia } from "next/font/google";
 import type { ReactNode } from "react";
 import Script from "next/script";
 import ContactMenu from "@/components/ContactMenu";
@@ -48,6 +48,12 @@ const glypticFont = Cinzel_Decorative({
   variable: "--font-glyptic",
   subsets: ["latin"],
   weight: ["400", "700", "900"]
+});
+
+const oldEnglishFont = UnifrakturMaguntia({
+  variable: "--font-old-english",
+  subsets: ["latin"],
+  weight: ["400"]
 });
 
 export const metadata: Metadata = {
@@ -111,7 +117,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${headingFont.variable} ${bodyFont.variable} ${scriptFont.variable} ${romanFont.variable} ${ornateFont.variable} ${westEndFont.variable} ${glypticFont.variable} antialiased`}>
+      <body className={`${headingFont.variable} ${bodyFont.variable} ${scriptFont.variable} ${romanFont.variable} ${ornateFont.variable} ${westEndFont.variable} ${glypticFont.variable} ${oldEnglishFont.variable} antialiased`}>
         <ScrollProgress />
         <Preloader />
         <TrendingPopup />
