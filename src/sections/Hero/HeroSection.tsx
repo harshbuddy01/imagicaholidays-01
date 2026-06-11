@@ -41,9 +41,7 @@ export default function HeroSection() {
     fetchWebsiteConfig().then((data) => {
       if (data?.config?.hero) {
         setConfig(data.config.hero);
-        if (data.config.hero.useVideo !== undefined) {
-          setUseFallback(!data.config.hero.useVideo);
-        }
+        if (data.config.hero.useVideo !== undefined) setUseFallback(!data.config.hero.useVideo);
       }
     });
   }, []);
@@ -66,14 +64,11 @@ export default function HeroSection() {
     const onV2End = () => { setActiveVideo(0); v1.currentTime = 0; v1.play().catch(() => {}); };
     v1.addEventListener("ended", onV1End);
     v2.addEventListener("ended", onV2End);
-    const tryPlay = () => {
-      v1.play().catch(() => {
-        const resume = () => { v1.play().catch(() => {}); document.removeEventListener("touchstart", resume); document.removeEventListener("click", resume); };
-        document.addEventListener("touchstart", resume, { once: true });
-        document.addEventListener("click", resume, { once: true });
-      });
-    };
-    tryPlay();
+    v1.play().catch(() => {
+      const resume = () => { v1.play().catch(() => {}); };
+      document.addEventListener("touchstart", resume, { once: true });
+      document.addEventListener("click", resume, { once: true });
+    });
     return () => { v1.removeEventListener("ended", onV1End); v2.removeEventListener("ended", onV2End); };
   }, [useFallback]);
 
@@ -90,27 +85,22 @@ export default function HeroSection() {
 
   useEffect(() => {
     if (!useFallback) return;
-    const timer = setInterval(() => setFallbackSlide((p) => (p + 1) % slides.length), 4500);
-    return () => clearInterval(timer);
+    const t = setInterval(() => setFallbackSlide((p) => (p + 1) % slides.length), 4500);
+    return () => clearInterval(t);
   }, [useFallback, slides.length]);
 
   return (
     <section ref={heroRef} className="relative h-[100svh] overflow-hidden bg-[#0c0a08]" id="journey">
 
-      {/* ── VIDEO BACKGROUND ── */}
+      {/* ── VIDEO / FALLBACK BACKGROUND ── */}
       <div className="hero-video-wrapper absolute inset-0 w-full h-full">
         {useFallback ? (
           <AnimatePresence mode="wait">
-            <motion.img
-              key={fallbackSlide}
-              src={slides[fallbackSlide]?.image || ""}
+            <motion.img key={fallbackSlide} src={slides[fallbackSlide]?.image || ""}
               alt={slides[fallbackSlide]?.title || ""}
-              initial={{ opacity: 0, scale: 1.05 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 1.5 }}
-              className="absolute inset-0 w-full h-full object-cover z-[1]"
-            />
+              initial={{ opacity: 0, scale: 1.05 }} animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }} transition={{ duration: 1.5 }}
+              className="absolute inset-0 w-full h-full object-cover z-[1]" />
           </AnimatePresence>
         ) : (
           <>
@@ -126,153 +116,89 @@ export default function HeroSection() {
             </div>
           </>
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/55 z-[3]" />
+        {/* Dark gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/50 z-[3]" />
       </div>
 
-      {/* ── MAIN HEADLINE — upper-centre on mobile, left on desktop ── */}
-      <div className="absolute inset-0 z-10 flex flex-col items-start justify-center max-w-7xl mx-auto px-6 md:px-14 pointer-events-none pb-40 md:pb-36">
-        <div className="max-w-2xl text-left">
-
-          {/* Eyebrow label */}
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-            className="text-[0.62rem] md:text-[0.72rem] uppercase tracking-[0.45em] text-[#d8be8f] font-semibold mb-4 font-manrope"
-          >
-            Journeys Crafted With Passion
-          </motion.p>
-
-          {/* Main heading */}
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
-            className="leading-[1.05] mb-5 md:mb-6"
-          >
-            {/* Line 1: Explore Extraordinary — Cormorant Garamond, white + gold italic */}
-            <span className="block font-garamond font-light text-[2.6rem] sm:text-[3.4rem] md:text-[4.2rem] lg:text-[5rem] text-white tracking-[0.02em]">
-              Explore{" "}
-              <em className="not-italic italic font-medium text-[#e8d5a3]">Extraordinary</em>
+      {/* ── HERO HEADING — centred, clean ── */}
+      <div className="absolute inset-0 z-10 flex flex-col items-center justify-center px-6 text-center pointer-events-none">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+        >
+          {/* "Explore" — Runtime style (DM Serif Display) */}
+          <h1 className="font-runtime font-normal text-white leading-none tracking-[-0.01em]">
+            <span className="block text-[3.2rem] sm:text-[4.5rem] md:text-[6rem] lg:text-[7.5rem] xl:text-[9rem]">
+              Explore
             </span>
-
-            {/* Line 2: Destinations — Pinyon Script with shimmer gold gradient */}
-            <span className="block font-script gradient-text-trending text-[3.6rem] sm:text-[4.8rem] md:text-[5.5rem] lg:text-[6.5rem] leading-[1.1] mt-[-0.1em] drop-shadow-[0_4px_22px_rgba(201,168,76,0.5)]">
+            {/* "Destinations" — same font, slightly larger, subtle warm white */}
+            <span className="block text-[3.6rem] sm:text-[5.2rem] md:text-[7rem] lg:text-[8.5rem] xl:text-[10.5rem] text-white/95 mt-[-0.08em]">
               Destinations
             </span>
-          </motion.h1>
+          </h1>
+        </motion.div>
 
-          {/* Subtitle */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.75 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
-            className="text-white/75 text-[0.8rem] sm:text-sm md:text-[0.92rem] tracking-[0.06em] leading-relaxed max-w-lg mb-0 font-manrope font-light"
-          >
-            Handcrafted luxury journeys across Ladakh, Kashmir, Sikkim, Meghalaya, Bhutan and beyond.
-          </motion.p>
-        </div>
+        {/* Minimal scroll indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.5 }}
+          transition={{ delay: 1.4, duration: 1 }}
+          className="absolute bottom-10 flex flex-col items-center gap-2"
+        >
+          <div className="w-[1px] h-12 bg-gradient-to-b from-white/0 to-white/60" />
+        </motion.div>
       </div>
 
-      {/* ── SEARCH WIDGET — pinned near bottom ── */}
-      <div className="absolute bottom-[7.5rem] md:bottom-[7rem] inset-x-0 z-20 px-5 md:px-14 max-w-7xl mx-auto pointer-events-none">
+      {/* ── BOOKING WIDGET — bottom ── */}
+      <div className="absolute bottom-6 md:bottom-8 inset-x-0 z-20 px-4 md:px-10 max-w-4xl mx-auto pointer-events-none">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.75, duration: 0.8 }}
-          className="w-full max-w-2xl bg-[#0f0d0a]/65 backdrop-blur-md border border-white/12 p-4 md:p-3 rounded-2xl md:rounded-full flex flex-col md:flex-row items-stretch md:items-center gap-3 md:gap-2 pointer-events-auto shadow-2xl"
+          transition={{ delay: 0.9, duration: 0.9 }}
+          className="w-full bg-black/50 backdrop-blur-xl border border-white/10 p-3 md:p-2.5 rounded-2xl md:rounded-full flex flex-col md:flex-row items-stretch md:items-center gap-3 md:gap-0 pointer-events-auto shadow-2xl"
         >
           {/* Where To */}
-          <div className="flex-1 flex flex-col px-4 border-b border-white/8 md:border-b-0 md:border-r border-white/10 pb-3 md:pb-0">
-            <label className="text-[0.55rem] font-bold tracking-[0.25em] uppercase text-[#d8be8f] mb-1 font-manrope">
+          <div className="flex-1 flex flex-col px-5 border-b border-white/8 md:border-b-0 md:border-r border-white/10 pb-3 md:pb-0">
+            <label className="text-[0.5rem] font-bold tracking-[0.3em] uppercase text-[#d8be8f] mb-1 font-manrope">
               Where To?
             </label>
             <select
               value={selectedDest}
               onChange={(e) => setSelectedDest(e.target.value)}
-              className="bg-transparent text-white text-xs md:text-sm font-manrope focus:outline-none appearance-none cursor-pointer pr-6 w-full font-medium"
+              className="bg-transparent text-white text-sm font-manrope focus:outline-none appearance-none cursor-pointer w-full font-medium"
               style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23d8be8f'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2.5' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E")`,
-                backgroundPosition: "right center", backgroundSize: "12px", backgroundRepeat: "no-repeat",
+                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23d8be8f'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E")`,
+                backgroundPosition: "right center", backgroundSize: "14px", backgroundRepeat: "no-repeat",
               }}
             >
-              <option value="" className="bg-[#0f0d0a] text-white/55">Select Dream Escape</option>
-              <option value="Gangtok" className="bg-[#0f0d0a] text-white">Gangtok</option>
-              <option value="Darjeeling" className="bg-[#0f0d0a] text-white">Darjeeling</option>
-              <option value="Munnar" className="bg-[#0f0d0a] text-white">Munnar</option>
-              <option value="Wayanad" className="bg-[#0f0d0a] text-white">Wayanad</option>
-              <option value="Jaipur" className="bg-[#0f0d0a] text-white">Jaipur</option>
-              <option value="Udaipur" className="bg-[#0f0d0a] text-white">Udaipur</option>
-              <option value="Goa" className="bg-[#0f0d0a] text-white">Goa</option>
-              <option value="Leh Ladakh" className="bg-[#0f0d0a] text-white">Leh Ladakh</option>
-              <option value="Kashmir" className="bg-[#0f0d0a] text-white">Kashmir</option>
-              <option value="Sikkim" className="bg-[#0f0d0a] text-white">Sikkim</option>
+              <option value="" className="bg-[#0f0d0a] text-white/60">Select destination</option>
+              {["Gangtok","Darjeeling","Munnar","Wayanad","Jaipur","Udaipur","Goa","Leh Ladakh","Kashmir","Sikkim","Meghalaya","Bhutan"].map(d => (
+                <option key={d} value={d} className="bg-[#0f0d0a] text-white">{d}</option>
+              ))}
             </select>
           </div>
 
           {/* Travel Date */}
-          <div className="flex-1 flex flex-col px-4 pb-3 md:pb-0">
-            <label className="text-[0.55rem] font-bold tracking-[0.25em] uppercase text-[#d8be8f] mb-1 font-manrope">
+          <div className="flex-1 flex flex-col px-5 pb-2 md:pb-0">
+            <label className="text-[0.5rem] font-bold tracking-[0.3em] uppercase text-[#d8be8f] mb-1 font-manrope">
               Travel Date
             </label>
-            <input
-              type="date"
-              value={selectedDate}
-              min={todayStr}
+            <input type="date" value={selectedDate} min={todayStr}
               onChange={(e) => setSelectedDate(e.target.value)}
-              className="bg-transparent text-white text-xs md:text-sm font-manrope focus:outline-none cursor-pointer w-full [color-scheme:dark] font-medium"
-            />
+              className="bg-transparent text-white text-sm font-manrope focus:outline-none cursor-pointer w-full [color-scheme:dark] font-medium" />
           </div>
 
           {/* Book Now */}
           <Link
             href={`/reserve?destination=${encodeURIComponent(selectedDest)}&arrival=${selectedDate}`}
-            className="px-6 py-3.5 bg-gradient-to-r from-[#8a6b2d] via-[#a5813b] to-[#8a6b2d] hover:shadow-[0_0_24px_rgba(216,190,143,0.4)] text-white text-[0.65rem] font-bold uppercase tracking-[0.2em] rounded-xl md:rounded-full text-center flex items-center justify-center gap-2 transition-all duration-300 active:scale-95 flex-shrink-0"
+            className="px-7 py-3 bg-gradient-to-r from-[#8a6b2d] via-[#a5813b] to-[#8a6b2d] text-white text-[0.65rem] font-bold uppercase tracking-[0.22em] rounded-xl md:rounded-full flex items-center justify-center gap-2 transition-all duration-300 hover:shadow-[0_0_24px_rgba(165,129,59,0.5)] active:scale-95 flex-shrink-0 font-manrope"
           >
             Book Now
-            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+            <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
             </svg>
           </Link>
-        </motion.div>
-      </div>
-
-      {/* ── VALUES BAR ── */}
-      <div className="absolute bottom-0 inset-x-0 z-20 pointer-events-none border-t border-white/10">
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1, duration: 0.8 }}
-          className="max-w-7xl mx-auto px-6 md:px-14 py-3 md:py-4 flex flex-wrap items-center justify-between gap-x-6 gap-y-2 pointer-events-auto"
-        >
-          {/* Trust Badges */}
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 md:gap-x-8">
-            {["Expertly Crafted", "Luxury Stays", "24/7 Support", "Safe & Secure"].map((val) => (
-              <div key={val} className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rotate-45 bg-[#d8be8f] block shadow-[0_0_5px_rgba(216,190,143,0.7)]" />
-                <span className="text-[0.58rem] md:text-[0.65rem] font-semibold tracking-[0.22em] uppercase text-white/85 font-manrope">
-                  {val}
-                </span>
-              </div>
-            ))}
-          </div>
-
-          {/* Location + Scroll */}
-          <div className="flex items-center gap-5">
-            <div className="flex items-center gap-1.5 text-[0.55rem] md:text-[0.6rem] uppercase tracking-[0.22em] text-white/50 font-mono">
-              <svg className="w-3 h-3 text-[#d8be8f]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-              Ladakh, India
-            </div>
-            <div className="hidden md:flex items-center gap-2 text-[0.55rem] uppercase tracking-[0.2em] text-white/40 font-mono">
-              Scroll to discover
-              <div className="w-3.5 h-5 border border-white/25 rounded-full flex items-start justify-center p-[3px]">
-                <div className="scroll-wheel w-0.5 h-1.5 bg-[#d8be8f] rounded-full" />
-              </div>
-            </div>
-          </div>
         </motion.div>
       </div>
 

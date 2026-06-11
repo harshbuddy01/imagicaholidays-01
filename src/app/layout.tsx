@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Manrope, Pinyon_Script, Playfair_Display, Rye, Sancreek, Cinzel_Decorative, UnifrakturMaguntia } from "next/font/google";
+import { Cormorant_Garamond, Manrope, Pinyon_Script, Playfair_Display, Rye, Sancreek, Cinzel_Decorative, UnifrakturMaguntia, DM_Serif_Display } from "next/font/google";
 import type { ReactNode } from "react";
 import Script from "next/script";
 import ContactMenu from "@/components/ContactMenu";
@@ -54,6 +54,13 @@ const oldEnglishFont = UnifrakturMaguntia({
   variable: "--font-old-english",
   subsets: ["latin"],
   weight: ["400"]
+});
+
+const runtimeFont = DM_Serif_Display({
+  variable: "--font-runtime",
+  subsets: ["latin"],
+  weight: ["400"],
+  style: ["normal", "italic"]
 });
 
 export const metadata: Metadata = {
@@ -117,7 +124,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${headingFont.variable} ${bodyFont.variable} ${scriptFont.variable} ${romanFont.variable} ${ornateFont.variable} ${westEndFont.variable} ${glypticFont.variable} ${oldEnglishFont.variable} antialiased`}>
+      <body className={`${headingFont.variable} ${bodyFont.variable} ${scriptFont.variable} ${romanFont.variable} ${ornateFont.variable} ${westEndFont.variable} ${glypticFont.variable} ${oldEnglishFont.variable} ${runtimeFont.variable} antialiased`}>
         <ScrollProgress />
         <Preloader />
         <TrendingPopup />

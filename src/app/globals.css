@@ -37,6 +37,10 @@
     font-family: var(--font-old-english), serif;
   }
 
+  .font-runtime {
+    font-family: var(--font-runtime), serif;
+  }
+
   .perspective-1000 {
     perspective: 1000px;
   }
