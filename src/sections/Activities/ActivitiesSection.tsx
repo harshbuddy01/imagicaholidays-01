@@ -165,18 +165,11 @@ export default function ActivitiesSection() {
         </svg>
       </motion.div>
 
-      {/* Header */}
-      <div className="text-center mb-16 relative z-10">
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-          <p className="text-[0.6rem] uppercase tracking-[0.5em] text-[#a5813b] font-bold mb-4">Curated Experiences</p>
-          <div className="relative inline-block">
-             <h2 className="font-old-english font-normal text-5xl md:text-7xl lg:text-8xl tracking-[0.02em] text-transparent bg-clip-text bg-gradient-to-r from-[#1a1714] via-[#5c544b] to-[#1a1714] relative z-10 pb-2">Activity & Food</h2>
-             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center pointer-events-none opacity-[0.06] z-0 whitespace-nowrap font-script text-4xl md:text-8xl">
-               Trekking • Paragliding • local cuisine
-             </div>
-          </div>
-          <p className="text-sm font-serif italic text-[#5c544b] mt-4 opacity-70 max-w-xl mx-auto">Immerse yourself in thrilling adventures and authentic local flavors</p>
-        </motion.div>
+      {/* Decorative vertical dots */}
+      <div className="relative z-10 flex flex-col items-center gap-1 mb-12 md:mb-20">
+        <div className="w-1.5 h-1.5 rounded-full bg-[#ae9e85]" />
+        <div className="w-1.5 h-1.5 rounded-full bg-[#ae9e85]" />
+        <div className="w-1.5 h-1.5 rounded-full bg-[#ae9e85]" />
       </div>
 
       {/* ── Mobile: Card-based swiper ── */}

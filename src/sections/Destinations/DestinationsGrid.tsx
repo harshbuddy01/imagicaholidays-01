@@ -184,7 +184,7 @@ export default function DestinationsGrid() {
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <p className="text-[0.6rem] uppercase tracking-[0.5em] text-[#a5813b] font-bold mb-4">Explore the Memoir</p>
             <div className="relative inline-block">
-               <h2 className="font-old-english font-normal text-5xl md:text-7xl lg:text-8xl tracking-[0.02em] text-transparent bg-clip-text bg-gradient-to-r from-[#1a1714] via-[#5c544b] to-[#1a1714] relative z-10 pb-2">Timeless Indian Splendors</h2>
+               <h2 className="font-glyptic font-bold text-5xl md:text-7xl lg:text-8xl tracking-[0.05em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-[#1a1714] via-[#5c544b] to-[#1a1714] relative z-10 pb-2">Timeless Indian Splendors</h2>
                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center pointer-events-none opacity-[0.06] z-0 whitespace-nowrap font-script text-4xl md:text-8xl">
                  Taj Mahal • Himalayas • Kerala • Hawa Mahal
                </div>
