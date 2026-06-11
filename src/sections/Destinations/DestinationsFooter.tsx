@@ -28,30 +28,30 @@ export default function DestinationsFooter() {
 
       {/* Heading */}
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         className="text-center"
       >
-        <h3 className="font-serif text-xl md:text-2xl font-light mb-4">
+        <h3 className="font-serif text-xs md:text-sm tracking-[0.25em] uppercase text-[#a5813b] font-medium mb-2">
           Your Exclusive Tranquil Haven
         </h3>
 
-        <div className="flex flex-col md:flex-row items-center justify-center gap-x-2 md:gap-x-4 gap-y-1 mt-2 select-none">
-          <h2 className="font-roman font-normal text-4xl md:text-6xl lg:text-7xl tracking-widest uppercase text-[#1a1714]">
+        <div className="flex items-center justify-center gap-x-2 md:gap-x-4 select-none mt-1">
+          <span className="font-roman font-light text-3xl md:text-5xl lg:text-6xl tracking-[0.1em] uppercase text-[#1a1714]">
             Activities
-          </h2>
-          <span className="font-script text-5xl md:text-7xl lg:text-8xl text-[#a5813b] leading-none select-none lowercase translate-y-1 md:translate-y-2">
+          </span>
+          <span className="font-script text-4xl md:text-6xl lg:text-7xl text-[#a5813b] leading-none translate-y-1 select-none">
             &
           </span>
-          <h2 className="font-roman font-normal text-4xl md:text-6xl lg:text-7xl tracking-widest uppercase text-[#a5813b]">
+          <span className="font-roman font-light text-3xl md:text-5xl lg:text-6xl tracking-[0.1em] uppercase text-[#1a1714]">
             Foods
-          </h2>
+          </span>
         </div>
 
         {/* Tiny diamond decoration */}
-        <div className="flex justify-center mt-4">
+        <div className="flex justify-center mt-3">
           <svg width="8" height="8" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" fill="#b5a993" />
           </svg>
