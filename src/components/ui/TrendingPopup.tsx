@@ -194,7 +194,7 @@ export default function TrendingPopup() {
                     {/* Stamp */}
                     <div className="absolute top-4 right-4 bg-white/80 p-2 shadow-inner border border-black/5 rotate-6">
                        <div className="relative w-10 h-7">
-                          <Image src="/logo_icon.png" alt="Stamp" fill className="object-contain" />
+                          <Image src="/logo_new.png" alt="Stamp" fill className="object-contain" />
                        </div>
                     </div>
                   </div>

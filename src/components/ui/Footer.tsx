@@ -166,7 +166,7 @@ export default function Footer() {
           <div className="lg:pr-8 col-span-2 md:col-span-2 lg:col-span-1">
             <div className="flex flex-col mb-4">
               <div className="relative w-16 h-10 mb-2">
-                <Image src="/logo_icon.png" alt="Logo" fill className="object-contain" />
+                <Image src="/logo_new.png" alt="Logo" fill className="object-contain" />
               </div>
               <Link href="/" className="font-roman text-2xl tracking-[0.15em] text-[#f0e7d6] font-bold">
                 IMAGICA HOLIDAYS

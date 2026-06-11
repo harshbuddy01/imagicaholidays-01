@@ -24,7 +24,7 @@ export default function FooterCrescendo() {
         <div className="relative mb-8">
            <div className="absolute inset-0 bg-[#a5813b]/5 rounded-full scale-150 blur-xl" />
            <div className="relative z-10 w-16 h-10">
-              <Image src="/logo_icon.png" alt="Logo" fill className="object-contain" />
+              <Image src="/logo_new.png" alt="Logo" fill className="object-contain" />
            </div>
         </div>
 

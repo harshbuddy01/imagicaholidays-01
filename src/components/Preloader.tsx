@@ -126,7 +126,7 @@ export default function Preloader() {
                         className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none"
                     >
                         <div className="relative w-24 h-16 mb-6">
-                            <NextImage src="/logo_icon.png" alt="Logo" fill className="object-contain" />
+                            <NextImage src="/logo_new.png" alt="Logo" fill className="object-contain" />
                         </div>
                         <h1 className="font-roman text-2xl md:text-3xl tracking-[0.4em] font-bold uppercase text-white">
                             IMAGICA HOLIDAYS
