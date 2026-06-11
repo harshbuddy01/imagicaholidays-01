@@ -103,7 +103,7 @@ const chapters = [
 
 /* ── Helper Components ───────────────────────────────────── */
 const FloralFrame = () => (
-  <svg className="absolute -inset-8 pointer-events-none opacity-20 group-hover:opacity-40 transition-opacity duration-700" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg className="hidden md:block absolute -inset-8 pointer-events-none opacity-20 group-hover:opacity-40 transition-opacity duration-700" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M10 10C30 5 70 5 90 10M10 90C30 95 70 95 90 90" stroke="#a5813b" strokeWidth="0.5" strokeDasharray="2 2" />
     <path d="M10 10C5 30 5 70 10 90M90 10C95 30 95 70 90 90" stroke="#a5813b" strokeWidth="0.5" strokeDasharray="2 2" />
     <circle cx="10" cy="10" r="2" fill="#a5813b" fillOpacity="0.2" />
@@ -191,28 +191,34 @@ export default function DestinationsGrid() {
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 relative">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <p className="text-[0.6rem] uppercase tracking-[0.5em] text-[#a5813b] font-bold mb-6">Explore the Memoir</p>
-            <h2 className="font-glyptic font-bold text-4xl md:text-7xl lg:text-8xl tracking-[0.05em] uppercase text-[#1a1714]">Destinations</h2>
+            <p className="text-[0.6rem] uppercase tracking-[0.5em] text-[#a5813b] font-bold mb-4">Explore the Memoir</p>
+            <div className="relative inline-block">
+               <h2 className="font-glyptic font-bold text-5xl md:text-7xl lg:text-8xl tracking-[0.05em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-[#1a1714] via-[#5c544b] to-[#1a1714] relative z-10 pb-2">Destinations</h2>
+               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center pointer-events-none opacity-[0.06] z-0 whitespace-nowrap font-script text-4xl md:text-8xl">
+                 Taj Mahal • Himalayas • Kerala • Hawa Mahal
+               </div>
+            </div>
+            <p className="text-sm font-serif italic text-[#5c544b] mt-4 opacity-70 max-w-xl mx-auto">Discover the timeless beauty from the Taj Mahal to the backwaters of Kerala</p>
           </motion.div>
         </div>
 
         {/* Regional Filter Tabs */}
-        <div className="flex flex-wrap justify-center gap-4 md:gap-10 mb-20 md:mb-28">
+        <div className="flex flex-wrap justify-center gap-3 md:gap-10 mb-16 md:mb-28">
           {dynamicChapters.map((chapter) => (
             <button
               key={chapter.id}
               onClick={() => setActiveChapter(chapter.id)}
-              className={`relative group px-4 py-2 transition-all duration-500`}
+              className={`relative group px-5 py-2.5 md:px-4 md:py-2 rounded-full md:rounded-none border md:border-none transition-all duration-500 ${activeChapter === chapter.id ? "border-[#a5813b] bg-[#a5813b]/10 md:bg-transparent" : "border-[#e0d5c1] hover:border-[#a5813b]/50"}`}
             >
-              <span className={`font-roman text-sm md:text-base uppercase tracking-[0.2em] font-medium transition-colors duration-500 ${activeChapter === chapter.id ? "text-[#a5813b]" : "text-[#5c544b] opacity-60 group-hover:opacity-100"}`}>
+              <span className={`font-roman text-xs md:text-base uppercase tracking-[0.2em] font-medium transition-colors duration-500 ${activeChapter === chapter.id ? "text-[#a5813b]" : "text-[#5c544b] opacity-60 group-hover:opacity-100"}`}>
                 {chapter.label}
               </span>
               {activeChapter === chapter.id && (
                 <motion.div
                   layoutId="chapter-underline"
-                  className="absolute -bottom-1 left-4 right-4 h-[1.5px] bg-[#a5813b]"
+                  className="hidden md:block absolute -bottom-1 left-4 right-4 h-[1.5px] bg-[#a5813b]"
                   transition={{ type: "spring", bounce: 0, duration: 0.6 }}
                 />
               )}
