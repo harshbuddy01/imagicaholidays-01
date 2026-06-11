@@ -74,7 +74,7 @@ export default function DestinationsLandingClient() {
           src="https://images.pexels.com/photos/19195937/pexels-photo-19195937.jpeg?auto=compress&cs=tinysrgb&w=1800"
           alt="Indian Heritage"
           fill
-          className="object-cover brightness-[0.5] contrast-[1.1] grayscale"
+          className="object-cover brightness-[0.6] contrast-[1.05]"
           priority
         />
         <div className="absolute inset-0 bg-[#3d3831]/20 mix-blend-multiply" />
@@ -123,7 +123,7 @@ export default function DestinationsLandingClient() {
                       src={dest.image}
                       alt={dest.title}
                       fill
-                      className="object-cover grayscale contrast-[1.1] group-hover:grayscale-0 transition-all duration-[2s] ease-out"
+                      className="object-cover transition-all duration-[2s] ease-out group-hover:scale-105"
                       sizes="(max-width: 768px) 100vw, 33vw"
                     />
                     <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')] opacity-[0.08] mix-blend-overlay" />

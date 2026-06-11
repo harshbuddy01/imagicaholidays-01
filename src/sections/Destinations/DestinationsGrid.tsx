@@ -181,6 +181,17 @@ export default function DestinationsGrid() {
 
   return (
     <section ref={containerRef} className="relative w-full bg-[#f8f5f0] py-24 md:py-32 overflow-hidden">
+      {/* Sketch Background Painting */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.09] mix-blend-multiply">
+        <Image
+          src="/images/destinations_sketch_bg.png"
+          alt="Indian travel destinations sketches background"
+          fill
+          className="object-cover object-center"
+          priority
+        />
+      </div>
+
       {/* Background Embellishments */}
       <ArtisanOrnament className="-left-20 top-40" speed={0.4} />
       <ArtisanOrnament className="-right-20 bottom-40" speed={0.6} />
@@ -240,7 +251,7 @@ export default function DestinationsGrid() {
                         src={dest.image}
                         alt={dest.title}
                         fill
-                        className="object-cover grayscale contrast-[1.1] brightness-[0.95] group-hover:grayscale-0 transition-all duration-[2s] ease-out"
+                        className="object-cover transition-all duration-[2s] ease-out group-hover:scale-105"
                         sizes="(max-width: 768px) 100vw, 50vw"
                       />
                       <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')] opacity-[0.08] mix-blend-overlay" />
