@@ -153,7 +153,7 @@ export default function ActivitiesSection() {
   return (
     <section
       id="activities-section"
-      className="relative w-full bg-[#f8f5f0] py-14 md:py-32 px-4 md:px-12 lg:px-24 overflow-hidden text-[#5c544b]"
+      className="relative w-full bg-[#f8f5f0] pt-6 pb-14 md:pt-10 md:pb-32 px-4 md:px-12 lg:px-24 overflow-hidden text-[#5c544b]"
     >
       {/* Sketch Background Painting */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.07] mix-blend-multiply bg-[url('/images/activities_sketch_bg.png')] bg-no-repeat bg-cover bg-center" />
