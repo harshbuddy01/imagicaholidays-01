@@ -13,17 +13,33 @@ import { villas as staticVillas } from "@/lib/constants";
 import { fetchWebsiteConfig } from "@/lib/api";
 
 export default function VillasSection() {
-  const [config, setConfig] = useState<any[] | null>(null);
+  const [config, setConfig] = useState<any | null>(null);
   
   useEffect(() => {
     fetchWebsiteConfig().then((data) => {
-      if (data && Array.isArray(data.config?.villas)) {
+      if (data && data.config?.villas) {
         setConfig(data.config.villas);
       }
     });
   }, []);
 
-  const villas = config && config.length > 0 ? config : staticVillas;
+  const villas = useMemo(() => {
+    if (config) {
+      if (Array.isArray(config)) return config;
+      if (config.items && Array.isArray(config.items)) return config.items;
+    }
+    return staticVillas;
+  }, [config]);
+
+  const sectionTitle = useMemo(() => {
+    if (config && !Array.isArray(config) && config.title) return config.title;
+    return "VELA";
+  }, [config]);
+
+  const sectionSubtitle = useMemo(() => {
+    if (config && !Array.isArray(config) && config.subtitle) return config.subtitle;
+    return "Your Exclusive Tranquil Haven at IMAGICA HOLIDAYS";
+  }, [config]);
   const containerRef = useRef<HTMLElement>(null);
   const sliderRef = useRef<any>(null);
   const isInView = useInView(containerRef, { once: true, margin: "-100px" });
@@ -79,6 +95,8 @@ export default function VillasSection() {
       onMouseLeave={handleMouseLeave}
       onClick={handleSliderClick}
     >
+      {/* Sketch Background Painting of Taj Hotel & Skies */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.11] mix-blend-multiply bg-[url('/images/stays_sketch_bg.png')] bg-no-repeat bg-cover bg-center" />
       {/* Custom Cursor */}
       <motion.div
         className="fixed top-0 left-0 z-[100] pointer-events-none flex items-center justify-center w-20 h-20 rounded-full border border-[#1e1c1a]/20 bg-[#f5f4ef]/10 backdrop-blur-[2px]"
@@ -118,10 +136,10 @@ export default function VillasSection() {
             IMAGICA HOLIDAYS
           </span>
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-serif text-[#1e1c1a] tracking-[0.2em] font-light uppercase">
-            VELA
+            {sectionTitle}
           </h2>
           <p className="mt-6 text-[#1e1c1a] opacity-60 text-sm md:text-base tracking-[0.1em] font-light italic">
-            Your Exclusive Tranquil Haven at IMAGICA HOLIDAYS
+            {sectionSubtitle}
           </p>
           <div className="mt-8 opacity-40">
             {/* IMAGICA HOLIDAYS style ornament */}
