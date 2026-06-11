@@ -153,7 +153,7 @@ export default function ActivitiesSection() {
   return (
     <section
       id="activities-section"
-      className="relative w-full bg-[#f8f5f0] pt-2 pb-10 md:pt-4 md:pb-24 px-4 md:px-12 lg:px-24 overflow-hidden text-[#5c544b]"
+      className="relative w-full bg-[#f8f5f0] pt-0 pb-8 md:pt-4 md:pb-24 px-4 md:px-12 lg:px-24 overflow-hidden text-[#5c544b]"
     >
       {/* Sketch Background Painting */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.07] mix-blend-multiply bg-[url('/images/activities_sketch_bg.png')] bg-no-repeat bg-cover bg-center" />
@@ -166,7 +166,7 @@ export default function ActivitiesSection() {
       </motion.div>
 
       {/* Decorative vertical dots */}
-      <div className="relative z-10 flex flex-col items-center gap-1 mb-6 md:mb-10">
+      <div className="relative z-10 flex flex-col items-center gap-1 mb-4 md:mb-10">
         <div className="w-1.5 h-1.5 rounded-full bg-[#ae9e85]" />
         <div className="w-1.5 h-1.5 rounded-full bg-[#ae9e85]" />
         <div className="w-1.5 h-1.5 rounded-full bg-[#ae9e85]" />
@@ -224,7 +224,7 @@ export default function ActivitiesSection() {
           </div>
           {/* ... mobile indicators logic remains ... */}
           {/* Mobile dot indicators */}
-          <div className="flex items-center justify-center gap-2 mt-8">
+          <div className="flex items-center justify-center gap-2 mt-6">
             {activities.map((_, i) => (
               <button
                 key={i}

@@ -29,13 +29,13 @@ export default function VillaSlider({ villas, sectionTitle, sectionSubtitle }: V
     <section
       ref={containerRef}
       id="villas"
-      className="relative bg-[#f5f4ef] py-20 md:py-28 overflow-hidden w-full font-sans"
+      className="relative bg-[#f5f4ef] pt-12 pb-14 md:py-28 overflow-hidden w-full font-sans"
     >
       {/* Sketch Background */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.09] mix-blend-multiply bg-[url('/images/stays_sketch_bg.png')] bg-no-repeat bg-cover bg-center" />
 
       {/* ── Section Header ── */}
-      <div className="w-full flex items-start justify-between px-6 md:px-16 mb-14 md:mb-20 relative z-10">
+      <div className="w-full flex items-start justify-between px-6 md:px-16 mb-8 md:mb-20 relative z-10">
         {/* Left Dot Grid */}
         <div className="hidden md:grid grid-cols-4 gap-[6px] mt-2 opacity-70 flex-shrink-0">
           {[...Array(12)].map((_, i) => (
@@ -54,11 +54,11 @@ export default function VillaSlider({ villas, sectionTitle, sectionSubtitle }: V
             IMAGICA HOLIDAYS
           </span>
           <div className="flex flex-col md:flex-row items-center justify-center gap-x-5 gap-y-2 mt-1">
-            <h2 className="font-glyptic font-bold text-5xl md:text-7xl lg:text-8xl tracking-tight uppercase text-[#1a1714]">
+            <h2 className="font-glyptic font-bold text-4xl md:text-7xl lg:text-8xl tracking-tight uppercase text-[#1a1714]">
               {titleFirst}
             </h2>
             {titleRest && (
-              <h2 className="font-roman font-medium text-5xl md:text-7xl lg:text-8xl tracking-widest uppercase text-[#a5813b]">
+              <h2 className="font-roman font-medium text-4xl md:text-7xl lg:text-8xl tracking-widest uppercase text-[#a5813b]">
                 {titleRest}
               </h2>
             )}
@@ -77,7 +77,8 @@ export default function VillaSlider({ villas, sectionTitle, sectionSubtitle }: V
 
       {/* ── Hotel Grid ── */}
       <div className="relative z-10 px-6 md:px-12 lg:px-20">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
+        {/* Desktop View: Grid */}
+        <div className="hidden md:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
           {villas.map((item, index) => (
             <motion.div
               key={`${item.id || "villa"}-${index}`}
@@ -120,6 +121,51 @@ export default function VillaSlider({ villas, sectionTitle, sectionSubtitle }: V
                 <div className="w-8 h-[1px] bg-[#a5813b]/40 mb-3 group-hover:w-16 transition-all duration-500" />
                 {/* Description */}
                 <p className="text-[#5c544b] text-sm leading-relaxed opacity-80 line-clamp-3">
+                  {item.description}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Mobile View: Swipeable Carousel */}
+        <div className="md:hidden w-full overflow-x-auto flex gap-6 snap-x snap-mandatory no-scrollbar pb-6 scroll-smooth">
+          {villas.map((item, index) => (
+            <motion.div
+              key={`${item.id || "villa-mob"}-${index}`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.7, delay: index * 0.1, ease: "easeOut" }}
+              className="w-[82vw] shrink-0 snap-center bg-white border border-[#d6cfc5]/50 rounded-sm overflow-hidden flex flex-col p-3 shadow-md"
+            >
+              {/* Image */}
+              <div className="relative w-full aspect-[4/3] overflow-hidden rounded-sm bg-[#e8e6df]">
+                <Image
+                  src={item.image}
+                  alt={item.title || "Exclusive Stay"}
+                  width={600}
+                  height={450}
+                  className="w-full h-full object-cover"
+                  priority={index < 2}
+                />
+                {/* Hotel number badge */}
+                <div className="absolute top-2 left-2 bg-[#1a1714]/70 text-[#f5f4ef] text-[0.55rem] tracking-[0.3em] uppercase px-2 py-0.5 font-sans backdrop-blur-sm">
+                  {String(index + 1).padStart(2, "0")}
+                </div>
+              </div>
+
+              {/* Text Content */}
+              <div className="pt-4 pb-2 px-1">
+                {item.id && (
+                  <span className="text-[#a5813b] text-[0.55rem] tracking-[0.3em] uppercase font-bold block mb-1 font-sans">
+                    {item.id}
+                  </span>
+                )}
+                <h3 className="font-serif text-[#1e1c1a] text-base tracking-wide uppercase leading-tight mb-2">
+                  {item.title}
+                </h3>
+                <div className="w-8 h-[1px] bg-[#a5813b]/40 mb-2" />
+                <p className="text-[#5c544b] text-xs leading-relaxed opacity-85 line-clamp-3 h-[54px] overflow-hidden">
                   {item.description}
                 </p>
               </div>

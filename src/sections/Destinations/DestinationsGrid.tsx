@@ -169,7 +169,7 @@ export default function DestinationsGrid() {
   const currentDestinations = dynamicChapters.find((c) => c.id === activeChapter)?.destinations || [];
 
   return (
-    <section ref={containerRef} className="relative w-full bg-[#f8f5f0] py-24 md:py-32 overflow-hidden">
+    <section ref={containerRef} className="relative w-full bg-[#f8f5f0] pt-12 pb-14 md:py-32 overflow-hidden">
       {/* Sketch Background Painting */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.09] mix-blend-multiply bg-[url('/images/destinations_sketch_bg.png')] bg-repeat bg-[size:450px] md:bg-[size:800px] bg-center" />
 
@@ -194,7 +194,7 @@ export default function DestinationsGrid() {
         </div>
 
         {/* Regional Filter Tabs Selector */}
-        <div className="flex flex-col items-center gap-4 mb-16 md:mb-24 relative z-10">
+        <div className="flex flex-col items-center gap-4 mb-10 md:mb-24 relative z-10">
           <p className="text-[0.65rem] uppercase tracking-[0.3em] text-[#a5813b] font-bold opacity-60 animate-pulse">
             Select a region to explore
           </p>
@@ -230,68 +230,109 @@ export default function DestinationsGrid() {
         </div>
 
         {/* Dynamic Artisan Folio */}
-        <div className="relative min-h-[800px] md:min-h-[1200px]">
+        <div className="relative min-h-0 md:min-h-[1200px]">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeChapter}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.98 }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="flex flex-col gap-32 md:gap-40"
             >
-              {currentDestinations.map((dest, idx) => (
-                <div
-                  key={dest.id}
-                  onMouseEnter={() => {
-                    let highResUrl = dest.image;
-                    if (highResUrl) {
-                      if (highResUrl.includes("w=1200")) {
-                        highResUrl = highResUrl.replace("w=1200", "w=1800");
-                      } else if (highResUrl.includes("w=800")) {
-                        highResUrl = highResUrl.replace("w=800", "w=1800");
+              {/* Desktop View */}
+              <div className="hidden md:flex flex-col gap-32 md:gap-40">
+                {currentDestinations.map((dest, idx) => (
+                  <div
+                    key={dest.id}
+                    onMouseEnter={() => {
+                      let highResUrl = dest.image;
+                      if (highResUrl) {
+                        if (highResUrl.includes("w=1200")) {
+                          highResUrl = highResUrl.replace("w=1200", "w=1800");
+                        } else if (highResUrl.includes("w=800")) {
+                          highResUrl = highResUrl.replace("w=800", "w=1800");
+                        }
+                        const img = new window.Image();
+                        img.src = highResUrl;
                       }
-                      const img = new window.Image();
-                      img.src = highResUrl;
-                    }
-                  }}
-                  className={`flex flex-col md:flex-row items-center gap-12 md:gap-24 ${idx % 2 === 1 ? "md:flex-row-reverse" : ""}`}
-                >
-                  {/* Card Section */}
-                  <div className="group relative w-full md:w-[50%] aspect-[3/4] md:aspect-[4/3] bg-white shadow-2xl p-4 md:p-6 transition-transform duration-700 hover:scale-[1.02]">
-                    <div className="relative w-full h-full overflow-hidden">
+                    }}
+                    className={`flex flex-col md:flex-row items-center gap-12 md:gap-24 ${idx % 2 === 1 ? "md:flex-row-reverse" : ""}`}
+                  >
+                    {/* Card Section */}
+                    <div className="group relative w-full md:w-[50%] aspect-[3/4] md:aspect-[4/3] bg-white shadow-2xl p-4 md:p-6 transition-transform duration-700 hover:scale-[1.02]">
+                      <div className="relative w-full h-full overflow-hidden">
+                        <Image
+                          src={dest.image}
+                          alt={dest.title}
+                          fill
+                          className="object-cover transition-all duration-[2s] ease-out group-hover:scale-105"
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                        />
+                        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')] opacity-[0.08] mix-blend-overlay" />
+                      </div>
+                    </div>
+
+                    {/* Info Section */}
+                    <div className="w-full md:w-[40%] flex flex-col items-center md:items-start text-center md:text-left">
+                      <p className="font-script text-2xl md:text-3xl text-[#a5813b] mb-4">{dest.location}</p>
+                      <h3 className="font-glyptic text-3xl md:text-5xl text-[#1a1714] uppercase tracking-wider mb-6">{dest.title}</h3>
+                      <p className="font-serif text-[#5c544b] leading-relaxed opacity-80 mb-8 max-w-sm">{dest.description}</p>
+                      <Link
+                        href={dest.link}
+                        className="group relative px-10 py-4 border border-[#a5813b]/30 text-[#a5813b] text-[0.65rem] uppercase tracking-[0.3em] font-bold transition-all hover:border-[#a5813b] hover:text-[#a5813b]"
+                      >
+                        <span className="relative z-10 transition-colors duration-500 group-hover:text-white">Explore Memoir</span>
+                        <div className="absolute inset-0 bg-[#a5813b] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]" />
+                      </Link>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Mobile View: Swipeable Carousel */}
+              <div className="md:hidden w-full overflow-x-auto flex gap-6 snap-x snap-mandatory no-scrollbar px-1 pb-6 scroll-smooth">
+                {currentDestinations.map((dest) => (
+                  <div
+                    key={dest.id}
+                    className="w-[82vw] shrink-0 snap-center flex flex-col bg-white border border-[#a5813b]/10 shadow-lg rounded-sm overflow-hidden p-3"
+                  >
+                    {/* Image Frame */}
+                    <div className="relative w-full aspect-[4/5] overflow-hidden rounded-sm bg-[#e8e6df]">
                       <Image
                         src={dest.image}
                         alt={dest.title}
                         fill
-                        className="object-cover transition-all duration-[2s] ease-out group-hover:scale-105"
-                        sizes="(max-width: 768px) 100vw, 50vw"
+                        className="object-cover"
+                        sizes="82vw"
                       />
                       <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')] opacity-[0.08] mix-blend-overlay" />
+                      <div className="absolute top-2 left-2 bg-[#1a1714]/75 text-[#f5f4ef] text-[0.55rem] tracking-[0.25em] uppercase px-2.5 py-1 font-sans backdrop-blur-sm">
+                        {dest.location}
+                      </div>
+                    </div>
+
+                    {/* Content info */}
+                    <div className="pt-4 pb-2 px-1 flex flex-col items-center text-center">
+                      <h3 className="font-glyptic text-xl text-[#1a1714] uppercase tracking-wider mb-2">{dest.title}</h3>
+                      <p className="font-serif text-xs text-[#5c544b] leading-relaxed opacity-85 mb-5 h-[54px] line-clamp-3 overflow-hidden">
+                        {dest.description}
+                      </p>
+                      <Link
+                        href={dest.link}
+                        className="w-full text-center py-3 border border-[#a5813b]/30 text-[#a5813b] text-[0.6rem] uppercase tracking-[0.25em] font-bold transition-all bg-[#fcfbf9] hover:bg-[#a5813b] hover:text-white"
+                      >
+                        Explore Memoir
+                      </Link>
                     </div>
                   </div>
-
-                  {/* Info Section */}
-                  <div className="w-full md:w-[40%] flex flex-col items-center md:items-start text-center md:text-left">
-                    <p className="font-script text-2xl md:text-3xl text-[#a5813b] mb-4">{dest.location}</p>
-                    <h3 className="font-glyptic text-3xl md:text-5xl text-[#1a1714] uppercase tracking-wider mb-6">{dest.title}</h3>
-                    <p className="font-serif text-[#5c544b] leading-relaxed opacity-80 mb-8 max-w-sm">{dest.description}</p>
-                    <Link
-                      href={dest.link}
-                      className="group relative px-10 py-4 border border-[#a5813b]/30 text-[#a5813b] text-[0.65rem] uppercase tracking-[0.3em] font-bold transition-all hover:border-[#a5813b] hover:text-[#a5813b]"
-                    >
-                      <span className="relative z-10 transition-colors duration-500 group-hover:text-white">Explore Memoir</span>
-                      <div className="absolute inset-0 bg-[#a5813b] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]" />
-                    </Link>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </motion.div>
           </AnimatePresence>
         </div>
 
         {/* Global Footer Link */}
-        <div className="mt-32 text-center border-t border-[#a5813b]/10 pt-20">
+        <div className="mt-12 md:mt-32 text-center border-t border-[#a5813b]/10 pt-8 md:pt-20">
           <Link href="/destinations" className="group flex flex-col items-center gap-4">
             <span className="font-glyptic text-2xl md:text-3xl text-[#1a1714] uppercase tracking-[0.2em] transition-colors group-hover:text-[#a5813b]">
               Discover All Treasures

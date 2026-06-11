@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function DestinationsFooter() {
   return (
-    <section className="relative w-full flex flex-col items-center bg-[#f8f5f0] pt-4 pb-6 px-4 md:px-8 text-[#5c544b] overflow-hidden">
+    <section className="relative w-full flex flex-col items-center bg-[#f8f5f0] pt-2 pb-2 md:pt-4 md:pb-6 px-4 md:px-8 text-[#5c544b] overflow-hidden">
 
       {/* Detailed Horizontal Line with Sunburst Center */}
       <div className="relative w-full max-w-4xl flex items-center justify-center mb-8">

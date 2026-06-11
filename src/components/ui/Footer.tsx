@@ -139,17 +139,17 @@ export default function Footer() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.15 }}
-              className="flex w-full md:w-auto gap-0"
+              className="flex flex-col sm:flex-row w-full md:w-auto gap-3 sm:gap-0"
               onSubmit={(e) => e.preventDefault()}
             >
               <input
                 type="email"
                 placeholder="Your email address"
-                className="w-full md:w-72 bg-white/5 border border-white/12 border-r-0 px-5 py-3.5 text-sm text-[#f0e7d6] placeholder:text-[#7a705e] focus:outline-none focus:border-[#ae9e85]/50 transition-colors rounded-l-sm"
+                className="w-full sm:w-72 bg-white/5 border border-white/12 sm:border-r-0 px-5 py-3.5 text-sm text-[#f0e7d6] placeholder:text-[#7a705e] focus:outline-none focus:border-[#ae9e85]/50 transition-colors rounded-sm sm:rounded-none sm:rounded-l-sm"
               />
               <button
                 type="submit"
-                className="flex-shrink-0 bg-[#ae9e85] px-6 py-3.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#1a1914] transition-all duration-300 hover:bg-[#c7b697] rounded-r-sm"
+                className="w-full sm:w-auto flex-shrink-0 bg-[#ae9e85] px-6 py-3.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#1a1914] transition-all duration-300 hover:bg-[#c7b697] rounded-sm sm:rounded-none sm:rounded-r-sm text-center"
               >
                 Subscribe
               </button>
