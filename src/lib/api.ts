@@ -37,12 +37,16 @@ export interface WebsiteConfigData {
     image: string;
     alt: string;
   }>;
-  villas?: Array<{
-    id: string;
-    title: string;
-    description: string;
-    image: string;
-  }>;
+  villas?: {
+    title?: string;
+    subtitle?: string;
+    items: Array<{
+      id: string;
+      title: string;
+      description: string;
+      image: string;
+    }>;
+  };
 }
 
 export interface DestinationCmsData {
