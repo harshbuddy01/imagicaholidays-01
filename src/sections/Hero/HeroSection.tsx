@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import Head from "next/head";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { heroSlides } from "@/lib/constants";
@@ -11,9 +12,17 @@ import { heroSlides } from "@/lib/constants";
 gsap.registerPlugin(ScrollTrigger);
 
 const heroVideos = [
-  { id: "video-1", src: "https://media.imagicaholidays.com/imagica-assets/hero-1-hq-compressed.mp4" },
-  { id: "video-2", src: "https://media.imagicaholidays.com/imagica-assets/hero-1-hq-compressed.mp4" },
+  { id: "video-1", src: "https://media.imagicaholidays.com/imagica-assets/hero-1-hq-compressed.mp4?v=2" },
+  { id: "video-2", src: "https://media.imagicaholidays.com/imagica-assets/hero-1-hq-compressed.mp4?v=2" },
 ];
+
+const getBustedUrl = (url: string) => {
+  if (!url) return "";
+  if (url.includes("hero-1-hq-compressed.mp4") && !url.includes("v=")) {
+    return url.includes("?") ? `${url}&v=2` : `${url}?v=2`;
+  }
+  return url;
+};
 
 import { fetchWebsiteConfig } from "@/lib/api";
 
@@ -149,8 +158,15 @@ export default function HeroSection() {
             <div className={`absolute inset-0 w-full h-full transition-opacity duration-[2000ms] ease-in-out ${activeVideo === 0 ? "opacity-100 z-[2]" : "opacity-0 z-[1]"}`}>
               <video
                 ref={video1Ref}
-                src={config?.videoUrl1 || heroVideos[0].src}
+                src={getBustedUrl(config?.videoUrl1 || heroVideos[0].src)}
                 onError={() => setUseFallback(true)}
+                onCanPlayThrough={() => {
+                  // Once first video is ready, start preloading second video
+                  if (video2Ref.current && video2Ref.current.preload === "none") {
+                    video2Ref.current.preload = "auto";
+                    video2Ref.current.load();
+                  }
+                }}
                 autoPlay
                 loop
                 muted
@@ -158,13 +174,15 @@ export default function HeroSection() {
                 // @ts-ignore
                 webkit-playsinline="true"
                 preload="auto"
+                // @ts-ignore - fetchPriority for faster video download
+                fetchpriority="high"
                 className="absolute inset-0 w-full h-full object-cover"
               />
             </div>
             <div className={`absolute inset-0 w-full h-full transition-opacity duration-[2000ms] ease-in-out ${activeVideo === 1 ? "opacity-100 z-[2]" : "opacity-0 z-[1]"}`}>
               <video
                 ref={video2Ref}
-                src={config?.videoUrl2 || heroVideos[1].src}
+                src={getBustedUrl(config?.videoUrl2 || heroVideos[1].src)}
                 onError={() => setUseFallback(true)}
                 autoPlay
                 loop
@@ -172,7 +190,7 @@ export default function HeroSection() {
                 playsInline
                 // @ts-ignore
                 webkit-playsinline="true"
-                preload="auto"
+                preload="none"
                 className="absolute inset-0 w-full h-full object-cover"
               />
             </div>
