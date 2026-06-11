@@ -155,6 +155,9 @@ export default function ActivitiesSection() {
       id="activities-section"
       className="relative w-full bg-[#f8f5f0] py-14 md:py-32 px-4 md:px-12 lg:px-24 overflow-hidden text-[#5c544b]"
     >
+      {/* Sketch Background Painting */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.08] mix-blend-multiply bg-[url('/images/activities_sketch_bg.png')] bg-repeat bg-[size:350px] md:bg-[size:600px] bg-center" />
+
       {/* Handcrafted Background Ornaments */}
       <motion.div style={{ y: ornamentY }} className="absolute -left-20 top-20 opacity-[0.08] pointer-events-none">
         <svg width="300" height="300" viewBox="0 0 100 100" fill="none">
@@ -163,14 +166,14 @@ export default function ActivitiesSection() {
       </motion.div>
 
       {/* Decorative vertical dots */}
-      <div className="flex flex-col items-center gap-1 mb-12 md:mb-20">
+      <div className="relative z-10 flex flex-col items-center gap-1 mb-12 md:mb-20">
         <div className="w-1.5 h-1.5 rounded-full bg-[#ae9e85]" />
         <div className="w-1.5 h-1.5 rounded-full bg-[#ae9e85]" />
         <div className="w-1.5 h-1.5 rounded-full bg-[#ae9e85]" />
       </div>
 
       {/* ── Mobile: Card-based swiper ── */}
-      <div className="md:hidden">
+      <div className="relative z-10 md:hidden">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -245,7 +248,7 @@ export default function ActivitiesSection() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-        className="relative w-full max-w-7xl mx-auto hidden md:block"
+        className="relative z-10 w-full max-w-7xl mx-auto hidden md:block"
       >
         <div className="flex w-full items-center justify-center gap-2">
           {activities.map((activity, index) => {
