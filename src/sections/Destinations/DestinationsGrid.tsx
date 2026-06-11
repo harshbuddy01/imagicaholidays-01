@@ -192,32 +192,9 @@ export default function DestinationsGrid() {
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         {/* Header */}
         <div className="text-center mb-16">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="flex flex-col items-center">
-            {/* Minimalist Taj Mahal Gold Line-art Icon */}
-            <svg className="w-16 h-12 text-[#a5813b] opacity-80 mb-4" viewBox="0 0 100 50" fill="none" stroke="currentColor" strokeWidth="1">
-              {/* Central Dome */}
-              <path d="M50 12 C46 22 41 26 41 33 L59 33 C59 26 54 22 50 12 Z" />
-              <path d="M50 6 L50 12" />
-              {/* Side Domes */}
-              <path d="M34 24 C31 28 30 30 30 33 L38 33 C38 30 37 28 34 24 Z" />
-              <path d="M66 24 C63 28 62 30 62 33 L70 33 C70 30 69 28 66 24 Z" />
-              {/* Archway portal */}
-              <path d="M44 33 L44 31 C44 24 56 24 56 31 L56 33" />
-              {/* Platforms */}
-              <path d="M27 33 L73 33 L73 36 L27 36 Z" strokeWidth="0.5" />
-              {/* Left Minaret */}
-              <path d="M20 33 L22 33 L22 14 L20 14 Z" />
-              <path d="M19 14 L23 14 L23 16 L19 16 Z" />
-              {/* Right Minaret */}
-              <path d="M78 33 L80 33 L80 14 L78 14 Z" />
-              <path d="M77 14 L81 14 L81 16 L77 16 Z" />
-              {/* Base */}
-              <path d="M15 36 L85 36 L85 39 L15 39 Z" strokeWidth="0.5" />
-            </svg>
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <p className="text-[0.6rem] uppercase tracking-[0.5em] text-[#a5813b] font-bold mb-6">Explore the Memoir</p>
-            <h2 className="font-glyptic font-bold text-4xl md:text-7xl lg:text-8xl tracking-[0.05em] uppercase text-transparent bg-clip-text bg-[url('/images/destinations_sketch_bg.png')] bg-cover bg-center bg-no-repeat [-webkit-text-stroke:0.5px_#a5813b] md:[-webkit-text-stroke:1px_#a5813b] filter drop-shadow-[0_2px_4px_rgba(26,23,20,0.08)] select-none">
-              Destinations
-            </h2>
+            <h2 className="font-glyptic font-bold text-4xl md:text-7xl lg:text-8xl tracking-[0.05em] uppercase text-[#1a1714]">Destinations</h2>
           </motion.div>
         </div>
 
