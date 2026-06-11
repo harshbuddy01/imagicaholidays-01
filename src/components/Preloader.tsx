@@ -20,17 +20,8 @@ export default function Preloader() {
         setLoading(true);
         sessionStorage.setItem("imagica_preloader_seen", "true");
 
-        // Collect all unique images to preload
-        const images: string[] = [];
-
-        heroSlides.forEach((slide) => { if (slide.image) images.push(slide.image) });
-        Object.values(hotelTabs).forEach((tabArray) => {
-            tabArray.forEach((item) => { if (item.image) images.push(item.image) });
-        });
-        pools.forEach((item) => { if (item.image) images.push(item.image) });
-        dining.forEach((item) => { if (item.image) images.push(item.image) });
-        spa.forEach((item) => { if (item.image) images.push(item.image) });
-        villas.forEach((item) => { if (item.image) images.push(item.image) });
+        // Only preload the logo shown in the preloader to avoid blocking the page
+        const images: string[] = ["/logo_new.png"];
 
         const distinctImages = [...new Set(images)];
         const totalImages = distinctImages.length;
