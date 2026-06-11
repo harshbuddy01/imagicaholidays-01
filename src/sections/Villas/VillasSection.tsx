@@ -53,77 +53,14 @@ export default function VillasSection() {
   const sliderRef = useRef<any>(null);
   const isInView = useInView(containerRef, { once: true, margin: "-100px" });
 
-  // Custom Cursor state
-  const [cursorSide, setCursorSide] = useState<"left" | "right" | null>(null);
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  // Smooth spring physics for the cursor
-  const springConfig = { damping: 25, stiffness: 200 };
-  const smoothX = useSpring(mouseX, springConfig);
-  const smoothY = useSpring(mouseY, springConfig);
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!containerRef.current) return;
-    
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    
-    mouseX.set(x);
-    mouseY.set(y);
-
-    // Determine if mouse is on left or right half of the viewport height (for the slider area)
-    const midX = rect.width / 2;
-    if (x < midX) {
-      setCursorSide("left");
-    } else {
-      setCursorSide("right");
-    }
-  };
-
-  const handleMouseLeave = () => {
-    setCursorSide(null);
-  };
-
-  const handleSliderClick = () => {
-    if (!sliderRef.current) return;
-    if (cursorSide === "left") {
-      sliderRef.current.swiper.slidePrev();
-    } else if (cursorSide === "right") {
-      sliderRef.current.swiper.slideNext();
-    }
-  };
-
   return (
     <section 
       ref={containerRef}
       id="villas" 
-      className="relative bg-[#f5f4ef] py-16 md:py-24 overflow-hidden w-full font-sans cursor-none"
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      onClick={handleSliderClick}
+      className="relative bg-[#f5f4ef] py-16 md:py-24 overflow-hidden w-full font-sans"
     >
       {/* Sketch Background Painting of Taj Hotel & Skies */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.11] mix-blend-multiply bg-[url('/images/stays_sketch_bg.png')] bg-no-repeat bg-cover bg-center" />
-      
-      {/* Custom Cursor */}
-      <motion.div
-        className="fixed top-0 left-0 z-[100] pointer-events-none flex items-center justify-center w-20 h-20 rounded-full border border-[#1e1c1a]/20 bg-[#f5f4ef]/10 backdrop-blur-[2px]"
-        style={{
-          x: smoothX,
-          y: smoothY,
-          translateX: "-50%",
-          translateY: "-50%",
-          opacity: cursorSide ? 1 : 0,
-          scale: cursorSide ? 1 : 0,
-        }}
-        transition={{ opacity: { duration: 0.2 }, scale: { duration: 0.2 } }}
-      >
-        <span className="text-[#1e1c1a] text-3xl font-light">
-          {cursorSide === "left" ? "‹" : "›"}
-        </span>
-      </motion.div>
 
       {/* Top Header Region */}
       <div className="w-full flex items-start justify-between px-6 md:px-16 mb-10 md:mb-16 relative z-10">
@@ -158,12 +95,8 @@ export default function VillasSection() {
           <p className="mt-6 text-[#1e1c1a] opacity-60 text-sm md:text-base tracking-[0.1em] font-light italic">
             {sectionSubtitle}
           </p>
-          <div className="mt-8 opacity-40">
-            {/* IMAGICA HOLIDAYS style ornament */}
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="0.5">
-              <circle cx="12" cy="12" r="1.5" />
-              <path d="M12 2V6M12 18V22M2 12H6M18 12H22M4.93 4.93L7.76 7.76M16.24 16.24L19.07 19.07M4.93 19.07L7.76 16.24M16.24 7.76L19.07 4.93" />
-            </svg>
+          <div className="mt-8 flex flex-col items-center">
+            <div className="w-16 h-[1px] bg-[#a5813b]/30 mb-6" />
           </div>
         </motion.div>
 
@@ -190,12 +123,12 @@ export default function VillasSection() {
         <div className="w-full lg:w-[84vw] h-[60vh] md:h-[75vh] overflow-hidden relative px-4 md:px-0">
           
           {/* Custom Navigation Arrows */}
-          <button className="swiper-button-prev-custom absolute left-4 top-[30%] md:top-[35%] -translate-y-1/2 z-20 w-11 h-11 rounded-full border border-[#1e1c1a]/10 bg-[#f5f4ef]/80 hover:bg-[#1e1c1a] hover:text-[#f5f4ef] hover:border-transparent flex items-center justify-center transition-all duration-300 shadow-sm cursor-none hidden md:flex">
+          <button className="swiper-button-prev-custom absolute left-4 top-[30%] md:top-[35%] -translate-y-1/2 z-20 w-11 h-11 rounded-full border border-[#1e1c1a]/10 bg-[#f5f4ef]/80 hover:bg-[#1e1c1a] hover:text-[#f5f4ef] hover:border-transparent flex items-center justify-center transition-all duration-300 shadow-sm cursor-pointer hidden md:flex">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
             </svg>
           </button>
-          <button className="swiper-button-next-custom absolute right-4 top-[30%] md:top-[35%] -translate-y-1/2 z-20 w-11 h-11 rounded-full border border-[#1e1c1a]/10 bg-[#f5f4ef]/80 hover:bg-[#1e1c1a] hover:text-[#f5f4ef] hover:border-transparent flex items-center justify-center transition-all duration-300 shadow-sm cursor-none hidden md:flex">
+          <button className="swiper-button-next-custom absolute right-4 top-[30%] md:top-[35%] -translate-y-1/2 z-20 w-11 h-11 rounded-full border border-[#1e1c1a]/10 bg-[#f5f4ef]/80 hover:bg-[#1e1c1a] hover:text-[#f5f4ef] hover:border-transparent flex items-center justify-center transition-all duration-300 shadow-sm cursor-pointer hidden md:flex">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
             </svg>
@@ -211,7 +144,7 @@ export default function VillasSection() {
             speed={1400}
             slidesPerView="auto"
             spaceBetween={40}
-            className="w-full"
+            className="w-full h-full"
             navigation={{
               nextEl: '.swiper-button-next-custom',
               prevEl: '.swiper-button-prev-custom',
