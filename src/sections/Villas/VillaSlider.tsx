@@ -81,10 +81,7 @@ export default function VillaSlider({ villas, sectionTitle, sectionSubtitle }: V
         </button>
       </div>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={isInView ? { opacity: 1 } : {}}
-        transition={{ duration: 1, delay: 0.2 }}
+      <div
         className="relative w-full flex flex-row items-center justify-between"
       >
         {/* Left Edge Text */}
@@ -178,7 +175,7 @@ export default function VillaSlider({ villas, sectionTitle, sectionSubtitle }: V
 
         {/* Right Edge Pagination */}
         <div className="w-[5vw] md:w-[8vw] h-full hidden lg:flex flex-col items-center justify-center flex-shrink-0 z-10 custom-villa-pagination font-serif" />
-      </motion.div>
+      </div>
 
       <style jsx global>{`
         .custom-villa-pagination {
