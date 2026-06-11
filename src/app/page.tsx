@@ -3,7 +3,6 @@ import Footer from "@/components/ui/Footer";
 import HeroSection from "@/sections/Hero/HeroSection";
 import DestinationsGrid from "@/sections/Destinations/DestinationsGrid";
 import DestinationsFooter from "@/sections/Destinations/DestinationsFooter";
-import TopHotelsSection from "@/sections/Hotels/TopHotelsSection";
 import ActivitiesSection from "@/sections/Activities/ActivitiesSection";
 import VillasSection from "@/sections/Villas/VillasSection";
 import AttractiveSpotsSection from "@/sections/AttractiveSpots/AttractiveSpotsSection";
@@ -19,7 +18,6 @@ export default function Home() {
       <DestinationsFooter />
       <ActivitiesSection />
       <VillasSection />
-      <TopHotelsSection />
       <FooterCrescendo />
       <Footer />
     </main>

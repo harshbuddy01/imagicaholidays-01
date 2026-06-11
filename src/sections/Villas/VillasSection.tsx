@@ -33,13 +33,22 @@ export default function VillasSection() {
 
   const sectionTitle = useMemo(() => {
     if (config && !Array.isArray(config) && config.title) return config.title;
-    return "VELA";
+    return "Exclusive Stays";
   }, [config]);
 
   const sectionSubtitle = useMemo(() => {
     if (config && !Array.isArray(config) && config.subtitle) return config.subtitle;
     return "Your Exclusive Tranquil Haven at IMAGICA HOLIDAYS";
   }, [config]);
+
+  const titleWords = useMemo(() => {
+    const words = sectionTitle.trim().split(/\s+/);
+    return {
+      first: words[0] || "Exclusive",
+      rest: words.slice(1).join(" ") || "Stays"
+    };
+  }, [sectionTitle]);
+
   const containerRef = useRef<HTMLElement>(null);
   const sliderRef = useRef<any>(null);
   const isInView = useInView(containerRef, { once: true, margin: "-100px" });
@@ -97,6 +106,7 @@ export default function VillasSection() {
     >
       {/* Sketch Background Painting of Taj Hotel & Skies */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.11] mix-blend-multiply bg-[url('/images/stays_sketch_bg.png')] bg-no-repeat bg-cover bg-center" />
+      
       {/* Custom Cursor */}
       <motion.div
         className="fixed top-0 left-0 z-[100] pointer-events-none flex items-center justify-center w-20 h-20 rounded-full border border-[#1e1c1a]/20 bg-[#f5f4ef]/10 backdrop-blur-[2px]"
@@ -135,9 +145,16 @@ export default function VillasSection() {
           <span className="text-[0.65rem] tracking-[0.4em] uppercase opacity-60 mb-4 block">
             IMAGICA HOLIDAYS
           </span>
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-serif text-[#1e1c1a] tracking-[0.2em] font-light uppercase">
-            {sectionTitle}
-          </h2>
+          <div className="flex flex-col md:flex-row items-center justify-center gap-x-4 gap-y-2 mt-2">
+            <h2 className="font-glyptic font-bold text-5xl md:text-7xl lg:text-8xl tracking-tight uppercase text-[#1a1714]">
+              {titleWords.first}
+            </h2>
+            {titleWords.rest && (
+              <h2 className="font-roman font-medium text-5xl md:text-7xl lg:text-8xl tracking-widest uppercase text-[#a5813b]">
+                {titleWords.rest}
+              </h2>
+            )}
+          </div>
           <p className="mt-6 text-[#1e1c1a] opacity-60 text-sm md:text-base tracking-[0.1em] font-light italic">
             {sectionSubtitle}
           </p>
@@ -171,6 +188,19 @@ export default function VillasSection() {
 
         {/* Slider Container */}
         <div className="w-full lg:w-[84vw] h-[60vh] md:h-[75vh] overflow-hidden relative px-4 md:px-0">
+          
+          {/* Custom Navigation Arrows */}
+          <button className="swiper-button-prev-custom absolute left-4 top-[30%] md:top-[35%] -translate-y-1/2 z-20 w-11 h-11 rounded-full border border-[#1e1c1a]/10 bg-[#f5f4ef]/80 hover:bg-[#1e1c1a] hover:text-[#f5f4ef] hover:border-transparent flex items-center justify-center transition-all duration-300 shadow-sm cursor-none hidden md:flex">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+            </svg>
+          </button>
+          <button className="swiper-button-next-custom absolute right-4 top-[30%] md:top-[35%] -translate-y-1/2 z-20 w-11 h-11 rounded-full border border-[#1e1c1a]/10 bg-[#f5f4ef]/80 hover:bg-[#1e1c1a] hover:text-[#f5f4ef] hover:border-transparent flex items-center justify-center transition-all duration-300 shadow-sm cursor-none hidden md:flex">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+            </svg>
+          </button>
+
           <Swiper
             ref={sliderRef}
             modules={[Autoplay, Pagination, Parallax, Navigation]}
@@ -182,23 +212,31 @@ export default function VillasSection() {
             slidesPerView="auto"
             spaceBetween={40}
             className="w-full"
+            navigation={{
+              nextEl: '.swiper-button-next-custom',
+              prevEl: '.swiper-button-prev-custom',
+            }}
             pagination={{
-              clickable: true,
+              type: 'fraction',
               el: '.custom-villa-pagination',
-              bulletClass: 'custom-villa-bullet',
+              renderFraction: (currentClass, totalClass) => {
+                return `<span class="${currentClass} text-[#a5813b] font-serif font-medium text-lg md:text-xl"></span>` +
+                       `<span class="mx-2 md:mx-3 opacity-30 text-base md:text-lg">/</span>` +
+                       `<span class="${totalClass} opacity-60 font-serif text-sm md:text-base"></span>`;
+              }
             }}
           >
             {villas.map((item: any, index: number) => (
-              <SwiperSlide key={item.id} className="w-[85vw] md:w-[70vw] lg:w-[60vw] h-full">
+              <SwiperSlide key={item.id || index} className="w-[85vw] md:w-[70vw] lg:w-[60vw] h-full">
                 <div className="flex flex-col">
-                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#e8e6df]">
+                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#e8e6df] shadow-md rounded-sm">
                     <div 
                       className="absolute top-0 left-[-15%] w-[130%] h-full"
                       data-swiper-parallax="-15%"
                     >
                       <Image
                         src={item.image}
-                        alt={item.title}
+                        alt={item.title || "Exclusive Stay"}
                         fill
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 75vw, 60vw"
                         className="object-cover"
@@ -209,10 +247,18 @@ export default function VillasSection() {
                     className="mt-8 text-center max-w-2xl mx-auto px-4"
                     data-swiper-parallax="-10%"
                   >
-                    <h3 className="text-xl md:text-2xl font-serif text-[#1e1c1a] tracking-wider mb-4 opacity-90">
+                    {/* Hotel Name (item.id) */}
+                    {item.id && (
+                      <span className="text-[#a5813b] text-[0.65rem] md:text-[0.7rem] uppercase tracking-[0.3em] font-bold block mb-3 font-sans">
+                        {item.id}
+                      </span>
+                    )}
+                    {/* Hotel Title/Tagline (item.title) */}
+                    <h3 className="text-xl md:text-3xl font-serif text-[#1e1c1a] tracking-widest uppercase mb-4 opacity-95">
                       {item.title}
                     </h3>
-                    <p className="text-sm md:text-base text-[#1e1c1a] opacity-60 font-light leading-relaxed">
+                    {/* Hotel Description (item.description) */}
+                    <p className="text-sm md:text-base text-[#5c544b] opacity-80 font-roman leading-relaxed max-w-xl mx-auto">
                       {item.description}
                     </p>
                   </div>
@@ -222,28 +268,17 @@ export default function VillasSection() {
           </Swiper>
         </div>
 
-        {/* Right Edge Pagination (Vertical dots) */}
-        <div className="w-[5vw] md:w-[8vw] h-full hidden lg:flex flex-col items-center justify-center flex-shrink-0 z-10 custom-villa-pagination">
-          {/* Swiper dots injected here */}
+        {/* Right Edge Pagination (Vertical fraction) */}
+        <div className="w-[5vw] md:w-[8vw] h-full hidden lg:flex flex-col items-center justify-center flex-shrink-0 z-10 custom-villa-pagination font-serif">
+          {/* Fraction injected here */}
         </div>
       </motion.div>
 
-      {/* Styled dots for Swiper */}
+      {/* Styles for navigation buttons */}
       <style jsx global>{`
-        .custom-villa-bullet {
-          display: block;
-          width: 6px;
-          height: 6px;
-          border-radius: 50%;
-          background-color: #1e1c1a;
-          margin: 12px 0;
-          opacity: 0.15;
-          transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-          cursor: pointer;
-        }
-        .custom-villa-bullet.swiper-pagination-bullet-active {
-          opacity: 0.8 !important;
-          transform: scale(1.6);
+        .custom-villa-pagination {
+          color: #1e1c1a;
+          letter-spacing: 0.05em;
         }
       `}</style>
     </section>
