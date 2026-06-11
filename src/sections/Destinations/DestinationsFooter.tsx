@@ -39,13 +39,13 @@ export default function DestinationsFooter() {
         </h3>
 
         <div className="flex items-center justify-center gap-x-2 md:gap-x-4 select-none mt-1">
-          <span className="font-roman font-light text-3xl md:text-5xl lg:text-6xl tracking-[0.1em] uppercase text-[#1a1714]">
+          <span className="font-glyptic font-normal text-3xl md:text-5xl lg:text-6xl tracking-wider uppercase text-[#1a1714]">
             Activities
           </span>
           <span className="font-script text-4xl md:text-6xl lg:text-7xl text-[#a5813b] leading-none translate-y-1 select-none">
             &
           </span>
-          <span className="font-roman font-light text-3xl md:text-5xl lg:text-6xl tracking-[0.1em] uppercase text-[#1a1714]">
+          <span className="font-glyptic font-normal text-3xl md:text-5xl lg:text-6xl tracking-wider uppercase text-[#1a1714]">
             Foods
           </span>
         </div>
