@@ -39,8 +39,11 @@ export default function DestinationsFooter() {
         </p>
 
         <div className="relative inline-block select-none">
-          <h2 className="font-glyptic font-bold text-4xl md:text-7xl lg:text-8xl tracking-[0.05em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-[#1a1714] via-[#5c544b] to-[#1a1714] relative z-10 pb-2">
-            Activities & Foods
+          <h2 className="text-4xl md:text-6xl lg:text-7xl text-[#1a1714] font-serif leading-tight">
+            Activities &{" "}
+            <span className="font-serif italic text-[#a5813b] block md:inline md:ml-2">
+              Foods
+            </span>
           </h2>
         </div>
 
