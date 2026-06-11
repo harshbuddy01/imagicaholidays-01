@@ -102,17 +102,6 @@ const chapters = [
 ];
 
 /* ── Helper Components ───────────────────────────────────── */
-const FloralFrame = () => (
-  <svg className="hidden md:block absolute -inset-8 pointer-events-none opacity-20 group-hover:opacity-40 transition-opacity duration-700" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M10 10C30 5 70 5 90 10M10 90C30 95 70 95 90 90" stroke="#a5813b" strokeWidth="0.5" strokeDasharray="2 2" />
-    <path d="M10 10C5 30 5 70 10 90M90 10C95 30 95 70 90 90" stroke="#a5813b" strokeWidth="0.5" strokeDasharray="2 2" />
-    <circle cx="10" cy="10" r="2" fill="#a5813b" fillOpacity="0.2" />
-    <circle cx="90" cy="10" r="2" fill="#a5813b" fillOpacity="0.2" />
-    <circle cx="90" cy="90" r="2" fill="#a5813b" fillOpacity="0.2" />
-    <circle cx="10" cy="90" r="2" fill="#a5813b" fillOpacity="0.2" />
-  </svg>
-);
-
 const ArtisanOrnament = ({ className, speed = 1 }: { className?: string; speed?: number }) => {
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 5000], [0, 300 * speed]);
@@ -204,26 +193,40 @@ export default function DestinationsGrid() {
           </motion.div>
         </div>
 
-        {/* Regional Filter Tabs */}
-        <div className="flex flex-wrap justify-center gap-3 md:gap-10 mb-16 md:mb-28">
-          {dynamicChapters.map((chapter) => (
-            <button
-              key={chapter.id}
-              onClick={() => setActiveChapter(chapter.id)}
-              className={`relative group px-5 py-2.5 md:px-4 md:py-2 rounded-full md:rounded-none border md:border-none transition-all duration-500 ${activeChapter === chapter.id ? "border-[#a5813b] bg-[#a5813b]/10 md:bg-transparent" : "border-[#e0d5c1] hover:border-[#a5813b]/50"}`}
-            >
-              <span className={`font-roman text-xs md:text-base uppercase tracking-[0.2em] font-medium transition-colors duration-500 ${activeChapter === chapter.id ? "text-[#a5813b]" : "text-[#5c544b] opacity-60 group-hover:opacity-100"}`}>
-                {chapter.label}
-              </span>
-              {activeChapter === chapter.id && (
-                <motion.div
-                  layoutId="chapter-underline"
-                  className="hidden md:block absolute -bottom-1 left-4 right-4 h-[1.5px] bg-[#a5813b]"
-                  transition={{ type: "spring", bounce: 0, duration: 0.6 }}
-                />
-              )}
-            </button>
-          ))}
+        {/* Regional Filter Tabs Selector */}
+        <div className="flex flex-col items-center gap-4 mb-16 md:mb-24 relative z-10">
+          <p className="text-[0.65rem] uppercase tracking-[0.3em] text-[#a5813b] font-bold opacity-60 animate-pulse">
+            Select a region to explore
+          </p>
+          <div className="flex justify-center w-full overflow-x-auto no-scrollbar px-4">
+            <div className="bg-[#f0e7d3]/80 backdrop-blur-sm border border-[#a5813b]/15 p-1.5 rounded-full flex gap-1 whitespace-nowrap shadow-md">
+              {dynamicChapters.map((chapter) => {
+                const isActive = activeChapter === chapter.id;
+                return (
+                  <button
+                    key={chapter.id}
+                    onClick={() => setActiveChapter(chapter.id)}
+                    className="relative px-5 py-3 rounded-full transition-colors duration-300 select-none"
+                  >
+                    {isActive && (
+                      <motion.div
+                        layoutId="active-chapter-pill"
+                        className="absolute inset-0 bg-[#a5813b] rounded-full z-0"
+                        transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                      />
+                    )}
+                    <span
+                      className={`relative z-10 font-roman text-[10px] md:text-[13px] uppercase tracking-[0.2em] font-bold transition-colors duration-300 ${
+                        isActive ? "text-white" : "text-[#5c544b] opacity-80 hover:opacity-100 hover:text-[#a5813b]"
+                      }`}
+                    >
+                      {chapter.label}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
         </div>
 
         {/* Dynamic Artisan Folio */}
@@ -254,7 +257,6 @@ export default function DestinationsGrid() {
                       />
                       <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')] opacity-[0.08] mix-blend-overlay" />
                     </div>
-                    <FloralFrame />
                   </div>
 
                   {/* Info Section */}
