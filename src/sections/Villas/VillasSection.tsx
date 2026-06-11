@@ -135,11 +135,12 @@ export default function VillasSection() {
           </button>
 
           <Swiper
+            key={villas.length}
             ref={sliderRef}
             modules={[Autoplay, Pagination, Parallax, Navigation]}
             parallax={true}
             centeredSlides={true}
-            loop={true}
+            loop={villas.length > 2}
             autoplay={{ delay: 6000, disableOnInteraction: true }}
             speed={1400}
             slidesPerView="auto"
