@@ -39,11 +39,11 @@ export default function DestinationsFooter() {
         </h3>
 
         <div className="flex flex-col items-center select-none py-4">
-          <span className="font-glyptic font-bold text-3xl md:text-7xl lg:text-[6rem] -mb-8 z-10 drop-shadow-[0_2px_2px_rgba(255,255,255,0.8)] tracking-[0.08em] md:tracking-[0.1em] uppercase gradient-text-trending">
+          <span className="font-glyptic font-bold text-5xl md:text-7xl lg:text-[6rem] -mb-4 md:-mb-6 lg:-mb-8 z-10 drop-shadow-[0_2px_2px_rgba(255,255,255,0.8)] tracking-[0.08em] md:tracking-[0.1em] uppercase gradient-text-trending">
             Activities
           </span>
-          <h2 className="font-glyptic font-bold text-3xl md:text-7xl lg:text-[6rem] tracking-[0.08em] md:tracking-[0.1em] uppercase leading-none drop-shadow-[0_4px_4px_rgba(0,0,0,0.1)] gradient-text-destination">
-            and Foods
+          <h2 className="font-glyptic font-bold text-5xl md:text-7xl lg:text-[6rem] tracking-[0.08em] md:tracking-[0.1em] uppercase leading-none drop-shadow-[0_4px_4px_rgba(0,0,0,0.1)] gradient-text-destination">
+            & Foods
           </h2>
         </div>
 
