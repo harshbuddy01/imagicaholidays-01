@@ -160,8 +160,8 @@ export default function RootLayout({
               ],
               "priceRange": "$$$",
               "sameAs": [
-                "https://www.facebook.com/imagicaholidays",
-                "https://www.instagram.com/imagicaholidays"
+                "https://www.facebook.com/profile.php?id=61590360517029",
+                "https://www.instagram.com/imagica_holidays/"
               ]
             })
           }}
