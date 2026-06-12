@@ -171,7 +171,7 @@ export default function DestinationsGrid() {
   return (
     <section ref={containerRef} className="relative w-full bg-[#f8f5f0] pt-12 pb-14 md:py-32 overflow-hidden">
       {/* Sketch Background Painting */}
-      <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.09] mix-blend-multiply bg-[url('/images/destinations_sketch_bg.png')] bg-repeat bg-[size:450px] md:bg-[size:800px] bg-center" />
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.09] mix-blend-multiply bg-[url('/images/destinations_sketch_bg.webp')] bg-repeat bg-[size:450px] md:bg-[size:800px] bg-center" />
 
       {/* Background Embellishments */}
       <ArtisanOrnament className="-left-20 top-40" speed={0.4} />

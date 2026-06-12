@@ -32,7 +32,7 @@ export default function VillaSlider({ villas, sectionTitle, sectionSubtitle }: V
       className="relative bg-[#f5f4ef] pt-12 pb-14 md:py-28 overflow-hidden w-full font-sans"
     >
       {/* Sketch Background */}
-      <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.09] mix-blend-multiply bg-[url('/images/stays_sketch_bg.png')] bg-no-repeat bg-cover bg-center" />
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.09] mix-blend-multiply bg-[url('/images/stays_sketch_bg.webp')] bg-no-repeat bg-cover bg-center" />
 
       {/* ── Section Header ── */}
       <div className="w-full flex items-start justify-between px-6 md:px-16 mb-8 md:mb-20 relative z-10">

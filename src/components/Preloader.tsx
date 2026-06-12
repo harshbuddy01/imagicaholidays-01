@@ -6,18 +6,16 @@ import { heroSlides, hotelTabs, pools, dining, spa, villas } from "@/lib/constan
 import NextImage from "next/image";
 
 export default function Preloader() {
-    const [mounted, setMounted] = useState(false);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [progress, setProgress] = useState(0);
 
     useEffect(() => {
-        setMounted(true);
         const hasLoaded = sessionStorage.getItem("imagica_preloader_seen");
         if (hasLoaded) {
+            setLoading(false);
             return;
         }
 
-        setLoading(true);
         sessionStorage.setItem("imagica_preloader_seen", "true");
 
         // Only preload the logo shown in the preloader to avoid blocking the page
@@ -61,15 +59,13 @@ export default function Preloader() {
         };
     }, []);
 
-    if (!mounted) return null;
-
     const numStairs = 5;
     const stairArray = Array.from({ length: numStairs });
 
     return (
         <AnimatePresence>
             {loading && (
-                <div className="fixed inset-0 z-[100] flex flex-col pointer-events-auto bg-transparent overflow-hidden">
+                <div id="initial-preloader" className="fixed inset-0 z-[100] flex flex-col pointer-events-auto bg-transparent overflow-hidden">
                     {/* Top Stairs */}
                     <div className="flex h-1/2 w-full">
                         {stairArray.map((_, i) => (

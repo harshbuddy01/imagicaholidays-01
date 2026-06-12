@@ -125,6 +125,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${headingFont.variable} ${bodyFont.variable} ${scriptFont.variable} ${romanFont.variable} ${ornateFont.variable} ${westEndFont.variable} ${glypticFont.variable} ${oldEnglishFont.variable} ${runtimeFont.variable} antialiased`}>
+        {/* Inline script to prevent preloader flash for returning visitors before hydration */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                if (sessionStorage.getItem("imagica_preloader_seen")) {
+                  document.documentElement.classList.add("preloader-seen");
+                }
+              } catch (e) {}
+            `
+          }}
+        />
         <ScrollProgress />
         <Preloader />
         <TrendingPopup />

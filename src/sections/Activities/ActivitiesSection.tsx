@@ -156,7 +156,7 @@ export default function ActivitiesSection() {
       className="relative w-full bg-[#f8f5f0] pt-0 pb-8 md:pt-4 md:pb-24 px-4 md:px-12 lg:px-24 overflow-hidden text-[#5c544b]"
     >
       {/* Sketch Background Painting */}
-      <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.07] mix-blend-multiply bg-[url('/images/activities_sketch_bg.png')] bg-no-repeat bg-cover bg-center" />
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.07] mix-blend-multiply bg-[url('/images/activities_sketch_bg.webp')] bg-no-repeat bg-cover bg-center" />
 
       {/* Handcrafted Background Ornaments */}
       <motion.div style={{ y: ornamentY }} className="absolute -left-20 top-20 opacity-[0.08] pointer-events-none">

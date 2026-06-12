@@ -87,16 +87,25 @@ export default function HeroSection() {
 
   useEffect(() => {
     const v1 = video1Ref.current;
-    const v2 = video2Ref.current;
     const fallbackMp4 = "/videos/hero-1-compressed.mp4";
 
     if (v1) {
       initHlsVideo(v1, getBustedUrl(config?.videoUrl1 || heroVideos[0].src), fallbackMp4);
     }
-    if (v2) {
-      initHlsVideo(v2, getBustedUrl(config?.videoUrl2 || heroVideos[1].src), fallbackMp4);
-    }
-  }, [config?.videoUrl1, config?.videoUrl2]);
+  }, [config?.videoUrl1]);
+
+  useEffect(() => {
+    // Delay loading video 2 by 4 seconds to free up network bandwidth for initial load
+    const timer = setTimeout(() => {
+      const v2 = video2Ref.current;
+      const fallbackMp4 = "/videos/hero-1-compressed.mp4";
+      if (v2) {
+        initHlsVideo(v2, getBustedUrl(config?.videoUrl2 || heroVideos[1].src), fallbackMp4);
+      }
+    }, 4000);
+
+    return () => clearTimeout(timer);
+  }, [config?.videoUrl2]);
 
   useEffect(() => {
     return () => {

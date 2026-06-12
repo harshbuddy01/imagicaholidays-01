@@ -348,3 +348,8 @@ h4 {
   -webkit-backdrop-filter: blur(24px) saturate(150%);
   border: 1px solid rgba(255, 255, 255, 0.06);
 }
+
+/* Hide preloader immediately if it has been marked as seen */
+.preloader-seen #initial-preloader {
+  display: none !important;
+}
