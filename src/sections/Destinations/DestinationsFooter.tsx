@@ -34,8 +34,8 @@ export default function DestinationsFooter() {
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         className="text-center"
       >
-        <p className="text-[0.6rem] uppercase tracking-[0.5em] text-[#a5813b] font-bold mb-4">
-          Your Exclusive Tranquil Haven
+        <p className="font-glyptic text-xl md:text-2xl uppercase tracking-[0.1em] text-[#a5813b] font-bold mb-2">
+          Timeless Indian Splendors
         </p>
 
         <div className="flex items-center justify-center gap-x-2 md:gap-x-4 select-none mt-1">
@@ -45,7 +45,7 @@ export default function DestinationsFooter() {
           <span className="font-script text-4xl md:text-7xl lg:text-8xl text-[#a5813b] leading-none select-none lowercase translate-y-1">
             &
           </span>
-          <h2 className="font-glyptic font-bold text-3xl md:text-6xl lg:text-7xl tracking-wide uppercase text-[#a5813b]">
+          <h2 className="font-glyptic font-bold text-3xl md:text-6xl lg:text-7xl tracking-wide uppercase text-[#1a1714]">
             Foods
           </h2>
         </div>
