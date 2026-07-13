@@ -223,49 +223,92 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.9, duration: 0.9 }}
-          className="w-full bg-black/50 backdrop-blur-xl border border-white/10 p-3 md:p-2.5 rounded-2xl md:rounded-full flex flex-col md:flex-row items-stretch md:items-center gap-3 md:gap-0 pointer-events-auto shadow-2xl"
+          className="w-full bg-black/60 backdrop-blur-xl border border-white/10 p-4 rounded-2xl flex flex-col gap-3.5 pointer-events-auto shadow-2xl"
         >
-          {/* Where To */}
-          <div className="flex-1 flex flex-col px-5 border-b border-white/8 md:border-b-0 md:border-r border-white/10 pb-3 md:pb-0">
-            <label className="text-[0.5rem] font-bold tracking-[0.3em] uppercase text-[#d8be8f] mb-1 font-manrope">
-              Where To?
-            </label>
-            <select
-              value={selectedDest}
-              onChange={(e) => setSelectedDest(e.target.value)}
-              className="bg-transparent text-white text-sm font-manrope focus:outline-none appearance-none cursor-pointer w-full font-medium"
-              style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23d8be8f'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E")`,
-                backgroundPosition: "right center", backgroundSize: "14px", backgroundRepeat: "no-repeat",
-              }}
+          {/* Main Booking Row */}
+          <div className="w-full flex flex-col md:flex-row items-stretch md:items-center gap-3 md:gap-0">
+            {/* Where To */}
+            <div className="flex-1 flex flex-col px-5 border-b border-white/8 md:border-b-0 md:border-r border-white/10 pb-3 md:pb-0">
+              <label className="text-[0.5rem] font-bold tracking-[0.3em] uppercase text-[#d8be8f] mb-1 font-manrope">
+                Where To?
+              </label>
+              <select
+                value={selectedDest}
+                onChange={(e) => setSelectedDest(e.target.value)}
+                className="bg-transparent text-white text-sm font-manrope focus:outline-none appearance-none cursor-pointer w-full font-medium"
+                style={{
+                  backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23d8be8f'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E")`,
+                  backgroundPosition: "right center", backgroundSize: "14px", backgroundRepeat: "no-repeat",
+                }}
+              >
+                <option value="" className="bg-[#0f0d0a] text-white/60">Select destination</option>
+                {["Gangtok","Darjeeling","Munnar","Wayanad","Jaipur","Udaipur","Goa","Leh Ladakh","Kashmir","Sikkim","Meghalaya","Bhutan"].map(d => (
+                  <option key={d} value={d} className="bg-[#0f0d0a] text-white">{d}</option>
+                ))}
+              </select>
+            </div>
+
+            {/* Travel Date */}
+            <div className="flex-1 flex flex-col px-5 pb-2 md:pb-0">
+              <label className="text-[0.5rem] font-bold tracking-[0.3em] uppercase text-[#d8be8f] mb-1 font-manrope">
+                Travel Date
+              </label>
+              <input type="date" value={selectedDate} min={todayStr}
+                onChange={(e) => setSelectedDate(e.target.value)}
+                className="bg-transparent text-white text-sm font-manrope focus:outline-none cursor-pointer w-full [color-scheme:dark] font-medium" />
+            </div>
+
+            {/* Book Now */}
+            <Link
+              href={`/reserve?destination=${encodeURIComponent(selectedDest)}&arrival=${selectedDate}`}
+              className="px-7 py-3 bg-gradient-to-r from-[#8a6b2d] via-[#a5813b] to-[#8a6b2d] text-white text-[0.65rem] font-bold uppercase tracking-[0.22em] rounded-xl md:rounded-full flex items-center justify-center gap-2 transition-all duration-300 hover:shadow-[0_0_24px_rgba(165,129,59,0.5)] active:scale-95 flex-shrink-0 font-manrope"
             >
-              <option value="" className="bg-[#0f0d0a] text-white/60">Select destination</option>
-              {["Gangtok","Darjeeling","Munnar","Wayanad","Jaipur","Udaipur","Goa","Leh Ladakh","Kashmir","Sikkim","Meghalaya","Bhutan"].map(d => (
-                <option key={d} value={d} className="bg-[#0f0d0a] text-white">{d}</option>
-              ))}
-            </select>
+              Book Now
+              <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </Link>
           </div>
 
-          {/* Travel Date */}
-          <div className="flex-1 flex flex-col px-5 pb-2 md:pb-0">
-            <label className="text-[0.5rem] font-bold tracking-[0.3em] uppercase text-[#d8be8f] mb-1 font-manrope">
-              Travel Date
-            </label>
-            <input type="date" value={selectedDate} min={todayStr}
-              onChange={(e) => setSelectedDate(e.target.value)}
-              className="bg-transparent text-white text-sm font-manrope focus:outline-none cursor-pointer w-full [color-scheme:dark] font-medium" />
-          </div>
+          {/* Sub Row: Contact Experts & Google Reviews */}
+          <div className="border-t border-white/8 pt-3 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+            {/* Left: Not sure (hidden on extra small screens) */}
+            <div className="hidden lg:block">
+              <p className="text-[9px] font-bold uppercase tracking-wider text-[#d8be8f]">Not Sure Where To Go?</p>
+              <p className="text-[10px] text-white/70">Let our travel experts design a perfect journey for you.</p>
+            </div>
+            
+            {/* Center: Talk to Expert & Email Us */}
+            <div className="flex flex-wrap items-center justify-center gap-4">
+              <a href="tel:+918910750374" className="flex items-center gap-1.5 text-white/80 hover:text-[#d8be8f] transition-colors">
+                <svg className="w-3.5 h-3.5 text-[#d8be8f]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+                <span className="text-[10px] font-bold font-manrope text-white/90">Talk to Expert: +91 89107 50374</span>
+              </a>
+              
+              <a href="mailto:info@imagicaholidays.com" className="flex items-center gap-1.5 text-white/80 hover:text-[#d8be8f] transition-colors">
+                <svg className="w-3.5 h-3.5 text-[#d8be8f]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <span className="text-[10px] font-bold font-manrope text-white/90">info@imagicaholidays.com</span>
+              </a>
+            </div>
 
-          {/* Book Now */}
-          <Link
-            href={`/reserve?destination=${encodeURIComponent(selectedDest)}&arrival=${selectedDate}`}
-            className="px-7 py-3 bg-gradient-to-r from-[#8a6b2d] via-[#a5813b] to-[#8a6b2d] text-white text-[0.65rem] font-bold uppercase tracking-[0.22em] rounded-xl md:rounded-full flex items-center justify-center gap-2 transition-all duration-300 hover:shadow-[0_0_24px_rgba(165,129,59,0.5)] active:scale-95 flex-shrink-0 font-manrope"
-          >
-            Book Now
-            <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-            </svg>
-          </Link>
+            {/* Right: Google Reviews */}
+            <div className="flex items-center gap-1.5">
+              <span className="text-[9px] uppercase tracking-wider text-white/50">Excellent</span>
+              <div className="flex items-center gap-0.5">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} className="w-2.5 h-2.5 text-[#25D366] fill-current" viewBox="0 0 24 24">
+                    <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.787 1.4 8.168L12 18.896l-7.334 3.857 1.4-8.168L.132 9.21l8.2-1.192L12 .587z" />
+                  </svg>
+                ))}
+              </div>
+              <span className="text-[10px] font-bold text-white">4.8/5</span>
+              <span className="text-[9px] text-white/50 font-medium">Google Reviews</span>
+            </div>
+          </div>
         </motion.div>
       </div>
 
