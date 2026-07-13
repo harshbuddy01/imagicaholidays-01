@@ -7,7 +7,7 @@ export default function ContactMenu() {
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=Hi!%20I'd%20like%20to%20plan%20a%20trip%20with%20Imagica%20Holidays.`;
 
   return (
-    <div className="fixed bottom-6 right-6 z-[9999] flex items-center justify-center">
+    <div className="fixed bottom-20 right-4 md:bottom-6 md:right-6 z-[9999] flex items-center justify-center">
       {/* Pulse ring animation */}
       <div className="absolute w-16 h-16 bg-[#25D366]/30 rounded-full animate-ping pointer-events-none" />
 

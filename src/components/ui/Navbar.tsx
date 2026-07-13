@@ -286,17 +286,20 @@ export default function Navbar() {
 
           {/* Mobile Right Side Controls (WhatsApp + Hamburger) */}
           <div className="flex items-center gap-3 relative z-[60] md:hidden">
-            {/* Mobile WhatsApp Chat */}
+            {/* Mobile WhatsApp Enquiry Pill */}
             <a 
               href="https://wa.me/918235337180?text=Hi!%20I'd%20like%20to%20plan%20a%20trip%20with%20Imagica%20Holidays." 
               target="_blank" 
               rel="noopener noreferrer"
-              className="flex items-center justify-center w-9 h-9 rounded-full bg-[#25D366]/15 border border-[#25D366]/35 text-[#25D366]"
-              aria-label="Chat on WhatsApp"
+              className="flex items-center gap-1 px-2.5 py-1.5 rounded-full border border-[#d8be8f]/35 bg-[#d8be8f]/10 text-[#d8be8f] hover:bg-[#d8be8f]/20 transition-all duration-300 backdrop-blur-sm shadow-[0_0_8px_rgba(216,190,143,0.15)]"
+              aria-label="Enquire on WhatsApp"
             >
-              <svg className="w-4.5 h-4.5 fill-current" viewBox="0 0 16 16">
+              <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 16 16">
                 <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.949h.004c4.368 0 7.926-3.562 7.93-7.93a7.9 7.9 0 0 0-2.327-5.592M7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.618-5.454c-.19-.095-1.125-.556-1.298-.622-.173-.067-.3-.098-.426.095-.126.192-.489.621-.6.745-.11.124-.22.14-.41.045-1.82-.91-3.064-2.525-3.51-3.293-.11-.19-.01-.291.085-.386.09-.088.192-.221.288-.33.095-.11.13-.186.195-.31.065-.125.033-.233-.017-.33-.05-.095-.426-1.028-.584-1.41-.154-.372-.325-.322-.426-.327-.1-.004-.215-.004-.33-.004a.64.64 0 0 0-.462.216c-.16.173-.61.597-.61 1.458s.627 1.696.715 1.815c.088.12 1.234 1.884 2.99 2.642.417.18.74.287.993.367.42.132.802.113 1.102.068.334-.05 1.125-.46 1.282-.905.158-.445.158-.826.11-.905-.047-.08-.173-.127-.363-.222"/>
               </svg>
+              <span className="font-manrope text-[9px] font-bold uppercase tracking-[0.18em] text-[#d8be8f] leading-none translate-y-[0.5px]">
+                Enquiry
+              </span>
             </a>
 
             {/* Mobile Hamburger Button */}

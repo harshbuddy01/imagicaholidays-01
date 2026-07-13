@@ -6,6 +6,7 @@ import ContactMenu from "@/components/ContactMenu";
 import Preloader from "@/components/Preloader";
 import TrendingPopup from "@/components/ui/TrendingPopup";
 import ScrollProgress from "@/components/ui/ScrollProgress";
+import MobileBottomNav from "@/components/ui/MobileBottomNav";
 import "./globals.css";
 
 const headingFont = Cormorant_Garamond({
@@ -144,6 +145,9 @@ export default function RootLayout({
 
         {/* Floating Action Menu */}
         <ContactMenu />
+
+        {/* Floating Glassy Bottom Mobile Nav */}
+        <MobileBottomNav />
 
         {/* TravelAgency Structured Data (JSON-LD) for GEO/AI Indexing */}
         <script
