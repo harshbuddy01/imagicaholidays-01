@@ -188,135 +188,141 @@ export default function HeroSection() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/50 z-[3]" />
       </div>
 
-      {/* ── HERO HEADING — left-aligned, large ── */}
-      <div className="absolute inset-0 z-10 flex flex-col items-start justify-center px-6 md:px-14 max-w-7xl mx-auto pointer-events-none pb-32">
+      {/* ── HERO HEADING ── */}
+      <div className="absolute inset-0 z-10 flex flex-col items-start justify-center px-6 md:px-14 max-w-7xl mx-auto pointer-events-none pb-56 md:pb-32">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
         >
           <h1 className="font-runtime font-normal text-white leading-[0.92] tracking-[-0.02em] text-left">
-            {/* Explore — large */}
-            <span className="block text-[4.5rem] sm:text-[6rem] md:text-[8rem] lg:text-[10rem] xl:text-[11rem]">
+            <span className="block text-[3.2rem] sm:text-[6rem] md:text-[8rem] lg:text-[10rem] xl:text-[11rem]">
               Explore
             </span>
-            {/* Destinations — even bigger */}
-            <span className="block text-[3.8rem] sm:text-[5.2rem] md:text-[6.8rem] lg:text-[8.5rem] xl:text-[9.5rem] text-white/95 mt-1">
+            <span className="block text-[2.8rem] sm:text-[5.2rem] md:text-[6.8rem] lg:text-[8.5rem] xl:text-[9.5rem] text-white/95 mt-1">
               Destinations
             </span>
           </h1>
         </motion.div>
-
-        {/* Minimal line indicator */}
         <motion.div
           initial={{ opacity: 0, scaleX: 0 }}
           animate={{ opacity: 0.4, scaleX: 1 }}
           transition={{ delay: 1.2, duration: 0.8 }}
-          className="origin-left mt-8 w-20 h-[1.5px] bg-white"
+          className="origin-left mt-5 md:mt-8 w-14 md:w-20 h-[1.5px] bg-white"
         />
       </div>
 
-      {/* ── BOOKING WIDGET — bottom ── */}
-      <div className="absolute bottom-20 md:bottom-8 inset-x-0 z-20 px-4 md:px-10 max-w-4xl mx-auto pointer-events-none">
+      {/* ── BOTTOM CONTENT ── */}
+      <div className="absolute bottom-[88px] md:bottom-8 inset-x-0 z-20 px-3 md:px-10 max-w-4xl mx-auto pointer-events-none">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.9, duration: 0.9 }}
-          className="w-full bg-black/60 backdrop-blur-xl border border-white/10 p-4 rounded-2xl flex flex-col gap-3.5 pointer-events-auto shadow-2xl"
+          className="w-full pointer-events-auto"
         >
-          {/* Main Booking Row */}
-          <div className="w-full flex flex-col md:flex-row items-stretch md:items-center gap-3 md:gap-0">
-            {/* Where To */}
-            <div className="flex-1 flex flex-col px-5 border-b border-white/8 md:border-b-0 md:border-r border-white/10 pb-3 md:pb-0">
-              <label className="text-[0.5rem] font-bold tracking-[0.3em] uppercase text-[#d8be8f] mb-1 font-manrope">
-                Where To?
-              </label>
-              <select
-                value={selectedDest}
-                onChange={(e) => setSelectedDest(e.target.value)}
-                className="bg-transparent text-white text-sm font-manrope focus:outline-none appearance-none cursor-pointer w-full font-medium"
-                style={{
-                  backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23d8be8f'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E")`,
-                  backgroundPosition: "right center", backgroundSize: "14px", backgroundRepeat: "no-repeat",
-                }}
-              >
-                <option value="" className="bg-[#0f0d0a] text-white/60">Select destination</option>
-                {["Gangtok","Darjeeling","Munnar","Wayanad","Jaipur","Udaipur","Goa","Leh Ladakh","Kashmir","Sikkim","Meghalaya","Bhutan"].map(d => (
-                  <option key={d} value={d} className="bg-[#0f0d0a] text-white">{d}</option>
-                ))}
-              </select>
+          {/* ═══ MOBILE LAYOUT ═══ */}
+          <div className="md:hidden flex flex-col gap-2">
+            {/* Booking Card */}
+            <div className="bg-black/55 backdrop-blur-xl border border-white/10 rounded-2xl p-3.5 shadow-2xl">
+              <div className="flex items-end gap-2.5 mb-3">
+                <div className="flex-1">
+                  <label className="text-[8px] font-bold tracking-[0.3em] uppercase text-[#d8be8f] mb-0.5 block font-manrope">Where To?</label>
+                  <select value={selectedDest} onChange={(e) => setSelectedDest(e.target.value)}
+                    className="bg-transparent text-white text-[13px] font-manrope focus:outline-none appearance-none cursor-pointer w-full font-medium"
+                    style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23d8be8f'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E")`, backgroundPosition: "right center", backgroundSize: "12px", backgroundRepeat: "no-repeat" }}>
+                    <option value="" className="bg-[#0f0d0a] text-white/60">Select destination</option>
+                    {["Gangtok","Darjeeling","Munnar","Wayanad","Jaipur","Udaipur","Goa","Leh Ladakh","Kashmir","Sikkim","Meghalaya","Bhutan"].map(d => (
+                      <option key={d} value={d} className="bg-[#0f0d0a] text-white">{d}</option>
+                    ))}
+                  </select>
+                </div>
+                <div className="w-px h-8 bg-white/10" />
+                <div className="flex-1">
+                  <label className="text-[8px] font-bold tracking-[0.3em] uppercase text-[#d8be8f] mb-0.5 block font-manrope">When?</label>
+                  <input type="date" value={selectedDate} min={todayStr} onChange={(e) => setSelectedDate(e.target.value)}
+                    className="bg-transparent text-white text-[13px] font-manrope focus:outline-none cursor-pointer w-full [color-scheme:dark] font-medium" />
+                </div>
+              </div>
+              <Link href={`/reserve?destination=${encodeURIComponent(selectedDest)}&arrival=${selectedDate}`}
+                className="w-full py-2.5 bg-gradient-to-r from-[#8a6b2d] via-[#a5813b] to-[#8a6b2d] text-white text-[10px] font-bold uppercase tracking-[0.22em] rounded-xl flex items-center justify-center gap-2 active:scale-[0.97] font-manrope">
+                Book Now
+                <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
+              </Link>
             </div>
 
-            {/* Travel Date */}
-            <div className="flex-1 flex flex-col px-5 pb-2 md:pb-0">
-              <label className="text-[0.5rem] font-bold tracking-[0.3em] uppercase text-[#d8be8f] mb-1 font-manrope">
-                Travel Date
-              </label>
-              <input type="date" value={selectedDate} min={todayStr}
-                onChange={(e) => setSelectedDate(e.target.value)}
-                className="bg-transparent text-white text-sm font-manrope focus:outline-none cursor-pointer w-full [color-scheme:dark] font-medium" />
+            {/* Trust Strip */}
+            <div className="bg-black/40 backdrop-blur-lg border border-white/8 rounded-xl px-3 py-2 flex items-center justify-between">
+              <div className="flex items-center gap-1.5">
+                <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                <div className="flex items-center gap-0.5">{[...Array(5)].map((_, i) => (<svg key={i} className="w-2.5 h-2.5 fill-current text-[#FBBC04]" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.787 1.4 8.168L12 18.896l-7.334 3.857 1.4-8.168L.132 9.21l8.2-1.192L12 .587z" /></svg>))}</div>
+                <span className="text-[10px] font-bold text-white">4.8</span>
+              </div>
+              <div className="w-px h-4 bg-white/15" />
+              <a href="tel:+918910750374" className="flex items-center gap-1">
+                <svg className="w-3.5 h-3.5 text-[#d8be8f]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+                <span className="text-[9px] font-bold font-manrope text-white/80">Call</span>
+              </a>
+              <div className="w-px h-4 bg-white/15" />
+              <a href="mailto:info@imagicaholidays.com" className="flex items-center gap-1">
+                <svg className="w-3.5 h-3.5 text-[#d8be8f]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                <span className="text-[9px] font-bold font-manrope text-white/80">Email</span>
+              </a>
+              <div className="w-px h-4 bg-white/15" />
+              <a href="https://wa.me/918235337180?text=Hi!%20I'd%20like%20to%20plan%20a%20trip%20with%20Imagica%20Holidays." target="_blank" rel="noopener noreferrer" className="flex items-center gap-1">
+                <svg className="w-3.5 h-3.5 fill-[#25D366]" viewBox="0 0 16 16"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.949h.004c4.368 0 7.926-3.562 7.93-7.93a7.9 7.9 0 0 0-2.327-5.592M7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.618-5.454c-.19-.095-1.125-.556-1.298-.622-.173-.067-.3-.098-.426.095-.126.192-.489.621-.6.745-.11.124-.22.14-.41.045-1.82-.91-3.064-2.525-3.51-3.293-.11-.19-.01-.291.085-.386.09-.088.192-.221.288-.33.095-.11.13-.186.195-.31.065-.125.033-.233-.017-.33-.05-.095-.426-1.028-.584-1.41-.154-.372-.325-.322-.426-.327-.1-.004-.215-.004-.33-.004a.64.64 0 0 0-.462.216c-.16.173-.61.597-.61 1.458s.627 1.696.715 1.815c.088.12 1.234 1.884 2.99 2.642.417.18.74.287.993.367.42.132.802.113 1.102.068.334-.05 1.125-.46 1.282-.905.158-.445.158-.826.11-.905-.047-.08-.173-.127-.363-.222"/></svg>
+                <span className="text-[9px] font-bold font-manrope text-[#25D366]">Chat</span>
+              </a>
             </div>
-
-            {/* Book Now */}
-            <Link
-              href={`/reserve?destination=${encodeURIComponent(selectedDest)}&arrival=${selectedDate}`}
-              className="px-7 py-3 bg-gradient-to-r from-[#8a6b2d] via-[#a5813b] to-[#8a6b2d] text-white text-[0.65rem] font-bold uppercase tracking-[0.22em] rounded-xl md:rounded-full flex items-center justify-center gap-2 transition-all duration-300 hover:shadow-[0_0_24px_rgba(165,129,59,0.5)] active:scale-95 flex-shrink-0 font-manrope"
-            >
-              Book Now
-              <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-              </svg>
-            </Link>
           </div>
 
-          {/* Sub Row: Google Reviews | Talk to Expert | Email */}
-          <div className="border-t border-white/8 pt-2.5 flex flex-col gap-2.5">
-            {/* Row 1: Google Reviews Badge */}
-            <div className="flex items-center justify-center gap-2">
-              {/* Google "G" logo */}
-              <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24">
-                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
-                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-              </svg>
-              <div className="flex items-center gap-0.5">
-                {[...Array(5)].map((_, i) => (
-                  <svg key={i} className="w-3 h-3 fill-current text-[#FBBC04]" viewBox="0 0 24 24">
-                    <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.787 1.4 8.168L12 18.896l-7.334 3.857 1.4-8.168L.132 9.21l8.2-1.192L12 .587z" />
-                  </svg>
-                ))}
+          {/* ═══ DESKTOP LAYOUT ═══ */}
+          <div className="hidden md:block">
+            <div className="w-full bg-black/60 backdrop-blur-xl border border-white/10 p-4 rounded-2xl flex flex-col gap-3.5 shadow-2xl">
+              <div className="w-full flex flex-row items-center gap-0">
+                <div className="flex-1 flex flex-col px-5 border-r border-white/10">
+                  <label className="text-[0.5rem] font-bold tracking-[0.3em] uppercase text-[#d8be8f] mb-1 font-manrope">Where To?</label>
+                  <select value={selectedDest} onChange={(e) => setSelectedDest(e.target.value)}
+                    className="bg-transparent text-white text-sm font-manrope focus:outline-none appearance-none cursor-pointer w-full font-medium"
+                    style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23d8be8f'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E")`, backgroundPosition: "right center", backgroundSize: "14px", backgroundRepeat: "no-repeat" }}>
+                    <option value="" className="bg-[#0f0d0a] text-white/60">Select destination</option>
+                    {["Gangtok","Darjeeling","Munnar","Wayanad","Jaipur","Udaipur","Goa","Leh Ladakh","Kashmir","Sikkim","Meghalaya","Bhutan"].map(d => (
+                      <option key={d} value={d} className="bg-[#0f0d0a] text-white">{d}</option>
+                    ))}
+                  </select>
+                </div>
+                <div className="flex-1 flex flex-col px-5">
+                  <label className="text-[0.5rem] font-bold tracking-[0.3em] uppercase text-[#d8be8f] mb-1 font-manrope">Travel Date</label>
+                  <input type="date" value={selectedDate} min={todayStr} onChange={(e) => setSelectedDate(e.target.value)}
+                    className="bg-transparent text-white text-sm font-manrope focus:outline-none cursor-pointer w-full [color-scheme:dark] font-medium" />
+                </div>
+                <Link href={`/reserve?destination=${encodeURIComponent(selectedDest)}&arrival=${selectedDate}`}
+                  className="px-7 py-3 bg-gradient-to-r from-[#8a6b2d] via-[#a5813b] to-[#8a6b2d] text-white text-[0.65rem] font-bold uppercase tracking-[0.22em] rounded-full flex items-center justify-center gap-2 hover:shadow-[0_0_24px_rgba(165,129,59,0.5)] active:scale-95 flex-shrink-0 font-manrope">
+                  Book Now
+                  <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
+                </Link>
               </div>
-              <span className="text-xs font-bold text-white">4.8</span>
-              <span className="text-[10px] text-white/50">out of 5 · Google Reviews</span>
-            </div>
-
-            {/* Row 2: Talk to Expert + Email */}
-            <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5">
-              <a href="tel:+918910750374" className="flex items-center gap-1.5 hover:text-[#d8be8f] transition-colors group">
-                <svg className="w-3.5 h-3.5 text-[#d8be8f]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
-                <span className="text-[10px] font-bold font-manrope text-white/90 group-hover:text-[#d8be8f]">Talk to Expert</span>
-              </a>
-
-              <span className="text-white/20 text-xs hidden sm:inline">|</span>
-
-              <a href="mailto:info@imagicaholidays.com" className="flex items-center gap-1.5 hover:text-[#d8be8f] transition-colors group">
-                <svg className="w-3.5 h-3.5 text-[#d8be8f]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                <span className="text-[10px] font-bold font-manrope text-white/90 group-hover:text-[#d8be8f]">Email Us</span>
-              </a>
-
-              <span className="text-white/20 text-xs hidden sm:inline">|</span>
-
-              <a href="https://wa.me/918235337180?text=Hi!%20I'd%20like%20to%20plan%20a%20trip%20with%20Imagica%20Holidays." target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-[#25D366] transition-colors group">
-                <svg className="w-3.5 h-3.5 fill-[#25D366]" viewBox="0 0 16 16">
-                  <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.949h.004c4.368 0 7.926-3.562 7.93-7.93a7.9 7.9 0 0 0-2.327-5.592M7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.618-5.454c-.19-.095-1.125-.556-1.298-.622-.173-.067-.3-.098-.426.095-.126.192-.489.621-.6.745-.11.124-.22.14-.41.045-1.82-.91-3.064-2.525-3.51-3.293-.11-.19-.01-.291.085-.386.09-.088.192-.221.288-.33.095-.11.13-.186.195-.31.065-.125.033-.233-.017-.33-.05-.095-.426-1.028-.584-1.41-.154-.372-.325-.322-.426-.327-.1-.004-.215-.004-.33-.004a.64.64 0 0 0-.462.216c-.16.173-.61.597-.61 1.458s.627 1.696.715 1.815c.088.12 1.234 1.884 2.99 2.642.417.18.74.287.993.367.42.132.802.113 1.102.068.334-.05 1.125-.46 1.282-.905.158-.445.158-.826.11-.905-.047-.08-.173-.127-.363-.222"/>
-                </svg>
-                <span className="text-[10px] font-bold font-manrope text-white/90 group-hover:text-[#25D366]">WhatsApp</span>
-              </a>
+              <div className="border-t border-white/8 pt-3 flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                  <div className="flex items-center gap-0.5">{[...Array(5)].map((_, i) => (<svg key={i} className="w-3 h-3 fill-current text-[#FBBC04]" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.787 1.4 8.168L12 18.896l-7.334 3.857 1.4-8.168L.132 9.21l8.2-1.192L12 .587z" /></svg>))}</div>
+                  <span className="text-xs font-bold text-white">4.8</span>
+                  <span className="text-[10px] text-white/50">out of 5 · Google Reviews</span>
+                </div>
+                <div className="flex items-center gap-5">
+                  <a href="tel:+918910750374" className="flex items-center gap-1.5 hover:text-[#d8be8f] transition-colors">
+                    <svg className="w-3.5 h-3.5 text-[#d8be8f]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+                    <span className="text-[10px] font-bold font-manrope text-white/90">Talk to Expert</span>
+                  </a>
+                  <a href="mailto:info@imagicaholidays.com" className="flex items-center gap-1.5 hover:text-[#d8be8f] transition-colors">
+                    <svg className="w-3.5 h-3.5 text-[#d8be8f]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                    <span className="text-[10px] font-bold font-manrope text-white/90">Email Us</span>
+                  </a>
+                  <a href="https://wa.me/918235337180?text=Hi!%20I'd%20like%20to%20plan%20a%20trip%20with%20Imagica%20Holidays." target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-[#25D366] transition-colors">
+                    <svg className="w-3.5 h-3.5 fill-[#25D366]" viewBox="0 0 16 16"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.949h.004c4.368 0 7.926-3.562 7.93-7.93a7.9 7.9 0 0 0-2.327-5.592M7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.618-5.454c-.19-.095-1.125-.556-1.298-.622-.173-.067-.3-.098-.426.095-.126.192-.489.621-.6.745-.11.124-.22.14-.41.045-1.82-.91-3.064-2.525-3.51-3.293-.11-.19-.01-.291.085-.386.09-.088.192-.221.288-.33.095-.11.13-.186.195-.31.065-.125.033-.233-.017-.33-.05-.095-.426-1.028-.584-1.41-.154-.372-.325-.322-.426-.327-.1-.004-.215-.004-.33-.004a.64.64 0 0 0-.462.216c-.16.173-.61.597-.61 1.458s.627 1.696.715 1.815c.088.12 1.234 1.884 2.99 2.642.417.18.74.287.993.367.42.132.802.113 1.102.068.334-.05 1.125-.46 1.282-.905.158-.445.158-.826.11-.905-.047-.08-.173-.127-.363-.222"/></svg>
+                    <span className="text-[10px] font-bold font-manrope text-white/90">WhatsApp</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </motion.div>
