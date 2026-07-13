@@ -6,102 +6,82 @@ import Image from "next/image";
 import Link from "next/link";
 import { fetchWebsiteConfig } from "@/lib/api";
 
-/* ── Regional Data ────────────────────────────────────────── */
-interface Destination {
+interface StateDestination {
   id: string;
   title: string;
-  location: string;
+  tagline: string;
   description: string;
   image: string;
+  citiesText: string;
   link: string;
 }
 
-const chapters = [
+const stateChapters: StateDestination[] = [
   {
-    id: "himalayan-east",
-    label: "Himalayan East",
-    destinations: [
-      {
-        id: "gangtok",
-        title: "Gangtok",
-        location: "Sikkim",
-        description: "A sanctuary in the Himalayas where tradition meets tranquility.",
-        image: "https://images.pexels.com/photos/33547415/pexels-photo-33547415.jpeg?auto=compress&cs=tinysrgb&w=1200",
-        link: "/destinations/gangtok",
-      },
-      {
-        id: "darjeeling",
-        title: "Darjeeling",
-        location: "West Bengal",
-        description: "Mist-kissed peaks and rolling tea gardens in the Queen of Hills.",
-        image: "https://images.pexels.com/photos/33736751/pexels-photo-33736751.jpeg?auto=compress&cs=tinysrgb&w=1200",
-        link: "/destinations/darjeeling",
-      },
-      {
-        id: "pelling",
-        title: "Pelling",
-        location: "West Sikkim",
-        description: "Sacred lakes and ancient monasteries with a view of the gods.",
-        image: "https://images.pexels.com/photos/34032592/pexels-photo-34032592.jpeg?auto=compress&cs=tinysrgb&w=1200",
-        link: "/destinations/pelling",
-      },
-    ],
+    id: "sikkim",
+    title: "Sikkim",
+    tagline: "Himalayan Sanctuary",
+    description: "Alpine lakes, Buddhist monasteries, and majestic Kanchenjunga vistas.",
+    image: "https://images.pexels.com/photos/33547415/pexels-photo-33547415.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    citiesText: "Gangtok · Pelling · Lachung",
+    link: "/destinations/sikkim"
   },
   {
-    id: "royal-heritage",
-    label: "Royal Heritage",
-    destinations: [
-      {
-        id: "udaipur",
-        title: "Udaipur",
-        location: "Rajasthan",
-        description: "A golden sunset over the legendary City of Lakes.",
-        image: "https://images.pexels.com/photos/29801402/pexels-photo-29801402.jpeg?auto=compress&cs=tinysrgb&w=1200",
-        link: "/destinations/udaipur",
-      },
-      {
-        id: "jaipur",
-        title: "Jaipur",
-        location: "Rajasthan",
-        description: "The Pink City where history is written in sandstone and light.",
-        image: "https://images.pexels.com/photos/19195937/pexels-photo-19195937.jpeg?auto=compress&cs=tinysrgb&w=1200",
-        link: "/destinations/jaipur",
-      },
-    ],
+    id: "west-bengal",
+    title: "West Bengal",
+    tagline: "Colonial & Tea Heritage",
+    description: "Mist-covered tea gardens, toy trains, and rich cultural archives.",
+    image: "https://images.pexels.com/photos/33736751/pexels-photo-33736751.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    citiesText: "Darjeeling · Kolkata",
+    link: "/destinations/west-bengal"
   },
   {
-    id: "tropical-south",
-    label: "Tropical South",
-    destinations: [
-      {
-        id: "munnar",
-        title: "Munnar",
-        location: "Kerala",
-        description: "The emerald heaven where clouds rest upon velvet green hills.",
-        image: "https://images.pexels.com/photos/31758870/pexels-photo-31758870.jpeg?auto=compress&cs=tinysrgb&w=1200",
-        link: "/destinations/munnar",
-      },
-      {
-        id: "goa",
-        title: "Goa",
-        location: "West Coast",
-        description: "Pristine sands and colonial whispers on the edge of the Arabian Sea.",
-        image: "https://images.pexels.com/photos/2432269/pexels-photo-2432269.jpeg?auto=compress&cs=tinysrgb&w=1200",
-        link: "/destinations/goa",
-      },
-      {
-        id: "wayanad",
-        title: "Wayanad",
-        location: "Kerala",
-        description: "Ancient caves and misty plantations in the heart of the Western Ghats.",
-        image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1400&q=80",
-        link: "/destinations/wayanad",
-      },
-    ],
+    id: "kerala",
+    title: "Kerala",
+    tagline: "God's Own Country",
+    description: "Tranquil emerald backwaters, velvet tea hills, and spice plantations.",
+    image: "https://images.pexels.com/photos/31758870/pexels-photo-31758870.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    citiesText: "Munnar · Wayanad",
+    link: "/destinations/kerala"
   },
+  {
+    id: "tamil-nadu",
+    title: "Tamil Nadu",
+    tagline: "Dravidian Heritage",
+    description: "Stately mountain stations, lakes, and scenic Nilgiri valleys.",
+    image: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=1200&q=80",
+    citiesText: "Ooty",
+    link: "/destinations/tamil-nadu"
+  },
+  {
+    id: "rajasthan",
+    title: "Rajasthan",
+    tagline: "Royal Heritage",
+    description: "Intricate sandstone palaces, massive fortresses, and heritage lakes.",
+    image: "https://images.pexels.com/photos/29851603/pexels-photo-29851603.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    citiesText: "Jaipur · Udaipur",
+    link: "/destinations/rajasthan"
+  },
+  {
+    id: "goa",
+    title: "Goa",
+    tagline: "Coastal Tranquility",
+    description: "Pristine sun-kissed beaches, coconut groves, and colonial architecture.",
+    image: "https://images.pexels.com/photos/2432269/pexels-photo-2432269.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    citiesText: "Goa",
+    link: "/destinations/goa"
+  },
+  {
+    id: "andaman-nicobar",
+    title: "Andaman & Nicobar",
+    tagline: "Tropical Haven",
+    description: "Turquoise coral waters, historical memoirs, and exotic palm-fringed islands.",
+    image: "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&w=1200&q=80",
+    citiesText: "Port Blair",
+    link: "/destinations/andaman-nicobar"
+  }
 ];
 
-/* ── Helper Components ───────────────────────────────────── */
 const ArtisanOrnament = ({ className, speed = 1 }: { className?: string; speed?: number }) => {
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 5000], [0, 300 * speed]);
@@ -117,8 +97,8 @@ const ArtisanOrnament = ({ className, speed = 1 }: { className?: string; speed?:
 
 export default function DestinationsGrid() {
   const [config, setConfig] = useState<any[] | null>(null);
-  const [activeChapter, setActiveChapter] = useState(chapters[0].id);
   const containerRef = useRef(null);
+  const scrollContainerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     fetchWebsiteConfig().then((data) => {
@@ -128,48 +108,33 @@ export default function DestinationsGrid() {
     });
   }, []);
 
-  // Map dynamic destinations to static chapters, and append new ones in a new chapter if any
-  const dynamicChapters = [...chapters].map(chapter => {
-    const updatedDests = chapter.destinations.map(dest => {
-      const match = config?.find((d: any) => d.id === dest.id);
-      if (match) {
-        return {
-          id: dest.id,
-          title: match.title || dest.title,
-          location: match.tagline || dest.location,
-          description: match.description || dest.description,
-          image: match.mainImage || match.image || dest.image,
-          link: match.link || dest.link
-        };
-      }
-      return dest;
-    });
-    return { ...chapter, destinations: updatedDests };
+  const scroll = (direction: "left" | "right") => {
+    if (scrollContainerRef.current) {
+      const scrollAmount = scrollContainerRef.current.clientWidth * 0.85;
+      scrollContainerRef.current.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth"
+      });
+    }
+  };
+
+  // Merge CMS configurations if any matching State override is set
+  const finalStates = stateChapters.map(state => {
+    const cmsMatch = config?.find((c: any) => c.id === state.id || c.title?.toLowerCase() === state.title.toLowerCase());
+    if (cmsMatch) {
+      return {
+        ...state,
+        title: cmsMatch.title || state.title,
+        tagline: cmsMatch.tagline || state.tagline,
+        description: cmsMatch.description || state.description,
+        image: cmsMatch.mainImage || cmsMatch.image || state.image,
+      };
+    }
+    return state;
   });
 
-  const unmatched = config?.filter((d: any) => 
-    !chapters.some(c => c.destinations.some(dest => dest.id === d.id))
-  ) || [];
-
-  if (unmatched.length > 0) {
-    dynamicChapters.push({
-      id: "featured-escapes",
-      label: "Featured Escapes",
-      destinations: unmatched.map((match: any) => ({
-        id: match.id,
-        title: match.title || "Custom Destination",
-        location: match.tagline || "Exclusive Escape",
-        description: match.description || "",
-        image: match.mainImage || match.image || "https://images.unsplash.com/photo-1542223189-67a03fa0f0bd?auto=format&fit=crop&w=1400&q=80",
-        link: match.link || `/destinations/${match.id}`
-      }))
-    });
-  }
-
-  const currentDestinations = dynamicChapters.find((c) => c.id === activeChapter)?.destinations || [];
-
   return (
-    <section ref={containerRef} className="relative w-full bg-[#f8f5f0] pt-12 pb-14 md:py-32 overflow-hidden">
+    <section ref={containerRef} className="relative w-full bg-[#f8f5f0] pt-16 pb-20 md:py-32 overflow-hidden">
       {/* Sketch Background Painting */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.09] mix-blend-multiply bg-[url('/images/destinations_sketch_bg.webp')] bg-repeat bg-[size:450px] md:bg-[size:800px] bg-center" />
 
@@ -184,155 +149,144 @@ export default function DestinationsGrid() {
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <p className="text-[0.6rem] uppercase tracking-[0.5em] text-[#a5813b] font-bold mb-4">Explore the Memoir</p>
             <div className="relative inline-block">
-               <h2 className="font-glyptic font-bold text-5xl md:text-7xl lg:text-8xl tracking-[0.05em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-[#1a1714] via-[#5c544b] to-[#1a1714] relative z-10 pb-2">Destinations</h2>
+               {/* Fixed cut-off text-5xl on mobile to responsive text-3xl */}
+               <h2 className="font-glyptic font-bold text-3xl sm:text-4xl md:text-7xl lg:text-8xl tracking-[0.05em] uppercase text-[#1a1714] relative z-10 pb-2 bg-clip-text text-transparent bg-gradient-to-r from-[#1a1714] via-[#5c544b] to-[#1a1714]">
+                 Destinations
+               </h2>
                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center pointer-events-none opacity-[0.06] z-0 whitespace-nowrap font-script text-4xl md:text-8xl">
                  Taj Mahal • Himalayas • Kerala • Hawa Mahal
                </div>
             </div>
-            <p className="text-sm font-serif italic text-[#5c544b] mt-4 opacity-70 max-w-xl mx-auto">Discover the timeless beauty from the Taj Mahal to the backwaters of Kerala</p>
+            <p className="text-sm font-serif italic text-[#5c544b] mt-4 opacity-70 max-w-xl mx-auto">
+              Click a state below to explore its handcrafted boutique cities and packages.
+            </p>
           </motion.div>
         </div>
 
-        {/* Regional Filter Tabs Selector */}
-        <div className="flex flex-col items-center gap-4 mb-10 md:mb-24 relative z-10">
-          <p className="text-[0.65rem] uppercase tracking-[0.3em] text-[#a5813b] font-bold opacity-60 animate-pulse">
-            Select a region to explore
-          </p>
-          <div className="flex justify-center w-full overflow-x-auto no-scrollbar px-4">
-            <div className="bg-[#f0e7d3]/80 backdrop-blur-sm border border-[#a5813b]/15 p-1.5 rounded-full flex gap-1 whitespace-nowrap shadow-md">
-              {dynamicChapters.map((chapter) => {
-                const isActive = activeChapter === chapter.id;
-                return (
-                  <button
-                    key={chapter.id}
-                    onClick={() => setActiveChapter(chapter.id)}
-                    className="relative px-5 py-3 rounded-full transition-colors duration-300 select-none"
-                  >
-                    {isActive && (
-                      <motion.div
-                        layoutId="active-chapter-pill"
-                        className="absolute inset-0 bg-[#a5813b] rounded-full z-0"
-                        transition={{ type: "spring", stiffness: 350, damping: 30 }}
-                      />
-                    )}
-                    <span
-                      className={`relative z-10 font-roman text-[10px] md:text-[13px] uppercase tracking-[0.2em] font-bold transition-colors duration-300 ${
-                        isActive ? "text-white" : "text-[#5c544b] opacity-80 hover:opacity-100 hover:text-[#a5813b]"
-                      }`}
-                    >
-                      {chapter.label}
-                    </span>
-                  </button>
-                );
-              })}
+        {/* ═══ DESKTOP GRID VIEW (md+) ═══ */}
+        <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-10">
+          {finalStates.map((state, idx) => (
+            <motion.div
+              key={state.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: (idx % 3) * 0.15 }}
+              className="group bg-white border border-[#a5813b]/10 shadow-lg rounded-sm overflow-hidden p-4 flex flex-col justify-between hover:shadow-2xl transition-all duration-500 hover:-translate-y-1"
+            >
+              <div>
+                {/* Image Frame */}
+                <div className="relative w-full aspect-[4/3] overflow-hidden rounded-sm bg-[#e8e6df] mb-5">
+                  <Image
+                    src={state.image}
+                    alt={state.title}
+                    fill
+                    className="object-cover transition-transform duration-[2s] ease-out group-hover:scale-105"
+                    sizes="(max-width: 1024px) 50vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')] opacity-[0.08] mix-blend-overlay" />
+                  <div className="absolute top-3 left-3 bg-[#1a1714]/85 text-[#f5f4ef] text-[0.55rem] tracking-[0.3em] uppercase px-3 py-1 font-sans backdrop-blur-sm border border-white/10">
+                    {state.tagline}
+                  </div>
+                </div>
+
+                {/* Info Content */}
+                <h3 className="font-glyptic text-2xl text-[#1a1714] uppercase tracking-wider mb-2 group-hover:text-[#a5813b] transition-colors">
+                  {state.title}
+                </h3>
+                <p className="text-[#a5813b] text-[9px] font-bold tracking-[0.2em] uppercase font-manrope mb-3">
+                  Includes: {state.citiesText}
+                </p>
+                <p className="font-serif text-xs text-[#5c544b] leading-relaxed opacity-85 mb-6 line-clamp-3">
+                  {state.description}
+                </p>
+              </div>
+
+              <Link
+                href={state.link}
+                className="w-full text-center py-3 border border-[#a5813b]/30 text-[#a5813b] text-[0.65rem] uppercase tracking-[0.25em] font-bold transition-all bg-[#fcfbf9] hover:bg-[#a5813b] hover:text-white"
+              >
+                Explore {state.title}
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* ═══ MOBILE SLIDER VIEW (< md) ═══ */}
+        <div className="md:hidden relative w-full">
+          <div
+            ref={scrollContainerRef}
+            className="w-full overflow-x-auto flex gap-5 snap-x snap-mandatory no-scrollbar px-1 pb-4 scroll-smooth"
+          >
+            {finalStates.map((state) => (
+              <div
+                key={state.id}
+                className="w-[82vw] shrink-0 snap-center flex flex-col bg-white border border-[#a5813b]/10 shadow-lg rounded-sm overflow-hidden p-4"
+              >
+                {/* Image Frame */}
+                <div className="relative w-full aspect-[4/3] overflow-hidden rounded-sm bg-[#e8e6df] mb-4">
+                  <Image
+                    src={state.image}
+                    alt={state.title}
+                    fill
+                    className="object-cover"
+                    sizes="82vw"
+                  />
+                  <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')] opacity-[0.08] mix-blend-overlay" />
+                  <div className="absolute top-2.5 left-2.5 bg-[#1a1714]/85 text-[#f5f4ef] text-[0.5rem] tracking-[0.25em] uppercase px-2.5 py-1 font-sans backdrop-blur-sm">
+                    {state.tagline}
+                  </div>
+                </div>
+
+                {/* Content Info */}
+                <h3 className="font-glyptic text-xl text-[#1a1714] uppercase tracking-wider mb-1.5">{state.title}</h3>
+                <p className="text-[#a5813b] text-[8px] font-bold tracking-[0.2em] uppercase font-manrope mb-2">
+                  Includes: {state.citiesText}
+                </p>
+                <p className="font-serif text-[11px] text-[#5c544b] leading-relaxed opacity-85 mb-5 h-[48px] line-clamp-3 overflow-hidden">
+                  {state.description}
+                </p>
+                
+                <Link
+                  href={state.link}
+                  className="w-full text-center py-3.5 border border-[#a5813b]/30 text-[#a5813b] text-[0.6rem] uppercase tracking-[0.25em] font-bold transition-all bg-[#fcfbf9] active:bg-[#a5813b] active:text-white"
+                >
+                  Explore {state.title}
+                </Link>
+              </div>
+            ))}
+          </div>
+
+          {/* Floating Navigation Arrows & Touch Guide */}
+          <div className="flex flex-col items-center gap-3 mt-4">
+            <span className="text-[9px] uppercase tracking-widest text-[#a5813b]/70 animate-pulse font-manrope font-bold">
+              Swipe Left/Right or Use Arrows
+            </span>
+            <div className="flex gap-4">
+              <button
+                onClick={() => scroll("left")}
+                className="w-10 h-10 rounded-full border border-[#a5813b]/30 flex items-center justify-center text-[#a5813b] bg-white active:bg-[#a5813b] active:text-white transition-all shadow-md"
+                aria-label="Scroll left"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <button
+                onClick={() => scroll("right")}
+                className="w-10 h-10 rounded-full border border-[#a5813b]/30 flex items-center justify-center text-[#a5813b] bg-white active:bg-[#a5813b] active:text-white transition-all shadow-md"
+                aria-label="Scroll right"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
             </div>
           </div>
         </div>
 
-        {/* Dynamic Artisan Folio */}
-        <div className="relative min-h-0 md:min-h-[1200px]">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeChapter}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.98 }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            >
-              {/* Desktop View */}
-              <div className="hidden md:flex flex-col gap-32 md:gap-40">
-                {currentDestinations.map((dest, idx) => (
-                  <div
-                    key={dest.id}
-                    onMouseEnter={() => {
-                      let highResUrl = dest.image;
-                      if (highResUrl) {
-                        if (highResUrl.includes("w=1200")) {
-                          highResUrl = highResUrl.replace("w=1200", "w=1800");
-                        } else if (highResUrl.includes("w=800")) {
-                          highResUrl = highResUrl.replace("w=800", "w=1800");
-                        }
-                        const img = new window.Image();
-                        img.src = highResUrl;
-                      }
-                    }}
-                    className={`flex flex-col md:flex-row items-center gap-12 md:gap-24 ${idx % 2 === 1 ? "md:flex-row-reverse" : ""}`}
-                  >
-                    {/* Card Section */}
-                    <div className="group relative w-full md:w-[50%] aspect-[3/4] md:aspect-[4/3] bg-white shadow-2xl p-4 md:p-6 transition-transform duration-700 hover:scale-[1.02]">
-                      <div className="relative w-full h-full overflow-hidden">
-                        <Image
-                          src={dest.image}
-                          alt={dest.title}
-                          fill
-                          className="object-cover transition-all duration-[2s] ease-out group-hover:scale-105"
-                          sizes="(max-width: 768px) 100vw, 50vw"
-                        />
-                        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')] opacity-[0.08] mix-blend-overlay" />
-                      </div>
-                    </div>
-
-                    {/* Info Section */}
-                    <div className="w-full md:w-[40%] flex flex-col items-center md:items-start text-center md:text-left">
-                      <p className="font-script text-2xl md:text-3xl text-[#a5813b] mb-4">{dest.location}</p>
-                      <h3 className="font-glyptic text-3xl md:text-5xl text-[#1a1714] uppercase tracking-wider mb-6">{dest.title}</h3>
-                      <p className="font-serif text-[#5c544b] leading-relaxed opacity-80 mb-8 max-w-sm">{dest.description}</p>
-                      <Link
-                        href={dest.link}
-                        className="group relative px-10 py-4 border border-[#a5813b]/30 text-[#a5813b] text-[0.65rem] uppercase tracking-[0.3em] font-bold transition-all hover:border-[#a5813b] hover:text-[#a5813b]"
-                      >
-                        <span className="relative z-10 transition-colors duration-500 group-hover:text-white">Explore Memoir</span>
-                        <div className="absolute inset-0 bg-[#a5813b] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]" />
-                      </Link>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Mobile View: Swipeable Carousel */}
-              <div className="md:hidden w-full overflow-x-auto flex gap-6 snap-x snap-mandatory no-scrollbar px-1 pb-6 scroll-smooth">
-                {currentDestinations.map((dest) => (
-                  <div
-                    key={dest.id}
-                    className="w-[82vw] shrink-0 snap-center flex flex-col bg-white border border-[#a5813b]/10 shadow-lg rounded-sm overflow-hidden p-3"
-                  >
-                    {/* Image Frame */}
-                    <div className="relative w-full aspect-[4/5] overflow-hidden rounded-sm bg-[#e8e6df]">
-                      <Image
-                        src={dest.image}
-                        alt={dest.title}
-                        fill
-                        className="object-cover"
-                        sizes="82vw"
-                      />
-                      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')] opacity-[0.08] mix-blend-overlay" />
-                      <div className="absolute top-2 left-2 bg-[#1a1714]/75 text-[#f5f4ef] text-[0.55rem] tracking-[0.25em] uppercase px-2.5 py-1 font-sans backdrop-blur-sm">
-                        {dest.location}
-                      </div>
-                    </div>
-
-                    {/* Content info */}
-                    <div className="pt-4 pb-2 px-1 flex flex-col items-center text-center">
-                      <h3 className="font-glyptic text-xl text-[#1a1714] uppercase tracking-wider mb-2">{dest.title}</h3>
-                      <p className="font-serif text-xs text-[#5c544b] leading-relaxed opacity-85 mb-5 h-[54px] line-clamp-3 overflow-hidden">
-                        {dest.description}
-                      </p>
-                      <Link
-                        href={dest.link}
-                        className="w-full text-center py-3 border border-[#a5813b]/30 text-[#a5813b] text-[0.6rem] uppercase tracking-[0.25em] font-bold transition-all bg-[#fcfbf9] hover:bg-[#a5813b] hover:text-white"
-                      >
-                        Explore Memoir
-                      </Link>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          </AnimatePresence>
-        </div>
-
         {/* Global Footer Link */}
-        <div className="mt-12 md:mt-32 text-center border-t border-[#a5813b]/10 pt-8 md:pt-20">
+        <div className="mt-16 md:mt-32 text-center border-t border-[#a5813b]/10 pt-8 md:pt-20">
           <Link href="/destinations" className="group flex flex-col items-center gap-4">
             <span className="font-glyptic text-2xl md:text-3xl text-[#1a1714] uppercase tracking-[0.2em] transition-colors group-hover:text-[#a5813b]">
               Discover All Treasures
