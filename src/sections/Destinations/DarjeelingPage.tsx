@@ -212,7 +212,11 @@ export default function DarjeelingPage() {
     : attractions;
 
   return (
-    <>
+    <div className="relative bg-[#f4ebd9] text-[#3d3831] overflow-hidden">
+      {/* Background Hand-Drawn Sketch & Paper Texture Overlays */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.08] mix-blend-multiply bg-[url('/images/destinations_sketch_bg.webp')] bg-repeat bg-[size:450px] md:bg-[size:800px] bg-center" />
+      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')] opacity-[0.03] pointer-events-none z-0" />
+
       <Navbar />
 
       {/* ══════════ 1. HERO ══════════ */}
@@ -253,7 +257,7 @@ export default function DarjeelingPage() {
       </section>
 
       {/* ══════════ 2. ABOUT + QUICK INFO ══════════ */}
-      <section className="bg-[#f4ebd9] py-14 md:py-28 px-5 md:px-16 lg:px-24">
+      <section className="bg-transparent relative z-10 py-14 md:py-28 px-5 md:px-16 lg:px-24">
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-[1.3fr_1fr] gap-10 lg:gap-24">
             <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0}>
@@ -315,7 +319,9 @@ export default function DarjeelingPage() {
       </section>
 
       {/* ══════════ 3. WHY VISIT ══════════ */}
-      <section className="bg-[#1a1914] py-14 md:py-28 px-5 md:px-16 lg:px-24 text-[#f0e7d6]">
+      <section className="bg-[#1a1914] relative z-10 py-14 md:py-28 px-5 md:px-16 lg:px-24 text-[#f0e7d6] overflow-hidden">
+        {/* Dark sketch pattern overlay */}
+        <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.05] mix-blend-overlay bg-[url('/images/stays_sketch_bg.webp')] bg-repeat bg-[size:450px] md:bg-[size:800px]" />
         <div className="max-w-6xl mx-auto">
           <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} className="text-center mb-10 md:mb-16">
             <span className="text-[10px] tracking-[0.3em] uppercase text-[#ae9e85]">Discover What Makes It Special</span>
@@ -347,7 +353,7 @@ export default function DarjeelingPage() {
       </section>
 
       {/* ══════════ 4. TOP ATTRACTIONS ══════════ */}
-      <section className="bg-[#f4ebd9] py-14 md:py-28 px-5 md:px-16 lg:px-24">
+      <section className="bg-transparent relative z-10 py-14 md:py-28 px-5 md:px-16 lg:px-24">
         <div className="max-w-7xl mx-auto">
           <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} className="text-center mb-10 md:mb-16">
             <span className="text-[10px] tracking-[0.3em] uppercase text-[#ae9e85]">Must-Visit Places</span>
@@ -407,7 +413,7 @@ export default function DarjeelingPage() {
       </section>
 
       {/* ══════════ 5. BEST TIME TO VISIT ══════════ */}
-      <section className="bg-[#efe5d0] py-14 md:py-28 px-5 md:px-16 lg:px-24">
+      <section className="bg-transparent relative z-10 py-14 md:py-28 px-5 md:px-16 lg:px-24">
         <div className="max-w-6xl mx-auto">
           <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} className="text-center mb-10 md:mb-16">
             <span className="text-[10px] tracking-[0.3em] uppercase text-[#ae9e85]">Seasonal Guide</span>
@@ -465,7 +471,7 @@ export default function DarjeelingPage() {
       </section>
 
       {/* ══════════ 6. TOUR PACKAGES ══════════ */}
-      <section className="bg-[#f4ebd9] py-14 md:py-28 px-5 md:px-16 lg:px-24">
+      <section className="bg-transparent relative z-10 py-14 md:py-28 px-5 md:px-16 lg:px-24">
         <div className="max-w-7xl mx-auto">
           <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} className="text-center mb-10 md:mb-16">
             <span className="text-[10px] tracking-[0.3em] uppercase text-[#ae9e85]">Curated Experiences</span>
@@ -527,7 +533,7 @@ export default function DarjeelingPage() {
       </section>
 
       {/* ══════════ 7. CTA BANNER ══════════ */}
-      <section className="relative py-16 md:py-32 overflow-hidden">
+      <section className="relative z-10 py-16 md:py-32 overflow-hidden">
         <Image
           src="https://images.pexels.com/photos/33263644/pexels-photo-33263644.jpeg?auto=compress&cs=tinysrgb&w=1600"
           alt="Darjeeling Toy Train"
@@ -557,6 +563,6 @@ export default function DarjeelingPage() {
       </section>
 
       <Footer />
-    </>
+    </div>
   );
 }

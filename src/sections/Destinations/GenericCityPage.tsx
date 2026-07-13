@@ -72,11 +72,15 @@ export default function GenericCityPage({ citySlug }: { citySlug: string }) {
   }
 
   return (
-    <main className="bg-[#f8f5f0] min-h-screen text-[#1a1714]">
+    <main className="bg-[#f8f5f0] min-h-screen text-[#1a1714] relative">
+      {/* Background Hand-Drawn Sketch & Paper Texture Overlays */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.08] mix-blend-multiply bg-[url('/images/destinations_sketch_bg.webp')] bg-repeat bg-[size:450px] md:bg-[size:800px] bg-center" />
+      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')] opacity-[0.03] pointer-events-none z-0" />
+
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative h-[65vh] flex items-center justify-center overflow-hidden">
+      <section className="relative h-[65vh] flex items-center justify-center overflow-hidden z-10">
         <Image
           src={details.image}
           alt={details.title}
