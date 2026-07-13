@@ -71,10 +71,25 @@ export default function GenericCityPage({ citySlug }: { citySlug: string }) {
     );
   }
 
+  const stateLower = details.stateName.toLowerCase();
+  let themeBg = "bg-[#f8f5f0]";
+  let sketchBgPattern = "/images/destinations_sketch_bg.webp"; // Default monuments sketch
+
+  if (stateLower.includes("sikkim") || stateLower.includes("bengal") || stateLower.includes("himalayan")) {
+    themeBg = "bg-[#edf1f4]";
+    sketchBgPattern = "/images/activities_sketch_bg.webp";
+  } else if (stateLower.includes("kerala") || stateLower.includes("tamil")) {
+    themeBg = "bg-[#eaf0e9]";
+    sketchBgPattern = "/images/activities_sketch_bg.webp";
+  } else if (stateLower.includes("goa") || stateLower.includes("coast") || stateLower.includes("andaman")) {
+    themeBg = "bg-[#e9f2f2]";
+    sketchBgPattern = "/images/stays_sketch_bg.webp";
+  }
+
   return (
-    <main className="bg-[#f8f5f0] min-h-screen text-[#1a1714] relative">
+    <main className={`${themeBg} min-h-screen text-[#1a1714] relative transition-colors duration-500`}>
       {/* Background Hand-Drawn Sketch & Paper Texture Overlays */}
-      <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.08] mix-blend-multiply bg-[url('/images/destinations_sketch_bg.webp')] bg-repeat bg-[size:450px] md:bg-[size:800px] bg-center" />
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.08] mix-blend-multiply bg-repeat bg-[size:450px] md:bg-[size:800px] bg-center" style={{ backgroundImage: `url('${sketchBgPattern}')` }} />
       <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')] opacity-[0.03] pointer-events-none z-0" />
 
       <Navbar />
