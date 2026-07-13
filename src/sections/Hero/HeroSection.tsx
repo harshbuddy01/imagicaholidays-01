@@ -29,12 +29,16 @@ const initHlsVideo = (video: HTMLVideoElement, url: string, fallbackUrl: string)
   // If URL is not HLS, set src directly
   if (!url.endsWith(".m3u8") && !url.includes(".m3u8")) {
     video.src = url;
+    video.load();
+    video.play().catch(() => {});
     return;
   }
 
   // Native HLS support (Safari)
   if (video.canPlayType("application/vnd.apple.mpegurl")) {
     video.src = url;
+    video.load();
+    video.play().catch(() => {});
   } else {
     // Dynamic import hls.js for other browsers (Chrome, Firefox, etc.)
     import("hls.js").then((HlsModule) => {
@@ -51,11 +55,18 @@ const initHlsVideo = (video: HTMLVideoElement, url: string, fallbackUrl: string)
         hls.loadSource(url);
         hls.attachMedia(video);
         (video as any)._hls = hls;
+        hls.on(Hls.Events.MANIFEST_PARSED, () => {
+          video.play().catch(() => {});
+        });
       } else {
         video.src = fallbackUrl;
+        video.load();
+        video.play().catch(() => {});
       }
     }).catch(() => {
       video.src = fallbackUrl;
+      video.load();
+      video.play().catch(() => {});
     });
   }
 };
@@ -93,6 +104,12 @@ export default function HeroSection() {
       // Always use CRM video URL when available — they are direct MP4s
       const src = config?.videoUrl1 || heroVideos[0].src;
       initHlsVideo(v1, getBustedUrl(src), fallbackMp4);
+      
+      v1.play().catch(() => {
+        const resume = () => { if (v1) v1.play().catch(() => {}); };
+        document.addEventListener("touchstart", resume, { once: true });
+        document.addEventListener("click", resume, { once: true });
+      });
     }
   }, [config?.videoUrl1]);
 
@@ -104,6 +121,14 @@ export default function HeroSection() {
       if (v2) {
         const src = config?.videoUrl2 || heroVideos[1].src;
         initHlsVideo(v2, getBustedUrl(src), fallbackMp4);
+        
+        if (activeVideo === 1) {
+          v2.play().catch(() => {
+            const resume = () => { if (v2) v2.play().catch(() => {}); };
+            document.addEventListener("touchstart", resume, { once: true });
+            document.addEventListener("click", resume, { once: true });
+          });
+        }
       }
     }, 4000);
 
