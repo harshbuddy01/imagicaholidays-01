@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
-import { fetchDestinationCms, DestinationCmsData } from "@/lib/api";
+import { fetchDestinationCms, fetchWebsiteConfig, DestinationCmsData } from "@/lib/api";
 
 interface QuickInfoItem {
   label: string;
@@ -159,6 +159,7 @@ export default function PremiumCityDetailPage({
 }: PremiumCityDetailPageProps) {
   const [visibleAttractions, setVisibleAttractions] = useState(6);
   const [cmsData, setCmsData] = useState<DestinationCmsData | null>(null);
+  const [featuredDest, setFeaturedDest] = useState<any>(null);
 
   useEffect(() => {
     fetchDestinationCms(citySlug).then((data) => {
@@ -166,7 +167,16 @@ export default function PremiumCityDetailPage({
         setCmsData(data);
       }
     });
-  }, [citySlug]);
+
+    fetchWebsiteConfig().then((data) => {
+      if (data?.config?.destinations) {
+        const match = data.config.destinations.find((d: any) => d.id === citySlug || d.title?.toLowerCase() === cityName.toLowerCase());
+        if (match) {
+          setFeaturedDest(match);
+        }
+      }
+    });
+  }, [citySlug, cityName]);
 
   // Per-city unique inline SVG watermarks — each city gets its own artistic identity
   const citySketchSVGs: Record<string, React.ReactNode> = {
@@ -320,7 +330,8 @@ export default function PremiumCityDetailPage({
     ),
   };
 
-  const currentHeroImage = cmsData?.pageContent?.heroImage || cmsData?.heroImage || heroImage;
+  const currentHeroImage = cmsData?.pageContent?.heroImage || cmsData?.heroImage || featuredDest?.mainImage || heroImage;
+  const currentTagline = featuredDest?.tagline || tagline;
   const currentAttractions = cmsData?.pageContent?.attractions && cmsData.pageContent.attractions.length > 0
     ? cmsData.pageContent.attractions
     : fallbackAttractions;
@@ -411,7 +422,7 @@ export default function PremiumCityDetailPage({
               {cityName}
             </h1>
             <p className="font-roman text-base md:text-2xl italic text-[#d5cab5] mt-2 tracking-wide">
-              {tagline}
+              {currentTagline}
             </p>
           </motion.div>
         </div>

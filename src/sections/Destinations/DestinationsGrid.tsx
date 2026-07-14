@@ -291,13 +291,25 @@ function DestinationCard({ state, isMobile = false }: { state: StateDestination;
 }
 
 export default function DestinationsGrid() {
-  const [config, setConfig] = useState<any[] | null>(null);
+  const [statesList, setStatesList] = useState<StateDestination[]>(stateChapters);
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     fetchWebsiteConfig().then((data) => {
-      if (data && Array.isArray(data.config?.destinations)) {
-        setConfig(data.config.destinations);
+      if (data?.config?.['landing-states'] && data.config['landing-states'].length > 0) {
+        const mapped = data.config['landing-states'].map((c: any) => ({
+          id: c.slug || c.id,
+          title: c.title,
+          tagline: c.region || c.tagline || "",
+          description: c.desc || c.description || "",
+          image: c.image,
+          citiesText: Array.isArray(c.cities) ? c.cities.join(" · ") : c.cities || "",
+          link: `/destinations/${c.slug || c.id}`,
+          accentColor: c.gradientFrom || "#a5813b",
+          trending: c.slug === "sikkim" || c.slug === "andaman-nicobar",
+          trendingLabel: "🔥 Trending"
+        }));
+        setStatesList(mapped);
       }
     });
   }, []);
@@ -308,20 +320,6 @@ export default function DestinationsGrid() {
       scrollContainerRef.current.scrollBy({ left: direction === "left" ? -scrollAmount : scrollAmount, behavior: "smooth" });
     }
   };
-
-  const finalStates = stateChapters.map((state) => {
-    const cmsMatch = config?.find((c: any) => c.id === state.id || c.title?.toLowerCase() === state.title.toLowerCase());
-    if (cmsMatch) {
-      return {
-        ...state,
-        title: cmsMatch.title || state.title,
-        tagline: cmsMatch.tagline || state.tagline,
-        description: cmsMatch.description || state.description,
-        image: cmsMatch.mainImage || cmsMatch.image || state.image,
-      };
-    }
-    return state;
-  });
 
   return (
     <section className="relative w-full bg-[#f8f5f0] pt-16 pb-20 md:py-32 overflow-hidden">
@@ -352,7 +350,7 @@ export default function DestinationsGrid() {
 
         {/* ═══ DESKTOP GRID (md+) ═══ */}
         <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-6 xl:gap-8">
-          {finalStates.map((state, idx) => (
+          {statesList.map((state, idx) => (
             <motion.div
               key={state.id}
               initial={{ opacity: 0, y: 30 }}
@@ -371,7 +369,7 @@ export default function DestinationsGrid() {
             ref={scrollContainerRef}
             className="w-full overflow-x-auto flex gap-4 snap-x snap-mandatory no-scrollbar pb-4 scroll-smooth"
           >
-            {finalStates.map((state) => (
+            {statesList.map((state) => (
               <DestinationCard key={state.id} state={state} isMobile />
             ))}
           </div>

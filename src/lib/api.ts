@@ -47,6 +47,7 @@ export interface WebsiteConfigData {
       image: string;
     }>;
   };
+  [key: string]: any;
 }
 
 export interface DestinationCmsData {
