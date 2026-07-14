@@ -258,16 +258,18 @@ export default function Navbar() {
 
           {/* Desktop Right Side CTA & WhatsApp */}
           <div className="hidden md:flex items-center gap-3">
-            {/* WhatsApp Chat Button */}
+            {/* WhatsApp Chat Button — Official Green Bubble Icon */}
             <a 
               href="https://wa.me/918235337180?text=Hi!%20I'd%20like%20to%20plan%20a%20trip%20with%20Imagica%20Holidays." 
               target="_blank" 
               rel="noopener noreferrer"
               className="flex items-center justify-center w-10 h-10 rounded-full bg-[#25D366]/10 border border-[#25D366]/30 hover:bg-[#25D366] text-[#25D366] hover:text-white transition-all duration-500 shadow-[0_0_10px_rgba(37,211,102,0.15)] hover:shadow-[0_0_20px_rgba(37,211,102,0.4)]"
-              aria-label="Inquire on WhatsApp"
+              aria-label="Chat on WhatsApp"
             >
-              <svg className="w-5 h-5 fill-current" viewBox="0 0 16 16">
-                <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.949h.004c4.368 0 7.926-3.562 7.93-7.93a7.9 7.9 0 0 0-2.327-5.592M7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.618-5.454c-.19-.095-1.125-.556-1.298-.622-.173-.067-.3-.098-.426.095-.126.192-.489.621-.6.745-.11.124-.22.14-.41.045-1.82-.91-3.064-2.525-3.51-3.293-.11-.19-.01-.291.085-.386.09-.088.192-.221.288-.33.095-.11.13-.186.195-.31.065-.125.033-.233-.017-.33-.05-.095-.426-1.028-.584-1.41-.154-.372-.325-.322-.426-.327-.1-.004-.215-.004-.33-.004a.64.64 0 0 0-.462.216c-.16.173-.61.597-.61 1.458s.627 1.696.715 1.815c.088.12 1.234 1.884 2.99 2.642.417.18.74.287.993.367.42.132.802.113 1.102.068.334-.05 1.125-.46 1.282-.905.158-.445.158-.826.11-.905-.047-.08-.173-.127-.363-.222"/>
+              {/* Official WhatsApp logo SVG */}
+              <svg className="w-5 h-5" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fillRule="evenodd" clipRule="evenodd" d="M16 2C8.268 2 2 8.268 2 16c0 2.45.646 4.75 1.775 6.74L2 30l7.47-1.742A13.935 13.935 0 0 0 16 30c7.732 0 14-6.268 14-14S23.732 2 16 2Z" fill="currentColor"/>
+                <path d="M22.003 19.284c-.32-.16-1.89-.932-2.183-1.038-.293-.107-.506-.16-.719.16-.213.32-.824 1.038-1.01 1.251-.187.213-.373.24-.693.08-.32-.16-1.352-.499-2.575-1.591-.952-.85-1.594-1.9-1.781-2.22-.186-.32-.02-.493.14-.652.144-.143.32-.373.48-.56.16-.186.213-.32.32-.533.107-.213.053-.4-.027-.56-.08-.16-.72-1.733-.986-2.373-.26-.623-.524-.538-.72-.549l-.612-.01a1.174 1.174 0 0 0-.852.4c-.293.32-1.118 1.092-1.118 2.665s1.145 3.09 1.304 3.303c.16.213 2.252 3.44 5.459 4.826.763.33 1.358.526 1.822.674.765.244 1.462.21 2.012.127.614-.091 1.89-.773 2.156-1.52.267-.746.267-1.385.187-1.52-.08-.133-.293-.213-.612-.373Z" fill="white"/>
               </svg>
             </a>
 
@@ -284,27 +286,23 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Mobile Right Side Controls (WhatsApp + Hamburger) */}
+          {/* Mobile Right Side Controls (WhatsApp icon + Hamburger only — no Enquiry text pill) */}
           <div className="flex items-center gap-3 relative z-[60] md:hidden">
-            {/* Mobile WhatsApp Enquiry Pill */}
+            {/* Mobile WhatsApp Icon Button */}
             <a 
               href="https://wa.me/918235337180?text=Hi!%20I'd%20like%20to%20plan%20a%20trip%20with%20Imagica%20Holidays." 
               target="_blank" 
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/10 bg-black/45 hover:bg-black/60 transition-all duration-300 backdrop-blur-sm shadow-[0_0_12px_rgba(0,0,0,0.25)]"
-              aria-label="Enquire on WhatsApp"
+              className="flex items-center justify-center w-9 h-9 rounded-full bg-[#25D366]/15 border border-[#25D366]/30 text-[#25D366] active:bg-[#25D366] active:text-white transition-all duration-300"
+              aria-label="Chat on WhatsApp"
             >
-              <div className="w-4 h-4 rounded-full bg-[#25D366] flex items-center justify-center text-white shrink-0">
-                <svg className="w-2.5 h-2.5 fill-current" viewBox="0 0 16 16">
-                  <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.949h.004c4.368 0 7.926-3.562 7.93-7.93a7.9 7.9 0 0 0-2.327-5.592M7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.618-5.454c-.19-.095-1.125-.556-1.298-.622-.173-.067-.3-.098-.426.095-.126.192-.489.621-.6.745-.11.124-.22.14-.41.045-1.82-.91-3.064-2.525-3.51-3.293-.11-.19-.01-.291.085-.386.09-.088.192-.221.288-.33.095-.11.13-.186.195-.31.065-.125.033-.233-.017-.33-.05-.095-.426-1.028-.584-1.41-.154-.372-.325-.322-.426-.327-.1-.004-.215-.004-.33-.004a.64.64 0 0 0-.462.216c-.16.173-.61.597-.61 1.458s.627 1.696.715 1.815c.088.12 1.234 1.884 2.99 2.642.417.18.74.287.993.367.42.132.802.113 1.102.068.334-.05 1.125-.46 1.282-.905.158-.445.158-.826.11-.905-.047-.08-.173-.127-.363-.222"/>
-                </svg>
-              </div>
-              <span className="font-manrope text-[10px] font-bold uppercase tracking-[0.16em] text-white leading-none translate-y-[0.5px]">
-                Enquiry
-              </span>
+              <svg className="w-5 h-5" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fillRule="evenodd" clipRule="evenodd" d="M16 2C8.268 2 2 8.268 2 16c0 2.45.646 4.75 1.775 6.74L2 30l7.47-1.742A13.935 13.935 0 0 0 16 30c7.732 0 14-6.268 14-14S23.732 2 16 2Z" fill="currentColor"/>
+                <path d="M22.003 19.284c-.32-.16-1.89-.932-2.183-1.038-.293-.107-.506-.16-.719.16-.213.32-.824 1.038-1.01 1.251-.187.213-.373.24-.693.08-.32-.16-1.352-.499-2.575-1.591-.952-.85-1.594-1.9-1.781-2.22-.186-.32-.02-.493.14-.652.144-.143.32-.373.48-.56.16-.186.213-.32.32-.533.107-.213.053-.4-.027-.56-.08-.16-.72-1.733-.986-2.373-.26-.623-.524-.538-.72-.549l-.612-.01a1.174 1.174 0 0 0-.852.4c-.293.32-1.118 1.092-1.118 2.665s1.145 3.09 1.304 3.303c.16.213 2.252 3.44 5.459 4.826.763.33 1.358.526 1.822.674.765.244 1.462.21 2.012.127.614-.091 1.89-.773 2.156-1.52.267-.746.267-1.385.187-1.52-.08-.133-.293-.213-.612-.373Z" fill="white"/>
+              </svg>
             </a>
 
-            {/* Mobile Hamburger Button */}
+            {/* Mobile Hamburger Button */
             <button
               onClick={() => { setOpen((prev) => !prev); setDestOpen(false); }}
               aria-label="Toggle menu"

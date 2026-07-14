@@ -352,23 +352,34 @@ export default function PremiumCityDetailPage({
   // Pick this city's unique SVG watermark
   const CitySketchSVG = citySketchSVGs[citySlug] || null;
 
+  // Determine which sketch .webp to tile behind the page
+  let sketchBgPattern = "/images/destinations_sketch_bg.webp";
+  if (stateLower.includes("sikkim") || stateLower.includes("bengal") || stateLower.includes("himalayan")) {
+    sketchBgPattern = "/images/activities_sketch_bg.webp";
+  } else if (stateLower.includes("kerala") || stateLower.includes("goa") || stateLower.includes("andaman")) {
+    sketchBgPattern = "/images/stays_sketch_bg.webp";
+  }
+
   return (
     <div className={`relative ${themeBg} text-[#3d3831] overflow-hidden`}>
+      {/* Tiled hand-drawn sketch background — restored */}
+      <div
+        className="fixed inset-0 z-0 pointer-events-none opacity-[0.07] mix-blend-multiply bg-repeat bg-[size:420px] md:bg-[size:700px]"
+        style={{ backgroundImage: `url('${sketchBgPattern}')` }}
+      />
       {/* Per-city unique SVG line art watermark overlay */}
       {CitySketchSVG && (
-        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-          <div className="absolute bottom-0 right-0 w-[70vw] h-[70vh] max-w-[800px] max-h-[600px]">
+        <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+          <div className="absolute bottom-0 right-0 w-[65vw] h-[65vh] max-w-[750px] max-h-[560px]">
             {CitySketchSVG}
           </div>
-          <div className="absolute top-[30%] left-0 w-[40vw] h-[40vh] max-w-[500px] max-h-[400px] opacity-50 scale-x-[-1]">
+          <div className="absolute top-[25%] left-0 w-[35vw] h-[35vh] max-w-[420px] max-h-[360px] opacity-40 scale-x-[-1]">
             {CitySketchSVG}
           </div>
         </div>
       )}
       {/* Natural paper texture */}
-      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')] opacity-[0.03] pointer-events-none z-0" />
-
-
+      <div className="fixed inset-0 bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')] opacity-[0.04] pointer-events-none z-0" />
 
       <Navbar />
 

@@ -325,6 +325,8 @@ export default function DestinationsGrid() {
 
   return (
     <section className="relative w-full bg-[#f8f5f0] pt-16 pb-20 md:py-32 overflow-hidden">
+      {/* Tiled hand-drawn sketch background \u2014 restored */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.08] mix-blend-multiply bg-[url('/images/destinations_sketch_bg.webp')] bg-repeat bg-[size:420px] md:bg-[size:750px] bg-center" />
       {/* Natural paper texture */}
       <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')] opacity-[0.04] pointer-events-none" />
 
