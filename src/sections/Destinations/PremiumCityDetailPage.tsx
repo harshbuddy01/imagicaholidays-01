@@ -362,14 +362,14 @@ export default function PremiumCityDetailPage({
 
   return (
     <div className={`relative ${themeBg} text-[#3d3831] overflow-hidden`}>
-      {/* Tiled hand-drawn sketch background — restored */}
+      {/* Tiled hand-drawn sketch background — absolute (not fixed) to avoid scroll repaint */}
       <div
-        className="fixed inset-0 z-0 pointer-events-none opacity-[0.07] mix-blend-multiply bg-repeat bg-[size:420px] md:bg-[size:700px]"
-        style={{ backgroundImage: `url('${sketchBgPattern}')` }}
+        className="absolute inset-0 z-0 pointer-events-none opacity-[0.07] mix-blend-multiply bg-repeat bg-[size:420px] md:bg-[size:700px]"
+        style={{ backgroundImage: `url('${sketchBgPattern}')`, willChange: 'transform' }}
       />
       {/* Per-city unique SVG line art watermark overlay */}
       {CitySketchSVG && (
-        <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden" style={{ willChange: 'transform' }}>
           <div className="absolute bottom-0 right-0 w-[65vw] h-[65vh] max-w-[750px] max-h-[560px]">
             {CitySketchSVG}
           </div>
@@ -378,8 +378,8 @@ export default function PremiumCityDetailPage({
           </div>
         </div>
       )}
-      {/* Natural paper texture */}
-      <div className="fixed inset-0 bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')] opacity-[0.04] pointer-events-none z-0" />
+      {/* Natural paper texture — absolute (not fixed) to avoid scroll repaint */}
+      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')] opacity-[0.04] pointer-events-none z-0" />
 
       <Navbar />
 

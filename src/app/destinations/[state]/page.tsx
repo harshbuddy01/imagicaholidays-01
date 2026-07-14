@@ -255,8 +255,8 @@ export default function StatePage() {
 
   return (
     <main className="min-h-screen text-[#1a1714]" style={{ background: `linear-gradient(160deg, ${current.bgFrom} 0%, ${current.bgTo} 100%)` }}>
-      {/* Paper texture */}
-      <div className="fixed inset-0 bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')] opacity-[0.03] pointer-events-none z-0" />
+      {/* Paper texture — absolute to avoid scroll repaint */}
+      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')] opacity-[0.03] pointer-events-none z-0" />
 
       <Navbar />
 

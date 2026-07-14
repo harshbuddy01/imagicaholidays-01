@@ -247,7 +247,8 @@ export default function TestimonialsPage() {
       {/* ══════════ 3. CTA SECTION ══════════ */}
       <section className="relative py-32 md:py-48 bg-[#1a1914] text-center px-6 overflow-hidden">
         {/* Vignette Background */}
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center bg-fixed opacity-10 mix-blend-screen" />
+        {/* Vignette Background — bg-fixed removed (caused scroll repaint every frame) */}
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center opacity-10 mix-blend-screen" />
         
         {/* Floating Botanicals */}
         <BotanicalBranch className="absolute left-[5%] top-1/2 -translate-y-1/2 w-48 h-64 text-[#d5cab5] opacity-60 -scale-x-100" />

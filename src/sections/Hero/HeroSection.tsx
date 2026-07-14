@@ -3,12 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { heroSlides } from "@/lib/constants";
 import { fetchWebsiteConfig } from "@/lib/api";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const heroVideos = [
   { id: "video-1", src: "/videos/hls/hero-1/playlist.m3u8" },
@@ -171,16 +167,8 @@ export default function HeroSection() {
     return () => { v1.removeEventListener("ended", onV1End); v2.removeEventListener("ended", onV2End); };
   }, [useFallback]);
 
-  useEffect(() => {
-    if (!heroRef.current) return;
-    const ctx = gsap.context(() => {
-      gsap.to(".hero-video-wrapper", {
-        yPercent: 10, ease: "none",
-        scrollTrigger: { trigger: heroRef.current, start: "top top", end: "bottom top", scrub: 1.2 },
-      });
-    }, heroRef);
-    return () => ctx.revert();
-  }, []);
+  // No GSAP parallax — removed because moving a video element on scroll
+  // forces expensive composite layer invalidation every frame (major lag source)
 
   useEffect(() => {
     if (!useFallback) return;
@@ -206,12 +194,14 @@ export default function HeroSection() {
             <div className={`absolute inset-0 w-full h-full transition-opacity duration-[2000ms] ${activeVideo === 0 ? "opacity-100 z-[2]" : "opacity-0 z-[1]"}`}>
               <video ref={video1Ref}
                 onError={() => setUseFallback(true)} autoPlay loop muted playsInline preload="auto"
-                className="absolute inset-0 w-full h-full object-cover" />
+                className="absolute inset-0 w-full h-full object-cover"
+                style={{ willChange: 'transform', transform: 'translateZ(0)' }} />
             </div>
             <div className={`absolute inset-0 w-full h-full transition-opacity duration-[2000ms] ${activeVideo === 1 ? "opacity-100 z-[2]" : "opacity-0 z-[1]"}`}>
               <video ref={video2Ref}
                 onError={() => setUseFallback(true)} autoPlay loop muted playsInline preload="none"
-                className="absolute inset-0 w-full h-full object-cover" />
+                className="absolute inset-0 w-full h-full object-cover"
+                style={{ willChange: 'transform', transform: 'translateZ(0)' }} />
             </div>
           </>
         )}
