@@ -202,9 +202,14 @@ export default function ArchitectPage() {
                 </a>
               </div>
               <div>
-                <span className="text-[9px] text-[#ae9e85] uppercase tracking-wider block mb-1">Phone / Whatsapp</span>
-                <a href="tel:+918235337180" className="hover:text-white">
-                  +91 82353 37180
+                <span className="text-[9px] text-[#ae9e85] uppercase tracking-wider block mb-1">WhatsApp Direct</span>
+                <a 
+                  href="https://wa.me/918910759374?text=Hi%20Harsh%2C%20I%20visited%20the%20Imagica%20Holidays%20website%20and%20would%20love%20to%20discuss%20a%20project%20with%20you."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white underline decoration-[#ae9e85]/40 font-medium"
+                >
+                  +91 89107 59374
                 </a>
               </div>
             </div>
