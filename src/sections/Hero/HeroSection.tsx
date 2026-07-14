@@ -97,6 +97,7 @@ export default function HeroSection() {
 
 
   const slides = config?.fallbackSlides?.length > 0 ? config.fallbackSlides : heroSlides;
+  const hasSecondVideo = config ? !!config.videoUrl2 : true;
 
   useEffect(() => {
     const v1 = video1Ref.current;
@@ -116,6 +117,7 @@ export default function HeroSection() {
   }, [config?.videoUrl1]);
 
   useEffect(() => {
+    if (!hasSecondVideo) return;
     // Delay loading video 2 by 4 seconds to free up network bandwidth for initial load
     const timer = setTimeout(() => {
       const v2 = video2Ref.current;
@@ -135,7 +137,7 @@ export default function HeroSection() {
     }, 4000);
 
     return () => clearTimeout(timer);
-  }, [config?.videoUrl2]);
+  }, [config?.videoUrl2, hasSecondVideo]);
 
   useEffect(() => {
     return () => {
@@ -151,21 +153,34 @@ export default function HeroSection() {
   useEffect(() => {
     const v1 = video1Ref.current;
     const v2 = video2Ref.current;
-    if (!v1 || !v2) return;
+    if (!v1) return;
     const onV1End = () => {
-      if (v2.readyState >= 1 && v2.duration > 0) { setActiveVideo(1); v2.currentTime = 0; v2.play().catch(() => {}); }
-      else { v1.currentTime = 0; v1.play().catch(() => {}); }
+      if (hasSecondVideo && v2 && v2.readyState >= 1 && v2.duration > 0) { 
+        setActiveVideo(1); 
+        v2.currentTime = 0; 
+        v2.play().catch(() => {}); 
+      } else { 
+        v1.currentTime = 0; 
+        v1.play().catch(() => {}); 
+      }
     };
     const onV2End = () => { setActiveVideo(0); v1.currentTime = 0; v1.play().catch(() => {}); };
     v1.addEventListener("ended", onV1End);
-    v2.addEventListener("ended", onV2End);
+    if (v2) {
+      v2.addEventListener("ended", onV2End);
+    }
     v1.play().catch(() => {
       const resume = () => { v1.play().catch(() => {}); };
       document.addEventListener("touchstart", resume, { once: true });
       document.addEventListener("click", resume, { once: true });
     });
-    return () => { v1.removeEventListener("ended", onV1End); v2.removeEventListener("ended", onV2End); };
-  }, [useFallback]);
+    return () => { 
+      v1.removeEventListener("ended", onV1End); 
+      if (v2) {
+        v2.removeEventListener("ended", onV2End); 
+      }
+    };
+  }, [useFallback, config, hasSecondVideo]);
 
   // No GSAP parallax — removed because moving a video element on scroll
   // forces expensive composite layer invalidation every frame (major lag source)
@@ -197,12 +212,14 @@ export default function HeroSection() {
                 className="absolute inset-0 w-full h-full object-cover"
                 style={{ willChange: 'transform', transform: 'translateZ(0)' }} />
             </div>
-            <div className={`absolute inset-0 w-full h-full transition-opacity duration-[2000ms] ${activeVideo === 1 ? "opacity-100 z-[2]" : "opacity-0 z-[1]"}`}>
-              <video ref={video2Ref}
-                onError={() => setUseFallback(true)} autoPlay loop muted playsInline preload="none"
-                className="absolute inset-0 w-full h-full object-cover"
-                style={{ willChange: 'transform', transform: 'translateZ(0)' }} />
-            </div>
+            {hasSecondVideo && (
+              <div className={`absolute inset-0 w-full h-full transition-opacity duration-[2000ms] ${activeVideo === 1 ? "opacity-100 z-[2]" : "opacity-0 z-[1]"}`}>
+                <video ref={video2Ref}
+                  onError={() => setUseFallback(true)} autoPlay loop muted playsInline preload="none"
+                  className="absolute inset-0 w-full h-full object-cover"
+                  style={{ willChange: 'transform', transform: 'translateZ(0)' }} />
+              </div>
+            )}
           </>
         )}
         {/* Dark gradient overlay */}

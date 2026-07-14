@@ -60,12 +60,90 @@ const links: NavLink[] = [
   { href: "/about", id: "/about", label: "About Us" }
 ];
 
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://api.imagicaholidays.com/api/v1';
+
+const DEFAULT_MEMOIR_STATES = [
+  {
+    slug: "sikkim",
+    title: "Sikkim",
+    region: "Himalayan East",
+    image: "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?q=80&w=800",
+    desc: "An alpine haven of glacial lakes, ancient monasteries, and the cloud-kissed peaks of Mount Kanchenjunga.",
+  },
+  {
+    slug: "west-bengal",
+    title: "West Bengal",
+    region: "Colonial & Tea Heritage",
+    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=800",
+    desc: "Wander through rolling green valleys of Darjeeling tea, or explore the colonial art archives of Kolkata.",
+  },
+  {
+    slug: "kerala",
+    title: "Kerala",
+    region: "God's Own Country",
+    image: "https://images.unsplash.com/photo-1593693397690-362cb9666fc2?q=80&w=800",
+    desc: "A tropical oasis of emerald backwaters, velvet tea plantations, and wild spice sanctuaries.",
+  },
+  {
+    slug: "rajasthan",
+    title: "Rajasthan",
+    region: "Land of Kings",
+    image: "https://images.unsplash.com/photo-1605649487212-47bdab064df7?q=80&w=800",
+    desc: "Sandstone fortresses rising from desert dunes, grand lake palaces, and royal heritage legends.",
+  },
+  {
+    slug: "goa",
+    title: "Goa",
+    region: "Coastal Tranquility",
+    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=800",
+    desc: "Pristine sun-drenched sands, historic Portuguese chapels, and the easy rhythm of coastal life.",
+  },
+  {
+    slug: "andaman-nicobar",
+    title: "Andaman & Nicobar",
+    region: "Tropical Island Haven",
+    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=800",
+    desc: "Crystal-clear turquoise waters, vibrant coral reefs, and untouched palm-fringed private shores.",
+  },
+  {
+    slug: "tamil-nadu",
+    title: "Tamil Nadu",
+    region: "Dravidian Heritage",
+    image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=800",
+    desc: "Stately mountain retreats, stone-carved heritage temples, and the scenic vistas of the Nilgiris.",
+  },
+];
+
+
 export default function Navbar() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState(pathname.startsWith('/journey') ? '/journey' : '#destinations-carousel');
   const [open, setOpen] = useState(false);
   const [destOpen, setDestOpen] = useState(false);
+
+  const [landingStates, setLandingStates] = useState<any[]>([]);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    fetch(`${API_BASE}/website-configs/public`)
+      .then(res => res.json())
+      .then(d => {
+        if (d.success && d.data?.config?.['landing-states'] && d.data.config['landing-states'].length > 0) {
+          setLandingStates(d.data.config['landing-states']);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  const states = landingStates.length > 0 ? landingStates : DEFAULT_MEMOIR_STATES;
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % states.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [states.length]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 32);
@@ -237,25 +315,31 @@ export default function Navbar() {
 
                         {/* Right Side: Featured Spot (1/3 width) */}
                         <div className="w-[220px] flex flex-col justify-between p-1">
-                          <div className="relative h-28 rounded-lg overflow-hidden border border-white/10 mb-3 group/featured">
-                            <Image 
-                              src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=300" 
-                              alt="Featured Destination" 
-                              width={220}
-                              height={112}
-                              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover/featured:scale-105" 
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/95 to-transparent" />
-                            <div className="absolute bottom-2.5 left-2.5">
-                              <span className="text-[0.5rem] uppercase tracking-[0.2em] text-[#d8be8f] font-bold block mb-0.5">Featured Memoir</span>
-                              <span className="text-[0.75rem] uppercase tracking-[0.15em] text-white font-bold block font-garamond">Munnar, Kerala</span>
+                          <Link href={`/destinations/${states[activeIndex]?.slug}`} className="block group/memoir">
+                            <div className="relative h-28 rounded-lg overflow-hidden border border-white/10 mb-3 group-hover/memoir:border-white/30 transition-all">
+                              {states[activeIndex]?.image && (
+                                <Image 
+                                  src={states[activeIndex].image} 
+                                  alt={states[activeIndex].title} 
+                                  width={220}
+                                  height={112}
+                                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover/memoir:scale-105" 
+                                />
+                              )}
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/95 to-transparent" />
+                              <div className="absolute bottom-2.5 left-2.5">
+                                <span className="text-[0.5rem] uppercase tracking-[0.2em] text-[#d8be8f] font-bold block mb-0.5">Featured Memoir</span>
+                                <span className="text-[0.75rem] uppercase tracking-[0.15em] text-white font-bold block font-garamond">
+                                  {states[activeIndex]?.title}, {states[activeIndex]?.region}
+                                </span>
+                              </div>
                             </div>
-                          </div>
-                          <p className="text-[0.62rem] text-white/55 font-manrope leading-relaxed mb-3">
-                            Wander through mist-shrouded emerald slopes, where cloud-kissed heights offer sanctuary.
+                          </Link>
+                          <p className="text-[0.62rem] text-white/55 font-manrope leading-relaxed mb-3 line-clamp-2">
+                            {states[activeIndex]?.desc}
                           </p>
                           <Link 
-                            href="/destinations" 
+                            href={`/destinations/${states[activeIndex]?.slug}`} 
                             className="text-[0.58rem] uppercase tracking-[0.2em] text-[#d8be8f] hover:text-white font-bold transition-colors flex items-center gap-1.5"
                           >
                             Explore All Escape
