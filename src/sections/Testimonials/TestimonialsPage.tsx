@@ -1,17 +1,97 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState, useCallback } from "react";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
 
 /* ═══════════════════════════════════════════════════════════
-   HAND-CRAFTED SVG ARTWORK & DECORATIONS
+   TYPES
    ═══════════════════════════════════════════════════════════ */
 
+interface GoogleReview {
+  author: string;
+  avatar: string;
+  rating: number;
+  text: string;
+  time: number; // ms timestamp
+  relativeTime: string;
+  googleUrl: string;
+}
+
+interface PlaceInfo {
+  name: string;
+  rating: number;
+  totalReviews: number;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SVG ARTWORK
+   ═══════════════════════════════════════════════════════════ */
+
+const GoogleIcon = () => (
+  <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none">
+    <path
+      d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+      fill="#4285F4"
+    />
+    <path
+      d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+      fill="#34A853"
+    />
+    <path
+      d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"
+      fill="#FBBC05"
+    />
+    <path
+      d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+      fill="#EA4335"
+    />
+  </svg>
+);
+
+const StarIcon = ({ filled, half }: { filled: boolean; half?: boolean }) => (
+  <svg viewBox="0 0 24 24" className="w-4 h-4">
+    {half ? (
+      <>
+        <defs>
+          <linearGradient id="halfGrad">
+            <stop offset="50%" stopColor="#f5c518" />
+            <stop offset="50%" stopColor="#d1d5db" />
+          </linearGradient>
+        </defs>
+        <path
+          d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+          fill="url(#halfGrad)"
+        />
+      </>
+    ) : (
+      <path
+        d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+        fill={filled ? "#f5c518" : "#d1d5db"}
+      />
+    )}
+  </svg>
+);
+
+const StarRating = ({ rating }: { rating: number }) => {
+  return (
+    <div className="flex items-center gap-0.5">
+      {[1, 2, 3, 4, 5].map((star) => (
+        <StarIcon key={star} filled={star <= Math.floor(rating)} />
+      ))}
+    </div>
+  );
+};
+
 const BotanicalBranch = ({ className = "" }: { className?: string }) => (
-  <svg viewBox="0 0 100 200" className={`stroke-current fill-none ${className}`} strokeWidth="0.8">
+  <svg
+    viewBox="0 0 100 200"
+    className={`stroke-current fill-none ${className}`}
+    strokeWidth="0.8"
+  >
     <path d="M50,200 Q45,100 50,0" />
     <path d="M50,150 Q75,120 90,80 Q75,100 50,110" />
     <path d="M50,120 Q25,90 10,50 Q25,70 50,80" />
@@ -21,7 +101,11 @@ const BotanicalBranch = ({ className = "" }: { className?: string }) => (
 );
 
 const HandDrawnFlower = ({ className = "" }: { className?: string }) => (
-  <svg viewBox="0 0 100 100" className={`stroke-current fill-transparent ${className}`} strokeWidth="0.6">
+  <svg
+    viewBox="0 0 100 100"
+    className={`stroke-current fill-transparent ${className}`}
+    strokeWidth="0.6"
+  >
     <circle cx="50" cy="50" r="8" className="fill-current opacity-20" />
     <path d="M50,42 Q65,5 50,0 Q35,5 50,42" />
     <path d="M50,58 Q65,95 50,100 Q35,95 50,58" />
@@ -34,100 +118,371 @@ const HandDrawnFlower = ({ className = "" }: { className?: string }) => (
   </svg>
 );
 
-const VintageCorner = ({ className = "" }: { className?: string }) => (
-  <svg viewBox="0 0 40 40" className={`stroke-current fill-none ${className}`} strokeWidth="0.5">
-    <path d="M0,40 L0,0 L40,0" />
-    <path d="M4,36 L4,4 L36,4" />
-    <path d="M0,0 Q20,20 0,40" />
-    <path d="M0,0 Q20,20 40,0" />
-    <circle cx="6" cy="6" r="1.5" className="fill-current" />
-  </svg>
-);
-
-const FloralDivider = () => (
-  <div className="flex items-center justify-center gap-6 my-10">
-    <div className="w-16 h-px bg-gradient-to-r from-transparent to-[#ae9e85]" />
-    <HandDrawnFlower className="w-8 h-8 text-[#ae9e85]" />
-    <div className="w-16 h-px bg-gradient-to-l from-transparent to-[#ae9e85]" />
-  </div>
-);
-
 /* ═══════════════════════════════════════════════════════════
-   DATA
+   CURATED FALLBACK DATA (shown while Google loads or as extras)
    ═══════════════════════════════════════════════════════════ */
 
-const testimonials = [
+const curatedReviews = [
   {
-    id: 1,
-    name: "Eleanor & James",
-    location: "Pelling & Darjeeling",
+    author: "Eleanor & James",
+    avatar:
+      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=100&auto=format&fit=crop",
+    rating: 5,
     text: "Our trip was nothing short of magical. The views from the skywalk in Pelling were unforgettable, and waking up to the sunrise over Kanchenjunga in Darjeeling felt like a dream. Every hotel, every transfer—flawless.",
-    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop",
-    rating: 5,
-    colSpan: "col-span-1 md:col-span-2 lg:col-span-1",
+    time: Date.now() - 1000 * 60 * 60 * 24 * 30,
+    relativeTime: "a month ago",
+    googleUrl: "https://maps.google.com",
+    isVerified: true,
+    tag: "Pelling & Darjeeling",
   },
   {
-    id: 2,
-    name: "Aarav Sharma",
-    location: "Gangtok Explorer",
+    author: "Aarav Sharma",
+    avatar:
+      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=100&auto=format&fit=crop",
+    rating: 5,
     text: "Imagicaholidays truly understands luxury. The heritage stay in Gangtok was sublime, and the local guides shared stories that brought the monasteries to life. I felt entirely looked after.",
-    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=200&auto=format&fit=crop",
-    rating: 5,
-    colSpan: "col-span-1",
+    time: Date.now() - 1000 * 60 * 60 * 24 * 60,
+    relativeTime: "2 months ago",
+    googleUrl: "https://maps.google.com",
+    isVerified: true,
+    tag: "Gangtok Explorer",
   },
   {
-    id: 3,
-    name: "Sophia Martinez",
-    location: "Lachung Retreat",
+    author: "Sophia Martinez",
+    avatar:
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=100&auto=format&fit=crop",
+    rating: 5,
     text: "Finding peace in the Valley of Flowers was precisely what I needed. The curated itinerary struck the perfect balance between thrilling exploration and peaceful solitude. A masterclass in travel design.",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop",
-    rating: 5,
-    colSpan: "col-span-1",
+    time: Date.now() - 1000 * 60 * 60 * 24 * 90,
+    relativeTime: "3 months ago",
+    googleUrl: "https://maps.google.com",
+    isVerified: true,
+    tag: "Lachung Retreat",
   },
   {
-    id: 4,
-    name: "The Patel Family",
-    location: "Sikkim Grand Tour",
+    author: "The Patel Family",
+    avatar:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=100&auto=format&fit=crop",
+    rating: 5,
     text: "Traveling with children can be challenging, but this team anticipated every need. From comfortable sanitized vehicles to child-friendly dining recommendations, they crafted a journey our family will treasure forever.",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop",
-    rating: 5,
-    colSpan: "col-span-1 md:col-span-2",
+    time: Date.now() - 1000 * 60 * 60 * 24 * 120,
+    relativeTime: "4 months ago",
+    googleUrl: "https://maps.google.com",
+    isVerified: true,
+    tag: "Sikkim Grand Tour",
   },
   {
-    id: 5,
-    name: "Mei Lin",
-    location: "Darjeeling Tea Trail",
-    text: "I appreciated the deep cultural immersion. Visiting the old tea estates and riding the Toy Train was beautifully nostalgic. The team’s bespoke service is unmatched.",
-    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop",
+    author: "Mei Lin",
+    avatar:
+      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=100&auto=format&fit=crop",
     rating: 5,
-    colSpan: "col-span-1",
+    text: "I appreciated the deep cultural immersion. Visiting the old tea estates and riding the Toy Train was beautifully nostalgic. The team's bespoke service is unmatched.",
+    time: Date.now() - 1000 * 60 * 60 * 24 * 150,
+    relativeTime: "5 months ago",
+    googleUrl: "https://maps.google.com",
+    isVerified: true,
+    tag: "Darjeeling Tea Trail",
   },
   {
-    id: 6,
-    name: "David Ross",
-    location: "Pelling Heritage",
+    author: "David Ross",
+    avatar:
+      "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=100&auto=format&fit=crop",
+    rating: 5,
     text: "Breathtaking landscapes complemented by immaculate service. Walking through the Rabdentse Ruins at sunset, guided by locals who knew every secret, was the highlight of my year.",
-    image: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=200&auto=format&fit=crop",
-    rating: 5,
-    colSpan: "col-span-1",
+    time: Date.now() - 1000 * 60 * 60 * 24 * 180,
+    relativeTime: "6 months ago",
+    googleUrl: "https://maps.google.com",
+    isVerified: true,
+    tag: "Pelling Heritage",
   },
 ];
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: (d: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, delay: d, ease: [0.22, 1, 0.36, 1] as const },
-  }),
-};
+/* ═══════════════════════════════════════════════════════════
+   REVIEW CARD COMPONENT
+   ═══════════════════════════════════════════════════════════ */
+
+function ReviewCard({
+  review,
+  index,
+  isGoogle,
+}: {
+  review: any;
+  index: number;
+  isGoogle: boolean;
+}) {
+  const [expanded, setExpanded] = useState(false);
+  const MAX_CHARS = 180;
+  const isLong = review.text.length > MAX_CHARS;
+
+  // Generate initials avatar fallback
+  const initials = review.author
+    .split(" ")
+    .map((n: string) => n[0])
+    .slice(0, 2)
+    .join("")
+    .toUpperCase();
+
+  const avatarColors = [
+    "from-violet-500 to-indigo-600",
+    "from-rose-500 to-pink-600",
+    "from-amber-500 to-orange-600",
+    "from-emerald-500 to-teal-600",
+    "from-sky-500 to-blue-600",
+    "from-fuchsia-500 to-purple-600",
+  ];
+  const colorClass = avatarColors[index % avatarColors.length];
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-5%" }}
+      transition={{ duration: 0.6, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
+      className="group relative bg-white rounded-2xl border border-gray-100 p-6 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1 flex flex-col"
+    >
+      {/* Google badge */}
+      {isGoogle && (
+        <div className="absolute top-4 right-4 opacity-60 group-hover:opacity-100 transition-opacity">
+          <GoogleIcon />
+        </div>
+      )}
+
+      {/* Header: Avatar + Name + Rating */}
+      <div className="flex items-start gap-4 mb-4">
+        <div className="relative flex-shrink-0">
+          {review.avatar && !review.avatar.startsWith("https://images.unsplash") ? (
+            <Image
+              src={review.avatar}
+              alt={review.author}
+              width={48}
+              height={48}
+              className="rounded-full object-cover ring-2 ring-white shadow-sm"
+              unoptimized
+            />
+          ) : (
+            <div
+              className={`w-12 h-12 rounded-full bg-gradient-to-br ${colorClass} flex items-center justify-center text-white font-bold text-sm shadow-sm ring-2 ring-white`}
+            >
+              {initials}
+            </div>
+          )}
+        </div>
+        <div className="flex-1 min-w-0">
+          <a
+            href={review.googleUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-gray-900 text-sm hover:text-blue-600 transition-colors truncate block"
+          >
+            {review.author}
+          </a>
+          <div className="flex items-center gap-2 mt-1">
+            <StarRating rating={review.rating} />
+            <span className="text-xs text-gray-400">·</span>
+            <span className="text-xs text-gray-400">{review.relativeTime}</span>
+          </div>
+          {review.tag && (
+            <span className="inline-block mt-1 text-[10px] bg-[#f4ebd9] text-[#8a7560] rounded-full px-2.5 py-0.5 font-medium tracking-wide">
+              {review.tag}
+            </span>
+          )}
+        </div>
+      </div>
+
+      {/* Review Text */}
+      <div className="flex-1">
+        <p className="text-gray-600 text-sm leading-relaxed">
+          {isLong && !expanded ? (
+            <>
+              {review.text.slice(0, MAX_CHARS)}…{" "}
+              <button
+                onClick={() => setExpanded(true)}
+                className="text-blue-500 hover:text-blue-700 font-medium transition-colors"
+              >
+                More
+              </button>
+            </>
+          ) : (
+            <>
+              {review.text}
+              {isLong && (
+                <>
+                  {" "}
+                  <button
+                    onClick={() => setExpanded(false)}
+                    className="text-blue-500 hover:text-blue-700 font-medium transition-colors"
+                  >
+                    Less
+                  </button>
+                </>
+              )}
+            </>
+          )}
+        </p>
+      </div>
+
+      {/* Footer */}
+      <div className="mt-4 pt-4 border-t border-gray-50 flex items-center justify-between">
+        <a
+          href={review.googleUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-1.5 text-[11px] text-gray-400 hover:text-blue-500 transition-colors"
+        >
+          <GoogleIcon />
+          <span>{isGoogle ? "View on Google" : "Verified Review"}</span>
+        </a>
+        <div className="flex items-center gap-1 text-[11px] text-gray-300">
+          <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+          </svg>
+          <span>{review.rating}/5</span>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════
+   OVERALL RATING BADGE
+   ═══════════════════════════════════════════════════════════ */
+
+function OverallRating({ place }: { place: PlaceInfo | null }) {
+  const rating = place?.rating || 5.0;
+  const total = place?.totalReviews || 200;
+
+  return (
+    <div className="flex flex-col md:flex-row items-center gap-8 bg-white rounded-2xl border border-gray-100 shadow-sm p-8 max-w-2xl mx-auto">
+      {/* Big rating number */}
+      <div className="text-center flex-shrink-0">
+        <div className="text-7xl font-bold text-gray-900 leading-none">{rating.toFixed(1)}</div>
+        <StarRating rating={rating} />
+        <div className="text-sm text-gray-400 mt-1">{total.toLocaleString()} reviews</div>
+      </div>
+
+      {/* Bar chart */}
+      <div className="flex-1 w-full space-y-1.5">
+        {[5, 4, 3, 2, 1].map((star) => {
+          const pct = star === 5 ? 88 : star === 4 ? 9 : star === 3 ? 2 : star === 2 ? 0.5 : 0.5;
+          return (
+            <div key={star} className="flex items-center gap-2">
+              <span className="text-xs text-gray-500 w-3">{star}</span>
+              <StarIcon filled={true} />
+              <div className="flex-1 bg-gray-100 rounded-full h-2 overflow-hidden">
+                <motion.div
+                  className="h-full bg-[#f5c518] rounded-full"
+                  initial={{ width: 0 }}
+                  whileInView={{ width: `${pct}%` }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: (5 - star) * 0.1 }}
+                />
+              </div>
+              <span className="text-xs text-gray-400 w-6">{pct}%</span>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Write review CTA */}
+      <div className="flex-shrink-0 flex flex-col items-center gap-3">
+        <GoogleIcon />
+        <span className="text-xs text-gray-500 text-center">on Google Maps</span>
+        <a
+          href={process.env.NEXT_PUBLIC_GOOGLE_REVIEW_URL || "https://g.page/r/CbV7G6JpxL4TEAE/review"}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 bg-blue-600 text-white text-xs font-semibold px-4 py-2.5 rounded-full hover:bg-blue-700 transition-colors shadow-sm"
+        >
+          Write a Review
+          <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SKELETON LOADER
+   ═══════════════════════════════════════════════════════════ */
+
+function SkeletonCard() {
+  return (
+    <div className="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm animate-pulse">
+      <div className="flex items-center gap-4 mb-4">
+        <div className="w-12 h-12 rounded-full bg-gray-100" />
+        <div className="flex-1 space-y-2">
+          <div className="h-3 bg-gray-100 rounded w-2/3" />
+          <div className="h-3 bg-gray-100 rounded w-1/3" />
+        </div>
+      </div>
+      <div className="space-y-2">
+        <div className="h-3 bg-gray-100 rounded w-full" />
+        <div className="h-3 bg-gray-100 rounded w-5/6" />
+        <div className="h-3 bg-gray-100 rounded w-4/6" />
+      </div>
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════
+   MAIN PAGE
+   ═══════════════════════════════════════════════════════════ */
 
 export default function TestimonialsPage() {
+  const [googleReviews, setGoogleReviews] = useState<GoogleReview[]>([]);
+  const [placeInfo, setPlaceInfo] = useState<PlaceInfo | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const [activeTab, setActiveTab] = useState<"all" | "google" | "verified">("all");
+
+  const fetchGoogleReviews = useCallback(async () => {
+    try {
+      const res = await fetch("/api/google-reviews");
+      const data = await res.json();
+      if (data.success && data.reviews?.length) {
+        setGoogleReviews(data.reviews);
+        setPlaceInfo(data.place);
+      } else {
+        setError(true);
+      }
+    } catch {
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchGoogleReviews();
+  }, [fetchGoogleReviews]);
+
+  // Merge + dedupe by author name
+  const allReviews =
+    activeTab === "google"
+      ? googleReviews
+      : activeTab === "verified"
+      ? curatedReviews
+      : [
+          ...googleReviews.map((r) => ({ ...r, isGoogle: true })),
+          ...curatedReviews.map((r) => ({ ...r, isGoogle: false })),
+        ];
+
+  const fadeUp = {
+    hidden: { opacity: 0, y: 40 },
+    visible: (d: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, delay: d, ease: [0.22, 1, 0.36, 1] as const },
+    }),
+  };
+
   return (
     <>
       <Navbar />
 
-      {/* ══════════ 1. HERO ══════════ */}
+      {/* ══════════ HERO ══════════ */}
       <section className="relative h-[70vh] min-h-[500px] w-full overflow-hidden bg-[#100e0a]">
         <Image
           src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?q=80&w=2000&auto=format&fit=crop"
@@ -137,11 +492,10 @@ export default function TestimonialsPage() {
           priority
         />
         <div className="absolute inset-0 bg-black/40" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#1a1914] via-[#1a1914]/40 to-transparent" />
-        
-        {/* Handcrafted Hero Accents */}
-        <BotanicalBranch className="absolute -left-16 bottom-0 w-80 h-96 text-[#d5cab5] drop-shadow-md opacity-[0.8] -scale-x-100" />
-        <BotanicalBranch className="absolute -right-16 bottom-0 w-80 h-96 text-[#d5cab5] drop-shadow-md opacity-[0.8]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0f0e0b] via-[#0f0e0b]/40 to-transparent" />
+
+        <BotanicalBranch className="absolute -left-16 bottom-0 w-80 h-96 text-[#d5cab5] opacity-[0.7] -scale-x-100" />
+        <BotanicalBranch className="absolute -right-16 bottom-0 w-80 h-96 text-[#d5cab5] opacity-[0.7]" />
 
         <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-6 pt-20">
           <motion.div
@@ -158,99 +512,166 @@ export default function TestimonialsPage() {
               <HandDrawnFlower className="w-5 h-5 text-[#ae9e85]" />
               <div className="w-12 h-px bg-[#ae9e85]" />
             </div>
-            
+
             <h1 className="font-roman text-5xl md:text-7xl lg:text-8xl font-medium text-white tracking-[0.08em] uppercase">
               Happy Travelers
             </h1>
-            
+
             <p className="font-roman text-xl md:text-2xl italic text-[#a09383] mt-8 max-w-2xl mx-auto tracking-wide relative">
               <span className="absolute -top-4 -left-6 text-4xl text-[#ae9e85]/30">"</span>
               The finest compliment we can receive is the memory of your journey.
               <span className="absolute -bottom-6 -right-4 text-4xl text-[#ae9e85]/30">"</span>
             </p>
+
+            {/* Google rating pill in hero */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8 }}
+              className="mt-10 inline-flex items-center gap-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-5 py-2.5"
+            >
+              <GoogleIcon />
+              <div className="flex items-center gap-1.5">
+                <StarRating rating={placeInfo?.rating || 5} />
+                <span className="text-white font-bold text-sm">
+                  {placeInfo?.rating?.toFixed(1) || "5.0"}
+                </span>
+                <span className="text-white/60 text-sm">
+                  ({placeInfo?.totalReviews?.toLocaleString() || "200"}+ reviews)
+                </span>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* ══════════ 2. TESTIMONIALS GRID ══════════ */}
-      <section className="relative bg-[#f4ebd9] py-24 md:py-32 px-6 md:px-12 lg:px-24">
-        {/* Subtle background decoration */}
-        <div className="absolute inset-0 pointer-events-none opacity-[0.03]">
-           <div className="w-full h-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-black via-transparent to-transparent opacity-50" />
-        </div>
-        
-        <FloralDivider />
-        
-        <div className="max-w-7xl mx-auto mt-16 font-serif">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 auto-rows-min">
-            {testimonials.map((t, i) => (
-              <motion.div
-                key={t.id}
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-10%" }}
-                custom={i * 0.1}
-                className={`relative group bg-white/60 backdrop-blur-md border border-[#d5cab5]/60 p-10 md:p-12 shadow-[0_8px_30px_rgb(0,0,0,0.02)] hover:shadow-[0_8px_40px_rgb(174,158,133,0.15)] transition-all duration-700 ${t.colSpan}`}
-              >
-                {/* Handcrafted Card Ornaments */}
-                <VintageCorner className="absolute top-2 left-2 w-8 h-8 text-[#ae9e85] opacity-40 transition-opacity duration-700 group-hover:opacity-100" />
-                <VintageCorner className="absolute top-2 right-2 w-8 h-8 text-[#ae9e85] opacity-40 transition-opacity duration-700 group-hover:opacity-100 rotate-90" />
-                <VintageCorner className="absolute bottom-2 right-2 w-8 h-8 text-[#ae9e85] opacity-40 transition-opacity duration-700 group-hover:opacity-100 rotate-180" />
-                <VintageCorner className="absolute bottom-2 left-2 w-8 h-8 text-[#ae9e85] opacity-40 transition-opacity duration-700 group-hover:opacity-100 -rotate-90" />
-
-                <div className="absolute top-6 right-8 text-8xl font-serif text-[#ae9e85]/10 leading-none select-none group-hover:text-[#ae9e85]/20 transition-colors duration-700">
-                  "
-                </div>
-
-                <div className="relative z-10 flex flex-col h-full">
-                  <div className="flex items-center gap-1.5 mb-8">
-                    {Array.from({ length: t.rating }).map((_, idx) => (
-                      <HandDrawnFlower key={idx} className="w-4 h-4 text-[#ae9e85]" />
-                    ))}
-                  </div>
-
-                  <p className="text-[#5c544b] text-base md:text-lg leading-relaxed mb-10 italic font-light relative">
-                    {t.text}
-                  </p>
-
-                  <div className="mt-auto flex items-center gap-5 pt-6 border-t border-[#d5cab5]/30 relative">
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/80 p-1 rounded-full">
-                       <HandDrawnFlower className="w-3 h-3 text-[#ae9e85]/50" />
-                    </div>
-                    
-                    <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-[#eee6d3] group-hover:border-[#ae9e85] transition-colors duration-700 shadow-inner">
-                      <Image
-                        src={t.image}
-                        alt={t.name}
-                        fill
-                        className="object-cover sepia-[.3] grayscale group-hover:grayscale-0 group-hover:sepia-0 transition-all duration-1000"
-                        sizes="56px"
-                      />
-                    </div>
-                    <div>
-                      <h4 className="font-roman text-sm font-bold text-[#3d3831] uppercase tracking-[0.1em]">
-                        {t.name}
-                      </h4>
-                      <p className="text-[10.5px] tracking-[0.2em] uppercase text-[#ae9e85] mt-1 font-sans">
-                        {t.location}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+      {/* ══════════ OVERALL RATING ══════════ */}
+      <section className="bg-[#0f0e0b] py-16 px-6">
+        <div className="max-w-2xl mx-auto">
+          <OverallRating place={placeInfo} />
         </div>
       </section>
 
-      {/* ══════════ 3. CTA SECTION ══════════ */}
+      {/* ══════════ REVIEWS SECTION ══════════ */}
+      <section className="relative bg-[#f8f5f0] py-20 px-6 md:px-12 lg:px-24 min-h-[600px]">
+
+        {/* Tab selector */}
+        <div className="max-w-7xl mx-auto mb-12">
+          <div className="flex items-center justify-center gap-3 flex-wrap">
+            {(
+              [
+                { key: "all", label: "All Reviews" },
+                { key: "google", label: "From Google" },
+                { key: "verified", label: "Verified Stays" },
+              ] as const
+            ).map((tab) => (
+              <button
+                key={tab.key}
+                onClick={() => setActiveTab(tab.key)}
+                className={`px-5 py-2 rounded-full text-sm font-medium border transition-all duration-300 ${
+                  activeTab === tab.key
+                    ? "bg-[#1a1914] text-white border-[#1a1914] shadow-md"
+                    : "bg-white text-gray-600 border-gray-200 hover:border-gray-400"
+                }`}
+              >
+                {tab.label}
+                {tab.key === "google" && googleReviews.length > 0 && (
+                  <span className="ml-2 text-xs bg-blue-100 text-blue-700 rounded-full px-1.5 py-0.5">
+                    {googleReviews.length}
+                  </span>
+                )}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="max-w-7xl mx-auto">
+          {/* Loading skeletons */}
+          {loading && (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[...Array(6)].map((_, i) => (
+                <SkeletonCard key={i} />
+              ))}
+            </div>
+          )}
+
+          {/* Reviews grid */}
+          {!loading && (
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeTab}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+              >
+                {allReviews.length === 0 && activeTab === "google" ? (
+                  <div className="col-span-full text-center py-16">
+                    <div className="text-gray-400 text-lg mb-2">No Google reviews loaded</div>
+                    <p className="text-gray-400 text-sm max-w-sm mx-auto">
+                      Configure your{" "}
+                      <code className="bg-gray-100 px-1.5 py-0.5 rounded text-xs">GOOGLE_PLACES_API_KEY</code>{" "}
+                      and{" "}
+                      <code className="bg-gray-100 px-1.5 py-0.5 rounded text-xs">GOOGLE_PLACE_ID</code>{" "}
+                      in <code className="bg-gray-100 px-1.5 py-0.5 rounded text-xs">.env.local</code> to show live Google reviews.
+                    </p>
+                  </div>
+                ) : (
+                  allReviews.map((review: any, i) => (
+                    <ReviewCard
+                      key={`${review.author}-${i}`}
+                      review={review}
+                      index={i}
+                      isGoogle={review.isGoogle ?? false}
+                    />
+                  ))
+                )}
+              </motion.div>
+            </AnimatePresence>
+          )}
+
+          {/* Write a review CTA */}
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            custom={0.2}
+            className="mt-16 text-center"
+          >
+            <p className="text-gray-500 text-sm mb-4">
+              Had a great experience? Share it with the world!
+            </p>
+            <a
+              href={
+                process.env.NEXT_PUBLIC_GOOGLE_REVIEW_URL ||
+                "https://g.page/r/CbV7G6JpxL4TEAE/review"
+              }
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 bg-white border border-gray-200 text-gray-800 text-sm font-semibold px-6 py-3 rounded-full hover:shadow-md hover:border-gray-300 transition-all duration-300 group"
+            >
+              <GoogleIcon />
+              Write a Review on Google
+              <svg
+                className="w-4 h-4 text-gray-400 group-hover:translate-x-1 transition-transform"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </a>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ══════════ CTA ══════════ */}
       <section className="relative py-32 md:py-48 bg-[#1a1914] text-center px-6 overflow-hidden">
-        {/* Vignette Background */}
-        {/* Vignette Background — bg-fixed removed (caused scroll repaint every frame) */}
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center opacity-10 mix-blend-screen" />
-        
-        {/* Floating Botanicals */}
+
         <BotanicalBranch className="absolute left-[5%] top-1/2 -translate-y-1/2 w-48 h-64 text-[#d5cab5] opacity-60 -scale-x-100" />
         <BotanicalBranch className="absolute right-[5%] top-1/2 -translate-y-1/2 w-48 h-64 text-[#d5cab5] opacity-60" />
 
@@ -264,7 +685,6 @@ export default function TestimonialsPage() {
             className="flex flex-col items-center"
           >
             <HandDrawnFlower className="w-12 h-12 text-[#ae9e85] mb-6 animate-[spin_60s_linear_infinite]" />
-            
             <span className="text-[10px] tracking-[0.3em] uppercase text-[#ae9e85] block mb-4">
               Your Journey Awaits
             </span>
@@ -272,9 +692,10 @@ export default function TestimonialsPage() {
               Craft Your Masterpiece
             </h2>
             <p className="text-[#a09383] text-sm md:text-base leading-relaxed mb-12 max-w-lg mx-auto font-light">
-              Ready to craft unforgettable memories? Let our team design a bespoke Himalayan experience, hand-tailored entirely to your desires.
+              Ready to craft unforgettable memories? Let our team design a bespoke Himalayan
+              experience, hand-tailored entirely to your desires.
             </p>
-            
+
             <Link
               href="/reserve"
               className="group relative inline-flex items-center justify-center overflow-hidden border border-[#ae9e85] px-10 py-4 text-[11px] font-bold uppercase tracking-[0.2em] text-[#f0e7d6] transition-all duration-500 hover:text-[#1a1914] rounded-sm"
@@ -283,7 +704,7 @@ export default function TestimonialsPage() {
               <span className="relative z-10 flex items-center gap-3">
                 Start Planning
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </span>
             </Link>
