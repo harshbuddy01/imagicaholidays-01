@@ -360,7 +360,7 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-3">
             {/* WhatsApp Chat Button — Official Green Bubble Icon */}
             <a 
-              href="https://wa.me/918235337180?text=Hi!%20I'd%20like%20to%20plan%20a%20trip%20with%20Imagica%20Holidays." 
+              href="https://wa.me/918910759374?text=Hi!%20I'd%20like%20to%20plan%20a%20trip%20with%20Imagica%20Holidays." 
               target="_blank" 
               rel="noopener noreferrer"
               className="flex items-center justify-center w-10 h-10 rounded-full bg-[#25D366] border border-[#25D366]/30 hover:scale-105 transition-all duration-500 shadow-[0_0_10px_rgba(37,211,102,0.15)] hover:shadow-[0_0_20px_rgba(37,211,102,0.4)] overflow-hidden"
@@ -393,7 +393,7 @@ export default function Navbar() {
           <div className="flex items-center gap-3 relative z-[60] md:hidden">
             {/* Mobile WhatsApp Icon Button */}
             <a 
-              href="https://wa.me/918235337180?text=Hi!%20I'd%20like%20to%20plan%20a%20trip%20with%20Imagica%20Holidays." 
+              href="https://wa.me/918910759374?text=Hi!%20I'd%20like%20to%20plan%20a%20trip%20with%20Imagica%20Holidays." 
               target="_blank" 
               rel="noopener noreferrer"
               className="flex items-center justify-center w-9 h-9 rounded-full bg-[#25D366] border border-[#25D366]/30 transition-all duration-300 overflow-hidden"

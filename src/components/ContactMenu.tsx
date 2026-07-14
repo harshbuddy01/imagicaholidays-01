@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 export default function ContactMenu() {
-  const whatsappNumber = "918235337180";
+  const whatsappNumber = "918910759374";
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=Hi!%20I'd%20like%20to%20plan%20a%20trip%20with%20Imagica%20Holidays.`;
 
   return (
