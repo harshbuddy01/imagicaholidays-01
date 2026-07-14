@@ -311,7 +311,7 @@ function OverallRating({ place }: { place: PlaceInfo | null }) {
         <GoogleIcon />
         <span className="text-xs text-gray-500 text-center">on Google Maps</span>
         <a
-          href={process.env.NEXT_PUBLIC_GOOGLE_REVIEW_URL || "https://g.page/r/CbV7G6JpxL4TEAE/review"}
+          href="https://maps.app.goo.gl/nYMH3mYr92GBcfCTA"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 bg-blue-600 text-white text-xs font-semibold px-4 py-2.5 rounded-full hover:bg-blue-700 transition-colors shadow-sm"
@@ -526,7 +526,7 @@ export default function TestimonialsPage() {
               Had a great experience? Share it with the world!
             </p>
             <a
-              href="https://g.page/r/CbV7G6JpxL4TEAE/review"
+              href="https://maps.app.goo.gl/nYMH3mYr92GBcfCTA"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 bg-white border border-gray-200 text-gray-800 text-sm font-semibold px-6 py-3 rounded-full hover:shadow-md hover:border-gray-300 transition-all duration-300 group"
