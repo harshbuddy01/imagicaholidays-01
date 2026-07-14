@@ -263,7 +263,11 @@ export default function Footer() {
       <div className="relative z-10 border-t border-white/8">
         <div className="max-w-7xl mx-auto px-5 md:px-12 lg:px-16 py-5 md:py-6 flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-4">
           <p className="text-xs text-[#7a705e]">
-            © {new Date().getFullYear()} IMAGICA HOLIDAYS. All rights reserved.
+            © {new Date().getFullYear()} IMAGICA HOLIDAYS. All rights reserved. {" "}
+            <span className="hidden md:inline">|</span>{" "}
+            <Link href="/architect" className="text-[#ae9e85] hover:text-[#f0e7d6] transition-colors font-medium ml-1">
+              Website Architect
+            </Link>
           </p>
           <div className="flex flex-wrap gap-6 text-xs text-[#7a705e]">
             <Link href="/privacy" className="transition-colors duration-200 hover:text-[#a09383]">Privacy Policy</Link>
