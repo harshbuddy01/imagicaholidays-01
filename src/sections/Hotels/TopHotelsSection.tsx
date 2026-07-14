@@ -21,7 +21,7 @@ const hotels: HotelPreview[] = [
     name: "Lake Palace",
     location: "Udaipur, Rajasthan",
     tagline: "Floating Heritage on Lake Pichola",
-    image: "https://images.pexels.com/photos/29851603/pexels-photo-29851603.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    image: "https://images.unsplash.com/photo-1605649487212-47bdab064df7?q=80&w=1600",
     className: "md:col-span-2 md:row-span-2",
   },
   {

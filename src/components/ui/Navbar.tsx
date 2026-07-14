@@ -116,7 +116,7 @@ export default function Navbar() {
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-0 z-[100] transition-all duration-500 ${scrolled || pathname.startsWith('/journey')
+        className={`fixed inset-x-0 top-0 z-[100] transition-all duration-500 ${scrolled || pathname.startsWith('/journey') || pathname.startsWith('/destinations')
           ? "border-b border-white/10 bg-[rgba(16,14,10,0.95)] py-2 backdrop-blur-2xl"
           : "bg-gradient-to-b from-[rgba(9,8,6,0.7)] to-transparent py-4"
           }`}
@@ -279,14 +279,17 @@ export default function Navbar() {
               href="https://wa.me/918235337180?text=Hi!%20I'd%20like%20to%20plan%20a%20trip%20with%20Imagica%20Holidays." 
               target="_blank" 
               rel="noopener noreferrer"
-              className="flex items-center justify-center w-10 h-10 rounded-full bg-[#25D366]/10 border border-[#25D366]/30 hover:bg-[#25D366] text-[#25D366] hover:text-white transition-all duration-500 shadow-[0_0_10px_rgba(37,211,102,0.15)] hover:shadow-[0_0_20px_rgba(37,211,102,0.4)]"
+              className="flex items-center justify-center w-10 h-10 rounded-full bg-[#25D366] border border-[#25D366]/30 hover:scale-105 transition-all duration-500 shadow-[0_0_10px_rgba(37,211,102,0.15)] hover:shadow-[0_0_20px_rgba(37,211,102,0.4)] overflow-hidden"
               aria-label="Chat on WhatsApp"
             >
-              {/* Official WhatsApp logo SVG */}
-              <svg className="w-5 h-5" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fillRule="evenodd" clipRule="evenodd" d="M16 2C8.268 2 2 8.268 2 16c0 2.45.646 4.75 1.775 6.74L2 30l7.47-1.742A13.935 13.935 0 0 0 16 30c7.732 0 14-6.268 14-14S23.732 2 16 2Z" fill="currentColor"/>
-                <path d="M22.003 19.284c-.32-.16-1.89-.932-2.183-1.038-.293-.107-.506-.16-.719.16-.213.32-.824 1.038-1.01 1.251-.187.213-.373.24-.693.08-.32-.16-1.352-.499-2.575-1.591-.952-.85-1.594-1.9-1.781-2.22-.186-.32-.02-.493.14-.652.144-.143.32-.373.48-.56.16-.186.213-.32.32-.533.107-.213.053-.4-.027-.56-.08-.16-.72-1.733-.986-2.373-.26-.623-.524-.538-.72-.549l-.612-.01a1.174 1.174 0 0 0-.852.4c-.293.32-1.118 1.092-1.118 2.665s1.145 3.09 1.304 3.303c.16.213 2.252 3.44 5.459 4.826.763.33 1.358.526 1.822.674.765.244 1.462.21 2.012.127.614-.091 1.89-.773 2.156-1.52.267-.746.267-1.385.187-1.52-.08-.133-.293-.213-.612-.373Z" fill="white"/>
-              </svg>
+              <div className="relative w-6 h-6 select-none">
+                <Image
+                  src="/whatsapp_logo.png"
+                  alt="WhatsApp Logo"
+                  fill
+                  className="object-contain"
+                />
+              </div>
             </a>
 
             {/* Inquiry CTA Button */}
@@ -309,13 +312,17 @@ export default function Navbar() {
               href="https://wa.me/918235337180?text=Hi!%20I'd%20like%20to%20plan%20a%20trip%20with%20Imagica%20Holidays." 
               target="_blank" 
               rel="noopener noreferrer"
-              className="flex items-center justify-center w-9 h-9 rounded-full bg-[#25D366]/15 border border-[#25D366]/30 text-[#25D366] active:bg-[#25D366] active:text-white transition-all duration-300"
+              className="flex items-center justify-center w-9 h-9 rounded-full bg-[#25D366] border border-[#25D366]/30 transition-all duration-300 overflow-hidden"
               aria-label="Chat on WhatsApp"
             >
-              <svg className="w-5 h-5" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fillRule="evenodd" clipRule="evenodd" d="M16 2C8.268 2 2 8.268 2 16c0 2.45.646 4.75 1.775 6.74L2 30l7.47-1.742A13.935 13.935 0 0 0 16 30c7.732 0 14-6.268 14-14S23.732 2 16 2Z" fill="currentColor"/>
-                <path d="M22.003 19.284c-.32-.16-1.89-.932-2.183-1.038-.293-.107-.506-.16-.719.16-.213.32-.824 1.038-1.01 1.251-.187.213-.373.24-.693.08-.32-.16-1.352-.499-2.575-1.591-.952-.85-1.594-1.9-1.781-2.22-.186-.32-.02-.493.14-.652.144-.143.32-.373.48-.56.16-.186.213-.32.32-.533.107-.213.053-.4-.027-.56-.08-.16-.72-1.733-.986-2.373-.26-.623-.524-.538-.72-.549l-.612-.01a1.174 1.174 0 0 0-.852.4c-.293.32-1.118 1.092-1.118 2.665s1.145 3.09 1.304 3.303c.16.213 2.252 3.44 5.459 4.826.763.33 1.358.526 1.822.674.765.244 1.462.21 2.012.127.614-.091 1.89-.773 2.156-1.52.267-.746.267-1.385.187-1.52-.08-.133-.293-.213-.612-.373Z" fill="white"/>
-              </svg>
+              <div className="relative w-[22px] h-[22px] select-none">
+                <Image
+                  src="/whatsapp_logo.png"
+                  alt="WhatsApp Logo"
+                  fill
+                  className="object-contain"
+                />
+              </div>
             </a>
 
             {/* Mobile Hamburger Button */}

@@ -49,13 +49,13 @@ const attractions = [
   {
     name: "Soochipara Falls",
     tag: "Nature",
-    image: "https://images.pexels.com/photos/29845028/pexels-photo-29845028.jpeg?auto=compress&cs=tinysrgb&w=800",
+    image: "https://images.unsplash.com/photo-1546182990-dffeafbe841d?q=80&w=800",
     short: "Also known as Sentinel Rock Waterfalls, it's a magnificent three-tiered waterfall surrounded by dense evergreen forests.",
   },
   {
     name: "Wayanad Wildlife Sanctuary",
     tag: "Wildlife",
-    image: "https://images.pexels.com/photos/29845020/pexels-photo-29845020.jpeg?auto=compress&cs=tinysrgb&w=800",
+    image: "https://images.unsplash.com/photo-1581850518616-bcb8077ab213?q=80&w=800",
     short: "A contiguous network with Mudumalai and Bandipur sanctuaries, hosting vast herds of elephants and vibrant birdlife.",
   },
   {

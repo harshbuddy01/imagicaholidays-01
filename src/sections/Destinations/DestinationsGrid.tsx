@@ -169,7 +169,7 @@ const stateChapters: StateDestination[] = [
     title: "Rajasthan",
     tagline: "Royal Heritage",
     description: "Intricate sandstone palaces, massive fortresses, and heritage lakes.",
-    image: "https://images.pexels.com/photos/29851603/pexels-photo-29851603.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    image: "https://images.unsplash.com/photo-1605649487212-47bdab064df7?q=80&w=1200",
     citiesText: "Jaipur · Udaipur",
     link: "/destinations/rajasthan",
     accentColor: "#c9903b",

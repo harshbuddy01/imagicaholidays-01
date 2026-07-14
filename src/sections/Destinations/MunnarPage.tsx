@@ -55,13 +55,13 @@ const attractions = [
   {
     name: "Kundala Lake",
     tag: "Nature",
-    image: "https://images.pexels.com/photos/29845028/pexels-photo-29845028.jpeg?auto=compress&cs=tinysrgb&w=800",
+    image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=800",
     short: "An idyllic lake surrounded by lush green hills, where you can enjoy pedal boating and Kashmiri Shikara rides.",
   },
   {
     name: "Attukal Waterfalls",
     tag: "Nature",
-    image: "https://images.pexels.com/photos/29845020/pexels-photo-29845020.jpeg?auto=compress&cs=tinysrgb&w=800",
+    image: "https://images.unsplash.com/photo-1582236166418-62024b89ebc1?q=80&w=800",
     short: "A spectacular waterfall cascading through rolling hills and dense jungles, perfect for trekking enthusiasts.",
   },
 ];

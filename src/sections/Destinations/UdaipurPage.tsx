@@ -31,37 +31,37 @@ const attractions = [
   {
     name: "City Palace",
     tag: "Heritage",
-    image: "https://images.pexels.com/photos/29801402/pexels-photo-29801402.jpeg?auto=compress&cs=tinysrgb&w=800",
+    image: "https://images.unsplash.com/photo-1605649487212-47bdab064df7?q=80&w=800",
     short: "A magnificent complex of palaces on the eastern bank of Lake Pichola, built over a period of nearly 400 years.",
   },
   {
     name: "Jag Mandir",
     tag: "Island",
-    image: "https://images.pexels.com/photos/29801416/pexels-photo-29801416.jpeg?auto=compress&cs=tinysrgb&w=800",
+    image: "https://images.unsplash.com/photo-1605649487212-47bdab064df7?q=80&w=800",
     short: "An island palace in Lake Pichola, also known as the 'Lake Garden Palace', offering stunning views and royal history.",
   },
   {
     name: "Lake Pichola",
     tag: "Nature",
-    image: "https://images.pexels.com/photos/29824645/pexels-photo-29824645.jpeg?auto=compress&cs=tinysrgb&w=800",
+    image: "https://images.unsplash.com/photo-1599661046289-e31897846e41?q=80&w=800",
     short: "One of the oldest and largest lakes of Udaipur, world-famous for its scenic beauty and the palaces situated within it.",
   },
   {
     name: "Saheliyon-ki-Bari",
     tag: "Garden",
-    image: "https://images.pexels.com/photos/29824651/pexels-photo-29824651.jpeg?auto=compress&cs=tinysrgb&w=800",
+    image: "https://images.unsplash.com/photo-1599661046289-e31897846e41?q=80&w=800",
     short: "A major garden and a popular tourist space in Udaipur, famous for its fountains, marble elephants, and lotus pools.",
   },
   {
     name: "Old City Streets",
     tag: "Culture",
-    image: "https://images.pexels.com/photos/29837943/pexels-photo-29837943.jpeg?auto=compress&cs=tinysrgb&w=800",
+    image: "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?q=80&w=800",
     short: "Wander through the vibrant narrow streets of the old city, filled with traditional handicrafts, silver jewelry, and local snacks.",
   },
   {
     name: "Gangaur Ghat",
     tag: "Spirituality",
-    image: "https://images.pexels.com/photos/29824639/pexels-photo-29824639.jpeg?auto=compress&cs=tinysrgb&w=800",
+    image: "https://images.unsplash.com/photo-1602643163983-ed0babc39797?q=80&w=800",
     short: "One of the main ghats on the waterfront of Lake Pichola, ideal for witnessing traditional ceremonies and beautiful sunsets.",
   },
 ];
@@ -99,21 +99,21 @@ const tourPackages = [
     price: "₹24,800",
     duration: "3 Days / 2 Nights",
     tag: "Couple Friendly",
-    image: "https://images.pexels.com/photos/29801402/pexels-photo-29801402.jpeg?auto=compress&cs=tinysrgb&w=600",
+    image: "https://images.unsplash.com/photo-1605649487212-47bdab064df7?q=80&w=600",
   },
   {
     title: "Mewar Royal Heritage Explorer",
     price: "₹32,500",
     duration: "5 Days / 4 Nights",
     tag: "Luxury",
-    image: "https://images.pexels.com/photos/29801416/pexels-photo-29801416.jpeg?auto=compress&cs=tinysrgb&w=600",
+    image: "https://images.unsplash.com/photo-1605649487212-47bdab064df7?q=80&w=600",
   },
   {
     title: "Lakes & Palaces Photography Tour",
     price: "₹21,200",
     duration: "3 Days / 2 Nights",
     tag: "Culture",
-    image: "https://images.pexels.com/photos/29824639/pexels-photo-29824639.jpeg?auto=compress&cs=tinysrgb&w=600",
+    image: "https://images.unsplash.com/photo-1602643163983-ed0babc39797?q=80&w=600",
   },
 ];
 
@@ -124,7 +124,7 @@ export default function UdaipurPage() {
       cityName="Udaipur"
       stateName="Rajasthan"
       tagline="Romantic Lakeside Vistas & Marble Palace Resorts"
-      heroImage="https://images.pexels.com/photos/29801402/pexels-photo-29801402.jpeg?auto=compress&cs=tinysrgb&w=1800"
+      heroImage="https://images.unsplash.com/photo-1605649487212-47bdab064df7?q=80&w=1800"
       quickInfo={quickInfo}
       whyVisit={whyVisit}
       attractions={attractions}

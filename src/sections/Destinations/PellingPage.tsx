@@ -61,7 +61,7 @@ const attractions = [
   {
     name: "Kanchenjunga Waterfalls",
     tag: "Nature",
-    image: "https://images.pexels.com/photos/29845020/pexels-photo-29845020.jpeg?auto=compress&cs=tinysrgb&w=800",
+    image: "https://images.unsplash.com/photo-1546182990-dffeafbe841d?q=80&w=800",
     short: "A beautiful and powerful waterfall cascading from a great height, surrounded by lush green forests.",
   },
 ];
