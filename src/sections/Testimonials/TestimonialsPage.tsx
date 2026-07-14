@@ -118,84 +118,7 @@ const HandDrawnFlower = ({ className = "" }: { className?: string }) => (
   </svg>
 );
 
-/* ═══════════════════════════════════════════════════════════
-   CURATED FALLBACK DATA (shown while Google loads or as extras)
-   ═══════════════════════════════════════════════════════════ */
 
-const curatedReviews = [
-  {
-    author: "Eleanor & James",
-    avatar:
-      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=100&auto=format&fit=crop",
-    rating: 5,
-    text: "Our trip was nothing short of magical. The views from the skywalk in Pelling were unforgettable, and waking up to the sunrise over Kanchenjunga in Darjeeling felt like a dream. Every hotel, every transfer—flawless.",
-    time: Date.now() - 1000 * 60 * 60 * 24 * 30,
-    relativeTime: "a month ago",
-    googleUrl: "https://maps.google.com",
-    isVerified: true,
-    tag: "Pelling & Darjeeling",
-  },
-  {
-    author: "Aarav Sharma",
-    avatar:
-      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=100&auto=format&fit=crop",
-    rating: 5,
-    text: "Imagicaholidays truly understands luxury. The heritage stay in Gangtok was sublime, and the local guides shared stories that brought the monasteries to life. I felt entirely looked after.",
-    time: Date.now() - 1000 * 60 * 60 * 24 * 60,
-    relativeTime: "2 months ago",
-    googleUrl: "https://maps.google.com",
-    isVerified: true,
-    tag: "Gangtok Explorer",
-  },
-  {
-    author: "Sophia Martinez",
-    avatar:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=100&auto=format&fit=crop",
-    rating: 5,
-    text: "Finding peace in the Valley of Flowers was precisely what I needed. The curated itinerary struck the perfect balance between thrilling exploration and peaceful solitude. A masterclass in travel design.",
-    time: Date.now() - 1000 * 60 * 60 * 24 * 90,
-    relativeTime: "3 months ago",
-    googleUrl: "https://maps.google.com",
-    isVerified: true,
-    tag: "Lachung Retreat",
-  },
-  {
-    author: "The Patel Family",
-    avatar:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=100&auto=format&fit=crop",
-    rating: 5,
-    text: "Traveling with children can be challenging, but this team anticipated every need. From comfortable sanitized vehicles to child-friendly dining recommendations, they crafted a journey our family will treasure forever.",
-    time: Date.now() - 1000 * 60 * 60 * 24 * 120,
-    relativeTime: "4 months ago",
-    googleUrl: "https://maps.google.com",
-    isVerified: true,
-    tag: "Sikkim Grand Tour",
-  },
-  {
-    author: "Mei Lin",
-    avatar:
-      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=100&auto=format&fit=crop",
-    rating: 5,
-    text: "I appreciated the deep cultural immersion. Visiting the old tea estates and riding the Toy Train was beautifully nostalgic. The team's bespoke service is unmatched.",
-    time: Date.now() - 1000 * 60 * 60 * 24 * 150,
-    relativeTime: "5 months ago",
-    googleUrl: "https://maps.google.com",
-    isVerified: true,
-    tag: "Darjeeling Tea Trail",
-  },
-  {
-    author: "David Ross",
-    avatar:
-      "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=100&auto=format&fit=crop",
-    rating: 5,
-    text: "Breathtaking landscapes complemented by immaculate service. Walking through the Rabdentse Ruins at sunset, guided by locals who knew every secret, was the highlight of my year.",
-    time: Date.now() - 1000 * 60 * 60 * 24 * 180,
-    relativeTime: "6 months ago",
-    googleUrl: "https://maps.google.com",
-    isVerified: true,
-    tag: "Pelling Heritage",
-  },
-];
 
 /* ═══════════════════════════════════════════════════════════
    REVIEW CARD COMPONENT
@@ -435,7 +358,6 @@ export default function TestimonialsPage() {
   const [placeInfo, setPlaceInfo] = useState<PlaceInfo | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  const [activeTab, setActiveTab] = useState<"all" | "google" | "verified">("all");
 
   const fetchGoogleReviews = useCallback(async () => {
     try {
@@ -458,16 +380,8 @@ export default function TestimonialsPage() {
     fetchGoogleReviews();
   }, [fetchGoogleReviews]);
 
-  // Merge + dedupe by author name
-  const allReviews =
-    activeTab === "google"
-      ? googleReviews
-      : activeTab === "verified"
-      ? curatedReviews
-      : [
-          ...googleReviews.map((r) => ({ ...r, isGoogle: true })),
-          ...curatedReviews.map((r) => ({ ...r, isGoogle: false })),
-        ];
+  // Only show real Google reviews
+  const allReviews = googleReviews.map((r) => ({ ...r, isGoogle: true }));
 
   const fadeUp = {
     hidden: { opacity: 0, y: 40 },
@@ -555,35 +469,6 @@ export default function TestimonialsPage() {
       {/* ══════════ REVIEWS SECTION ══════════ */}
       <section className="relative bg-[#f8f5f0] py-20 px-6 md:px-12 lg:px-24 min-h-[600px]">
 
-        {/* Tab selector */}
-        <div className="max-w-7xl mx-auto mb-12">
-          <div className="flex items-center justify-center gap-3 flex-wrap">
-            {(
-              [
-                { key: "all", label: "All Reviews" },
-                { key: "google", label: "From Google" },
-                { key: "verified", label: "Verified Stays" },
-              ] as const
-            ).map((tab) => (
-              <button
-                key={tab.key}
-                onClick={() => setActiveTab(tab.key)}
-                className={`px-5 py-2 rounded-full text-sm font-medium border transition-all duration-300 ${
-                  activeTab === tab.key
-                    ? "bg-[#1a1914] text-white border-[#1a1914] shadow-md"
-                    : "bg-white text-gray-600 border-gray-200 hover:border-gray-400"
-                }`}
-              >
-                {tab.label}
-                {tab.key === "google" && googleReviews.length > 0 && (
-                  <span className="ml-2 text-xs bg-blue-100 text-blue-700 rounded-full px-1.5 py-0.5">
-                    {googleReviews.length}
-                  </span>
-                )}
-              </button>
-            ))}
-          </div>
-        </div>
 
         <div className="max-w-7xl mx-auto">
           {/* Loading skeletons */}
@@ -599,22 +484,19 @@ export default function TestimonialsPage() {
           {!loading && (
             <AnimatePresence mode="wait">
               <motion.div
-                key={activeTab}
+                key="google-reviews"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3 }}
                 className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
               >
-                {allReviews.length === 0 && activeTab === "google" ? (
+                {allReviews.length === 0 ? (
                   <div className="col-span-full text-center py-16">
-                    <div className="text-gray-400 text-lg mb-2">No Google reviews loaded</div>
+                    <GoogleIcon />
+                    <div className="text-gray-500 text-lg mt-4 mb-2">Reviews are loading...</div>
                     <p className="text-gray-400 text-sm max-w-sm mx-auto">
-                      Configure your{" "}
-                      <code className="bg-gray-100 px-1.5 py-0.5 rounded text-xs">GOOGLE_PLACES_API_KEY</code>{" "}
-                      and{" "}
-                      <code className="bg-gray-100 px-1.5 py-0.5 rounded text-xs">GOOGLE_PLACE_ID</code>{" "}
-                      in <code className="bg-gray-100 px-1.5 py-0.5 rounded text-xs">.env.local</code> to show live Google reviews.
+                      If reviews don't appear, the Google Place ID may need to be verified in Vercel settings.
                     </p>
                   </div>
                 ) : (
@@ -644,10 +526,7 @@ export default function TestimonialsPage() {
               Had a great experience? Share it with the world!
             </p>
             <a
-              href={
-                process.env.NEXT_PUBLIC_GOOGLE_REVIEW_URL ||
-                "https://g.page/r/CbV7G6JpxL4TEAE/review"
-              }
+              href="https://g.page/r/CbV7G6JpxL4TEAE/review"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 bg-white border border-gray-200 text-gray-800 text-sm font-semibold px-6 py-3 rounded-full hover:shadow-md hover:border-gray-300 transition-all duration-300 group"
