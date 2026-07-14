@@ -302,7 +302,7 @@ export default function Navbar() {
               </svg>
             </a>
 
-            {/* Mobile Hamburger Button */
+            {/* Mobile Hamburger Button */}
             <button
               onClick={() => { setOpen((prev) => !prev); setDestOpen(false); }}
               aria-label="Toggle menu"
