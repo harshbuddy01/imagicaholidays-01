@@ -51,7 +51,8 @@ const links: NavLink[] = [
       { label: "Udaipur", href: "/destinations/udaipur", image: "https://images.unsplash.com/photo-1566837403146-36528327c57f?w=150" },
       { label: "Goa", href: "/destinations/goa", image: "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=150" },
       { label: "Pelling", href: "/destinations/pelling", image: "https://images.unsplash.com/photo-1543336775-49935ed6e76d?w=150" },
-      { label: "Lachung", href: "/destinations/lachung", image: "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?w=150" }
+      { label: "Lachung", href: "/destinations/lachung", image: "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?w=150" },
+      { label: "Port Blair", href: "/destinations/port-blair", image: "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?w=150" }
     ]
   },
   { href: "/testimonials", id: "/testimonials", label: "Experiences" },
@@ -172,8 +173,8 @@ export default function Navbar() {
 
                   {/* Destinations Luxury Mega-Dropdown Menu */}
                   {link.label === "Destinations" && link.dropdown && (
-                    <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                      <div className="bg-[#0b0908]/98 border border-[#d8be8f]/20 rounded-xl p-6 w-[700px] shadow-[0_25px_60px_rgba(0,0,0,0.95)] backdrop-blur-3xl flex gap-6 text-left">
+                    <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-[500]">
+                      <div className="bg-[#0c0a09] border border-[#d8be8f]/20 rounded-xl p-6 w-[700px] shadow-[0_25px_60px_rgba(0,0,0,0.95)] backdrop-blur-3xl flex gap-6 text-left relative z-[500]">
                         {/* Elegant top accent bar */}
                         <div className="absolute top-0 inset-x-8 h-[1.5px] bg-gradient-to-r from-transparent via-[#d8be8f]/50 to-transparent" />
                         
@@ -185,7 +186,14 @@ export default function Navbar() {
                               Himalayan East
                             </h4>
                             <ul className="space-y-2.5">
-                              <li><Link href="/destinations/gangtok" className="font-garamond text-[0.95rem] text-white/80 hover:text-[#d8be8f] tracking-wide block transition-colors">Gangtok</Link></li>
+                              <li>
+                                <Link href="/destinations/gangtok" className="font-garamond text-[0.95rem] text-white/80 hover:text-[#d8be8f] tracking-wide flex items-center justify-between transition-colors">
+                                  <span>Gangtok</span>
+                                  <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full text-[6px] font-manrope font-bold tracking-widest uppercase bg-[#a5813b]/25 text-[#d8be8f] border border-[#d8be8f]/20 shadow-[0_0_8px_rgba(216,190,143,0.15)] shrink-0">
+                                    🔥 Trending
+                                  </span>
+                                </Link>
+                              </li>
                               <li><Link href="/destinations/darjeeling" className="font-garamond text-[0.95rem] text-white/80 hover:text-[#d8be8f] tracking-wide block transition-colors">Darjeeling</Link></li>
                               <li><Link href="/destinations/pelling" className="font-garamond text-[0.95rem] text-white/80 hover:text-[#d8be8f] tracking-wide block transition-colors">Pelling</Link></li>
                               <li><Link href="/destinations/lachung" className="font-garamond text-[0.95rem] text-white/80 hover:text-[#d8be8f] tracking-wide block transition-colors">Lachung</Link></li>
@@ -203,15 +211,23 @@ export default function Navbar() {
                             </ul>
                           </div>
 
-                          {/* Column 3: Tropical South */}
+                          {/* Column 3: Tropical & Islands */}
                           <div>
                             <h4 className="font-manrope text-[0.58rem] tracking-[0.25em] uppercase text-[#d8be8f] font-bold mb-4 border-b border-white/5 pb-1">
-                              Tropical South
+                              Tropical & Islands
                             </h4>
                             <ul className="space-y-2.5">
                               <li><Link href="/destinations/munnar" className="font-garamond text-[0.95rem] text-white/80 hover:text-[#d8be8f] tracking-wide block transition-colors">Munnar</Link></li>
                               <li><Link href="/destinations/wayanad" className="font-garamond text-[0.95rem] text-white/80 hover:text-[#d8be8f] tracking-wide block transition-colors">Wayanad</Link></li>
                               <li><Link href="/destinations/goa" className="font-garamond text-[0.95rem] text-white/80 hover:text-[#d8be8f] tracking-wide block transition-colors">Goa</Link></li>
+                              <li>
+                                <Link href="/destinations/port-blair" className="font-garamond text-[0.95rem] text-white/80 hover:text-[#d8be8f] tracking-wide flex items-center justify-between transition-colors">
+                                  <span>Port Blair</span>
+                                  <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full text-[6px] font-manrope font-bold tracking-widest uppercase bg-[#a5813b]/25 text-[#d8be8f] border border-[#d8be8f]/20 shadow-[0_0_8px_rgba(216,190,143,0.15)] shrink-0">
+                                    🔥 Trending
+                                  </span>
+                                </Link>
+                              </li>
                             </ul>
                           </div>
                         </div>

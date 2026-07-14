@@ -193,7 +193,7 @@ const stateChapters: StateDestination[] = [
     citiesText: "Port Blair",
     link: "/destinations/andaman-nicobar",
     trending: true,
-    trendingLabel: "⭐ Hot Pick",
+    trendingLabel: "🔥 Trending",
     accentColor: "#3f888f",
   },
 ];
