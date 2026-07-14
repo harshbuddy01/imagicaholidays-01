@@ -89,10 +89,16 @@ export default function HeroSection() {
     fetchWebsiteConfig().then((data) => {
       if (data?.config?.hero) {
         setConfig(data.config.hero);
-        if (data.config.hero.useVideo !== undefined) setUseFallback(!data.config.hero.useVideo);
+        // Only use fallback (static images) if CRM explicitly says no video
+        // AND there is no video URL provided. If a videoUrl exists, always play it.
+        const hasVideoUrl = !!(data.config.hero.videoUrl1 || data.config.hero.videoUrl2);
+        const crmSaysNoVideo = data.config.hero.useVideo === false;
+        // Use fallback ONLY when no video URL is available
+        setUseFallback(crmSaysNoVideo && !hasVideoUrl);
       }
     });
   }, []);
+
 
   const slides = config?.fallbackSlides?.length > 0 ? config.fallbackSlides : heroSlides;
 
