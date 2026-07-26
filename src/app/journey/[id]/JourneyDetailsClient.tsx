@@ -29,6 +29,11 @@ interface JourneyDetailsClientProps {
     images: string[];
     mapImage?: string;
     overview?: string;
+    highlights?: string[];
+    inclusions?: string[];
+    hotels?: Array<{ city: string; hotel: string; nights: number }>;
+    suitableFor?: string;
+    whyChooseUs?: string[];
     itinerary: Array<{
       day: string;
       title: string;
@@ -163,6 +168,43 @@ export default function JourneyDetailsClient({ journey }: JourneyDetailsClientPr
                         </div>
                     </div>
 
+                    {/* Highlights Section */}
+                    {journey.highlights && journey.highlights.length > 0 && (
+                        <div className="flex flex-col md:flex-row gap-8 py-12 border-b border-[#d5cab5]/60">
+                            <div className="md:w-1/3">
+                                <h2 className="font-roman text-2xl text-[#1a1914]">Tour Highlights</h2>
+                            </div>
+                            <div className="md:w-2/3 flex flex-wrap gap-2.5">
+                                {journey.highlights.map((highlight, idx) => (
+                                    <span key={idx} className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white border border-[#e5ded5] text-xs font-semibold text-[#5c544b] hover:border-[#a5813b] transition-all">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-[#a5813b]" />
+                                        {highlight}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Hotel Stays Section */}
+                    {journey.hotels && journey.hotels.length > 0 && (
+                        <div className="flex flex-col md:flex-row gap-8 py-12 border-b border-[#d5cab5]/60">
+                            <div className="md:w-1/3">
+                                <h2 className="font-roman text-2xl text-[#1a1914]">Hotel Stay</h2>
+                            </div>
+                            <div className="md:w-2/3 grid sm:grid-cols-2 gap-4">
+                                {journey.hotels.map((h, idx) => (
+                                    <div key={idx} className="bg-white border border-[#e5ded5] p-5 rounded-2xl shadow-sm hover:border-[#a5813b] transition-all">
+                                        <div className="flex justify-between items-start mb-2">
+                                            <span className="text-[10px] tracking-wider uppercase font-bold text-[#a5813b]">{h.city}</span>
+                                            <span className="text-xs bg-[#f5f3ef] px-2 py-0.5 rounded-full text-[#5c544b] font-semibold">{h.nights} {h.nights === 1 ? 'Night' : 'Nights'}</span>
+                                        </div>
+                                        <h4 className="font-roman text-lg text-[#1a1914]">{h.hotel}</h4>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+
                     {/* Itinerary Section */}
                     <div id="itinerary" className="mt-12 flex flex-col md:flex-row gap-8">
                         <div className="md:w-1/3">
@@ -284,30 +326,45 @@ export default function JourneyDetailsClient({ journey }: JourneyDetailsClientPr
                                 <p className="text-[#a5813b] text-xs font-bold uppercase tracking-[0.3em] opacity-80">The Imagica Standard of Excellence</p>
                             </div>
 
-                            <div className="relative z-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-12">
-                                {[
-                                    { title: "Private Concierge", desc: "24/7 dedicated support throughout your journey.", icon: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" },
-                                    { title: "Heritage Stays", desc: "Boutique accommodations in hand-selected luxury properties.", icon: "M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" },
-                                    { title: "Private Transfers", desc: "Seamless travel in premium, private vehicles.", icon: "M18.36 6.64a9 9 0 1 1-12.73 0" },
-                                    { title: "Authentic Immersions", desc: "Private culinary experiences and local cultural encounters.", icon: "M12 2L2 7l10 5 10-5-10-5z" },
-                                    { title: "All-Inclusive Access", desc: "Worry-free entry to all planned monuments and activities.", icon: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" },
-                                    { title: "Gateway Assistance", desc: "Warm welcome and assistance at all arrival/departure points.", icon: "M15 10l-4 4l6 6m-4-4l-4 4l-6-6" }
-                                ].map((item, id) => (
-                                    <div key={id} className="group/item">
-                                        <div className="flex items-center gap-4 mb-3">
-                                            <div className="w-10 h-10 rounded-full bg-[#a5813b]/5 border border-[#a5813b]/20 flex items-center justify-center text-[#a5813b] group-hover/item:bg-[#a5813b] group-hover/item:text-white transition-all duration-500">
-                                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
-                                                    <path d={item.icon} strokeLinecap="round" strokeLinejoin="round" />
+                            {journey.inclusions && journey.inclusions.length > 0 ? (
+                                <div className="relative z-10 grid sm:grid-cols-2 gap-x-8 gap-y-6">
+                                    {journey.inclusions.map((inc, id) => (
+                                        <div key={id} className="flex items-start gap-4">
+                                            <div className="w-6 h-6 rounded-full bg-[#a5813b]/10 flex items-center justify-center text-[#a5813b] flex-shrink-0 mt-0.5">
+                                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+                                                    <path d="M20 6L9 17l-5-5" strokeLinecap="round" strokeLinejoin="round" />
                                                 </svg>
                                             </div>
-                                            <h4 className="font-roman text-xl text-[#1a1914]">{item.title}</h4>
+                                            <p className="font-roman text-lg text-[#1a1914]">{inc}</p>
                                         </div>
-                                        <p className="text-[14px] text-[#5c544b] leading-relaxed pl-14">
-                                            {item.desc}
-                                        </p>
-                                    </div>
-                                ))}
-                            </div>
+                                    ))}
+                                </div>
+                            ) : (
+                                <div className="relative z-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-12">
+                                    {[
+                                        { title: "Private Concierge", desc: "24/7 dedicated support throughout your journey.", icon: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" },
+                                        { title: "Heritage Stays", desc: "Boutique accommodations in hand-selected luxury properties.", icon: "M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" },
+                                        { title: "Private Transfers", desc: "Seamless travel in premium, private vehicles.", icon: "M18.36 6.64a9 9 0 1 1-12.73 0" },
+                                        { title: "Authentic Immersions", desc: "Private culinary experiences and local cultural encounters.", icon: "M12 2L2 7l10 5 10-5-10-5z" },
+                                        { title: "All-Inclusive Access", desc: "Worry-free entry to all planned monuments and activities.", icon: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" },
+                                        { title: "Gateway Assistance", desc: "Warm welcome and assistance at all arrival/departure points.", icon: "M15 10l-4 4l6 6m-4-4l-4 4l-6-6" }
+                                    ].map((item, id) => (
+                                        <div key={id} className="group/item">
+                                            <div className="flex items-center gap-4 mb-3">
+                                                <div className="w-10 h-10 rounded-full bg-[#a5813b]/5 border border-[#a5813b]/20 flex items-center justify-center text-[#a5813b] group-hover/item:bg-[#a5813b] group-hover/item:text-white transition-all duration-500">
+                                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
+                                                        <path d={item.icon} strokeLinecap="round" strokeLinejoin="round" />
+                                                    </svg>
+                                                </div>
+                                                <h4 className="font-roman text-xl text-[#1a1914]">{item.title}</h4>
+                                            </div>
+                                            <p className="text-[14px] text-[#5c544b] leading-relaxed pl-14">
+                                                {item.desc}
+                                            </p>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
 
                             {/* Center Small Flower Accent */}
                             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.02] pointer-events-none">
@@ -346,7 +403,7 @@ export default function JourneyDetailsClient({ journey }: JourneyDetailsClientPr
                         {/* Quick Stats */}
                         <div className="grid grid-cols-2 gap-4 mb-10 pb-2">
                             {[
-                                { icon: "M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5", label: "IMAGICA" },
+                                { icon: "M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2 M9 7a4 4 0 1 0 0-8 4 4 0 0 0 0 8", label: journey.suitableFor || "IMAGICA" },
                                 { icon: "M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z", label: `${journey.durationNights} NIGHTS` },
                                 { icon: "M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z M12 7a3 3 0 1 0 0 6 3 3 0 0 0 0-6z", label: `${journey.ports} PORTS` },
                                 { icon: "M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z", label: `${journey.countries} COUNTRIES` }
