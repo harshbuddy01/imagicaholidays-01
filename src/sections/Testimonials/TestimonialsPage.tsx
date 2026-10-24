@@ -134,24 +134,30 @@ function ReviewCard({
   isGoogle: boolean;
 }) {
   const [expanded, setExpanded] = useState(false);
+  const [imgError, setImgError] = useState(false);
   const MAX_CHARS = 180;
   const isLong = review.text.length > MAX_CHARS;
 
-  // Generate initials avatar fallback
-  const initials = review.author
-    .split(" ")
-    .map((n: string) => n[0])
-    .slice(0, 2)
-    .join("")
-    .toUpperCase();
+  // Real avatar check: ONLY authentic Google profile photos or verified Cloudinary uploads, NEVER stock/fake faces
+  const isRealPhoto =
+    Boolean(review.avatar) &&
+    (review.avatar.includes("googleusercontent.com") || review.avatar.includes("res.cloudinary.com")) &&
+    !review.avatar.includes("unsplash.com") &&
+    !imgError;
 
+  // Single initial letter starting with customer's name (authentic Google Maps style)
+  const initialLetter = (review.author || "G").trim().charAt(0).toUpperCase() || "G";
+
+  // Google Maps material avatar colors
   const avatarColors = [
-    "from-violet-500 to-indigo-600",
-    "from-rose-500 to-pink-600",
-    "from-amber-500 to-orange-600",
-    "from-emerald-500 to-teal-600",
-    "from-sky-500 to-blue-600",
-    "from-fuchsia-500 to-purple-600",
+    "bg-[#d93025]", // Google Red
+    "bg-[#1a73e8]", // Google Blue
+    "bg-[#1e8e3e]", // Google Green
+    "bg-[#e37400]", // Google Orange/Amber
+    "bg-[#9334e6]", // Google Purple
+    "bg-[#00897b]", // Google Teal
+    "bg-[#c2185b]", // Google Pink
+    "bg-[#3949ab]", // Google Indigo
   ];
   const colorClass = avatarColors[index % avatarColors.length];
 
@@ -173,20 +179,21 @@ function ReviewCard({
       {/* Header: Avatar + Name + Rating */}
       <div className="flex items-start gap-4 mb-4">
         <div className="relative flex-shrink-0">
-          {review.avatar && !review.avatar.startsWith("https://images.unsplash") ? (
-            <Image
+          {isRealPhoto ? (
+            <img
               src={review.avatar}
               alt={review.author}
               width={48}
               height={48}
-              className="rounded-full object-cover ring-2 ring-white shadow-sm"
-              unoptimized
+              className="w-12 h-12 rounded-full object-cover ring-2 ring-white shadow-sm"
+              onError={() => setImgError(true)}
+              loading="lazy"
             />
           ) : (
             <div
-              className={`w-12 h-12 rounded-full bg-gradient-to-br ${colorClass} flex items-center justify-center text-white font-bold text-sm shadow-sm ring-2 ring-white`}
+              className={`w-12 h-12 rounded-full ${colorClass} flex items-center justify-center text-white font-bold text-lg shadow-sm ring-2 ring-white select-none`}
             >
-              {initials}
+              {initialLetter}
             </div>
           )}
         </div>
@@ -360,44 +367,55 @@ export default function TestimonialsPage() {
   const [error, setError] = useState(false);
 
   const fetchGoogleReviews = useCallback(async () => {
+    setLoading(true);
+    setError(false);
     try {
-      const res = await fetch("/api/google-reviews");
-      const data = await res.json();
-      if (data.success && data.reviews?.length) {
-        setGoogleReviews(data.reviews);
-        if (data.place) setPlaceInfo(data.place);
-        return;
+      // 1. Try local website Next.js API route
+      try {
+        const res = await fetch("/api/google-reviews");
+        if (res.ok) {
+          const data = await res.json();
+          if (data.success && Array.isArray(data.reviews) && data.reviews.length > 0) {
+            setGoogleReviews(data.reviews);
+            if (data.place) setPlaceInfo(data.place);
+            setLoading(false);
+            return;
+          }
+        }
+      } catch (err) {
+        console.warn("Website /api/google-reviews failed, falling back to CRM:", err);
       }
-    } catch {
-      // Continue to direct CRM API fallback
-    }
 
-    try {
+      // 2. Direct fallback to live CRM API
       const crmRes = await fetch("https://api.imagicaholidays.com/api/v1/public/testimonials");
-      const crmData = await crmRes.json();
-      const list = crmData.data || crmData;
-      if (Array.isArray(list) && list.length > 0) {
-        const mapped = list.map((item: any) => ({
-          author: item.customerName || item.author,
-          avatar: item.photoUrl || item.avatar || "",
-          rating: item.rating || 5,
-          text: item.text || item.content,
-          time: new Date(item.createdAt || Date.now()).getTime(),
-          relativeTime: item.destination || "Verified Traveler",
-          googleUrl: "https://maps.app.goo.gl/nYMH3mYr92GBcfCTA",
-          tag: item.destination,
-          isGoogle: true,
-        }));
-        setGoogleReviews(mapped);
-        setPlaceInfo({
-          name: "IMAGICA HOLIDAYS",
-          rating: 4.8,
-          totalReviews: mapped.length >= 5 ? mapped.length : 200,
-        });
-      } else {
-        setError(true);
+      if (crmRes.ok) {
+        const crmData = await crmRes.json();
+        const list = crmData.data || crmData;
+        if (Array.isArray(list) && list.length > 0) {
+          const mapped = list.map((item: any) => ({
+            author: item.customerName || item.author,
+            avatar: item.photoUrl || item.avatar || "",
+            rating: item.rating || 5,
+            text: item.text || item.content,
+            time: new Date(item.createdAt || Date.now()).getTime(),
+            relativeTime: item.destination || "Verified Traveler",
+            googleUrl: "https://maps.app.goo.gl/nYMH3mYr92GBcfCTA",
+            tag: item.destination,
+            isGoogle: true,
+          }));
+          setGoogleReviews(mapped);
+          setPlaceInfo({
+            name: "IMAGICA HOLIDAYS",
+            rating: 4.8,
+            totalReviews: mapped.length >= 16 ? mapped.length : 16,
+          });
+          setLoading(false);
+          return;
+        }
       }
-    } catch {
+      setError(true);
+    } catch (err) {
+      console.error("Testimonials fetch error:", err);
       setError(true);
     } finally {
       setLoading(false);
