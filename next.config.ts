@@ -7,11 +7,14 @@ const nextConfig: NextConfig = {
   },
   images: {
     remotePatterns: [
+      { protocol: "https", hostname: "*.googleusercontent.com" },
+      { protocol: "https", hostname: "lh3.googleusercontent.com" },
+      { protocol: "https", hostname: "maps.googleapis.com" },
+      { protocol: "https", hostname: "res.cloudinary.com" },
+      { protocol: "https", hostname: "media.imagicaholidays.com" },
       { protocol: "https", hostname: "images.unsplash.com" },
       { protocol: "https", hostname: "unsplash.com" },
       { protocol: "https", hostname: "plus.unsplash.com" },
-      { protocol: "https", hostname: "res.cloudinary.com" },
-      { protocol: "https", hostname: "media.imagicaholidays.com" },
       { protocol: "https", hostname: "images.pexels.com" }
     ]
   },
@@ -38,7 +41,7 @@ const nextConfig: NextConfig = {
           },
           {
             key: 'Content-Security-Policy',
-            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://chatwoot-production-f07b.up.railway.app; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://res.cloudinary.com https://images.unsplash.com https://plus.unsplash.com https://unsplash.com https://images.pexels.com https://media.imagicaholidays.com; media-src 'self' https://media.imagicaholidays.com https://res.cloudinary.com blob: data:; connect-src 'self' https://api.imagicaholidays.com https://media.imagicaholidays.com https://chatwoot-production-f07b.up.railway.app https://www.google-analytics.com; worker-src 'self' blob:; frame-ancestors 'self' https://crm.imagicaholidays.com;",
+            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://chatwoot-production-f07b.up.railway.app; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://*.googleusercontent.com https://lh3.googleusercontent.com https://maps.googleapis.com https://res.cloudinary.com https://images.unsplash.com https://plus.unsplash.com https://unsplash.com https://images.pexels.com https://media.imagicaholidays.com; media-src 'self' https://media.imagicaholidays.com https://res.cloudinary.com blob: data:; connect-src 'self' https://api.imagicaholidays.com https://places.googleapis.com https://media.imagicaholidays.com https://chatwoot-production-f07b.up.railway.app https://www.google-analytics.com; worker-src 'self' blob:; frame-ancestors 'self' https://crm.imagicaholidays.com;",
           }
         ],
       },
