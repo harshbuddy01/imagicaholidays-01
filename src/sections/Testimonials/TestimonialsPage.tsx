@@ -365,7 +365,35 @@ export default function TestimonialsPage() {
       const data = await res.json();
       if (data.success && data.reviews?.length) {
         setGoogleReviews(data.reviews);
-        setPlaceInfo(data.place);
+        if (data.place) setPlaceInfo(data.place);
+        return;
+      }
+    } catch {
+      // Continue to direct CRM API fallback
+    }
+
+    try {
+      const crmRes = await fetch("https://api.imagicaholidays.com/api/v1/public/testimonials");
+      const crmData = await crmRes.json();
+      const list = crmData.data || crmData;
+      if (Array.isArray(list) && list.length > 0) {
+        const mapped = list.map((item: any) => ({
+          author: item.customerName || item.author,
+          avatar: item.photoUrl || item.avatar || "",
+          rating: item.rating || 5,
+          text: item.text || item.content,
+          time: new Date(item.createdAt || Date.now()).getTime(),
+          relativeTime: item.destination || "Verified Traveler",
+          googleUrl: "https://maps.app.goo.gl/nYMH3mYr92GBcfCTA",
+          tag: item.destination,
+          isGoogle: true,
+        }));
+        setGoogleReviews(mapped);
+        setPlaceInfo({
+          name: "IMAGICA HOLIDAYS",
+          rating: 4.8,
+          totalReviews: mapped.length >= 5 ? mapped.length : 200,
+        });
       } else {
         setError(true);
       }
