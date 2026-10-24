@@ -97,7 +97,7 @@ export default function HeroSection() {
 
 
   const slides = config?.fallbackSlides?.length > 0 ? config.fallbackSlides : heroSlides;
-  const hasSecondVideo = config ? !!config.videoUrl2 : true;
+  const hasSecondVideo = config ? !!config.videoUrl2 : false;
 
   useEffect(() => {
     const v1 = video1Ref.current;

@@ -124,6 +124,7 @@ export default function Navbar() {
 
   const [landingStates, setLandingStates] = useState<any[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [logoUrl, setLogoUrl] = useState<string>("/logo_new.png");
 
   useEffect(() => {
     fetch(`${API_BASE}/website-configs/public`)
@@ -131,6 +132,9 @@ export default function Navbar() {
       .then(d => {
         if (d.success && d.data?.config?.['landing-states'] && d.data.config['landing-states'].length > 0) {
           setLandingStates(d.data.config['landing-states']);
+        }
+        if (d.success && d.data?.config?.branding?.companyLogoUrl) {
+          setLogoUrl(d.data.config.branding.companyLogoUrl);
         }
       })
       .catch(() => {});
@@ -204,7 +208,7 @@ export default function Navbar() {
           <Link href="/" className="relative z-[60] flex flex-col items-center justify-center gap-0.5 group">
             <div className="relative w-14 h-9 md:w-16 md:h-11">
               <Image
-                src="/logo_new.png"
+                src={logoUrl}
                 alt="Imagica Holidays Logo"
                 fill
                 className="object-contain drop-shadow-[0_2px_4px_rgba(0,0,0,0.15)] group-hover:scale-105 transition-transform duration-500"
@@ -447,7 +451,7 @@ export default function Navbar() {
             <div className="flex items-center justify-between px-4 py-5">
               <Link href="/" onClick={() => setOpen(false)} className="flex items-center gap-3">
                 <div className="relative w-10 h-8">
-                  <Image src="/logo_new.png" alt="Logo" fill className="object-contain" />
+                  <Image src={logoUrl} alt="Logo" fill className="object-contain" />
                 </div>
                 <div className="flex flex-col items-start leading-none gap-0.5">
                   <span className="font-garamond text-[13px] tracking-[0.25em] text-white font-bold">

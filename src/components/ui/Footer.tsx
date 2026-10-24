@@ -85,6 +85,18 @@ const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'https://api.imagicaholidays
 
 export default function Footer() {
   const [packages, setPackages] = useState<{ label: string; href: string }[]>([]);
+  const [logoUrl, setLogoUrl] = useState<string>("/logo_new.png");
+
+  useEffect(() => {
+    fetch(`${API_BASE}/website-configs/public`)
+      .then((r) => r.json())
+      .then((d) => {
+        if (d.success && d.data?.config?.branding?.companyLogoUrl) {
+          setLogoUrl(d.data.config.branding.companyLogoUrl);
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   useEffect(() => {
     fetch(`${API_BASE}/public/journeys`)
@@ -166,7 +178,7 @@ export default function Footer() {
           <div className="lg:pr-8 col-span-2 md:col-span-2 lg:col-span-1">
             <div className="flex flex-col mb-4">
               <div className="relative w-16 h-10 mb-2">
-                <Image src="/logo_new.png" alt="Logo" fill className="object-contain" />
+                <Image src={logoUrl} alt="Logo" fill className="object-contain" />
               </div>
               <Link href="/" className="font-roman text-2xl tracking-[0.15em] text-[#f0e7d6] font-bold">
                 IMAGICA HOLIDAYS
