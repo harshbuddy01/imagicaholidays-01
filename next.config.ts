@@ -3,6 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ['framer-motion', 'lucide-react', 'gsap'],
+    turbopackPluginRuntimeStrategy: "workerThreads" as any,
   },
   images: {
     remotePatterns: [
