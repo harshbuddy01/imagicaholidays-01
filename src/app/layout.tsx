@@ -7,7 +7,11 @@ import Preloader from "@/components/Preloader";
 import TrendingPopup from "@/components/ui/TrendingPopup";
 import ScrollProgress from "@/components/ui/ScrollProgress";
 import MobileBottomNav from "@/components/ui/MobileBottomNav";
+import MaintenanceScreen from "@/components/MaintenanceScreen";
 import "./globals.css";
+
+// System-wide Maintenance Switch (Controlled by Antigravity)
+const IS_MAINTENANCE_MODE = true;
 
 const headingFont = Cormorant_Garamond({
   variable: "--font-heading",
@@ -123,6 +127,16 @@ export default function RootLayout({
 }: Readonly<{
   children: ReactNode;
 }>) {
+  if (IS_MAINTENANCE_MODE) {
+    return (
+      <html lang="en">
+        <body className={`${headingFont.variable} ${bodyFont.variable} ${romanFont.variable} antialiased bg-[#07090e]`}>
+          <MaintenanceScreen />
+        </body>
+      </html>
+    );
+  }
+
   return (
     <html lang="en">
       <body className={`${headingFont.variable} ${bodyFont.variable} ${scriptFont.variable} ${romanFont.variable} ${ornateFont.variable} ${westEndFont.variable} ${glypticFont.variable} ${oldEnglishFont.variable} ${runtimeFont.variable} antialiased`}>
