@@ -11,7 +11,7 @@ import MaintenanceScreen from "@/components/MaintenanceScreen";
 import "./globals.css";
 
 // System-wide Maintenance Switch (Controlled by Antigravity)
-const IS_MAINTENANCE_MODE = true;
+const IS_MAINTENANCE_MODE = false;
 
 const headingFont = Cormorant_Garamond({
   variable: "--font-heading",
