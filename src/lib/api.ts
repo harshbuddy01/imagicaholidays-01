@@ -55,12 +55,15 @@ export interface DestinationCmsData {
   destinationId: string;
   aboutHtml: string | null;
   heroImage: string | null;
+  heroVideo?: string | null;
   galleryImages: any;
   seoTitle: string | null;
   seoDesc: string | null;
   isPublished: boolean;
   pageContent: {
     heroImage?: string;
+    heroVideo?: string;
+    mediaType?: 'image' | 'video';
     attractions?: Array<{
       name: string;
       tag: string;

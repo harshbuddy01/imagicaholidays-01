@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -145,6 +145,61 @@ const renderSectionIcon = (iconStr: string) => {
   }
 };
 
+const isVideoUrl = (url: string | null | undefined): boolean => {
+  if (!url) return false;
+  return url.endsWith('.mp4') || url.endsWith('.webm') || url.endsWith('.mov') || url.endsWith('.m3u8') || url.includes('/hls/');
+};
+
+const initHlsVideo = (video: HTMLVideoElement, url: string, fallbackUrl?: string) => {
+  if (!video || !url) return;
+
+  // Direct MP4 or WebM playback
+  if (!url.endsWith('.m3u8') && !url.includes('.m3u8')) {
+    video.src = url;
+    video.load();
+    video.play().catch(() => {});
+    return;
+  }
+
+  // Native HLS support (Safari on iOS & macOS)
+  if (video.canPlayType('application/vnd.apple.mpegurl')) {
+    video.src = url;
+    video.load();
+    video.play().catch(() => {});
+  } else {
+    // Dynamic import hls.js for Chrome, Firefox, Edge, Android
+    import('hls.js').then((HlsModule) => {
+      const Hls = HlsModule.default;
+      if (Hls.isSupported()) {
+        if ((video as any)._hls) {
+          (video as any)._hls.destroy();
+        }
+        const hls = new Hls({
+          maxMaxBufferLength: 10,
+          enableWorker: true,
+          lowLatencyMode: true,
+        });
+        hls.loadSource(url);
+        hls.attachMedia(video);
+        (video as any)._hls = hls;
+        hls.on(Hls.Events.MANIFEST_PARSED, () => {
+          video.play().catch(() => {});
+        });
+      } else if (fallbackUrl) {
+        video.src = fallbackUrl;
+        video.load();
+        video.play().catch(() => {});
+      }
+    }).catch(() => {
+      if (fallbackUrl) {
+        video.src = fallbackUrl;
+        video.load();
+        video.play().catch(() => {});
+      }
+    });
+  }
+};
+
 export default function PremiumCityDetailPage({
   citySlug,
   cityName,
@@ -160,6 +215,7 @@ export default function PremiumCityDetailPage({
   const [visibleAttractions, setVisibleAttractions] = useState(6);
   const [cmsData, setCmsData] = useState<DestinationCmsData | null>(null);
   const [featuredDest, setFeaturedDest] = useState<any>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
     fetchDestinationCms(citySlug).then((data) => {
@@ -330,11 +386,41 @@ export default function PremiumCityDetailPage({
     ),
   };
 
-  const currentHeroImage = cmsData?.pageContent?.heroImage || cmsData?.heroImage || featuredDest?.mainImage || heroImage;
+  const rawHeroImage = cmsData?.pageContent?.heroImage || cmsData?.heroImage || featuredDest?.mainImage || heroImage;
+  const rawHeroVideo = cmsData?.pageContent?.heroVideo || (cmsData as any)?.heroVideo || (isVideoUrl(rawHeroImage) ? rawHeroImage : null);
+  const currentHeroVideo = rawHeroVideo;
+  const currentPosterImage = !isVideoUrl(rawHeroImage) ? rawHeroImage : (featuredDest?.mainImage || heroImage);
+  const currentHeroImage = currentPosterImage;
   const currentTagline = featuredDest?.tagline || tagline;
   const currentAttractions = cmsData?.pageContent?.attractions && cmsData.pageContent.attractions.length > 0
     ? cmsData.pageContent.attractions
     : fallbackAttractions;
+
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v || !currentHeroVideo) return;
+
+    const fallbackMp4 = currentHeroVideo.includes('playlist.m3u8')
+      ? currentHeroVideo.replace('playlist.m3u8', 'video.mp4')
+      : currentHeroVideo;
+
+    initHlsVideo(v, currentHeroVideo, fallbackMp4);
+
+    const resume = () => {
+      if (v) v.play().catch(() => {});
+    };
+    document.addEventListener('touchstart', resume, { once: true, passive: true });
+    document.addEventListener('click', resume, { once: true, passive: true });
+
+    return () => {
+      document.removeEventListener('touchstart', resume);
+      document.removeEventListener('click', resume);
+      if ((v as any)._hls) {
+        (v as any)._hls.destroy();
+        (v as any)._hls = null;
+      }
+    };
+  }, [currentHeroVideo]);
 
   // Determine regional aesthetics based on state name for premium personalization
   const stateLower = stateName.toLowerCase();
@@ -395,16 +481,35 @@ export default function PremiumCityDetailPage({
       <Navbar />
 
       {/* ══════════ 1. HERO ══════════ */}
-      <section className="relative h-[65vh] md:h-[85vh] min-h-[450px] md:min-h-[600px] overflow-hidden">
-        <Image
-          src={currentHeroImage}
-          alt={`A stunning luxury tour visual of ${cityName}`}
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className={`absolute inset-0 bg-gradient-to-t ${gradientOverlay} via-black/15 to-transparent`} />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/35 to-transparent" />
+      <section className="relative h-[65vh] md:h-[85vh] min-h-[450px] md:min-h-[600px] overflow-hidden bg-[#0c0a08]">
+        {/* Instant Poster Image Background - always renders underneath for 0ms lag & low-power fallback */}
+        {currentPosterImage && (
+          <Image
+            src={currentPosterImage}
+            alt={`A stunning luxury tour visual of ${cityName}`}
+            fill
+            className="object-cover"
+            priority
+          />
+        )}
+
+        {/* Responsive Video Background Loop - auto-fits mobile portrait and desktop widescreen */}
+        {currentHeroVideo && (
+          <video
+            ref={videoRef}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            poster={currentPosterImage || undefined}
+            className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+            style={{ willChange: 'transform', transform: 'translateZ(0)' }}
+          />
+        )}
+
+        <div className={`absolute inset-0 bg-gradient-to-t ${gradientOverlay} via-black/15 to-transparent pointer-events-none`} />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/35 to-transparent pointer-events-none" />
 
         <div className="absolute inset-0 flex flex-col justify-end px-5 md:px-16 lg:px-24 pb-10 md:pb-20">
           <motion.div

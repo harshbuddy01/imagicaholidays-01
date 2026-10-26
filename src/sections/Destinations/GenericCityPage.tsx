@@ -1,10 +1,64 @@
 "use client";
 
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
+import { fetchDestinationCms, DestinationCmsData } from "@/lib/api";
+
+const isVideoUrl = (url: string | null | undefined): boolean => {
+  if (!url) return false;
+  return url.endsWith('.mp4') || url.endsWith('.webm') || url.endsWith('.mov') || url.endsWith('.m3u8') || url.includes('/hls/');
+};
+
+const initHlsVideo = (video: HTMLVideoElement, url: string, fallbackUrl?: string) => {
+  if (!video || !url) return;
+
+  if (!url.endsWith('.m3u8') && !url.includes('.m3u8')) {
+    video.src = url;
+    video.load();
+    video.play().catch(() => {});
+    return;
+  }
+
+  if (video.canPlayType('application/vnd.apple.mpegurl')) {
+    video.src = url;
+    video.load();
+    video.play().catch(() => {});
+  } else {
+    import('hls.js').then((HlsModule) => {
+      const Hls = HlsModule.default;
+      if (Hls.isSupported()) {
+        if ((video as any)._hls) {
+          (video as any)._hls.destroy();
+        }
+        const hls = new Hls({
+          maxMaxBufferLength: 10,
+          enableWorker: true,
+          lowLatencyMode: true,
+        });
+        hls.loadSource(url);
+        hls.attachMedia(video);
+        (video as any)._hls = hls;
+        hls.on(Hls.Events.MANIFEST_PARSED, () => {
+          video.play().catch(() => {});
+        });
+      } else if (fallbackUrl) {
+        video.src = fallbackUrl;
+        video.load();
+        video.play().catch(() => {});
+      }
+    }).catch(() => {
+      if (fallbackUrl) {
+        video.src = fallbackUrl;
+        video.load();
+        video.play().catch(() => {});
+      }
+    });
+  }
+};
 
 interface GenericCityProps {
   citySlug: string;
@@ -57,8 +111,47 @@ const cityDetailsData: Record<string, Omit<GenericCityProps, "citySlug">> = {
 
 export default function GenericCityPage({ citySlug }: { citySlug: string }) {
   const details = cityDetailsData[citySlug];
+  const [cmsData, setCmsData] = useState<DestinationCmsData | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
 
-  if (!details) {
+  useEffect(() => {
+    fetchDestinationCms(citySlug).then((data) => {
+      if (data) setCmsData(data);
+    });
+  }, [citySlug]);
+
+  const rawHeroImage = cmsData?.pageContent?.heroImage || cmsData?.heroImage || details?.image;
+  const rawHeroVideo = cmsData?.pageContent?.heroVideo || (cmsData as any)?.heroVideo || (isVideoUrl(rawHeroImage) ? rawHeroImage : null);
+  const currentHeroVideo = rawHeroVideo;
+  const currentPosterImage = !isVideoUrl(rawHeroImage) ? rawHeroImage : (details?.image || "");
+
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v || !currentHeroVideo) return;
+
+    const fallbackMp4 = currentHeroVideo.includes('playlist.m3u8')
+      ? currentHeroVideo.replace('playlist.m3u8', 'video.mp4')
+      : currentHeroVideo;
+
+    initHlsVideo(v, currentHeroVideo, fallbackMp4);
+
+    const resume = () => {
+      if (v) v.play().catch(() => {});
+    };
+    document.addEventListener('touchstart', resume, { once: true, passive: true });
+    document.addEventListener('click', resume, { once: true, passive: true });
+
+    return () => {
+      document.removeEventListener('touchstart', resume);
+      document.removeEventListener('click', resume);
+      if ((v as any)._hls) {
+        (v as any)._hls.destroy();
+        (v as any)._hls = null;
+      }
+    };
+  }, [currentHeroVideo]);
+
+  if (!details && !cmsData) {
     return (
       <main className="bg-[#f8f5f0] min-h-screen text-[#1a1714]">
         <Navbar />
@@ -71,7 +164,14 @@ export default function GenericCityPage({ citySlug }: { citySlug: string }) {
     );
   }
 
-  const stateLower = details.stateName.toLowerCase();
+  const effectiveTitle = cmsData?.destination?.name || details?.title || citySlug;
+  const effectiveState = details?.stateName || "India";
+  const effectiveDesc = cmsData?.aboutHtml || details?.description || "";
+  const effectiveAttractions = cmsData?.pageContent?.attractions && cmsData.pageContent.attractions.length > 0
+    ? cmsData.pageContent.attractions.map((a: any) => ({ name: a.name, tag: a.tag || "Highlight", description: a.short }))
+    : (details?.attractions || []);
+
+  const stateLower = effectiveState.toLowerCase();
   let themeBg = "bg-[#f8f5f0]";
   let sketchBgPattern = "/images/destinations_sketch_bg.webp"; // Default monuments sketch
 
@@ -95,15 +195,34 @@ export default function GenericCityPage({ citySlug }: { citySlug: string }) {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative h-[65vh] flex items-center justify-center overflow-hidden z-10">
-        <Image
-          src={details.image}
-          alt={details.title}
-          fill
-          className="object-cover brightness-[0.55] contrast-[1.05]"
-          priority
-        />
-        <div className="absolute inset-0 bg-[#3d3831]/20 mix-blend-multiply" />
+      <section className="relative h-[65vh] flex items-center justify-center overflow-hidden z-10 bg-[#0c0a08]">
+        {/* Instant Poster Image Background */}
+        {currentPosterImage && (
+          <Image
+            src={currentPosterImage}
+            alt={effectiveTitle}
+            fill
+            className="object-cover brightness-[0.55] contrast-[1.05]"
+            priority
+          />
+        )}
+
+        {/* Responsive Video Background Loop */}
+        {currentHeroVideo && (
+          <video
+            ref={videoRef}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            poster={currentPosterImage || undefined}
+            className="absolute inset-0 w-full h-full object-cover pointer-events-none brightness-[0.6] contrast-[1.05]"
+            style={{ willChange: 'transform', transform: 'translateZ(0)' }}
+          />
+        )}
+
+        <div className="absolute inset-0 bg-[#3d3831]/20 mix-blend-multiply pointer-events-none" />
         
         <div className="relative z-10 text-center px-6">
           <motion.div
@@ -112,10 +231,10 @@ export default function GenericCityPage({ citySlug }: { citySlug: string }) {
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
             <p className="text-[0.65rem] uppercase tracking-[0.8em] text-[#d8be8f] font-bold mb-6">
-              {details.stateName}
+              {effectiveState}
             </p>
             <h1 className="font-glyptic text-5xl md:text-8xl text-white uppercase tracking-[0.05em] leading-tight">
-              {details.title}
+              {effectiveTitle}
             </h1>
             <div className="w-16 h-[1.5px] bg-[#d8be8f] mx-auto mt-8" />
           </motion.div>
@@ -128,16 +247,17 @@ export default function GenericCityPage({ citySlug }: { citySlug: string }) {
           {/* Left Column: Description & Attractions */}
           <div>
             <h2 className="font-roman italic text-3xl text-[#a5813b] mb-6">The Memoir</h2>
-            <p className="font-serif text-stone-600 text-lg leading-relaxed mb-12">
-              {details.description}
-            </p>
+            <div
+              className="font-serif text-stone-600 text-lg leading-relaxed mb-12"
+              dangerouslySetInnerHTML={{ __html: effectiveDesc }}
+            />
 
             <h3 className="font-manrope text-[11px] font-bold uppercase tracking-[0.3em] text-stone-400 mb-8">
               Key Experiences & Landmarks
             </h3>
             
             <div className="space-y-8">
-              {details.attractions.map((attr, idx) => (
+              {effectiveAttractions.map((attr: any, idx: number) => (
                 <div key={idx} className="border-l-2 border-[#a5813b]/30 pl-6 py-2">
                   <span className="text-[9px] uppercase tracking-wider font-bold text-[#a5813b] bg-[#a5813b]/10 px-2.5 py-1 rounded">
                     {attr.tag}
@@ -156,7 +276,7 @@ export default function GenericCityPage({ citySlug }: { citySlug: string }) {
             <div className="space-y-6 mb-8">
               <div>
                 <span className="text-[10px] uppercase tracking-wider text-stone-400 font-bold block mb-1">State Region</span>
-                <span className="font-manrope text-sm font-semibold text-stone-700">{details.stateName}</span>
+                <span className="font-manrope text-sm font-semibold text-stone-700">{effectiveState}</span>
               </div>
               
               <div>
