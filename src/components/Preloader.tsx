@@ -19,7 +19,7 @@ export default function Preloader() {
         sessionStorage.setItem("imagica_preloader_seen", "true");
 
         // Only preload the logo shown in the preloader to avoid blocking the page
-        const images: string[] = ["/logo_new.png"];
+        const images: string[] = ["/imagica_logo_transparent_2x.png"];
 
         const distinctImages = [...new Set(images)];
         const totalImages = distinctImages.length;
@@ -112,11 +112,8 @@ export default function Preloader() {
                         transition={{ duration: 0.5 }}
                         className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none"
                     >
-                        <div className="relative w-24 h-16 mb-6">
-                            <NextImage src="/logo_new.png" alt="Logo" fill className="object-contain" />
-                        </div>
-                        <div className="font-roman text-2xl md:text-3xl tracking-[0.4em] font-bold uppercase text-white">
-                            IMAGICA HOLIDAYS
+                        <div className="relative w-56 h-14 md:w-64 md:h-16 mb-2">
+                            <NextImage src="/imagica_logo_transparent_2x.png" alt="Imagica Holidays Logo" fill className="object-contain" priority />
                         </div>
                         <p className="mt-8 text-[10px] tracking-[0.3em] font-sans font-bold text-[#ae9e85] uppercase">
                             Curation Progress {progress}%

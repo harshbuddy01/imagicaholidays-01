@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function FooterCrescendo() {
   return (
-    <section className="relative w-full bg-[#f8f5f0] py-16 px-6 overflow-hidden">
+    <section id="crescendo" className="relative w-full bg-[#f8f5f0] py-16 px-6 overflow-hidden">
       {/* Background Texture */}
       <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')] opacity-[0.03] pointer-events-none" />
 
@@ -20,11 +20,10 @@ export default function FooterCrescendo() {
           <div className="h-px flex-1 bg-gradient-to-l from-transparent to-[#a5813b]" />
         </div>
 
-        {/* Central Lotus Stamp */}
-        <div className="relative mb-8">
-           <div className="absolute inset-0 bg-[#a5813b]/5 rounded-full scale-150 blur-xl" />
-           <div className="relative z-10 w-16 h-10">
-              <Image src="/logo_new.png" alt="Logo" fill className="object-contain" />
+        {/* Central Brand Stamp */}
+        <div className="relative mb-6">
+           <div className="relative z-10 w-48 h-11 sm:w-56 sm:h-12">
+              <Image src="/imagica_logo_gold_2x.png" alt="Imagica Holidays Logo" fill className="object-contain" />
            </div>
         </div>
 
@@ -40,10 +39,7 @@ export default function FooterCrescendo() {
             Curated with soul, for the soulful traveler.
           </p>
           <div className="mt-4 flex flex-col items-center">
-             <div className="w-8 h-px bg-[#a5813b]/30 mb-4" />
-             <span className="font-roman text-[10px] tracking-[0.5em] text-[#a5813b] uppercase font-bold">
-                IMAGICA HOLIDAYS
-             </span>
+             <div className="w-12 h-px bg-[#a5813b]/30" />
           </div>
         </motion.div>
 

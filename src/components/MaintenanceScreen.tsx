@@ -28,10 +28,10 @@ export default function MaintenanceScreen() {
         <div className="flex items-center gap-3">
           <div className="relative w-9 h-9 md:w-11 md:h-11 rounded-full p-1 border border-[#c5a880]/40 bg-[#0c1017]/80 backdrop-blur-md shadow-lg flex items-center justify-center">
             <Image
-              src="/logo_transparent.png"
+              src="/imagica_logo_transparent_2x.png"
               alt="Imagica Holidays Logo"
-              width={38}
-              height={38}
+              width={42}
+              height={42}
               className="object-contain"
               priority
             />

@@ -124,7 +124,7 @@ export default function Navbar() {
 
   const [landingStates, setLandingStates] = useState<any[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [logoUrl, setLogoUrl] = useState<string>("/logo_new.png");
+  const [logoUrl, setLogoUrl] = useState<string>("/imagica_logo_transparent_2x.png");
 
   useEffect(() => {
     fetch(`${API_BASE}/website-configs/public`)
@@ -133,8 +133,12 @@ export default function Navbar() {
         if (d.success && d.data?.config?.['landing-states'] && d.data.config['landing-states'].length > 0) {
           setLandingStates(d.data.config['landing-states']);
         }
+        // Only override if remote logo is valid and not the legacy white-background asset
         if (d.success && d.data?.config?.branding?.companyLogoUrl) {
-          setLogoUrl(d.data.config.branding.companyLogoUrl);
+          const remoteUrl = d.data.config.branding.companyLogoUrl;
+          if (!remoteUrl.includes('Imagica_Holidays_Logo.png')) {
+            setLogoUrl(remoteUrl);
+          }
         }
       })
       .catch(() => {});
@@ -204,20 +208,17 @@ export default function Navbar() {
           }`}
       >
         <div className="content-shell flex items-center justify-between px-4 md:px-1">
-          {/* Logo Brand: Centered icon stacked on top of text, no subtext */}
-          <Link href="/" className="relative z-[60] flex flex-col items-center justify-center gap-0.5 group">
-            <div className="relative w-14 h-9 md:w-16 md:h-11">
+          {/* Logo Brand: Official Imagica Holidays Logo (Transparent Vector with Plane Mark) */}
+          <Link href="/" className="relative z-[60] flex items-center group py-1">
+            <div className="relative w-36 h-8 sm:w-40 sm:h-9 md:w-44 md:h-10">
               <Image
                 src={logoUrl}
                 alt="Imagica Holidays Logo"
                 fill
-                className="object-contain drop-shadow-[0_2px_4px_rgba(0,0,0,0.15)] group-hover:scale-105 transition-transform duration-500"
+                className="object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)] group-hover:scale-105 transition-transform duration-300"
                 priority
               />
             </div>
-            <span className="font-garamond text-[12px] tracking-[0.32em] text-white md:text-[15px] md:tracking-[0.4em] font-semibold leading-none mt-1.5 group-hover:text-[#d8be8f] transition-colors duration-300">
-              IMAGICA HOLIDAYS
-            </span>
           </Link>
 
           {/* Desktop Center Navigation Links */}
@@ -449,14 +450,9 @@ export default function Navbar() {
           >
             {/* Mobile Top Bar */}
             <div className="flex items-center justify-between px-4 py-5">
-              <Link href="/" onClick={() => setOpen(false)} className="flex items-center gap-3">
-                <div className="relative w-10 h-8">
-                  <Image src={logoUrl} alt="Logo" fill className="object-contain" />
-                </div>
-                <div className="flex flex-col items-start leading-none gap-0.5">
-                  <span className="font-garamond text-[13px] tracking-[0.25em] text-white font-bold">
-                    IMAGICA HOLIDAYS
-                  </span>
+              <Link href="/" onClick={() => setOpen(false)} className="flex items-center">
+                <div className="relative w-36 h-8">
+                  <Image src={logoUrl} alt="Imagica Holidays Logo" fill className="object-contain" />
                 </div>
               </Link>
 

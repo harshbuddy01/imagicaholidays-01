@@ -192,9 +192,9 @@ export default function TrendingPopup() {
                     </div>
 
                     {/* Stamp */}
-                    <div className="absolute top-4 right-4 bg-white/80 p-2 shadow-inner border border-black/5 rotate-6">
-                       <div className="relative w-10 h-7">
-                          <Image src="/logo_new.png" alt="Stamp" fill className="object-contain" />
+                    <div className="absolute top-4 right-4 bg-white/90 p-2 shadow-inner border border-black/10 rotate-6 rounded-sm">
+                       <div className="relative w-14 h-5">
+                          <Image src="/imagica_logo_dark_2x.png" alt="Stamp" fill className="object-contain" />
                        </div>
                     </div>
                   </div>

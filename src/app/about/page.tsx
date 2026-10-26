@@ -22,6 +22,23 @@ export default function AboutPage() {
         priority
       />
 
+      {/* ── Brand Logo Header ── */}
+      <Link 
+        href="/" 
+        className="fixed top-6 left-6 lg:top-10 lg:left-10 z-50 group flex items-center"
+        aria-label="Back to home"
+      >
+        <div className="relative w-36 h-8 sm:w-40 sm:h-9 md:w-44 md:h-10">
+          <Image
+            src="/imagica_logo_transparent_2x.png"
+            alt="Imagica Holidays Logo"
+            fill
+            className="object-contain drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)] group-hover:scale-105 transition-transform duration-300"
+            priority
+          />
+        </div>
+      </Link>
+
       {/* ── Close / Back Button ── */}
       <Link 
         href="/" 
@@ -59,6 +76,9 @@ export default function AboutPage() {
 
           {/* Content */}
           <div className="relative z-10 pt-4">
+             <div className="relative w-36 h-8 mb-5 opacity-80">
+               <Image src="/imagica_logo_dark_2x.png" alt="Imagica Holidays" fill className="object-contain object-left" />
+             </div>
              <p className="font-script text-[#ae9e85] text-3xl mb-2 -rotate-2">Chapter I.</p>
              <h1 className="font-roman text-4xl md:text-5xl font-bold text-[#3d3831] mb-12 tracking-wide uppercase">
                The Imagica <br/> Chronicles
@@ -96,7 +116,7 @@ export default function AboutPage() {
           >
              <TornTape className="w-24 top-[-15px] left-1/2 -translate-x-1/2 rotate-3" />
              <div className="relative w-full aspect-square bg-gray-200">
-                <Image src="https://images.unsplash.com/photo-1544634076-a90160ddf44a?q=80&w=600&auto=format&fit=crop" alt="Darjeeling tea pluckers" fill className="object-cover grayscale hover:grayscale-0 transition-all duration-700" />
+                <Image src="/images/darjeeling-tea-pluckers.jpg" alt="Darjeeling tea pluckers" fill className="object-cover grayscale hover:grayscale-0 transition-all duration-700" />
              </div>
              <p className="absolute bottom-3 left-0 w-full text-center font-script text-2xl text-[#3d3831]">High Altitude Trails</p>
           </motion.div>
