@@ -79,37 +79,18 @@ const MetallicStar = ({ filled, size = 44 }: { filled: boolean; size?: number })
   </svg>
 );
 
-// Animated Empathetic ☹️ SVG Emoji for Disappointment Flow
+// 3D Animated Disappointed Emoji
 const AnimatedDisappointedFace = () => (
-  <motion.div
-    initial={{ scale: 0.8, opacity: 0 }}
-    animate={{ scale: 1, opacity: 1, y: [0, -3, 0] }}
-    transition={{
-      y: { repeat: Infinity, duration: 3, ease: "easeInOut" },
-      scale: { duration: 0.4 },
-      opacity: { duration: 0.4 }
-    }}
-    className="relative mx-auto mb-3 w-14 h-14 rounded-full bg-gradient-to-b from-[#3a1a14] to-[#1a0c09] border-2 border-[#c2614b]/60 flex items-center justify-center shadow-[0_0_20px_rgba(194,97,75,0.35)]"
-  >
-    <svg viewBox="0 0 36 36" fill="none" className="w-8 h-8">
-      {/* Empathetic tilted eyebrows */}
-      <path d="M9 13 Q13 10.5 16 13" stroke="#fca59d" strokeWidth="1.5" strokeLinecap="round" />
-      <path d="M20 13 Q23 10.5 27 13" stroke="#fca59d" strokeWidth="1.5" strokeLinecap="round" />
-      {/* Soft caring eyes */}
-      <circle cx="12.5" cy="17" r="1.8" fill="#ffd6d0" />
-      <circle cx="23.5" cy="17" r="1.8" fill="#ffd6d0" />
-      {/* Down-curved sad mouth with gentle breathing motion */}
-      <path
-        d="M11 27 Q18 20.5 25 27"
-        stroke="#fca59d"
-        strokeWidth="2"
-        strokeLinecap="round"
-        fill="none"
-      />
-    </svg>
-    {/* Subtle pulsing outer ring */}
-    <span className="absolute inset-0 rounded-full border border-[#c2614b]/30 animate-pulse pointer-events-none" />
-  </motion.div>
+  <div className="relative mx-auto mb-3 w-16 h-16 sm:w-20 sm:h-20 drop-shadow-[0_8px_25px_rgba(230,120,80,0.35)]">
+    <Image
+      src="/images/disappointed_emoji.png"
+      alt="Disappointed"
+      width={80}
+      height={80}
+      className="object-contain"
+      unoptimized
+    />
+  </div>
 );
 
 export default function ReviewExperience({
