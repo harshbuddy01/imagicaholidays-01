@@ -16,7 +16,7 @@ interface ReviewExperienceProps {
   initialStep?: "rate" | "google_prompt" | "private_feedback" | "completed";
 }
 
-// 4-Color Google G SVG Icon
+// Official Google G SVG
 const GoogleGIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
   <svg viewBox="0 0 24 24" className={`${className} shrink-0`}>
     <path
@@ -39,32 +39,32 @@ const GoogleGIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
 );
 
 // Sculpted 3D Metallic Gold Star SVG
-const MetallicStar = ({ filled, size = 48 }: { filled: boolean; size?: number }) => (
+const MetallicStar = ({ filled, size = 44 }: { filled: boolean; size?: number }) => (
   <svg
     viewBox="0 0 24 24"
     width={size}
     height={size}
     className={`transition-all duration-300 ${
       filled
-        ? "scale-110 drop-shadow-[0_0_18px_rgba(255,215,0,0.85)] filter brightness-110"
-        : "opacity-35 hover:opacity-70 filter brightness-90"
+        ? "scale-105 drop-shadow-[0_0_16px_rgba(255,215,0,0.85)] filter brightness-110"
+        : "opacity-30 hover:opacity-60 filter brightness-90"
     }`}
   >
     <defs>
-      <linearGradient id="goldMetallicShine" x1="0%" y1="0%" x2="100%" y2="100%">
+      <linearGradient id="goldMetallicGrad" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%" stopColor="#fff9e0" />
         <stop offset="30%" stopColor="#ffd700" />
         <stop offset="70%" stopColor="#d4af37" />
         <stop offset="100%" stopColor="#8a6b2d" />
       </linearGradient>
-      <linearGradient id="darkStarShine" x1="0%" y1="0%" x2="100%" y2="100%">
+      <linearGradient id="darkStarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%" stopColor="#4a3e2c" />
         <stop offset="100%" stopColor="#1a150e" />
       </linearGradient>
     </defs>
     <path
       d="M12 1.8l3.12 6.32 6.98 1.01-5.05 4.92 1.19 6.95L12 17.71l-6.24 3.29 1.19-6.95-5.05-4.92 6.98-1.01L12 1.8z"
-      fill={filled ? "url(#goldMetallicShine)" : "url(#darkStarShine)"}
+      fill={filled ? "url(#goldMetallicGrad)" : "url(#darkStarGrad)"}
       stroke={filled ? "#ffe885" : "#5a4b35"}
       strokeWidth={filled ? "1" : "0.75"}
       strokeLinejoin="round"
@@ -122,10 +122,10 @@ export default function ReviewExperience({
   };
 
   const disappointmentOptions = [
-    "Chauffeur / Driving",
-    "Hotel Suite Quality",
-    "Itinerary Pacing",
-    "Meals & Dining",
+    "Chauffeur & Driving",
+    "Hotel & Room Standards",
+    "Itinerary Pacing & Timing",
+    "Meals & Dining Quality",
     "Sightseeing & Permits",
     "Concierge Support"
   ];
@@ -195,7 +195,6 @@ export default function ReviewExperience({
       {/* CINEMATIC BACKGROUND VIDEO / MOUNTAIN ATMOSPHERE */}
       {/* ═════════════════════════════════════════════════════════════════ */}
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-        {/* Subtle Ambient Video */}
         <video
           autoPlay
           muted
@@ -215,8 +214,8 @@ export default function ReviewExperience({
 
       <Navbar />
 
-      <main className="flex-1 flex items-center justify-center px-4 py-28 sm:py-36 relative z-10">
-        <div className="w-full max-w-2xl relative">
+      <main className="flex-1 flex items-center justify-center px-4 py-24 sm:py-32 relative z-10">
+        <div className="w-full max-w-xl relative">
           <AnimatePresence mode="wait">
             {/* ═════════════════════════════════════════════════════════════ */}
             {/* STEP 1: INITIAL STAR RATING (CENTERED LUXURY CARD) */}
@@ -228,7 +227,7 @@ export default function ReviewExperience({
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -15 }}
                 transition={{ duration: 0.35, ease: "easeOut" }}
-                className="relative rounded-3xl bg-[#12100d]/92 border border-[#8d6a2f]/40 backdrop-blur-2xl shadow-[0_24px_80px_rgba(0,0,0,0.85)] p-8 sm:p-14 text-center overflow-hidden"
+                className="relative rounded-3xl bg-[#12100d]/92 border border-[#8d6a2f]/40 backdrop-blur-2xl shadow-[0_24px_80px_rgba(0,0,0,0.85)] p-8 sm:p-12 text-center overflow-hidden"
               >
                 {/* Gold Foil Top Border Accent */}
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent" />
@@ -272,13 +271,13 @@ export default function ReviewExperience({
                   How Was Your Journey?
                 </h1>
 
-                <p className="text-sm sm:text-base text-[#cfc5b3] font-light max-w-md mx-auto mb-8 leading-relaxed">
+                <p className="text-xs sm:text-sm text-[#cfc5b3] font-light max-w-md mx-auto mb-8 leading-relaxed">
                   {guestName ? `Esteemed ${guestName}, ` : ""}Your reflections guide our craft. Please honor us with
                   your rating of your recent journey with Imagica Holidays.
                 </p>
 
                 {/* 5 Sculptural Golden Stars */}
-                <div className="flex justify-center items-center gap-3 sm:gap-4 my-8">
+                <div className="flex justify-center items-center gap-2.5 sm:gap-4 my-8">
                   {[1, 2, 3, 4, 5].map((star) => {
                     const isFilled = activeStarCount >= star;
                     return (
@@ -288,14 +287,14 @@ export default function ReviewExperience({
                         onClick={() => handleSelectRating(star)}
                         onMouseEnter={() => setHoverRating(star)}
                         onMouseLeave={() => setHoverRating(0)}
-                        className="group relative p-2 transition-transform duration-200 hover:scale-125 focus:outline-none cursor-pointer"
+                        className="group relative p-1.5 transition-transform duration-200 hover:scale-125 focus:outline-none cursor-pointer"
                         aria-label={`Rate ${star} Stars`}
                       >
-                        <MetallicStar filled={isFilled} size={44} />
+                        <MetallicStar filled={isFilled} size={42} />
 
                         {/* Sparkle ping on hover */}
                         {hoverRating === star && (
-                          <span className="absolute top-1 right-1 w-2.5 h-2.5 bg-[#ffd700] rounded-full animate-ping pointer-events-none" />
+                          <span className="absolute top-0 right-0 w-2.5 h-2.5 bg-[#ffd700] rounded-full animate-ping pointer-events-none" />
                         )}
                       </button>
                     );
@@ -337,7 +336,7 @@ export default function ReviewExperience({
             )}
 
             {/* ═════════════════════════════════════════════════════════════ */}
-            {/* STEP 2A: 4 & 5 STARS -> MINIMAL & POWERFUL GOOGLE REDIRECT */}
+            {/* STEP 2A: 4 & 5 STARS -> BESPOKE GOOGLE MEDALLION PORTAL */}
             {/* ═════════════════════════════════════════════════════════════ */}
             {step === "google_prompt" && (
               <motion.div
@@ -346,73 +345,86 @@ export default function ReviewExperience({
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.97 }}
                 transition={{ duration: 0.35, ease: "easeOut" }}
-                className="relative rounded-3xl bg-[#12100d]/92 border border-[#8d6a2f]/50 backdrop-blur-2xl shadow-[0_24px_80px_rgba(0,0,0,0.85)] p-8 sm:p-12 text-center overflow-hidden"
+                className="relative rounded-3xl bg-[#12100d]/95 border border-[#d4af37]/40 backdrop-blur-2xl shadow-[0_24px_80px_rgba(0,0,0,0.85)] p-8 sm:p-12 text-center overflow-hidden"
               >
                 {/* Gold Foil Top Border Accent */}
-                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent" />
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#ffd700] to-transparent" />
 
                 {/* Back button */}
                 <button
                   type="button"
                   onClick={() => setStep("rate")}
-                  className="inline-flex items-center gap-1.5 text-xs text-[#a5813b] hover:text-[#ffd700] mb-6 font-semibold uppercase tracking-wider transition-colors cursor-pointer"
+                  className="inline-flex items-center gap-1.5 text-xs text-[#a5813b] hover:text-[#ffd700] mb-5 font-semibold uppercase tracking-wider transition-colors cursor-pointer"
                 >
                   ← Change Rating ({rating}★)
                 </button>
 
-                {/* Star Celebration */}
-                <div className="text-3xl sm:text-4xl text-[#ffd700] mb-2 tracking-widest">
-                  {"★".repeat(rating)}
+                {/* 5 Glowing Golden Medallion Stars Row */}
+                <div className="flex justify-center items-center gap-2 mb-3">
+                  {[1, 2, 3, 4, 5].map((s) => (
+                    <MetallicStar key={s} filled={s <= rating} size={30} />
+                  ))}
                 </div>
 
-                <h2 className="text-2xl sm:text-4xl font-playfair text-[#faf6ee] font-normal tracking-tight mb-2">
-                  Thank You, Esteemed Guest
+                <span className="font-script text-2xl sm:text-3xl text-[#e5be59] block mb-1">
+                  We Are Deeply Honored
+                </span>
+
+                <h2 className="text-2xl sm:text-3xl font-playfair text-[#faf6ee] font-normal tracking-tight mb-2">
+                  Share Your Story on Google
                 </h2>
 
-                <p className="text-xs sm:text-sm text-[#cfc5b3] font-light max-w-md mx-auto mb-8 leading-relaxed">
-                  Your words inspire future discerning travelers. We invite you to share your genuine thoughts directly
-                  on our Google Maps profile.
+                <p className="text-xs sm:text-sm text-[#baa990] font-light max-w-sm mx-auto mb-7 leading-relaxed">
+                  Your genuine reflections guide discerning travelers seeking bespoke Himalayan luxury.
                 </p>
 
-                {/* Minimalist Verified Google Maps Card */}
-                <div className="rounded-2xl bg-gradient-to-br from-[#1a150f] to-[#0f0c08] border border-[#d4af37]/40 p-5 mb-7 shadow-[0_8px_30px_rgba(0,0,0,0.6)]">
-                  <div className="flex items-center justify-between border-b border-[#8a6b2d]/25 pb-3.5 mb-4">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center p-2 shadow shrink-0">
-                        <GoogleGIcon className="w-6 h-6" />
-                      </div>
-                      <div className="text-left">
-                        <div className="flex items-center gap-1.5">
-                          <span className="text-sm font-bold text-white tracking-wide">Imagica Holidays</span>
-                          <span className="text-[9px] font-mono text-emerald-400 bg-emerald-950/80 border border-emerald-500/40 px-1.5 py-0.5 rounded">
-                            ✓ Verified
-                          </span>
-                        </div>
-                        <span className="text-[11px] text-[#baa990]">Himalayan Luxury Concierge</span>
-                      </div>
-                    </div>
+                {/* ──────────────────────────────────────────────────────── */}
+                {/* THE BESPOKE GOOGLE MEDALLION PORTAL PLAQUE */}
+                {/* ──────────────────────────────────────────────────────── */}
+                <div className="relative rounded-2xl bg-gradient-to-b from-[#1c1610] via-[#14100c] to-[#0d0a07] border border-[#d4af37]/50 p-6 sm:p-7 shadow-[0_12px_40px_rgba(0,0,0,0.7)] overflow-hidden group">
+                  {/* Subtle Background Radial Gold Glow */}
+                  <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-44 h-44 bg-[#ffd700]/10 rounded-full blur-2xl pointer-events-none" />
 
-                    <div className="text-right">
-                      <span className="text-lg font-bold font-playfair text-[#ffd700]">4.9★</span>
-                      <span className="text-[10px] text-[#a5813b] block">180+ Reviews</span>
+                  {/* Circular Brushed Brass Google Medallion */}
+                  <div className="relative mx-auto mb-4 w-16 h-16 rounded-full bg-gradient-to-b from-[#2a2115] to-[#120e0a] border-2 border-[#d4af37] shadow-[0_0_25px_rgba(212,175,55,0.35)] flex items-center justify-center p-3">
+                    <GoogleGIcon className="w-8 h-8 drop-shadow" />
+                    {/* Outer animated halo ring */}
+                    <span className="absolute inset-0 rounded-full border border-[#ffd700]/40 animate-ping pointer-events-none opacity-40" />
+                  </div>
+
+                  {/* Listing Credentials */}
+                  <div className="mb-6">
+                    <h3 className="font-playfair text-base sm:text-lg text-white font-medium tracking-wide">
+                      Imagica Holidays
+                    </h3>
+                    <div className="flex items-center justify-center gap-2 mt-1">
+                      <span className="text-xs font-bold text-[#ffd700] tracking-wider">
+                        ★★★★★ 4.9
+                      </span>
+                      <span className="text-[#8a6b2d]">·</span>
+                      <span className="text-[11px] font-mono text-[#baa990] uppercase tracking-wider">
+                        180+ Google Reviews
+                      </span>
                     </div>
                   </div>
 
-                  {/* Primary Google Review CTA Button */}
+                  {/* Shimmering Metallic Gold Primary Button */}
                   <button
                     type="button"
                     onClick={handleOpenGoogle}
-                    className="group relative w-full overflow-hidden rounded-xl bg-gradient-to-r from-[#ffd700] via-[#f7d070] to-[#c9a84c] text-[#14100a] py-4 px-6 font-bold text-sm sm:text-base uppercase tracking-wider shadow-[0_8px_30px_rgba(212,175,55,0.45)] hover:shadow-[0_12px_45px_rgba(212,175,55,0.65)] hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-3 cursor-pointer"
+                    className="group relative w-full overflow-hidden rounded-xl bg-gradient-to-r from-[#e5be59] via-[#ffd700] to-[#c59c3f] text-[#14100a] py-4 px-6 font-bold text-xs sm:text-sm uppercase tracking-[0.14em] shadow-[0_8px_25px_rgba(212,175,55,0.4)] hover:shadow-[0_12px_40px_rgba(212,175,55,0.65)] hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-2.5 cursor-pointer"
                   >
-                    <GoogleGIcon className="w-5 h-5" />
-                    <span>Write Review on Google Maps</span>
-                    <span className="text-base group-hover:translate-x-1 transition-transform">↗</span>
-                  </button>
-                </div>
+                    {/* Diagonal Light Sweep Beam */}
+                    <span className="absolute top-0 -left-[100%] w-full h-full bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-[-20deg] group-hover:left-[200%] transition-all duration-1000 ease-out pointer-events-none" />
 
-                <p className="text-[11px] text-[#8c7e6c]">
-                  Redirects directly to Imagica Holidays on Google Maps. No registration required.
-                </p>
+                    <span>Write Review on Google Maps</span>
+                    <span className="text-base group-hover:translate-x-1 transition-transform">➔</span>
+                  </button>
+
+                  <p className="text-[10px] text-[#8c7e6c] text-center mt-3 font-light">
+                    Direct link to Imagica Holidays on Google Maps. No registration required.
+                  </p>
+                </div>
               </motion.div>
             )}
 
@@ -426,7 +438,7 @@ export default function ReviewExperience({
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.97 }}
                 transition={{ duration: 0.35, ease: "easeOut" }}
-                className="relative rounded-3xl bg-[#12100d]/92 border border-[#c2614b]/50 backdrop-blur-2xl shadow-[0_24px_80px_rgba(194,97,75,0.25)] p-8 sm:p-12 text-center overflow-hidden"
+                className="relative rounded-3xl bg-[#12100d]/95 border border-[#c2614b]/50 backdrop-blur-2xl shadow-[0_24px_80px_rgba(194,97,75,0.25)] p-8 sm:p-12 text-center overflow-hidden"
               >
                 {/* Red Foil Top Accent */}
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#c2614b] to-transparent" />
@@ -435,7 +447,7 @@ export default function ReviewExperience({
                 <button
                   type="button"
                   onClick={() => setStep("rate")}
-                  className="inline-flex items-center gap-1.5 text-xs text-[#a5813b] hover:text-[#ffd700] mb-5 font-semibold uppercase tracking-wider transition-colors cursor-pointer"
+                  className="inline-flex items-center gap-1.5 text-xs text-[#a5813b] hover:text-[#ffd700] mb-4 font-semibold uppercase tracking-wider transition-colors cursor-pointer"
                 >
                   ← Change Rating ({rating}★)
                 </button>
@@ -522,7 +534,7 @@ export default function ReviewExperience({
                 initial={{ opacity: 0, scale: 0.96 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.35 }}
-                className="relative rounded-3xl bg-[#12100d]/92 border border-[#8d6a2f]/50 backdrop-blur-2xl shadow-[0_24px_80px_rgba(0,0,0,0.85)] p-10 sm:p-14 text-center overflow-hidden"
+                className="relative rounded-3xl bg-[#12100d]/95 border border-[#8d6a2f]/50 backdrop-blur-2xl shadow-[0_24px_80px_rgba(0,0,0,0.85)] p-10 sm:p-14 text-center overflow-hidden"
               >
                 <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-gradient-to-br from-[#1f3a22] to-[#0f1d11] border border-emerald-500/50 flex items-center justify-center text-2xl text-emerald-400 shadow-[0_0_25px_rgba(52,211,153,0.3)]">
                   ✓
