@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -42,6 +43,9 @@ const TRENDING_COLLECTION = [
 ];
 
 export default function TrendingPopup() {
+  const pathname = usePathname();
+  if (pathname?.startsWith("/review")) return null;
+
   const [isVisible, setIsVisible] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
