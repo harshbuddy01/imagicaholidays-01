@@ -1,15 +1,24 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { heroSlides, hotelTabs, pools, dining, spa, villas } from "@/lib/constants";
 import NextImage from "next/image";
 
 export default function Preloader() {
+    const pathname = usePathname();
     const [loading, setLoading] = useState(true);
     const [progress, setProgress] = useState(0);
 
+    // Bypass preloader completely on review routes for immediate fast loading
+    const isReviewRoute = pathname?.startsWith("/review");
+
     useEffect(() => {
+        if (isReviewRoute) {
+            setLoading(false);
+            return;
+        }
+
         const hasLoaded = sessionStorage.getItem("imagica_preloader_seen");
         if (hasLoaded) {
             setLoading(false);
