@@ -192,11 +192,20 @@ function resolveDestinationProfile(
   badges: string[] = [],
   title = ""
 ): DestinationProfile {
-  const combined = `${dep} ${ret} ${reg} ${badges.join(" ")} ${title}`.toLowerCase();
+  // Check exact keys in priority order: departure port, title, badges, return port, regions
+  const searchSources = [
+    dep.toLowerCase(),
+    title.toLowerCase(),
+    badges.map((b) => b.toLowerCase()).join(" "),
+    ret.toLowerCase(),
+    reg.toLowerCase(),
+  ];
 
-  for (const [key, profile] of Object.entries(DESTINATION_PROFILES)) {
-    if (combined.includes(key)) {
-      return profile;
+  for (const source of searchSources) {
+    for (const [key, profile] of Object.entries(DESTINATION_PROFILES)) {
+      if (source.includes(key)) {
+        return profile;
+      }
     }
   }
 
