@@ -102,13 +102,16 @@ export default function Footer() {
   }, []);
 
   useEffect(() => {
-    fetch(`${API_BASE}/public/journeys`)
-      .then((r) => r.json())
+    fetch(`${API_BASE}/public/packages`)
+      .then((r) => {
+        if (!r.ok) return fetch(`${API_BASE}/public/journeys`).then(x => x.json());
+        return r.json();
+      })
       .then((d) => {
-        if (d.success && Array.isArray(d.data)) {
+        if (d && d.success && Array.isArray(d.data)) {
           const list = d.data.slice(0, 5).map((j: any) => ({
             label: j.title,
-            href: `/journey/${j.id}`,
+            href: `/packages/${j.id}`,
           }));
           setPackages(list);
         }
@@ -117,9 +120,9 @@ export default function Footer() {
   }, []);
 
   const displayedPackages = packages.length > 0 ? packages : [
-    { label: "Sikkim Explorer Tour", href: "/journey/sikkim-journey-0" },
-    { label: "Darjeeling Heritage Tour", href: "/journey/darjeeling-journey-1" },
-    { label: "Munnar Tea Gardens", href: "/journey/munnar-journey-2" },
+    { label: "Sikkim Explorer Tour", href: "/packages/sikkim-journey-0" },
+    { label: "Darjeeling Heritage Tour", href: "/packages/darjeeling-journey-2" },
+    { label: "Munnar Tea Gardens", href: "/packages/kerala-journey-4" },
   ];
 
   return (

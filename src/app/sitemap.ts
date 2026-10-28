@@ -15,6 +15,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/terms",
     "/cookies",
     "/reserve",
+    "/packages",
     "/journey",
     "/destinations",
   ];
@@ -39,7 +40,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     if (res.ok) {
       const d = await res.json();
       if (d.success && Array.isArray(d.data)) {
-        dynamicRoutes = d.data.map((j: any) => `/journey/${j.id}`);
+        dynamicRoutes = [
+          ...d.data.map((j: any) => `/packages/${j.id}`),
+          ...d.data.map((j: any) => `/journey/${j.id}`),
+        ];
       }
     }
   } catch (e) {

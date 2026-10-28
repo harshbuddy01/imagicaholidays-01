@@ -22,9 +22,9 @@ interface NavLink {
 
 const links: NavLink[] = [
   { 
-    href: "/journey", 
-    id: "/journey", 
-    label: "Journey",
+    href: "/packages", 
+    id: "/packages", 
+    label: "Our Packages",
     icon: (
       <svg className="w-3.5 h-3.5 mb-1 text-inherit" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
         <path d="M2 20L12 4L22 20H2Z" strokeLinecap="round" strokeLinejoin="round" />
@@ -118,7 +118,7 @@ const DEFAULT_MEMOIR_STATES = [
 export default function Navbar() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
-  const [active, setActive] = useState(pathname.startsWith('/journey') ? '/journey' : '#destinations-carousel');
+  const [active, setActive] = useState(pathname.startsWith('/packages') || pathname.startsWith('/journey') ? '/packages' : '#destinations-carousel');
   const [open, setOpen] = useState(false);
   const [destOpen, setDestOpen] = useState(false);
 
@@ -184,8 +184,8 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    if (pathname.startsWith('/journey')) {
-      setActive('/journey');
+    if (pathname.startsWith('/packages') || pathname.startsWith('/journey')) {
+      setActive('/packages');
     }
   }, [pathname]);
 

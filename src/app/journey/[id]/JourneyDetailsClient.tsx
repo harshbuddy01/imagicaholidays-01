@@ -100,13 +100,13 @@ export default function JourneyDetailsClient({ journey }: JourneyDetailsClientPr
                 <div className="w-full lg:w-[60%] xl:w-[65%]">
 
                     <Link
-                        href="/journey"
-                        className="flex w-max items-center gap-2 text-sm text-[#5c544b] hover:text-[#1a1914] transition-colors mb-6"
+                        href="/packages"
+                        className="flex w-max items-center gap-2 text-sm text-[#5c544b] hover:text-[#1a1914] transition-colors mb-6 font-manrope font-semibold"
                     >
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                             <path d="M15 18l-6-6 6-6" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
-                        Back
+                        Back to Packages
                     </Link>
 
                     {/* Image Carousel */}
