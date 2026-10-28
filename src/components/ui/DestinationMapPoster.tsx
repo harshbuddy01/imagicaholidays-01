@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useMemo } from "react";
+import { motion } from "framer-motion";
 import Image from "next/image";
 
 interface DestinationMapPosterProps {
@@ -13,214 +14,88 @@ interface DestinationMapPosterProps {
   className?: string;
 }
 
-interface DestinationProfile {
+interface PlacePin {
+  id: string;
   name: string;
-  displayName: string;
-  subtitle: string;
-  coordinates: string;
-  terrainType: "himalayan" | "backwaters" | "desert" | "coastal" | "island" | "standard";
-  elevation?: string;
+  top: string;
+  left: string;
+  height: number;
 }
 
-const DESTINATION_PROFILES: Record<string, DestinationProfile> = {
+const DESTINATION_TERRAINS: Record<string, { image: string; tint: string; label: string; coords: string }> = {
+  sikkim: {
+    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+    tint: "#3b5328",
+    label: "HIMALAYAN FRONTIER",
+    coords: "27.3389° N / 88.6065° E",
+  },
   gangtok: {
-    name: "GANGTOK",
-    displayName: "G A N G T O K",
-    subtitle: "SIKKIM, INDIA",
-    coordinates: "27.3389° N / 88.6065° E",
-    terrainType: "himalayan",
-    elevation: "1,650m",
+    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+    tint: "#3b5328",
+    label: "SIKKIM HIGHLANDS",
+    coords: "27.3389° N / 88.6065° E",
   },
   darjeeling: {
-    name: "DARJEELING",
-    displayName: "D A R J E E L I N G",
-    subtitle: "WEST BENGAL, INDIA",
-    coordinates: "27.0378° N / 88.2632° E",
-    terrainType: "himalayan",
-    elevation: "2,042m",
+    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+    tint: "#354a24",
+    label: "TEA TRAILS RIDGE",
+    coords: "27.0378° N / 88.2632° E",
   },
   lachung: {
-    name: "LACHUNG",
-    displayName: "L A C H U N G",
-    subtitle: "NORTH SIKKIM, INDIA",
-    coordinates: "27.6891° N / 88.7430° E",
-    terrainType: "himalayan",
-    elevation: "2,700m",
+    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+    tint: "#2d421d",
+    label: "NORTH SIKKIM ALPINE",
+    coords: "27.6891° N / 88.7430° E",
   },
   pelling: {
-    name: "PELLING",
-    displayName: "P E L L I N G",
-    subtitle: "WEST SIKKIM, INDIA",
-    coordinates: "27.3167° N / 88.2333° E",
-    terrainType: "himalayan",
-    elevation: "2,150m",
-  },
-  munnar: {
-    name: "MUNNAR",
-    displayName: "M U N N A R",
-    subtitle: "KERALA, INDIA",
-    coordinates: "10.0889° N / 77.0595° E",
-    terrainType: "backwaters",
-    elevation: "1,532m",
-  },
-  cochin: {
-    name: "COCHIN",
-    displayName: "K E R A L A",
-    subtitle: "GOD'S OWN COUNTRY, INDIA",
-    coordinates: "9.9312° N / 76.2673° E",
-    terrainType: "backwaters",
-    elevation: "3m",
+    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+    tint: "#354a24",
+    label: "WEST SIKKIM SUMMIT",
+    coords: "27.3167° N / 88.2333° E",
   },
   kerala: {
-    name: "KERALA",
-    displayName: "K E R A L A",
-    subtitle: "GOD'S OWN COUNTRY, INDIA",
-    coordinates: "9.9312° N / 76.2673° E",
-    terrainType: "backwaters",
-    elevation: "12m",
+    image: "https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=800&q=80",
+    tint: "#224422",
+    label: "EMERALD BACKWATERS",
+    coords: "9.9312° N / 76.2673° E",
   },
-  thekkady: {
-    name: "THEKKADY",
-    displayName: "T H E K K A D Y",
-    subtitle: "KERALA, INDIA",
-    coordinates: "9.6031° N / 77.1615° E",
-    terrainType: "backwaters",
-    elevation: "900m",
+  munnar: {
+    image: "https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=800&q=80",
+    tint: "#254924",
+    label: "HIGH TEA SANCTUARY",
+    coords: "10.0889° N / 77.0595° E",
   },
-  alleppey: {
-    name: "ALLEPPEY",
-    displayName: "A L L E P P E Y",
-    subtitle: "KERALA BACKWATERS, INDIA",
-    coordinates: "9.4981° N / 76.3388° E",
-    terrainType: "backwaters",
-    elevation: "1m",
-  },
-  wayanad: {
-    name: "WAYANAD",
-    displayName: "W A Y A N A D",
-    subtitle: "KERALA, INDIA",
-    coordinates: "11.6854° N / 76.1320° E",
-    terrainType: "backwaters",
-    elevation: "700m",
-  },
-  jaipur: {
-    name: "JAIPUR",
-    displayName: "J A I P U R",
-    subtitle: "RAJASTHAN, INDIA",
-    coordinates: "26.9124° N / 75.7873° E",
-    terrainType: "desert",
-    elevation: "431m",
-  },
-  udaipur: {
-    name: "UDAIPUR",
-    displayName: "U D A I P U R",
-    subtitle: "RAJASTHAN, INDIA",
-    coordinates: "24.5854° N / 73.7125° E",
-    terrainType: "desert",
-    elevation: "598m",
-  },
-  jodhpur: {
-    name: "JODHPUR",
-    displayName: "J O D H P U R",
-    subtitle: "RAJASTHAN, INDIA",
-    coordinates: "26.2389° N / 73.0243° E",
-    terrainType: "desert",
-    elevation: "231m",
-  },
-  jaisalmer: {
-    name: "JAISALMER",
-    displayName: "J A I S A L M E R",
-    subtitle: "RAJASTHAN, INDIA",
-    coordinates: "26.9157° N / 70.9083° E",
-    terrainType: "desert",
-    elevation: "225m",
-  },
-  bikaner: {
-    name: "BIKANER",
-    displayName: "B I K A N E R",
-    subtitle: "RAJASTHAN, INDIA",
-    coordinates: "28.0229° N / 73.3119° E",
-    terrainType: "desert",
-    elevation: "242m",
+  cochin: {
+    image: "https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=800&q=80",
+    tint: "#224422",
+    label: "ARABIAN HARBOUR",
+    coords: "9.9312° N / 76.2673° E",
   },
   rajasthan: {
-    name: "RAJASTHAN",
-    displayName: "R A J A S T H A N",
-    subtitle: "LAND OF KINGS, INDIA",
-    coordinates: "26.9124° N / 75.7873° E",
-    terrainType: "desert",
-    elevation: "350m",
+    image: "https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&w=800&q=80",
+    tint: "#4a3520",
+    label: "ROYAL THAR TERRAIN",
+    coords: "26.9124° N / 75.7873° E",
+  },
+  jaipur: {
+    image: "https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&w=800&q=80",
+    tint: "#4a3520",
+    label: "PINK CITY EXPEDITION",
+    coords: "26.9124° N / 75.7873° E",
+  },
+  udaipur: {
+    image: "https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&w=800&q=80",
+    tint: "#42321c",
+    label: "LAKES & PALACES",
+    coords: "24.5854° N / 73.7125° E",
   },
   goa: {
-    name: "GOA",
-    displayName: "G O A",
-    subtitle: "WEST COAST, INDIA",
-    coordinates: "15.2993° N / 74.1240° E",
-    terrainType: "coastal",
-    elevation: "5m",
-  },
-  "port blair": {
-    name: "PORT BLAIR",
-    displayName: "P O R T  B L A I R",
-    subtitle: "ANDAMAN & NICOBAR, INDIA",
-    coordinates: "11.6234° N / 92.7265° E",
-    terrainType: "island",
-    elevation: "16m",
-  },
-  kolkata: {
-    name: "KOLKATA",
-    displayName: "K O L K A T A",
-    subtitle: "WEST BENGAL, INDIA",
-    coordinates: "22.5726° N / 88.3639° E",
-    terrainType: "standard",
-    elevation: "9m",
-  },
-  sikkim: {
-    name: "SIKKIM",
-    displayName: "S I K K I M",
-    subtitle: "HIMALAYAN FRONTIER, INDIA",
-    coordinates: "27.5330° N / 88.5122° E",
-    terrainType: "himalayan",
-    elevation: "1,800m",
+    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
+    tint: "#203a3d",
+    label: "COASTAL OUTPOST",
+    coords: "15.2993° N / 74.1240° E",
   },
 };
-
-function resolveDestinationProfile(
-  dep = "",
-  ret = "",
-  reg = "",
-  badges: string[] = [],
-  title = ""
-): DestinationProfile {
-  // Check exact keys in priority order: departure port, title, badges, return port, regions
-  const searchSources = [
-    dep.toLowerCase(),
-    title.toLowerCase(),
-    badges.map((b) => b.toLowerCase()).join(" "),
-    ret.toLowerCase(),
-    reg.toLowerCase(),
-  ];
-
-  for (const source of searchSources) {
-    for (const [key, profile] of Object.entries(DESTINATION_PROFILES)) {
-      if (source.includes(key)) {
-        return profile;
-      }
-    }
-  }
-
-  // Fallback to departurePort or primary keyword
-  const primaryName = dep.trim() || ret.trim() || "EXPEDITION";
-  const formattedLetters = primaryName.toUpperCase().split("").join(" ");
-
-  return {
-    name: primaryName.toUpperCase(),
-    displayName: formattedLetters,
-    subtitle: "INDIA",
-    coordinates: "27.0378° N / 88.2632° E",
-    terrainType: "himalayan",
-  };
-}
 
 export default function DestinationMapPoster({
   departurePort = "",
@@ -231,318 +106,194 @@ export default function DestinationMapPoster({
   customMapUrl = null,
   className = "",
 }: DestinationMapPosterProps) {
-  const profile = useMemo(
-    () => resolveDestinationProfile(departurePort, returnPort, regions, badges, title),
-    [departurePort, returnPort, regions, badges, title]
-  );
+  // Resolve terrain style and metadata
+  const terrainConfig = useMemo(() => {
+    const haystack = `${departurePort} ${returnPort} ${title} ${badges.join(" ")} ${regions}`.toLowerCase();
+    for (const [key, cfg] of Object.entries(DESTINATION_TERRAINS)) {
+      if (haystack.includes(key)) return cfg;
+    }
+    return {
+      image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+      tint: "#3b5328",
+      label: "CURATED EXPEDITION",
+      coords: "27.0378° N / 88.2632° E",
+    };
+  }, [departurePort, returnPort, title, badges, regions]);
 
-  // If a valid custom map image is provided from R2 or user upload, render that
-  const hasValidCustomMap = Boolean(
-    customMapUrl &&
-      !customMapUrl.includes("pexels-photo-30156563") &&
-      (customMapUrl.includes("r2") || customMapUrl.includes("terraink") || customMapUrl.includes("maps"))
-  );
+  // Construct 3D Map Pointers automatically from departure and return ports
+  const places = useMemo<PlacePin[]>(() => {
+    const depName = departurePort?.trim().toUpperCase() || "START";
+    const retName = returnPort?.trim().toUpperCase() || "DESTINATION";
 
-  if (hasValidCustomMap && customMapUrl) {
-    return (
-      <div className={`relative w-full h-full bg-[#0a121e] overflow-hidden ${className}`}>
-        <Image
-          src={customMapUrl}
-          alt={`${profile.name} Cartographic Map`}
-          fill
-          className="object-cover"
-        />
-        <div className="absolute inset-0 border border-[#d8be8f]/20 pointer-events-none" />
-      </div>
-    );
-  }
+    if (!returnPort || depName === retName) {
+      return [
+        {
+          id: "primary",
+          name: depName,
+          top: "42%",
+          left: "48%",
+          height: 80,
+        },
+      ];
+    }
+
+    return [
+      {
+        id: "dep",
+        name: depName,
+        top: "48%",
+        left: "34%",
+        height: 72,
+      },
+      {
+        id: "ret",
+        name: retName,
+        top: "32%",
+        left: "62%",
+        height: 92,
+      },
+    ];
+  }, [departurePort, returnPort]);
 
   return (
     <div
-      className={`relative w-full h-full bg-[#08101d] text-[#d8be8f] select-none overflow-hidden flex flex-col justify-between ${className}`}
+      className={`relative w-full h-full bg-[#080d15] text-[#d8be8f] select-none overflow-hidden flex flex-col justify-between ${className}`}
       style={{
-        background: "radial-gradient(ellipse at 50% 35%, #0f1c30 0%, #08101d 70%, #050a12 100%)",
+        background: "radial-gradient(ellipse at 50% 40%, #0d1728 0%, #070d17 65%, #040810 100%)",
       }}
     >
-      {/* ── Cartographic Hairline Border ── */}
-      <div className="absolute inset-2 border border-[#d8be8f]/25 pointer-events-none z-10" />
-      <div className="absolute inset-3 border border-[#d8be8f]/10 pointer-events-none z-10" />
-
-      {/* Lat/Long corner tick marks */}
-      <div className="absolute top-2 left-2 w-1.5 h-1.5 border-t-2 border-l-2 border-[#d8be8f] z-20" />
-      <div className="absolute top-2 right-2 w-1.5 h-1.5 border-t-2 border-r-2 border-[#d8be8f] z-20" />
-      <div className="absolute bottom-2 left-2 w-1.5 h-1.5 border-b-2 border-l-2 border-[#d8be8f] z-20" />
-      <div className="absolute bottom-2 right-2 w-1.5 h-1.5 border-b-2 border-r-2 border-[#d8be8f] z-20" />
-
-      {/* Top Header Information Bar */}
-      <div className="relative z-20 pt-4 px-5 flex items-center justify-between text-[8px] font-mono tracking-[0.2em] text-[#a5813b]/80 uppercase">
-        <span className="flex items-center gap-1.5">
-          <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#d8be8f] animate-pulse" />
-          CARTOGRAPHY
+      {/* ── Top Cartographic HUD Bar ── */}
+      <div className="relative z-30 pt-3 px-4 flex items-center justify-between text-[8px] font-mono tracking-[0.22em] text-[#d8be8f]/80 uppercase pointer-events-none">
+        <span className="flex items-center gap-1.5 font-bold">
+          <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#d8be8f] animate-ping" />
+          3D TERRAIN MAP
         </span>
-        <span className="text-[#d8be8f]/60">THEME: MIDNIGHT BLUE</span>
+        <span className="text-[#a5813b] font-semibold">{terrainConfig.label}</span>
       </div>
 
-      {/* ── Central Vector Cartography Terrain Canvas ── */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <svg
-          viewBox="0 0 400 300"
-          className="w-full h-full opacity-90"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
+      {/* ── 3D Floating Terrain Map Board (From SikkimMapSection in Repo) ── */}
+      <div
+        className="absolute inset-0 flex items-center justify-center overflow-hidden"
+        style={{ perspective: "1000px" }}
+      >
+        <motion.div
+          animate={{ rotateZ: [34, 40, 34], rotateX: [52, 58, 52] }}
+          transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
+          className="relative w-[310px] h-[310px] sm:w-[350px] sm:h-[350px]"
+          style={{ transformStyle: "preserve-3d" }}
         >
-          {/* Subtle Grid System */}
-          <g stroke="#d8be8f" strokeOpacity="0.05" strokeWidth="0.5" strokeDasharray="3 6">
-            <line x1="50" y1="0" x2="50" y2="300" />
-            <line x1="100" y1="0" x2="100" y2="300" />
-            <line x1="150" y1="0" x2="150" y2="300" />
-            <line x1="200" y1="0" x2="200" y2="300" />
-            <line x1="250" y1="0" x2="250" y2="300" />
-            <line x1="300" y1="0" x2="300" y2="300" />
-            <line x1="350" y1="0" x2="350" y2="300" />
-            <line x1="0" y1="50" x2="400" y2="50" />
-            <line x1="0" y1="100" x2="400" y2="100" />
-            <line x1="0" y1="150" x2="400" y2="150" />
-            <line x1="0" y1="200" x2="400" y2="200" />
-          </g>
+          {/* Earth Crust Extrusions (The deep 3D Thickness dropping below the map board) */}
+          {[...Array(14)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute inset-[15%] shadow-xl pointer-events-none"
+              style={{
+                borderRadius: "38% 52% 35% 62% / 55% 42% 48% 45%",
+                backgroundColor: i < 3 ? terrainConfig.tint : i < 6 ? "#2c3b20" : "#1c1813",
+                transform: `translateZ(-${i * 3}px)`,
+                border: i === 0 ? "1.5px solid #6b8a4f" : "none",
+              }}
+            />
+          ))}
 
-          {/* ── TERRAIN SPECIFIC VECTORS ── */}
-          {profile.terrainType === "himalayan" && (
-            <g>
-              {/* Mountain Ridge Elevation Contours (Organic Curves in Antique Gold) */}
-              <path
-                d="M-20,40 Q60,120 180,60 T380,40"
-                stroke="#c5a059"
-                strokeWidth="0.8"
-                strokeOpacity="0.25"
-              />
-              <path
-                d="M-20,70 Q90,140 210,80 T420,90"
-                stroke="#c5a059"
-                strokeWidth="0.8"
-                strokeOpacity="0.2"
-              />
-              <path
-                d="M-20,110 Q120,180 230,120 T420,130"
-                stroke="#c5a059"
-                strokeWidth="1"
-                strokeOpacity="0.3"
-              />
-              <path
-                d="M10,140 Q140,210 250,150 T420,170"
-                stroke="#c5a059"
-                strokeWidth="0.8"
-                strokeOpacity="0.22"
-              />
+          {/* Top Surface: High-Res Topographical Mountain Satellite Terrain */}
+          <div
+            className="absolute inset-[15%] pointer-events-none"
+            style={{
+              borderRadius: "38% 52% 35% 62% / 55% 42% 48% 45%",
+              transform: "translateZ(2px)",
+              overflow: "hidden",
+            }}
+          >
+            <Image
+              src={terrainConfig.image}
+              alt="Destination Terrain Map"
+              width={600}
+              height={600}
+              className="w-full h-full object-cover scale-[1.35]"
+            />
+            {/* Dark Cinematic Vignette */}
+            <div className="absolute inset-0 bg-black/25 mix-blend-multiply" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(0,0,0,0.6)_100%)]" />
 
-              {/* Meandering Himalayan River Vein (Golden Gorge) */}
-              <path
-                d="M190,-10 C185,45 230,70 210,115 C190,150 205,185 195,240 C185,280 220,310 200,340"
-                stroke="#f0d59e"
-                strokeWidth="2.2"
-                strokeOpacity="0.85"
-                strokeLinecap="round"
-              />
-              {/* Tributary branches */}
-              <path
-                d="M210,115 C240,110 280,125 320,110"
-                stroke="#d8be8f"
-                strokeWidth="1.2"
-                strokeOpacity="0.6"
-              />
-              <path
-                d="M195,150 C160,155 120,140 80,160"
-                stroke="#d8be8f"
-                strokeWidth="1.2"
-                strokeOpacity="0.6"
-              />
-              <path
-                d="M195,185 C225,190 260,180 300,200"
-                stroke="#d8be8f"
-                strokeWidth="1"
-                strokeOpacity="0.5"
-              />
-              <path
-                d="M205,80 C175,70 140,85 100,75"
-                stroke="#d8be8f"
-                strokeWidth="1"
-                strokeOpacity="0.5"
-              />
+            {/* Glowing Golden Route Trace on the 3D Land Surface */}
+            {places.length > 1 && (
+              <svg className="absolute inset-0 w-full h-full pointer-events-none z-10" viewBox="0 0 100 100">
+                <path
+                  d="M 38 48 Q 50 38 62 34"
+                  fill="none"
+                  stroke="#f0d59e"
+                  strokeWidth="1.8"
+                  strokeDasharray="3 2"
+                  strokeLinecap="round"
+                />
+              </svg>
+            )}
+          </div>
 
-              {/* Mountain Peak Triangles */}
-              <polygon points="120,65 125,75 115,75" fill="#d8be8f" fillOpacity="0.4" />
-              <polygon points="280,55 286,67 274,67" fill="#d8be8f" fillOpacity="0.4" />
-              <polygon points="340,95 345,105 335,105" fill="#d8be8f" fillOpacity="0.3" />
-              <polygon points="70,125 76,137 64,137" fill="#d8be8f" fillOpacity="0.3" />
-            </g>
-          )}
+          {/* ── 3D Map Pointers pointing completely ABOVE the land ── */}
+          <div
+            className="absolute inset-[15%] z-20 pointer-events-none"
+            style={{
+              transformStyle: "preserve-3d",
+              borderRadius: "38% 52% 35% 62% / 55% 42% 48% 45%",
+            }}
+          >
+            {places.map((place) => (
+              <div
+                key={place.id}
+                className="absolute"
+                style={{
+                  top: place.top,
+                  left: place.left,
+                  transformStyle: "preserve-3d",
+                }}
+              >
+                {/* Embedded Glowing Map Dot on the 3D surface */}
+                <div className="w-3.5 h-3.5 rounded-full bg-white border-[3px] border-[#181510] -translate-x-1.5 -translate-y-1.5 shadow-[0_0_15px_rgba(255,255,255,0.95)]" />
 
-          {profile.terrainType === "backwaters" && (
-            <g>
-              {/* Serpentine Kerala Waterways & Lagoon Channels */}
-              <path
-                d="M60,-10 C80,50 40,100 70,150 C100,200 50,250 80,310"
-                stroke="#f0d59e"
-                strokeWidth="3"
-                strokeOpacity="0.85"
-                strokeLinecap="round"
-              />
-              <path
-                d="M70,150 C120,140 180,170 240,145 C300,120 340,160 410,130"
-                stroke="#e2c180"
-                strokeWidth="2"
-                strokeOpacity="0.75"
-              />
-              <path
-                d="M180,170 C190,210 220,240 250,280"
-                stroke="#d8be8f"
-                strokeWidth="1.4"
-                strokeOpacity="0.6"
-              />
-              <path
-                d="M240,145 C230,90 270,50 310,20"
-                stroke="#d8be8f"
-                strokeWidth="1.4"
-                strokeOpacity="0.5"
-              />
+                {/* Vertical 3D Pole Shooting straight up into the air ABOVE the map */}
+                <div
+                  className="absolute left-[0px] bottom-[5px] w-[2px] bg-gradient-to-t from-white/90 via-[#f0d59e] to-white/90 transform origin-bottom"
+                  style={{
+                    height: `${place.height}px`,
+                    transform: "rotateX(-90deg)",
+                    boxShadow: "0 0 8px rgba(0,0,0,0.6)",
+                  }}
+                />
 
-              {/* Tea Garden Topographic Rings */}
-              <ellipse cx="280" cy="90" rx="45" ry="25" stroke="#c5a059" strokeWidth="0.8" strokeOpacity="0.3" />
-              <ellipse cx="280" cy="90" rx="30" ry="16" stroke="#c5a059" strokeWidth="0.8" strokeOpacity="0.35" />
-              <ellipse cx="280" cy="90" rx="15" ry="8" stroke="#c5a059" strokeWidth="0.8" strokeOpacity="0.4" />
-            </g>
-          )}
-
-          {profile.terrainType === "desert" && (
-            <g>
-              {/* Rajasthan Dune Waves & Fort Bastion Axes */}
-              <path d="M-20,60 Q80,20 180,60 T380,50" stroke="#c5a059" strokeWidth="1" strokeOpacity="0.3" />
-              <path d="M-20,95 Q90,55 200,95 T420,80" stroke="#c5a059" strokeWidth="1.2" strokeOpacity="0.4" />
-              <path d="M-20,135 Q110,85 220,130 T420,120" stroke="#f0d59e" strokeWidth="1.8" strokeOpacity="0.6" />
-              <path d="M-20,175 Q120,135 240,170 T420,160" stroke="#c5a059" strokeWidth="1" strokeOpacity="0.35" />
-
-              {/* Royal Fort Geometric Hub */}
-              <rect x="185" y="105" width="30" height="30" stroke="#e2c180" strokeWidth="1.5" strokeOpacity="0.7" fill="#08101d" />
-              <circle cx="200" cy="120" r="8" stroke="#f0d59e" strokeWidth="1.5" strokeOpacity="0.9" />
-              <line x1="160" y1="120" x2="240" y2="120" stroke="#d8be8f" strokeWidth="1" strokeOpacity="0.5" />
-              <line x1="200" y1="80" x2="200" y2="160" stroke="#d8be8f" strokeWidth="1" strokeOpacity="0.5" />
-            </g>
-          )}
-
-          {profile.terrainType === "coastal" && (
-            <g>
-              {/* Goa Coastline & Arabian Sea Bathymetry */}
-              <path
-                d="M120,-10 Q140,80 130,160 T160,310"
-                stroke="#f0d59e"
-                strokeWidth="2.8"
-                strokeOpacity="0.9"
-              />
-              <path
-                d="M90,-10 Q110,80 100,160 T130,310"
-                stroke="#c5a059"
-                strokeWidth="1"
-                strokeOpacity="0.4"
-                strokeDasharray="4 4"
-              />
-              <path
-                d="M60,-10 Q80,80 70,160 T100,310"
-                stroke="#c5a059"
-                strokeWidth="0.8"
-                strokeOpacity="0.25"
-                strokeDasharray="4 4"
-              />
-              {/* Mandovi / Zuari River mouths */}
-              <path d="M130,110 C180,105 240,125 310,115" stroke="#e2c180" strokeWidth="1.8" strokeOpacity="0.75" />
-              <path d="M140,180 C190,175 230,195 290,185" stroke="#e2c180" strokeWidth="1.8" strokeOpacity="0.75" />
-            </g>
-          )}
-
-          {(profile.terrainType === "island" || profile.terrainType === "standard") && (
-            <g>
-              <path
-                d="M160,50 C180,60 190,90 170,110 C150,130 130,160 150,190 C170,220 160,250 140,270"
-                stroke="#f0d59e"
-                strokeWidth="2.2"
-                strokeOpacity="0.85"
-              />
-              <circle cx="240" cy="80" r="12" stroke="#d8be8f" strokeWidth="1.2" strokeOpacity="0.6" />
-              <circle cx="270" cy="140" r="16" stroke="#d8be8f" strokeWidth="1.2" strokeOpacity="0.6" />
-              <circle cx="230" cy="200" r="9" stroke="#d8be8f" strokeWidth="1.2" strokeOpacity="0.6" />
-            </g>
-          )}
-
-          {/* ── EXPEDITION ROUTE WAYPOINTS ── */}
-          {/* Waypoint A (Departure) */}
-          <circle cx="150" cy="130" r="6" fill="#08101d" stroke="#f0d59e" strokeWidth="2" />
-          <circle cx="150" cy="130" r="2.5" fill="#f0d59e" />
-
-          {/* Connected Dashed Glowing Route Line */}
-          <path
-            d="M150,130 C190,110 210,140 250,105"
-            stroke="#f0d59e"
-            strokeWidth="1.8"
-            strokeDasharray="4 3"
-            strokeLinecap="round"
-          />
-
-          {/* Waypoint B (Destination/Return) */}
-          <circle cx="250" cy="105" r="6" fill="#08101d" stroke="#f0d59e" strokeWidth="2" />
-          <circle cx="250" cy="105" r="2.5" fill="#f0d59e" />
-
-          {/* Compass Rose Accent in Corner */}
-          <g transform="translate(345, 45) scale(0.65)">
-            <circle cx="0" cy="0" r="22" stroke="#d8be8f" strokeWidth="0.8" strokeOpacity="0.4" />
-            <polygon points="0,-22 4,-6 0,0" fill="#f0d59e" />
-            <polygon points="0,-22 -4,-6 0,0" fill="#a5813b" />
-            <polygon points="0,22 4,6 0,0" fill="#a5813b" />
-            <polygon points="0,22 -4,6 0,0" fill="#70582d" />
-            <polygon points="22,0 6,4 0,0" fill="#a5813b" />
-            <polygon points="-22,0 -6,4 0,0" fill="#70582d" />
-            <text x="0" y="-26" textAnchor="middle" fill="#d8be8f" fontSize="9" fontFamily="monospace" fontWeight="bold">N</text>
-          </g>
-        </svg>
+                {/* Floating Tag facing the camera - offsetting the parent's tilt */}
+                <div
+                  className="absolute left-0 top-0"
+                  style={{
+                    transform: `translateZ(${place.height}px) rotateZ(-37deg) rotateX(-55deg)`,
+                  }}
+                >
+                  <div className="absolute bottom-1.5 left-1/2 -translate-x-1/2">
+                    <div className="bg-[#101926]/95 backdrop-blur-md text-[#f8f5f0] px-3 py-1 rounded-md shadow-2xl whitespace-nowrap border border-[#d8be8f]/50 flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#d8be8f] animate-ping" />
+                      <span className="text-[0.62rem] font-bold uppercase tracking-[0.24em] text-[#f2ddad] drop-shadow-sm font-sans">
+                        {place.name}
+                      </span>
+                    </div>
+                    {/* Tag connector baseline tip */}
+                    <div className="w-2 h-2 bg-[#101926]/95 rotate-45 absolute -bottom-1 left-1/2 -translate-x-1/2 border-r border-b border-[#d8be8f]/50" />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </motion.div>
       </div>
 
-      {/* ── Bottom Cartographic Typography & Metadata (Matching Screenshot 2) ── */}
-      <div className="relative z-20 pb-4 px-4 text-center">
-        {/* Subtle decorative gold diamond separator */}
-        <div className="flex items-center justify-center gap-2 mb-2">
-          <div className="h-px w-12 bg-gradient-to-r from-transparent to-[#d8be8f]/60" />
-          <span className="text-[7px] text-[#d8be8f]/80">◆</span>
-          <div className="h-px w-12 bg-gradient-to-l from-transparent to-[#d8be8f]/60" />
-        </div>
-
-        {/* Primary Destination Name with Wide Tracking */}
-        <h3 className="font-roman text-xl sm:text-2xl font-bold tracking-[0.32em] text-[#f2ddad] uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-          {profile.displayName}
-        </h3>
-
-        {/* Country / State Subtitle */}
-        <p className="text-[9px] font-sans font-semibold tracking-[0.28em] text-[#a5813b] uppercase mt-0.5 mb-1.5">
-          {profile.subtitle}
-        </p>
-
-        {/* Exact Real GPS Coordinates */}
-        <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-black/40 border border-[#d8be8f]/20 backdrop-blur-xs">
-          <span className="text-[8px] font-mono text-[#c5a059] tracking-[0.14em]">
-            {profile.coordinates}
-          </span>
-          {profile.elevation && (
-            <>
-              <span className="text-[8px] text-[#d8be8f]/40">•</span>
-              <span className="text-[8px] font-mono text-[#a5813b] tracking-wider">
-                {profile.elevation}
-              </span>
-            </>
-          )}
-        </div>
-
-        {/* Footer Credit & Route */}
-        <div className="mt-2.5 flex items-center justify-between text-[7px] font-mono text-[#8a785d]/70 tracking-widest uppercase border-t border-[#d8be8f]/10 pt-1.5 px-2">
-          <span>{departurePort || "START"} ➔ {returnPort || "END"}</span>
-          <span>IMAGICA CARTOGRAPHY</span>
-        </div>
+      {/* ── Bottom HUD Footer Bar ── */}
+      <div className="relative z-30 pb-3 px-4 flex items-center justify-between text-[8px] font-mono tracking-[0.16em] uppercase text-[#a5813b] pointer-events-none">
+        <span className="text-[#d8be8f]/80 font-bold">
+          {departurePort || "START"} ➔ {returnPort || "DESTINATION"}
+        </span>
+        <span className="text-[7.5px] text-[#c5a059]/70 font-mono">
+          {terrainConfig.coords}
+        </span>
       </div>
     </div>
   );
