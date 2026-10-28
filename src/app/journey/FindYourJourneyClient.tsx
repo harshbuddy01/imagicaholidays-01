@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
+import DestinationMapPoster from "@/components/ui/DestinationMapPoster";
 
 interface FindYourJourneyClientProps {
   initialJourneys: Array<{
@@ -40,8 +41,23 @@ const DESTINATION_FILTERS = [
 
 export default function FindYourJourneyClient({ initialJourneys }: FindYourJourneyClientProps) {
     const [viewMode, setViewMode] = useState<"PHOTO" | "MAP">("PHOTO");
+    const [cardViewOverrides, setCardViewOverrides] = useState<Record<string, "PHOTO" | "MAP">>({});
     const [selectedDestination, setSelectedDestination] = useState<string>("ALL");
     const [destDropdownOpen, setDestDropdownOpen] = useState(false);
+
+    const getEffectiveCardView = (journeyId: string) => {
+        return cardViewOverrides[journeyId] || viewMode;
+    };
+
+    const toggleCardView = (journeyId: string) => {
+        setCardViewOverrides((prev) => {
+            const current = prev[journeyId] || viewMode;
+            return {
+                ...prev,
+                [journeyId]: current === "PHOTO" ? "MAP" : "PHOTO",
+            };
+        });
+    };
 
     const filteredJourneys = useMemo(() => {
         if (selectedDestination === "ALL") return initialJourneys;
@@ -152,7 +168,10 @@ export default function FindYourJourneyClient({ initialJourneys }: FindYourJourn
                             {/* View Switcher */}
                             <div className="flex items-center gap-6 border-b-2 border-transparent">
                                 <button
-                                    onClick={() => setViewMode("PHOTO")}
+                                    onClick={() => {
+                                        setViewMode("PHOTO");
+                                        setCardViewOverrides({});
+                                    }}
                                     className={`text-xs font-bold tracking-widest pb-1.5 uppercase transition-colors ${
                                         viewMode === "PHOTO" ? "text-[#1a1914] border-b-2 border-[#1a1914]" : "text-[#a09383]"
                                     }`}
@@ -160,7 +179,10 @@ export default function FindYourJourneyClient({ initialJourneys }: FindYourJourn
                                     Photo View
                                 </button>
                                 <button
-                                    onClick={() => setViewMode("MAP")}
+                                    onClick={() => {
+                                        setViewMode("MAP");
+                                        setCardViewOverrides({});
+                                    }}
                                     className={`text-xs font-bold tracking-widest pb-1.5 uppercase transition-colors ${
                                         viewMode === "MAP" ? "text-[#1a1914] border-b-2 border-[#1a1914]" : "text-[#a09383]"
                                     }`}
@@ -190,136 +212,164 @@ export default function FindYourJourneyClient({ initialJourneys }: FindYourJourn
                     ) : (
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                             <AnimatePresence mode="popLayout">
-                                {filteredJourneys.map((journey) => (
-                                    <motion.div
-                                        key={journey.id}
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        exit={{ opacity: 0, scale: 0.95 }}
-                                        transition={{ duration: 0.4 }}
-                                        className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 flex flex-col border border-[#d5cab5]/30 group"
-                                    >
-                                        {/* Card Header */}
-                                        <div className="text-center py-4 bg-[#f8f5f0] border-b border-[#d5cab5]/30">
-                                            <span className="text-[10px] tracking-[0.2em] uppercase font-bold text-[#5c544b]">
-                                                {journey.regions}
-                                            </span>
-                                        </div>
+                                {filteredJourneys.map((journey) => {
+                                    const currentCardView = getEffectiveCardView(journey.id);
 
-                                        {/* Dynamic Image Area */}
-                                        <div className="relative w-full h-[250px] overflow-hidden bg-stone-200">
-                                            <AnimatePresence mode="wait">
-                                                {viewMode === "PHOTO" ? (
-                                                    <motion.img
-                                                        key={`photo-${journey.id}`}
-                                                        src={journey.images?.[0] || "/placeholder-travel.jpg"}
-                                                        alt={journey.title}
-                                                        initial={{ opacity: 0 }}
-                                                        animate={{ opacity: 1 }}
-                                                        exit={{ opacity: 0 }}
-                                                        transition={{ duration: 0.3 }}
-                                                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                                                    />
-                                                ) : (
-                                                    <motion.img
-                                                        key={`map-${journey.id}`}
-                                                        src={journey.mapImage || journey.images?.[0]}
-                                                        alt="Route Map"
-                                                        initial={{ opacity: 0 }}
-                                                        animate={{ opacity: 1 }}
-                                                        exit={{ opacity: 0 }}
-                                                        transition={{ duration: 0.3 }}
-                                                        className="absolute inset-0 w-full h-full object-cover"
-                                                    />
-                                                )}
-                                            </AnimatePresence>
-
-                                            {/* View overlay icon */}
-                                            <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-sm flex items-center gap-2 shadow-sm">
-                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1a1914" strokeWidth="2">
-                                                    {viewMode === "PHOTO" ? (
-                                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z M12 7a3 3 0 1 0 0 6 3 3 0 0 0 0-6z" strokeLinecap="round" strokeLinejoin="round" />
-                                                    ) : (
-                                                        <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z M4 22v-7" strokeLinecap="round" strokeLinejoin="round" />
-                                                    )}
-                                                </svg>
-                                                <span className="text-[10px] font-bold uppercase tracking-widest text-[#1a1914]">
-                                                    {viewMode === "PHOTO" ? "Map" : "Photo"}
+                                    return (
+                                        <motion.div
+                                            key={journey.id}
+                                            initial={{ opacity: 0, y: 20 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, scale: 0.95 }}
+                                            transition={{ duration: 0.4 }}
+                                            className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 flex flex-col border border-[#d5cab5]/30 group"
+                                        >
+                                            {/* Card Header */}
+                                            <div className="text-center py-4 bg-[#f8f5f0] border-b border-[#d5cab5]/30">
+                                                <span className="text-[10px] tracking-[0.2em] uppercase font-bold text-[#5c544b]">
+                                                    {journey.regions}
                                                 </span>
                                             </div>
-                                        </div>
 
-                                        {/* Card Body */}
-                                        <div className="p-6 flex flex-col flex-grow">
-                                            {/* Title */}
-                                            <h3 className="font-roman text-xl font-bold text-[#1a1914] mb-3 line-clamp-2 leading-snug">
-                                                {journey.title}
-                                            </h3>
+                                            {/* Dynamic Image Area (Photo or Midnight Blue Cartographic Map) */}
+                                            <div className="relative w-full h-[255px] overflow-hidden bg-[#0a121e]">
+                                                <AnimatePresence mode="wait">
+                                                    {currentCardView === "PHOTO" ? (
+                                                        <motion.img
+                                                            key={`photo-${journey.id}`}
+                                                            src={journey.images?.[0] || "/placeholder-travel.jpg"}
+                                                            alt={journey.title}
+                                                            initial={{ opacity: 0 }}
+                                                            animate={{ opacity: 1 }}
+                                                            exit={{ opacity: 0 }}
+                                                            transition={{ duration: 0.35 }}
+                                                            className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                                        />
+                                                    ) : (
+                                                        <motion.div
+                                                            key={`map-${journey.id}`}
+                                                            initial={{ opacity: 0, scale: 0.97 }}
+                                                            animate={{ opacity: 1, scale: 1 }}
+                                                            exit={{ opacity: 0, scale: 0.97 }}
+                                                            transition={{ duration: 0.35 }}
+                                                            className="absolute inset-0 w-full h-full"
+                                                        >
+                                                            <DestinationMapPoster
+                                                                departurePort={journey.departurePort}
+                                                                returnPort={journey.returnPort}
+                                                                regions={journey.regions}
+                                                                badges={journey.badges}
+                                                                title={journey.title}
+                                                                customMapUrl={journey.mapImage}
+                                                            />
+                                                        </motion.div>
+                                                    )}
+                                                </AnimatePresence>
 
-                                            {/* Departure -> Return Ports */}
-                                            <div className="flex justify-between items-start gap-4 mb-4 pb-4 border-b border-[#f0e7d6]">
-                                                <div>
-                                                    <span className="text-[9px] uppercase tracking-wider text-[#a09383] block">Departs</span>
-                                                    <h4 className="font-roman text-sm font-bold text-[#1a1914]">{journey.departurePort}</h4>
-                                                    <p className="text-[11px] text-[#5c544b]">{journey.departureDate}</p>
-                                                </div>
-                                                <div className="flex-grow flex items-center justify-center pt-3">
-                                                    <svg width="24" height="10" viewBox="0 0 24 24" fill="none" stroke="#ae9e85" strokeWidth="1.5">
-                                                        <path d="M5 12h14M15 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
-                                                    </svg>
-                                                </div>
-                                                <div className="text-right">
-                                                    <span className="text-[9px] uppercase tracking-wider text-[#a09383] block">Returns</span>
-                                                    <h4 className="font-roman text-sm font-bold text-[#1a1914]">{journey.returnPort}</h4>
-                                                    <p className="text-[11px] text-[#5c544b]">{journey.returnDate}</p>
-                                                </div>
+                                                {/* Card Quick Toggle Pill */}
+                                                <button
+                                                    type="button"
+                                                    onClick={(e) => {
+                                                        e.preventDefault();
+                                                        e.stopPropagation();
+                                                        toggleCardView(journey.id);
+                                                    }}
+                                                    className="absolute bottom-3 right-3 bg-[#08101d]/85 hover:bg-[#08101d] text-[#d8be8f] backdrop-blur-md px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-lg border border-[#d8be8f]/30 hover:border-[#d8be8f]/70 transition-all z-30 cursor-pointer"
+                                                    title={currentCardView === "PHOTO" ? "Switch to Midnight Blue Map Poster" : "Switch to Photo View"}
+                                                >
+                                                    {currentCardView === "PHOTO" ? (
+                                                        <>
+                                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                                                <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21" />
+                                                                <line x1="9" y1="3" x2="9" y2="18" />
+                                                                <line x1="15" y1="6" x2="15" y2="21" />
+                                                            </svg>
+                                                            <span className="text-[9px] font-bold uppercase tracking-wider font-mono">Map View</span>
+                                                        </>
+                                                    ) : (
+                                                        <>
+                                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                                                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+                                                                <circle cx="12" cy="13" r="4" />
+                                                            </svg>
+                                                            <span className="text-[9px] font-bold uppercase tracking-wider font-mono">Photo View</span>
+                                                        </>
+                                                    )}
+                                                </button>
                                             </div>
 
-                                            {/* Vehicle & Duration */}
-                                            <div className="flex justify-between items-center py-2 mb-5">
-                                                <div className="flex items-center gap-2">
-                                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5c544b" strokeWidth="1.5">
-                                                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" strokeLinecap="round" strokeLinejoin="round" />
-                                                    </svg>
-                                                    <span className="text-[11px] font-bold tracking-widest uppercase text-[#5c544b]">{journey.vehicle}</span>
-                                                </div>
-                                                <div className="flex items-center gap-2">
-                                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5c544b" strokeWidth="1.5">
-                                                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" strokeLinecap="round" strokeLinejoin="round" />
-                                                    </svg>
-                                                    <span className="text-[11px] font-bold tracking-widest uppercase text-[#5c544b]">
-                                                        {journey.durationDays}D / {journey.durationNights}N
-                                                    </span>
-                                                </div>
-                                            </div>
+                                            {/* Card Body */}
+                                            <div className="p-6 flex flex-col flex-grow">
+                                                {/* Title */}
+                                                <h3 className="font-roman text-xl font-bold text-[#1a1914] mb-3 line-clamp-2 leading-snug">
+                                                    {journey.title}
+                                                </h3>
 
-                                            {/* Price and Action */}
-                                            <div className="mt-auto flex justify-between items-end pt-4 border-t border-[#f0e7d6]">
-                                                <div>
-                                                    {(journey.badges || []).slice(0, 1).map((b) => (
-                                                        <div key={b} className="flex items-center gap-1 mb-1.5 bg-[#f4ebd9] px-2 py-0.5 rounded-sm w-max">
-                                                            <span className="text-[9px] font-bold text-[#a5813b] tracking-widest uppercase">{b}</span>
-                                                        </div>
-                                                    ))}
-                                                    <p className="text-[10px] text-[#5c544b] font-medium tracking-wide">Per guest, from:</p>
-                                                    <div className="flex items-baseline gap-2">
-                                                        <span className="font-roman text-2xl font-bold text-[#1a1914]">₹{journey.pricePerGuest.toLocaleString()}</span>
-                                                        {journey.originalPrice > journey.pricePerGuest && (
-                                                            <span className="text-xs text-[#a09383] line-through">₹{journey.originalPrice.toLocaleString()}</span>
-                                                        )}
+                                                {/* Departure -> Return Ports */}
+                                                <div className="flex justify-between items-start gap-4 mb-4 pb-4 border-b border-[#f0e7d6]">
+                                                    <div>
+                                                        <span className="text-[9px] uppercase tracking-wider text-[#a09383] block">Departs</span>
+                                                        <h4 className="font-roman text-sm font-bold text-[#1a1914]">{journey.departurePort}</h4>
+                                                        <p className="text-[11px] text-[#5c544b]">{journey.departureDate}</p>
+                                                    </div>
+                                                    <div className="flex-grow flex items-center justify-center pt-3">
+                                                        <svg width="24" height="10" viewBox="0 0 24 24" fill="none" stroke="#ae9e85" strokeWidth="1.5">
+                                                            <path d="M5 12h14M15 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+                                                        </svg>
+                                                    </div>
+                                                    <div className="text-right">
+                                                        <span className="text-[9px] uppercase tracking-wider text-[#a09383] block">Returns</span>
+                                                        <h4 className="font-roman text-sm font-bold text-[#1a1914]">{journey.returnPort}</h4>
+                                                        <p className="text-[11px] text-[#5c544b]">{journey.returnDate}</p>
                                                     </div>
                                                 </div>
 
-                                                <Link
-                                                    href={`/packages/${journey.id}`}
-                                                    className="bg-[#182335] text-white px-7 py-3 text-xs font-bold tracking-widest uppercase rounded-sm hover:bg-[#a5813b] transition-colors"
-                                                >
-                                                    Details
-                                                </Link>
+                                                {/* Vehicle & Duration */}
+                                                <div className="flex justify-between items-center py-2 mb-5">
+                                                    <div className="flex items-center gap-2">
+                                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5c544b" strokeWidth="1.5">
+                                                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" strokeLinecap="round" strokeLinejoin="round" />
+                                                        </svg>
+                                                        <span className="text-[11px] font-bold tracking-widest uppercase text-[#5c544b]">{journey.vehicle}</span>
+                                                    </div>
+                                                    <div className="flex items-center gap-2">
+                                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5c544b" strokeWidth="1.5">
+                                                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" strokeLinecap="round" strokeLinejoin="round" />
+                                                        </svg>
+                                                        <span className="text-[11px] font-bold tracking-widest uppercase text-[#5c544b]">
+                                                            {journey.durationDays}D / {journey.durationNights}N
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                                {/* Price and Action */}
+                                                <div className="mt-auto flex justify-between items-end pt-4 border-t border-[#f0e7d6]">
+                                                    <div>
+                                                        {(journey.badges || []).slice(0, 1).map((b) => (
+                                                            <div key={b} className="flex items-center gap-1 mb-1.5 bg-[#f4ebd9] px-2 py-0.5 rounded-sm w-max">
+                                                                <span className="text-[9px] font-bold text-[#a5813b] tracking-widest uppercase">{b}</span>
+                                                            </div>
+                                                        ))}
+                                                        <p className="text-[10px] text-[#5c544b] font-medium tracking-wide">Per guest, from:</p>
+                                                        <div className="flex items-baseline gap-2">
+                                                            <span className="font-roman text-2xl font-bold text-[#1a1914]">₹{journey.pricePerGuest.toLocaleString()}</span>
+                                                            {journey.originalPrice > journey.pricePerGuest && (
+                                                                <span className="text-xs text-[#a09383] line-through">₹{journey.originalPrice.toLocaleString()}</span>
+                                                            )}
+                                                        </div>
+                                                    </div>
+
+                                                    <Link
+                                                        href={`/packages/${journey.id}`}
+                                                        className="bg-[#182335] text-white px-7 py-3 text-xs font-bold tracking-widest uppercase rounded-sm hover:bg-[#a5813b] transition-colors"
+                                                    >
+                                                        Details
+                                                    </Link>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </motion.div>
-                                ))}
+                                        </motion.div>
+                                    );
+                                })}
                             </AnimatePresence>
                         </div>
                     )}
